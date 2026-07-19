@@ -36,7 +36,7 @@ export default function FadeIn({ children, className = "", delay = 0 }: FadeInPr
       className={`transition-all duration-700 ease-out ${className}`}
       style={{
         opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(12px)",
+        transform: visible ? "translateY(0)" : "translateY(6px)",
         transitionDelay: `${delay}ms`,
       }}
     >

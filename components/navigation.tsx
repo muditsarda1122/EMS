@@ -18,12 +18,15 @@ export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+    <header className="sticky top-0 z-50">
       <nav
-        className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-8"
+        className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-8"
         aria-label="Main navigation"
       >
-        <Link href="/" className="text-lg font-medium tracking-tight text-primary">
+        <Link 
+          href="/" 
+          className="text-sm font-medium tracking-wide text-primary hover:text-accent transition-colors duration-300"
+        >
           EMS
         </Link>
 
@@ -83,7 +86,7 @@ export default function Navigation() {
       {mobileOpen && (
         <div
           id="mobile-menu"
-          className="md:hidden border-t border-border bg-background"
+          className="md:hidden bg-background/95 backdrop-blur-sm border-b border-border"
         >
           <ul className="flex flex-col px-6 py-4 gap-4">
             {navLinks.map((link) => (

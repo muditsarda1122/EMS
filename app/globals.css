@@ -4,7 +4,7 @@
   --color-background: #FAFAF8;
   --color-card: #FFFFFF;
   --color-primary: #1A1A1A;
-  --color-secondary: #707070;
+  --color-secondary: #6B6B6B;
   --color-accent: #4A6FA5;
   --color-accent-hover: #3B5A87;
   --color-border: rgba(26, 26, 26, 0.08);
@@ -23,6 +23,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Editorial typography utilities */
+.text-editorial {
+  line-height: 1.65;
+  max-width: 65ch;
+}
+
+.text-editorial-wide {
+  line-height: 1.7;
+  max-width: 70ch;
+}
+
 /* Focus indicators */
 :focus-visible {
   outline: 2px solid #4A6FA5;
@@ -36,23 +47,56 @@ button:focus-visible {
   outline-offset: 2px;
 }
 
-/* Dark mode support (optional, media-query only) */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: #0A0A0A;
-    --color-card: #141414;
-    --color-primary: #F0F0F0;
-    --color-secondary: #999999;
-    --color-accent: #6B8FC7;
-    --color-accent-hover: #5A7DB5;
-    --color-border: rgba(240, 240, 240, 0.08);
-  }
+/* Editorial buttons */
+.btn-editorial {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid rgba(26, 26, 26, 0.15);
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  transition: all 0.3s ease;
 }
 
+.btn-editorial:hover {
+  background-color: var(--color-primary);
+  color: var(--color-background);
+  border-color: var(--color-primary);
+}
+
+.btn-editorial-primary {
+  background-color: var(--color-primary);
+  color: var(--color-background);
+  border-color: var(--color-primary);
+}
+
+.btn-editorial-primary:hover {
+  background-color: transparent;
+  color: var(--color-primary);
+}
+
+/* Editorial cards */
+.card-editorial {
+  border: 1px solid rgba(26, 26, 26, 0.08);
+  background-color: var(--color-card);
+  border-radius: 0.5rem;
+  padding: 2.5rem;
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+.card-editorial:hover {
+  box-shadow: 0 2px 12px rgba(26, 26, 26, 0.04);
+  transform: translateY(-1px);
+}
+
+/* Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
@@ -61,19 +105,63 @@ button:focus-visible {
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.6s ease-out forwards;
+  animation: fadeIn 0.7s ease-out forwards;
 }
 
 /* Scroll-triggered section animations */
 .section-animate {
   opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  transform: translateY(8px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .section-animate.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* SVG line animation */
+@keyframes drawLine {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-draw-line {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawLine 2s ease-out forwards;
+}
+
+/* Gentle pulse for floating elements */
+@keyframes gentlePulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-gentle-pulse {
+  animation: gentlePulse 4s ease-in-out infinite;
+}
+
+/* Tiny translate for subtle motion */
+@keyframes gentleFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.animate-gentle-float {
+  animation: gentleFloat 6s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

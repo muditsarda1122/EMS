@@ -39,7 +39,7 @@ export default function PdfActions({ filename, github }: PdfActionsProps) {
             href={github}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center text-sm font-medium text-accent hover:text-accent-hover transition-colors duration-300"
+            className="text-sm text-accent hover:text-accent-hover transition-colors duration-300"
           >
             GitHub &rarr;
           </a>
@@ -54,23 +54,23 @@ export default function PdfActions({ filename, github }: PdfActionsProps) {
         href={`/EMS-artefacts/${filename}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center text-sm font-medium text-accent hover:text-accent-hover transition-colors duration-300"
+        className="btn-editorial"
       >
-        Open PDF &rarr;
+        Open PDF
       </a>
       <a
         href={`/EMS-artefacts/${filename}`}
         download
-        className="inline-flex items-center text-sm font-medium text-accent hover:text-accent-hover transition-colors duration-300"
+        className="btn-editorial"
       >
-        Download PDF &rarr;
+        Download PDF
       </a>
       {github && (
         <a
           href={github}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center text-sm font-medium text-accent hover:text-accent-hover transition-colors duration-300"
+          className="text-sm text-accent hover:text-accent-hover transition-colors duration-300"
         >
           GitHub &rarr;
         </a>
