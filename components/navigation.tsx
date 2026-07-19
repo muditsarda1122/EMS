@@ -18,16 +18,16 @@ export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50">
+    <header className="sticky top-0 z-50 bg-background">
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-8"
         aria-label="Main navigation"
       >
-        <Link 
-          href="/" 
-          className="text-sm font-medium tracking-wide text-primary hover:text-accent transition-colors duration-300"
+        <Link
+          href="/"
+          className="text-base font-semibold tracking-wide text-primary hover:text-accent transition-colors duration-300"
         >
-          EMS
+          Engineering Memory System
         </Link>
 
         {/* Desktop */}
