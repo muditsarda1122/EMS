@@ -11,6 +11,12 @@ export default function EmsPage() {
   return (
     <div className="mx-auto max-w-3xl px-6 py-20 lg:py-24 lg:px-8">
       <FadeIn>
+        <div className="mb-12">
+          <EmsPipeline />
+        </div>
+      </FadeIn>
+
+      <FadeIn delay={100}>
         <header className="mb-16">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-primary">
             Engineering
@@ -23,12 +29,6 @@ export default function EmsPage() {
             A cognition pipeline rather than a memory system.
           </p>
         </header>
-      </FadeIn>
-
-      <FadeIn delay={100}>
-        <section className="mb-16">
-          <EmsPipeline />
-        </section>
       </FadeIn>
 
       <FadeIn delay={100}>

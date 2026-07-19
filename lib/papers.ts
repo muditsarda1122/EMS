@@ -16,7 +16,7 @@ export const papers: Paper[] = [
     status: "Working Draft",
     abstract:
       "Investigating whether engineering understanding can become a computational object. We explore how software engineering agents can continuously construct, maintain and reuse engineering understanding across long-running development workflows.",
-    filename: "engineering-cognition-paper.pdf",
+    filename: "engineering-cognition.pdf",
   },
   {
     id: "engineering-memory-system",
@@ -25,7 +25,7 @@ export const papers: Paper[] = [
     status: "Technical Report",
     abstract:
       "A cognition pipeline for constructing and maintaining engineering understanding. EMS is not a memory layer—it is an engineering cognition pipeline that transforms repository changes into accumulated understanding.",
-    filename: "engineering-memory-system-paper.pdf",
+    filename: "engineering-memory-system.pdf",
   },
   {
     id: "ec-bench-technical",
