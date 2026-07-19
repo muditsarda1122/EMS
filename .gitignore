@@ -48,3 +48,6 @@ prompt/*
 
 # dist
 dist/*
+
+# ygrep
+.fastembed_cache

@@ -1,5 +1,5 @@
-import Link from "next/link";
 import FadeIn from "@/components/fade-in";
+import ResearchDesk from "@/components/svg/research-desk";
 
 export const metadata = {
   title: "Lab",
@@ -20,6 +20,12 @@ export default function LabPage() {
   return (
     <div className="mx-auto max-w-3xl px-6 py-20 lg:py-24 lg:px-8">
       <FadeIn>
+        <div className="mb-12">
+          <ResearchDesk />
+        </div>
+      </FadeIn>
+
+      <FadeIn delay={100}>
         <header className="mb-16">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-primary">
             Lab
