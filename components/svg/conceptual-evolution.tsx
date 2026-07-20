@@ -1,103 +1,138 @@
+"use client";
+
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+
 export default function ConceptualEvolution() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "center center"],
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
+  const y = useTransform(scrollYProgress, [0, 0.5], [20, 0]);
+
   return (
-    <svg
-      viewBox="0 0 400 520"
-      className="w-full max-w-sm mx-auto"
-      xmlns="http://www.w3.org/2000/svg"
-      role="img"
-      aria-label="Conceptual evolution from Memory to Understanding to Belief to Engineering Cognition"
-    >
-      <title>Conceptual evolution diagram</title>
-      <desc>
-        A visual showing the conceptual evolution from Memory through Understanding 
-        and Belief to Engineering Cognition, illustrating how simple storage becomes 
-        accumulated understanding.
-      </desc>
+    <div ref={containerRef}>
+      <motion.div style={{ opacity, y }}>
+        <svg
+          viewBox="0 0 500 570"
+          className="w-full h-auto max-w-lg mx-auto"
+          xmlns="http://www.w3.org/2000/svg"
+          role="img"
+          aria-label="How Engineering Cognition emerges: from Memory through Understanding and Engineering Beliefs"
+        >
+          <title>Conceptual Evolution</title>
+          <desc>
+            A visual showing how Engineering Cognition emerges from Memory through
+            Understanding and Engineering Beliefs.
+          </desc>
 
-      <rect width="400" height="520" fill="none" />
+          <rect width="500" height="570" fill="none" />
 
-      {/* Memory */}
-      <g>
-        <circle cx="200" cy="60" r="35" fill="#FFFFFF" stroke="#6B6B6B" strokeWidth="1" opacity="0.6">
-          <animate attributeName="opacity" values="0.5;0.7;0.5" dur="6s" repeatCount="indefinite" />
-        </circle>
-        <text x="200" y="56" textAnchor="middle" fontSize="12" fontWeight="500" fill="#1A1A1A">Memory</text>
-        <text x="200" y="70" textAnchor="middle" fontSize="9" fill="#6B6B6B">stores information</text>
-      </g>
+          <defs>
+            <marker
+              id="arrow-down"
+              markerWidth="8"
+              markerHeight="6"
+              refX="8"
+              refY="3"
+              orient="auto"
+            >
+              <polygon points="0 0, 8 3, 0 6" fill="#8A9AAF" opacity="0.4" />
+            </marker>
+          </defs>
 
-      {/* Arrow 1 */}
-      <g>
-        <line x1="200" y1="100" x2="200" y2="130" stroke="#6B6B6B" strokeWidth="1" opacity="0.3" />
-        <polygon points="196,124 200,132 204,124" fill="#6B6B6B" opacity="0.3" />
-        
-        {/* Transformation particles */}
-        <circle cx="200" cy="115" r="2" fill="#4A6FA5" opacity="0.4">
-          <animate attributeName="opacity" values="0.2;0.6;0.2" dur="3s" repeatCount="indefinite" />
-          <animate attributeName="cy" values="105;125;105" dur="3s" repeatCount="indefinite" />
-        </circle>
-      </g>
+          {/* ═══════════════════════════════════════════════════════════════
+             CIRCLE 1 — Memory (smallest)
+             ═══════════════════════════════════════════════════════════════ */}
+          <g>
+            <circle cx="250" cy="49" r="44" fill="#FFFFFF" stroke="#1A1A1A" strokeWidth="0.8" />
+            <text x="250" y="42" textAnchor="middle" fontSize="14" fontWeight="500" fill="#1A1A1A" letterSpacing="-0.01em">
+              Memory
+            </text>
+            <text x="250" y="60" textAnchor="middle" fontSize="10" fill="#6B6B6B">
+              Stores observations
+            </text>
+          </g>
 
-      {/* Understanding */}
-      <g>
-        <circle cx="200" cy="170" r="38" fill="#FFFFFF" stroke="#4A6FA5" strokeWidth="1" opacity="0.75">
-          <animate attributeName="opacity" values="0.7;0.9;0.7" dur="7s" repeatCount="indefinite" />
-          <animate attributeName="r" values="38;40;38" dur="7s" repeatCount="indefinite" />
-        </circle>
-        <text x="200" y="164" textAnchor="middle" fontSize="12" fontWeight="500" fill="#1A1A1A">Understanding</text>
-        <text x="200" y="178" textAnchor="middle" fontSize="9" fill="#6B6B6B">connects patterns</text>
-      </g>
+          {/* Arrow 1 — Memory → Understanding */}
+          <line
+            x1="250"
+            y1="93"
+            x2="250"
+            y2="103"
+            stroke="#8A9AAF"
+            strokeWidth="0.8"
+            opacity="0.4"
+            markerEnd="url(#arrow-down)"
+          />
 
-      {/* Arrow 2 */}
-      <g>
-        <line x1="200" y1="212" x2="200" y2="242" stroke="#4A6FA5" strokeWidth="1" opacity="0.35" />
-        <polygon points="196,236 200,244 204,236" fill="#4A6FA5" opacity="0.35" />
-        
-        <circle cx="200" cy="227" r="2" fill="#4A6FA5" opacity="0.5">
-          <animate attributeName="opacity" values="0.3;0.7;0.3" dur="4s" repeatCount="indefinite" />
-          <animate attributeName="cy" values="217;237;217" dur="4s" repeatCount="indefinite" />
-        </circle>
-      </g>
+          {/* ═══════════════════════════════════════════════════════════════
+             CIRCLE 2 — Understanding (medium)
+             ═══════════════════════════════════════════════════════════════ */}
+          <g>
+            <circle cx="250" cy="167" r="64" fill="#FFFFFF" stroke="#1A1A1A" strokeWidth="0.8" />
+            <text x="250" y="160" textAnchor="middle" fontSize="14" fontWeight="500" fill="#1A1A1A" letterSpacing="-0.01em">
+              Understanding
+            </text>
+            <text x="250" y="178" textAnchor="middle" fontSize="10" fill="#6B6B6B">
+              Connects observations
+            </text>
+          </g>
 
-      {/* Belief */}
-      <g>
-        <circle cx="200" cy="282" r="35" fill="#FFFFFF" stroke="#4A6FA5" strokeWidth="1.2" opacity="0.85">
-          <animate attributeName="opacity" values="0.8;1;0.8" dur="6s" repeatCount="indefinite" />
-        </circle>
-        <text x="200" y="276" textAnchor="middle" fontSize="12" fontWeight="500" fill="#1A1A1A">Belief</text>
-        <text x="200" y="290" textAnchor="middle" fontSize="9" fill="#6B6B6B">reusable understanding</text>
-      </g>
+          {/* Arrow 2 — Understanding → Engineering Beliefs */}
+          <line
+            x1="250"
+            y1="231"
+            x2="250"
+            y2="241"
+            stroke="#8A9AAF"
+            strokeWidth="0.8"
+            opacity="0.4"
+            markerEnd="url(#arrow-down)"
+          />
 
-      {/* Arrow 3 */}
-      <g>
-        <line x1="200" y1="322" x2="200" y2="352" stroke="#4A6FA5" strokeWidth="1.2" opacity="0.4" />
-        <polygon points="196,346 200,354 204,346" fill="#4A6FA5" opacity="0.4" />
-        
-        <circle cx="200" cy="337" r="2.5" fill="#1A1A1A" opacity="0.5">
-          <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3.5s" repeatCount="indefinite" />
-          <animate attributeName="cy" values="327;347;327" dur="3.5s" repeatCount="indefinite" />
-        </circle>
-      </g>
+          {/* ═══════════════════════════════════════════════════════════════
+             CIRCLE 3 — Engineering Beliefs (slightly larger)
+             ═══════════════════════════════════════════════════════════════ */}
+          <g>
+            <circle cx="250" cy="315" r="74" fill="#FFFFFF" stroke="#1A1A1A" strokeWidth="0.8" />
+            <text x="250" y="308" textAnchor="middle" fontSize="14" fontWeight="500" fill="#1A1A1A" letterSpacing="-0.01em">
+              Engineering Beliefs
+            </text>
+            <text x="250" y="326" textAnchor="middle" fontSize="10" fill="#6B6B6B">
+              Reusable understanding
+            </text>
+          </g>
 
-      {/* Engineering Cognition */}
-      <g>
-        <circle cx="200" cy="400" r="42" fill="#FFFFFF" stroke="#1A1A1A" strokeWidth="1.5" opacity="0.95">
-          <animate attributeName="opacity" values="0.9;1;0.9" dur="5s" repeatCount="indefinite" />
-          <animate attributeName="r" values="42;44;42" dur="6s" repeatCount="indefinite" />
-        </circle>
-        <text x="200" y="392" textAnchor="middle" fontSize="11" fontWeight="500" fill="#1A1A1A">Engineering</text>
-        <text x="200" y="406" textAnchor="middle" fontSize="11" fontWeight="500" fill="#1A1A1A">Cognition</text>
-        <text x="200" y="420" textAnchor="middle" fontSize="8" fill="#6B6B6B">accumulated understanding</text>
-      </g>
+          {/* Arrow 3 — Engineering Beliefs → Engineering Cognition */}
+          <line
+            x1="250"
+            y1="389"
+            x2="250"
+            y2="399"
+            stroke="#8A9AAF"
+            strokeWidth="0.8"
+            opacity="0.4"
+            markerEnd="url(#arrow-down)"
+          />
 
-      {/* Decorative orbit */}
-      <ellipse cx="200" cy="230" rx="160" ry="180" fill="none" stroke="rgba(74,111,165,0.03)" strokeWidth="1" strokeDasharray="3 3">
-        <animateTransform attributeName="transform" type="rotate" from="0 200 230" to="360 200 230" dur="120s" repeatCount="indefinite" />
-      </ellipse>
-
-      {/* Subtle evolution label */}
-      <text x="200" y="480" textAnchor="middle" fontSize="9" fill="#6B6B6B" opacity="0.35" letterSpacing="2">
-        conceptual evolution
-      </text>
-    </svg>
+          {/* ═══════════════════════════════════════════════════════════════
+             CIRCLE 4 — Engineering Cognition (largest, destination)
+             ═══════════════════════════════════════════════════════════════ */}
+          <g>
+            <circle cx="250" cy="481" r="82" fill="#FAFAFA" stroke="#1A1A1A" strokeWidth="1.2" />
+            <text x="250" y="474" textAnchor="middle" fontSize="14" fontWeight="500" fill="#1A1A1A" letterSpacing="-0.01em">
+              Engineering Cognition
+            </text>
+            <text x="250" y="492" textAnchor="middle" fontSize="10" fill="#6B6B6B">
+              Continuously evolving understanding
+            </text>
+          </g>
+        </svg>
+      </motion.div>
+    </div>
   );
 }

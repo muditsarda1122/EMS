@@ -1,140 +1,192 @@
+"use client";
+
 export default function ResearchGraph() {
   return (
     <svg
-      viewBox="0 0 600 340"
-      className="w-full max-w-2xl mx-auto"
+      viewBox="0 0 1200 720"
+      className="w-full h-auto"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
-      aria-label="Animated research graph showing convergence toward Engineering Cognition"
+      aria-label="Research agenda overview: Engineering Cognition as the central question with five surrounding research programs"
     >
-      <title>Research convergence graph</title>
+      <title>Research Agenda Overview</title>
       <desc>
-        A research graph showing EMS, EC-Bench, Technical Report, and Experiment Paper
-        all converging toward Engineering Cognition as the central research direction.
+        A research roadmap showing Engineering Cognition as the central question,
+        with five connected research programs orbiting it: Understanding,
+        Knowledge Extraction, Systems Architecture, Continuous Evolution, and Measurement.
       </desc>
 
-      <rect width="600" height="340" fill="none" />
+      <rect width="1200" height="720" fill="none" />
 
-      {/* Background */}
-      <rect width="600" height="340" fill="#FAFAF8" opacity="0.5" />
+      <defs>
+        <marker
+          id="arrow-to-center"
+          markerWidth="8"
+          markerHeight="6"
+          refX="8"
+          refY="3"
+          orient="auto"
+        >
+          <polygon points="0 0, 8 3, 0 6" fill="#8A9AAF" opacity="0.4" />
+        </marker>
+      </defs>
 
-      {/* Central hub — Engineering Cognition */}
+      {/* ─── Arrows from outer circles to centre ─── */}
+      <g stroke="#8A9AAF" strokeWidth="0.8" opacity="0.4">
+        <line x1="260" y1="240" x2="523.1" y2="363.8" markerEnd="url(#arrow-to-center)" />
+        <line x1="220" y1="520" x2="519.0" y2="425.6" markerEnd="url(#arrow-to-center)" />
+        <line x1="600" y1="630" x2="600" y2="485" markerEnd="url(#arrow-to-center)" />
+        <line x1="980" y1="520" x2="681.0" y2="425.6" markerEnd="url(#arrow-to-center)" />
+        <line x1="940" y1="240" x2="676.9" y2="363.8" markerEnd="url(#arrow-to-center)" />
+      </g>
+
+      {/* ─── Blue balls travelling along arrows ─── */}
       <g>
-        <circle cx="300" cy="170" r="45" fill="#FFFFFF" stroke="#1A1A1A" strokeWidth="1.5" opacity="0.95">
-          <animate attributeName="opacity" values="0.9;1;0.9" dur="5s" repeatCount="indefinite" />
-          <animate attributeName="r" values="45;47;45" dur="6s" repeatCount="indefinite" />
+        <circle cx="307.1" cy="262.1" r="2" fill="#4A6FA5" opacity="0.4">
+          <animate attributeName="opacity" values="0.2;0.6;0.2" dur="3s" repeatCount="indefinite" />
+          <animate attributeName="cx" values="307.1;523.1;307.1" dur="3s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="262.1;363.8;262.1" dur="3s" repeatCount="indefinite" />
         </circle>
-        <text x="300" y="160" textAnchor="middle" fontSize="11" fontWeight="500" fill="#1A1A1A">
+        <circle cx="277.2" cy="501.9" r="2" fill="#4A6FA5" opacity="0.4">
+          <animate attributeName="opacity" values="0.2;0.6;0.2" dur="3.5s" repeatCount="indefinite" />
+          <animate attributeName="cx" values="277.2;519.0;277.2" dur="3.5s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="501.9;425.6;501.9" dur="3.5s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="600" cy="574" r="2" fill="#4A6FA5" opacity="0.4">
+          <animate attributeName="opacity" values="0.2;0.6;0.2" dur="2.8s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="574;485;574" dur="2.8s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="928.5" cy="503.7" r="2" fill="#4A6FA5" opacity="0.4">
+          <animate attributeName="opacity" values="0.2;0.6;0.2" dur="3.2s" repeatCount="indefinite" />
+          <animate attributeName="cx" values="928.5;681.0;928.5" dur="3.2s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="503.7;425.6;503.7" dur="3.2s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="896.6" cy="260.4" r="2" fill="#4A6FA5" opacity="0.4">
+          <animate attributeName="opacity" values="0.2;0.6;0.2" dur="3.8s" repeatCount="indefinite" />
+          <animate attributeName="cx" values="896.6;676.9;896.6" dur="3.8s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="260.4;363.8;260.4" dur="3.8s" repeatCount="indefinite" />
+        </circle>
+      </g>
+
+      {/* ═══════════════════════════════════════════════════════════════
+         CENTER — Engineering Cognition (largest, dominates)
+         ═══════════════════════════════════════════════════════════════ */}
+      <g>
+        <circle cx="600" cy="400" r="85" fill="#FAFAFA" stroke="#1A1A1A" strokeWidth="1.2" />
+        <text x="600" y="385" textAnchor="middle" fontSize="18" fontWeight="500" fill="#1A1A1A" letterSpacing="-0.01em">
           Engineering
         </text>
-        <text x="300" y="175" textAnchor="middle" fontSize="11" fontWeight="500" fill="#1A1A1A">
+        <text x="600" y="410" textAnchor="middle" fontSize="18" fontWeight="500" fill="#1A1A1A" letterSpacing="-0.01em">
           Cognition
         </text>
-        <text x="300" y="190" textAnchor="middle" fontSize="8" fill="#6B6B6B">
-          central question
+        <text x="600" y="435" textAnchor="middle" fontSize="11" fill="#6B6B6B" letterSpacing="0.02em">
+          Central Research Question
         </text>
       </g>
 
-      {/* Surrounding nodes */}
-      {/* EMS */}
+      {/* ═══════════════════════════════════════════════════════════════
+         SURROUNDING 1 — Understanding (top-left, medium)
+         ═══════════════════════════════════════════════════════════════ */}
       <g>
-        <circle cx="120" cy="100" r="28" fill="#FFFFFF" stroke="#4A6FA5" strokeWidth="1" opacity="0.85">
-          <animate attributeName="opacity" values="0.8;1;0.8" dur="7s" repeatCount="indefinite" />
-        </circle>
-        <text x="120" y="97" textAnchor="middle" fontSize="10" fontWeight="500" fill="#1A1A1A">EMS</text>
-        <text x="120" y="108" textAnchor="middle" fontSize="8" fill="#6B6B6B">system</text>
+        <circle cx="260" cy="240" r="52" fill="#FFFFFF" stroke="#1A1A1A" strokeWidth="0.8" />
+        <text x="260" y="228" textAnchor="middle" fontSize="13" fontWeight="500" fill="#1A1A1A" letterSpacing="-0.01em">
+          Understanding
+        </text>
+        <text x="260" y="248" textAnchor="middle" fontSize="10" fill="#6B6B6B">
+          Engineering beliefs
+        </text>
+        <text x="260" y="262" textAnchor="middle" fontSize="10" fill="#6B6B6B">
+          Mental models
+        </text>
+        <text x="260" y="276" textAnchor="middle" fontSize="10" fill="#6B6B6B">
+          Reasoning
+        </text>
       </g>
 
-      {/* EC-Bench */}
+      {/* ═══════════════════════════════════════════════════════════════
+         SURROUNDING 2 — Knowledge Extraction (lower-left, largest)
+         ═══════════════════════════════════════════════════════════════ */}
       <g>
-        <circle cx="120" cy="240" r="28" fill="#FFFFFF" stroke="#4A6FA5" strokeWidth="1" opacity="0.85">
-          <animate attributeName="opacity" values="0.8;1;0.8" dur="8s" repeatCount="indefinite" />
-        </circle>
-        <text x="120" y="237" textAnchor="middle" fontSize="10" fontWeight="500" fill="#1A1A1A">EC-Bench</text>
-        <text x="120" y="248" textAnchor="middle" fontSize="8" fill="#6B6B6B">benchmark</text>
+        <circle cx="220" cy="520" r="60" fill="#FFFFFF" stroke="#1A1A1A" strokeWidth="0.8" />
+        <text x="220" y="498" textAnchor="middle" fontSize="12" fontWeight="500" fill="#1A1A1A" letterSpacing="-0.01em">
+          Knowledge
+        </text>
+        <text x="220" y="514" textAnchor="middle" fontSize="12" fontWeight="500" fill="#1A1A1A" letterSpacing="-0.01em">
+          Extraction
+        </text>
+        <text x="220" y="534" textAnchor="middle" fontSize="10" fill="#6B6B6B">
+          From traces
+        </text>
+        <text x="220" y="548" textAnchor="middle" fontSize="10" fill="#6B6B6B">
+          From conversations
+        </text>
+        <text x="220" y="562" textAnchor="middle" fontSize="10" fill="#6B6B6B">
+          From code
+        </text>
       </g>
 
-      {/* Technical Report */}
+      {/* ═══════════════════════════════════════════════════════════════
+         SURROUNDING 3 — Systems Architecture (bottom-center, medium-large)
+         ═══════════════════════════════════════════════════════════════ */}
       <g>
-        <circle cx="480" cy="100" r="30" fill="#FFFFFF" stroke="#4A6FA5" strokeWidth="1" opacity="0.85">
-          <animate attributeName="opacity" values="0.8;1;0.8" dur="6s" repeatCount="indefinite" />
-        </circle>
-        <text x="480" y="95" textAnchor="middle" fontSize="9" fontWeight="500" fill="#1A1A1A">Technical</text>
-        <text x="480" y="106" textAnchor="middle" fontSize="9" fontWeight="500" fill="#1A1A1A">Report</text>
-        <text x="480" y="117" textAnchor="middle" fontSize="8" fill="#6B6B6B">60 pages</text>
+        <circle cx="600" cy="630" r="56" fill="#FFFFFF" stroke="#1A1A1A" strokeWidth="0.8" />
+        <text x="600" y="608" textAnchor="middle" fontSize="12" fontWeight="500" fill="#1A1A1A" letterSpacing="-0.01em">
+          Systems
+        </text>
+        <text x="600" y="624" textAnchor="middle" fontSize="12" fontWeight="500" fill="#1A1A1A" letterSpacing="-0.01em">
+          Architecture
+        </text>
+        <text x="600" y="644" textAnchor="middle" fontSize="10" fill="#6B6B6B">
+          EMS
+        </text>
+        <text x="600" y="658" textAnchor="middle" fontSize="10" fill="#6B6B6B">
+          Memory pipeline
+        </text>
+        <text x="600" y="672" textAnchor="middle" fontSize="10" fill="#6B6B6B">
+          Retrieval
+        </text>
       </g>
 
-      {/* Experiment Paper */}
+      {/* ═══════════════════════════════════════════════════════════════
+         SURROUNDING 4 — Continuous Evolution (lower-right, medium)
+         ═══════════════════════════════════════════════════════════════ */}
       <g>
-        <circle cx="480" cy="240" r="30" fill="#FFFFFF" stroke="#4A6FA5" strokeWidth="1" opacity="0.85">
-          <animate attributeName="opacity" values="0.8;1;0.8" dur="9s" repeatCount="indefinite" />
-        </circle>
-        <text x="480" y="235" textAnchor="middle" fontSize="9" fontWeight="500" fill="#1A1A1A">Experiment</text>
-        <text x="480" y="246" textAnchor="middle" fontSize="9" fontWeight="500" fill="#1A1A1A">Paper</text>
-        <text x="480" y="257" textAnchor="middle" fontSize="8" fill="#6B6B6B">findings</text>
+        <circle cx="980" cy="520" r="54" fill="#FFFFFF" stroke="#1A1A1A" strokeWidth="0.8" />
+        <text x="980" y="498" textAnchor="middle" fontSize="12" fontWeight="500" fill="#1A1A1A" letterSpacing="-0.01em">
+          Continuous
+        </text>
+        <text x="980" y="514" textAnchor="middle" fontSize="12" fontWeight="500" fill="#1A1A1A" letterSpacing="-0.01em">
+          Evolution
+        </text>
+        <text x="980" y="534" textAnchor="middle" fontSize="10" fill="#6B6B6B">
+          Revision
+        </text>
+        <text x="980" y="548" textAnchor="middle" fontSize="10" fill="#6B6B6B">
+          Maintenance
+        </text>
+        <text x="980" y="562" textAnchor="middle" fontSize="10" fill="#6B6B6B">
+          Forgetting
+        </text>
       </g>
 
-      {/* Converging connections */}
-      {/* EMS → Engineering Cognition */}
-      <line x1="146" y1="110" x2="260" y2="155" stroke="#4A6FA5" strokeWidth="1" opacity="0.3">
-        <animate attributeName="opacity" values="0.2;0.45;0.2" dur="5s" repeatCount="indefinite" />
-        <animate attributeName="stroke-width" values="1;1.5;1" dur="5s" repeatCount="indefinite" />
-      </line>
-
-      {/* EC-Bench → Engineering Cognition */}
-      <line x1="146" y1="230" x2="260" y2="185" stroke="#4A6FA5" strokeWidth="1" opacity="0.3">
-        <animate attributeName="opacity" values="0.2;0.45;0.2" dur="6s" repeatCount="indefinite" />
-        <animate attributeName="stroke-width" values="1;1.5;1" dur="6s" repeatCount="indefinite" />
-      </line>
-
-      {/* Technical Report → Engineering Cognition */}
-      <line x1="454" y1="110" x2="340" y2="155" stroke="#4A6FA5" strokeWidth="1" opacity="0.3">
-        <animate attributeName="opacity" values="0.2;0.45;0.2" dur="7s" repeatCount="indefinite" />
-        <animate attributeName="stroke-width" values="1;1.5;1" dur="7s" repeatCount="indefinite" />
-      </line>
-
-      {/* Experiment Paper → Engineering Cognition */}
-      <line x1="454" y1="230" x2="340" y2="185" stroke="#4A6FA5" strokeWidth="1" opacity="0.3">
-        <animate attributeName="opacity" values="0.2;0.45;0.2" dur="8s" repeatCount="indefinite" />
-        <animate attributeName="stroke-width" values="1;1.5;1" dur="8s" repeatCount="indefinite" />
-      </line>
-
-      {/* Cross-connections for richness */}
-      <line x1="146" y1="100" x2="454" y2="100" stroke="#4A6FA5" strokeWidth="0.5" opacity="0.08">
-        <animate attributeName="opacity" values="0.05;0.15;0.05" dur="12s" repeatCount="indefinite" />
-      </line>
-      <line x1="146" y1="240" x2="454" y2="240" stroke="#4A6FA5" strokeWidth="0.5" opacity="0.08">
-        <animate attributeName="opacity" values="0.05;0.15;0.05" dur="13s" repeatCount="indefinite" />
-      </line>
-
-      {/* Orbital rings */}
-      <ellipse cx="300" cy="170" rx="200" ry="120" fill="none" stroke="rgba(74,111,165,0.04)" strokeWidth="1" strokeDasharray="4 4">
-        <animateTransform attributeName="transform" type="rotate" from="0 300 170" to="360 300 170" dur="90s" repeatCount="indefinite" />
-      </ellipse>
-
-      {/* Floating data particles */}
-      <g opacity="0.25">
-        <circle cx="200" cy="60" r="3" fill="#4A6FA5">
-          <animate attributeName="opacity" values="0.2;0.5;0.2" dur="8s" repeatCount="indefinite" />
-          <animate attributeName="cy" values="60;50;60" dur="8s" repeatCount="indefinite" />
-        </circle>
+      {/* ═══════════════════════════════════════════════════════════════
+         SURROUNDING 5 — Measurement (top-right, smallest)
+         ═══════════════════════════════════════════════════════════════ */}
+      <g>
+        <circle cx="940" cy="240" r="48" fill="#FFFFFF" stroke="#1A1A1A" strokeWidth="0.8" />
+        <text x="940" y="230" textAnchor="middle" fontSize="13" fontWeight="500" fill="#1A1A1A" letterSpacing="-0.01em">
+          Measurement
+        </text>
+        <text x="940" y="250" textAnchor="middle" fontSize="10" fill="#6B6B6B">
+          EC-Bench
+        </text>
+        <text x="940" y="264" textAnchor="middle" fontSize="10" fill="#6B6B6B">
+          Evaluation
+        </text>
+        <text x="940" y="278" textAnchor="middle" fontSize="10" fill="#6B6B6B">
+          Evidence
+        </text>
       </g>
-      <g opacity="0.25">
-        <circle cx="400" cy="280" r="3" fill="#4A6FA5">
-          <animate attributeName="opacity" values="0.15;0.4;0.15" dur="10s" repeatCount="indefinite" />
-          <animate attributeName="cy" values="280;290;280" dur="10s" repeatCount="indefinite" />
-        </circle>
-      </g>
-      <g opacity="0.2">
-        <circle cx="280" cy="300" r="2" fill="#6B6B6B">
-          <animate attributeName="opacity" values="0.1;0.3;0.1" dur="12s" repeatCount="indefinite" />
-        </circle>
-      </g>
-
-      {/* Subtle label */}
-      <text x="300" y="330" textAnchor="middle" fontSize="9" fill="#6B6B6B" opacity="0.4" letterSpacing="2">
-        all research converges here
-      </text>
     </svg>
   );
 }

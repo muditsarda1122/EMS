@@ -48,7 +48,7 @@ export default function HomePage() {
       </section>
 
       {/* Section — Two Editorial Columns */}
-      <section className="mx-auto max-w-6xl px-6 py-20 lg:px-8">
+      <section className="mx-auto max-w-6xl px-6 pt-20 pb-10 lg:px-8">
         <div className="grid gap-16 lg:gap-24 md:grid-cols-2">
           <FadeIn>
             <div className="max-w-[550px]">
@@ -111,31 +111,30 @@ export default function HomePage() {
 
         {/* Thesis */}
         <FadeIn delay={200}>
-          <div className="mt-24 max-w-4xl mx-auto border-t border-border pt-12">
+          {/* <div className="mt-24 max-w-4xl mx-auto border-t border-border pt-12">
             <p className="text-center text-xl sm:text-2xl leading-relaxed font-medium text-primary text-balance">
               Software engineering is fundamentally a process of accumulating
               understanding. If AI systems are to become long-term engineering
               collaborators rather than short-term coding assistants, they must learn
               to accumulate understanding in the same way.
             </p>
+          </div> */}
+          <div className="mt-24 max-w-4xl mx-auto">
+            <p className="text-center text-xl sm:text-2xl leading-relaxed font-medium text-primary text-balance">
+              Software engineering is fundamentally a process of accumulating
+              understanding. If AI systems are to become long-term engineering
+              collaborators rather than short-term coding assistants, they must learn
+              to accumulate understanding in the same way.
+            </p>
+
+            <div className="mt-12 border-b border-border" />
           </div>
         </FadeIn>
       </section>
 
       {/* Section — Understanding Collapses Diagram */}
-      {/* <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-        <FadeIn>
-          <div className="mt-12">
-            <ProblemDiagram />
-          </div>
-        </FadeIn>
-      </section> */}
-      <section className="py-20">
-        <FadeIn>
-          <div className="mx-auto mt-12 max-w-[1700px] px-6">
-            <ProblemDiagram />
-          </div>
-        </FadeIn>
+      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+        <ProblemDiagram />
       </section>
 
       {/* Section — The Shift */}
@@ -298,266 +297,6 @@ export default function HomePage() {
                 Different modes of reasoning for different engineering contexts.
               </p>
             </div>
-          </div>
-        </FadeIn>
-      </section>
-
-      {/* Section — Research Artefacts
-      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-        <FadeIn>
-          <h2 className="text-2xl sm:text-3xl font-medium tracking-tight text-primary text-center mb-12">
-            Research Artefacts
-          </h2>
-        </FadeIn>
-        <FadeIn delay={100}>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            <div className="card-editorial flex flex-col">
-              <div className="flex-1">
-                <h3 className="text-lg font-medium text-primary">
-                  Engineering Cognition
-                </h3>
-                <p className="mt-3 text-sm text-secondary leading-relaxed">
-                  Investigating whether engineering understanding can become a
-                  computational object.
-                </p>
-              </div>
-              <a
-                href="/EMS-artefacts/engineering-cognition.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 btn-editorial self-start"
-              >
-                Read Paper
-              </a>
-            </div>
-
-            <div className="card-editorial flex flex-col">
-              <div className="flex-1">
-                <h3 className="text-lg font-medium text-primary">
-                  Engineering Memory System
-                </h3>
-                <p className="mt-3 text-sm text-secondary leading-relaxed">
-                  A cognition pipeline for constructing and maintaining engineering
-                  understanding.
-                </p>
-              </div>
-              <a
-                href="/EMS-artefacts/engineering-memory-system.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 btn-editorial self-start"
-              >
-                Read Paper
-              </a>
-            </div>
-
-            <div className="card-editorial flex flex-col">
-              <div className="flex-1">
-                <h3 className="text-lg font-medium text-primary">EC-Bench</h3>
-                <p className="mt-3 text-sm text-secondary leading-relaxed">
-                  A benchmark measuring whether accumulated engineering
-                  understanding changes engineering behaviour.
-                </p>
-              </div>
-              <div className="mt-6 flex items-center gap-3">
-                <a
-                  href="/EMS-artefacts/ec-bench-technical-report.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-editorial"
-                >
-                  Read Paper
-                </a>
-                <a
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-accent hover:text-accent-hover transition-colors duration-300"
-                >
-                  GitHub &rarr;
-                </a>
-              </div>
-            </div>
-          </div>
-        </FadeIn>
-        <FadeIn delay={200}>
-          <div className="mt-12 text-center">
-            <Link
-              href="/research"
-              className="btn-editorial"
-            >
-              View All Research
-            </Link>
-          </div>
-        </FadeIn>
-      </section> */}
-      {/* Section — Our Research */}
-      <section className="mx-auto max-w-5xl px-6 py-24 lg:px-8">
-        <FadeIn>
-          <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-primary">
-              Our Research
-            </h2>
-
-            <p className="mt-6 text-lg text-secondary leading-relaxed text-editorial">
-              These publications document our current understanding of Engineering
-              Cognition. Rather than describing finished products, they capture an
-              evolving research programme—from foundational theory to system design and
-              empirical evaluation.
-            </p>
-          </div>
-        </FadeIn>
-
-        <FadeIn delay={120}>
-          <div className="mt-20 space-y-10">
-
-            {/* Paper 1 */}
-            <article className="border-t border-border pt-10">
-              <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10">
-
-                <div className="max-w-2xl">
-
-                  <p className="text-xs uppercase tracking-[0.18em] text-secondary mb-3">
-                    Research Paper
-                  </p>
-
-                  <h3 className="text-2xl font-medium tracking-tight text-primary">
-                    Engineering Cognition
-                  </h3>
-
-                  <p className="mt-5 text-base text-secondary leading-relaxed text-editorial">
-                    A conceptual framework proposing that engineering understanding,
-                    rather than engineering memory, should become a first-class
-                    computational capability for long-horizon software engineering
-                    agents.
-                  </p>
-
-                </div>
-
-                <div className="flex flex-col items-start lg:items-end gap-5 shrink-0">
-
-                  <span className="text-sm text-secondary">
-                    Published
-                  </span>
-
-                  <a
-                    href="/EMS-artefacts/engineering-cognition.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary hover:text-accent transition-colors duration-300"
-                  >
-                    Read Paper →
-                  </a>
-
-                </div>
-
-              </div>
-            </article>
-
-            {/* Paper 2 */}
-            <article className="border-t border-border pt-10">
-              <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10">
-
-                <div className="max-w-2xl">
-
-                  <p className="text-xs uppercase tracking-[0.18em] text-secondary mb-3">
-                    Technical Report
-                  </p>
-
-                  <h3 className="text-2xl font-medium tracking-tight text-primary">
-                    Engineering Memory System
-                  </h3>
-
-                  <p className="mt-5 text-base text-secondary leading-relaxed text-editorial">
-                    The first implementation of Engineering Cognition—a cognition
-                    pipeline for constructing, maintaining and retrieving accumulated
-                    engineering understanding.
-                  </p>
-
-                </div>
-
-                <div className="flex flex-col items-start lg:items-end gap-5 shrink-0">
-
-                  <span className="text-sm text-secondary">
-                    Research Platform
-                  </span>
-
-                  <a
-                    href="/EMS-artefacts/engineering-memory-system.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary hover:text-accent transition-colors duration-300"
-                  >
-                    Read Paper →
-                  </a>
-
-                </div>
-
-              </div>
-            </article>
-
-            {/* Paper 3 */}
-            <article className="border-t border-b border-border py-10">
-              <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10">
-
-                <div className="max-w-2xl">
-
-                  <p className="text-xs uppercase tracking-[0.18em] text-secondary mb-3">
-                    Benchmark
-                  </p>
-
-                  <h3 className="text-2xl font-medium tracking-tight text-primary">
-                    EC-Bench
-                  </h3>
-
-                  <p className="mt-5 text-base text-secondary leading-relaxed text-editorial">
-                    A benchmark for evaluating whether accumulated engineering
-                    understanding measurably changes software engineering behaviour
-                    across long-horizon development tasks.
-                  </p>
-
-                </div>
-
-                <div className="flex flex-col items-start lg:items-end gap-5 shrink-0">
-
-                  <span className="text-sm text-secondary">
-                    Open Source
-                  </span>
-
-                  <a
-                    href="/EMS-artefacts/ec-bench-technical-report.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary hover:text-accent transition-colors duration-300"
-                  >
-                    Read Paper →
-                  </a>
-
-                  <a
-                    href="https://github.com/your-org/ec-bench"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-secondary hover:text-primary transition-colors duration-300"
-                  >
-                    View Repository →
-                  </a>
-
-                </div>
-
-              </div>
-            </article>
-
-          </div>
-        </FadeIn>
-
-        <FadeIn delay={220}>
-          <div className="mt-16 text-center">
-            <Link
-              href="/research"
-              className="btn-editorial"
-            >
-              Browse All Research
-            </Link>
           </div>
         </FadeIn>
       </section>

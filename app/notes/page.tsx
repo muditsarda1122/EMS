@@ -4,33 +4,33 @@ import ResearchNotebook from "@/components/svg/research-notebook";
 export const metadata = {
   title: "Notes",
   description:
-    "Chronological technical writing from the Engineering Cognition research laboratory.",
+    "Working notes, research observations, and engineering essays from the Engineering Cognition Lab.",
 };
 
-const notes = [
-  {
-    date: "2026-01-15",
-    title: "On the nature of engineering beliefs",
-    tags: ["beliefs", "philosophy"],
-    slug: "nature-of-engineering-beliefs",
-  },
-  {
-    date: "2025-12-03",
-    title: "Why memory is not enough for long-horizon agents",
-    tags: ["memory", "agents"],
-    slug: "memory-not-enough",
-  },
-  {
-    date: "2025-10-20",
-    title: "Designing EC-Bench: measuring understanding, not recall",
-    tags: ["benchmarks", "ec-bench"],
-    slug: "designing-ec-bench",
-  },
-];
+/*
+ * Future structure:
+ *
+ * const notes = [
+ *   {
+ *     date: "2026-08-14",
+ *     title: "...",
+ *     excerpt: "...",
+ *     slug: "...",
+ *   }
+ * ]
+ */
+
+const notes: {
+  date: string;
+  title: string;
+  excerpt: string;
+  slug: string;
+}[] = [];
 
 export default function NotesPage() {
   return (
-    <div className="mx-auto max-w-3xl px-6 py-20 lg:py-24 lg:px-8">
+    <div className="mx-auto max-w-4xl px-6 py-20 lg:px-8">
+
       <FadeIn>
         <div className="mb-12">
           <ResearchNotebook />
@@ -38,45 +38,106 @@ export default function NotesPage() {
       </FadeIn>
 
       <FadeIn delay={100}>
-        <header className="mb-16">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-primary">
+        <header className="mb-20">
+
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl tracking-tight font-normal text-primary">
             Notes
           </h1>
-          <p className="mt-6 text-lg text-secondary leading-relaxed text-editorial">
-            Chronological technical writing.
+
+          <p className="mt-8 max-w-3xl text-lg text-secondary leading-relaxed text-editorial">
+            This notebook documents the evolution of our thinking.
+            Rather than publishing polished conclusions alone, we intend to
+            publish observations, failed hypotheses, design decisions, and
+            technical essays as our understanding of Engineering Cognition
+            develops.
           </p>
+
         </header>
       </FadeIn>
 
-      <div className="space-y-8">
-        {notes.map((note, index) => (
-          <FadeIn key={note.slug} delay={index * 100}>
-            <article className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 group cursor-pointer">
-              <time className="text-sm text-secondary tabular-nums shrink-0 w-28">
-                {note.date}
-              </time>
-              <div className="flex-1">
-                <h2 className="text-base font-medium text-primary group-hover:text-accent transition-colors duration-300">
+      {notes.length === 0 ? (
+
+        <FadeIn delay={200}>
+
+          <section className="border border-border rounded-2xl px-10 py-16">
+
+            <p className="text-sm uppercase tracking-[0.2em] text-secondary">
+              Research Notebook
+            </p>
+
+            <h2 className="mt-4 text-3xl font-medium tracking-tight text-primary">
+              No public notes yet.
+            </h2>
+
+            <div className="mt-8 space-y-6 max-w-2xl">
+
+              <p className="text-lg text-secondary leading-relaxed text-editorial">
+                Engineering Cognition is still an active research project.
+                We prefer publishing ideas only after they have survived
+                experimentation, discussion, and repeated revision.
+              </p>
+
+              <p className="text-lg text-secondary leading-relaxed text-editorial">
+                This page will gradually become a chronological notebook of
+                research questions, engineering observations, architectural
+                experiments, benchmark design, and lessons learned while
+                building EMS and EC-Bench.
+              </p>
+
+            </div>
+
+            <div className="mt-12 border-t border-border pt-8">
+
+              <p className="text-base text-primary italic">
+                "The absence of notes does not imply the absence of research.
+                It only means the work has not yet reached a form worth sharing."
+              </p>
+
+            </div>
+
+          </section>
+
+        </FadeIn>
+
+      ) : (
+
+        <div className="space-y-10">
+
+          {notes.map((note, index) => (
+
+            <FadeIn key={note.slug} delay={index * 80}>
+
+              <article className="group border-b border-border pb-10">
+
+                <p className="text-sm text-secondary tabular-nums">
+                  {note.date}
+                </p>
+
+                <h2 className="mt-3 text-2xl font-medium text-primary group-hover:text-accent transition-colors">
                   {note.title}
                 </h2>
-                <div className="mt-1 flex items-center gap-2">
-                  {note.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-xs text-secondary"
-                    >
-                      #{tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <span className="text-sm text-accent hover:text-accent-hover transition-colors duration-300 shrink-0">
-                Read &rarr;
-              </span>
-            </article>
-          </FadeIn>
-        ))}
-      </div>
+
+                <p className="mt-4 text-base text-secondary leading-relaxed text-editorial max-w-2xl">
+                  {note.excerpt}
+                </p>
+
+                <a
+                  href={`/notes/${note.slug}`}
+                  className="inline-flex mt-6 btn-editorial"
+                >
+                  Read Note
+                </a>
+
+              </article>
+
+            </FadeIn>
+
+          ))}
+
+        </div>
+
+      )}
+
     </div>
   );
 }
