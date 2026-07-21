@@ -89,8 +89,7 @@ export default function NotesPage() {
             <div className="mt-12 border-t border-border pt-8">
 
               <p className="text-base text-primary italic">
-                "The absence of notes does not imply the absence of research.
-                It only means the work has not yet reached a form worth sharing."
+                "Negative results, abandoned hypotheses, and unfinished experiments are part of every research program. We share work only after it contributes something enduring."
               </p>
 
             </div>

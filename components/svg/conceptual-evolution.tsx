@@ -17,8 +17,8 @@ export default function ConceptualEvolution() {
     <div ref={containerRef}>
       <motion.div style={{ opacity, y }}>
         <svg
-          viewBox="0 0 500 570"
-          className="w-full h-auto max-w-lg mx-auto"
+          viewBox="0 0 1200 360"
+          className="w-full h-auto"
           xmlns="http://www.w3.org/2000/svg"
           role="img"
           aria-label="How Engineering Cognition emerges: from Memory through Understanding and Engineering Beliefs"
@@ -29,11 +29,11 @@ export default function ConceptualEvolution() {
             Understanding and Engineering Beliefs.
           </desc>
 
-          <rect width="500" height="570" fill="none" />
+          <rect width="1200" height="360" fill="none" />
 
           <defs>
             <marker
-              id="arrow-down"
+              id="arrow-right"
               markerWidth="8"
               markerHeight="6"
               refX="8"
@@ -45,89 +45,111 @@ export default function ConceptualEvolution() {
           </defs>
 
           {/* ═══════════════════════════════════════════════════════════════
+             ARROWS & BLUE BALLS (drawn behind circles)
+             ═══════════════════════════════════════════════════════════════ */}
+
+          {/* Arrow 1 — Memory → Understanding */}
+          <g>
+            <line
+              x1="120"
+              y1="180"
+              x2="320"
+              y2="180"
+              stroke="#8A9AAF"
+              strokeWidth="0.8"
+              opacity="0.4"
+              markerEnd="url(#arrow-right)"
+            />
+            <circle cx="176" cy="180" r="2" fill="#4A6FA5" opacity="0.4">
+              <animate attributeName="opacity" values="0.2;0.6;0.2" dur="3s" repeatCount="indefinite" />
+              <animate attributeName="cx" values="176;320;176" dur="3s" repeatCount="indefinite" />
+            </circle>
+          </g>
+
+          {/* Arrow 2 — Understanding → Engineering Beliefs */}
+          <g>
+            <line
+              x1="384"
+              y1="180"
+              x2="594"
+              y2="180"
+              stroke="#8A9AAF"
+              strokeWidth="0.8"
+              opacity="0.4"
+              markerEnd="url(#arrow-right)"
+            />
+            <circle cx="448" cy="180" r="2" fill="#4A6FA5" opacity="0.4">
+              <animate attributeName="opacity" values="0.2;0.6;0.2" dur="3.5s" repeatCount="indefinite" />
+              <animate attributeName="cx" values="448;594;448" dur="3.5s" repeatCount="indefinite" />
+            </circle>
+          </g>
+
+          {/* Arrow 3 — Engineering Beliefs → Engineering Cognition */}
+          <g>
+            <line
+              x1="668"
+              y1="180"
+              x2="888"
+              y2="180"
+              stroke="#8A9AAF"
+              strokeWidth="0.8"
+              opacity="0.4"
+              markerEnd="url(#arrow-right)"
+            />
+            <circle cx="742" cy="180" r="2" fill="#4A6FA5" opacity="0.4">
+              <animate attributeName="opacity" values="0.2;0.6;0.2" dur="3.2s" repeatCount="indefinite" />
+              <animate attributeName="cx" values="742;888;742" dur="3.2s" repeatCount="indefinite" />
+            </circle>
+          </g>
+
+          {/* ═══════════════════════════════════════════════════════════════
              CIRCLE 1 — Memory (smallest)
              ═══════════════════════════════════════════════════════════════ */}
           <g>
-            <circle cx="250" cy="49" r="44" fill="#FFFFFF" stroke="#1A1A1A" strokeWidth="0.8" />
-            <text x="250" y="42" textAnchor="middle" fontSize="14" fontWeight="500" fill="#1A1A1A" letterSpacing="-0.01em">
+            <circle cx="120" cy="180" r="56" fill="#FFFFFF" stroke="#1A1A1A" strokeWidth="0.8" />
+            <text x="120" y="174" textAnchor="middle" fontSize="14" fontWeight="500" fill="#1A1A1A" letterSpacing="-0.01em">
               Memory
             </text>
-            <text x="250" y="60" textAnchor="middle" fontSize="10" fill="#6B6B6B">
+            <text x="120" y="192" textAnchor="middle" fontSize="10" fill="#6B6B6B">
               Stores observations
             </text>
           </g>
-
-          {/* Arrow 1 — Memory → Understanding */}
-          <line
-            x1="250"
-            y1="93"
-            x2="250"
-            y2="103"
-            stroke="#8A9AAF"
-            strokeWidth="0.8"
-            opacity="0.4"
-            markerEnd="url(#arrow-down)"
-          />
 
           {/* ═══════════════════════════════════════════════════════════════
              CIRCLE 2 — Understanding (medium)
              ═══════════════════════════════════════════════════════════════ */}
           <g>
-            <circle cx="250" cy="167" r="64" fill="#FFFFFF" stroke="#1A1A1A" strokeWidth="0.8" />
-            <text x="250" y="160" textAnchor="middle" fontSize="14" fontWeight="500" fill="#1A1A1A" letterSpacing="-0.01em">
+            <circle cx="384" cy="180" r="64" fill="#FFFFFF" stroke="#1A1A1A" strokeWidth="0.8" />
+            <text x="384" y="174" textAnchor="middle" fontSize="14" fontWeight="500" fill="#1A1A1A" letterSpacing="-0.01em">
               Understanding
             </text>
-            <text x="250" y="178" textAnchor="middle" fontSize="10" fill="#6B6B6B">
+            <text x="384" y="192" textAnchor="middle" fontSize="10" fill="#6B6B6B">
               Connects observations
             </text>
           </g>
-
-          {/* Arrow 2 — Understanding → Engineering Beliefs */}
-          <line
-            x1="250"
-            y1="231"
-            x2="250"
-            y2="241"
-            stroke="#8A9AAF"
-            strokeWidth="0.8"
-            opacity="0.4"
-            markerEnd="url(#arrow-down)"
-          />
 
           {/* ═══════════════════════════════════════════════════════════════
              CIRCLE 3 — Engineering Beliefs (slightly larger)
              ═══════════════════════════════════════════════════════════════ */}
           <g>
-            <circle cx="250" cy="315" r="74" fill="#FFFFFF" stroke="#1A1A1A" strokeWidth="0.8" />
-            <text x="250" y="308" textAnchor="middle" fontSize="14" fontWeight="500" fill="#1A1A1A" letterSpacing="-0.01em">
+            <circle cx="668" cy="180" r="74" fill="#FFFFFF" stroke="#1A1A1A" strokeWidth="0.8" />
+            <text x="668" y="174" textAnchor="middle" fontSize="14" fontWeight="500" fill="#1A1A1A" letterSpacing="-0.01em">
               Engineering Beliefs
             </text>
-            <text x="250" y="326" textAnchor="middle" fontSize="10" fill="#6B6B6B">
+            <text x="668" y="192" textAnchor="middle" fontSize="10" fill="#6B6B6B">
               Reusable understanding
             </text>
           </g>
-
-          {/* Arrow 3 — Engineering Beliefs → Engineering Cognition */}
-          <line
-            x1="250"
-            y1="389"
-            x2="250"
-            y2="399"
-            stroke="#8A9AAF"
-            strokeWidth="0.8"
-            opacity="0.4"
-            markerEnd="url(#arrow-down)"
-          />
 
           {/* ═══════════════════════════════════════════════════════════════
              CIRCLE 4 — Engineering Cognition (largest, destination)
              ═══════════════════════════════════════════════════════════════ */}
           <g>
-            <circle cx="250" cy="481" r="82" fill="#FAFAFA" stroke="#1A1A1A" strokeWidth="1.2" />
-            <text x="250" y="474" textAnchor="middle" fontSize="14" fontWeight="500" fill="#1A1A1A" letterSpacing="-0.01em">
+            <circle cx="984" cy="180" r="96" fill="#FAFAFA" stroke="#1A1A1A" strokeWidth="1.2" />
+            <text x="984" y="174" textAnchor="middle" fontSize="14" fontWeight="500" fill="#1A1A1A" letterSpacing="-0.01em">
               Engineering Cognition
             </text>
-            <text x="250" y="492" textAnchor="middle" fontSize="10" fill="#6B6B6B">
+            <text x="984" y="192" textAnchor="middle" fontSize="10" fill="#6B6B6B">
               Continuously evolving understanding
             </text>
           </g>

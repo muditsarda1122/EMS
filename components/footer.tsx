@@ -27,7 +27,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link 
-                  href="/research" 
+                  href="/ec-bench" 
                   className="text-sm text-secondary hover:text-primary transition-colors duration-300"
                 >
                   EC-Bench
@@ -44,10 +44,18 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Lab Column */}
+          {/* Benchmarks Column */}
           <div>
-            <h3 className="text-sm font-medium text-primary mb-4">Lab</h3>
+            <h3 className="text-sm font-medium text-primary mb-4">Benchmarks</h3>
             <ul className="space-y-3">
+              <li>
+                <Link 
+                  href="/ec-bench" 
+                  className="text-sm text-secondary hover:text-primary transition-colors duration-300"
+                >
+                  EC-Bench
+                </Link>
+              </li>
               <li>
                 <Link 
                   href="/ethos" 
@@ -62,14 +70,6 @@ export default function Footer() {
                   className="text-sm text-secondary hover:text-primary transition-colors duration-300"
                 >
                   Notes
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  href="/lab" 
-                  className="text-sm text-secondary hover:text-primary transition-colors duration-300"
-                >
-                  Lab
                 </Link>
               </li>
             </ul>

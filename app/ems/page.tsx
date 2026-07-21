@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function EMSPage() {
   return (
-    <div className="mx-auto max-w-4xl px-6 py-20 lg:px-8">
+    <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
 
       <FadeIn>
         <div className="mb-12">
