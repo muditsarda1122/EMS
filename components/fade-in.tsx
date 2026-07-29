@@ -11,8 +11,10 @@ interface FadeInProps {
 export default function FadeIn({ children, className = "", delay = 0 }: FadeInProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    setReady(true);
     const el = ref.current;
     if (!el) return;
 
@@ -30,13 +32,17 @@ export default function FadeIn({ children, className = "", delay = 0 }: FadeInPr
     return () => observer.disconnect();
   }, []);
 
+  // During SSR and initial hydration: render fully visible so content is never hidden.
+  // After client mount: if the element is not yet in view, apply the hidden state.
+  const isHidden = ready && !visible;
+
   return (
     <div
       ref={ref}
       className={`transition-all duration-700 ease-out ${className}`}
       style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(6px)",
+        opacity: isHidden ? 0 : 1,
+        transform: isHidden ? "translateY(6px)" : "translateY(0)",
         transitionDelay: `${delay}ms`,
       }}
     >

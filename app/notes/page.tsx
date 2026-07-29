@@ -1,5 +1,6 @@
 import FadeIn from "@/components/fade-in";
 import ResearchNotebook from "@/components/svg/research-notebook";
+import { getAllArticles } from "@/lib/articles";
 
 export const metadata = {
   title: "Notes",
@@ -7,30 +8,11 @@ export const metadata = {
     "Working notes, research observations, and engineering essays from the Engineering Cognition Lab.",
 };
 
-/*
- * Future structure:
- *
- * const notes = [
- *   {
- *     date: "2026-08-14",
- *     title: "...",
- *     excerpt: "...",
- *     slug: "...",
- *   }
- * ]
- */
-
-const notes: {
-  date: string;
-  title: string;
-  excerpt: string;
-  slug: string;
-}[] = [];
-
 export default function NotesPage() {
+  const notes = getAllArticles();
+
   return (
     <div className="mx-auto max-w-4xl px-6 py-20 lg:px-8">
-
       <FadeIn>
         <div className="mb-12">
           <ResearchNotebook />
@@ -39,7 +21,6 @@ export default function NotesPage() {
 
       <FadeIn delay={100}>
         <header className="mb-20">
-
           <h1 className="text-5xl sm:text-6xl lg:text-7xl tracking-tight font-normal text-primary">
             Notes
           </h1>
@@ -51,16 +32,12 @@ export default function NotesPage() {
             technical essays as our understanding of Engineering Cognition
             develops.
           </p>
-
         </header>
       </FadeIn>
 
       {notes.length === 0 ? (
-
         <FadeIn delay={200}>
-
           <section className="border border-border rounded-2xl px-10 py-16">
-
             <p className="text-sm uppercase tracking-[0.2em] text-secondary">
               Research Notebook
             </p>
@@ -70,7 +47,6 @@ export default function NotesPage() {
             </h2>
 
             <div className="mt-8 space-y-6 max-w-2xl">
-
               <p className="text-lg text-secondary leading-relaxed text-editorial">
                 Engineering Cognition is still an active research project.
                 We prefer publishing ideas only after they have survived
@@ -83,60 +59,41 @@ export default function NotesPage() {
                 experiments, benchmark design, and lessons learned while
                 building EMS and EC-Bench.
               </p>
-
             </div>
 
             <div className="mt-12 border-t border-border pt-8">
-
               <p className="text-base text-primary italic">
                 "Negative results, abandoned hypotheses, and unfinished experiments are part of every research program. We share work only after it contributes something enduring."
               </p>
-
             </div>
-
           </section>
-
         </FadeIn>
-
       ) : (
-
-        <div className="space-y-10">
-
+        <div className="space-y-16">
           {notes.map((note, index) => (
-
             <FadeIn key={note.slug} delay={index * 80}>
-
-              <article className="group border-b border-border pb-10">
-
+              <article className="group">
                 <p className="text-sm text-secondary tabular-nums">
                   {note.date}
                 </p>
 
-                <h2 className="mt-3 text-2xl font-medium text-primary group-hover:text-accent transition-colors">
-                  {note.title}
-                </h2>
+                <a
+                  href={`/notes/${note.slug}`}
+                  className="block mt-2"
+                >
+                  <h2 className="text-3xl font-normal text-primary group-hover:text-accent transition-colors">
+                    {note.title}
+                  </h2>
+                </a>
 
                 <p className="mt-4 text-base text-secondary leading-relaxed text-editorial max-w-2xl">
                   {note.excerpt}
                 </p>
-
-                <a
-                  href={`/notes/${note.slug}`}
-                  className="inline-flex mt-6 btn-editorial"
-                >
-                  Read Note
-                </a>
-
               </article>
-
             </FadeIn>
-
           ))}
-
         </div>
-
       )}
-
     </div>
   );
 }

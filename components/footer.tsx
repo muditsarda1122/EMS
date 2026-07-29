@@ -33,14 +33,14 @@ export default function Footer() {
                   EC-Bench
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link 
                   href="/research" 
                   className="text-sm text-secondary hover:text-primary transition-colors duration-300"
                 >
                   Technical Reports
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
 
