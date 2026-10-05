@@ -295,7 +295,7 @@ Sonnet is fine for every task. T4a, T4b and T5 are the most design-sensitive, so
   - arrowheads as separate paths that fade in only after their line has drawn.
 - **Reduced motion.** Under `prefers-reduced-motion: reduce` there is no animation: every event's end state is shown and the pause button is hidden.
 - **Client island** (`MemoryMapControls.tsx`, `'use client'`, under 5 KB gzipped):
-  - **Button:** a real `<button aria-pressed>` with the accessible name "Pause animation" or "Play animation", and the visible text `❚❚ pause` or `▶ play`.
+  - **Button:** a real `<button>` with the accessible name "Pause animation" or "Play animation", and the visible text `❚❚ pause` or `▶ play`. It has no `aria-pressed`, because the switching name already carries the state.
   - **Off-screen pause:** an IntersectionObserver pauses the animation when less than 30% of the map is visible. It resumes when the map is visible again, unless the visitor paused it.
   - **Mechanism:** pausing toggles a `paused` class on the map root, which sets `animation-play-state: paused`.
 - **Text equivalent:** a visually hidden ordered list of the five events, linked with `aria-describedby`.
