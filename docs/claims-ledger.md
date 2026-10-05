@@ -129,3 +129,18 @@ Every factual sentence on the page, grouped by section. Sources are plan section
 | E14 | Threats: small sample, one repository, one agent type, LLM judge, outlier removal in the paper's figures, mixed protocol in the stored run | Threats to validity | plan §8.4 | pending |
 | E15 | Next: controlled rerun with the same protocol in both arms, continuity experiment, more repositories, a human judge alongside the LLM | What's next | plan §8.4 | pending |
 | E16 | The first run's finding changed the design: Reverie no longer loads memory at session start; the agent asks after reading the code | What this changed | plan §8.4, C17 | pending |
+
+## T8: Paper (`/research/biological-memory-architecture`, abstract fallback)
+
+| # | Site claim (paraphrased) | Section | Source | Last verified |
+|---|---|---|---|---|
+| P1 | Title *Reverie: A Biological Memory Architecture for AI Agents*, author M. Sarda, dated 5 September 2026 | Header | plan §8.2, §8.3, §1.7B (paper, 5 Sep) | pending (owner) |
+| P2 | This page is the abstract, errata and citation; the full text follows the corrections | Header | plan §8.3 fallback, §1.7A | n/a (status of this page) |
+| P3 | Version is unknown | Header | `TODO(fact)`: plan §8.3 gives only an example | pending (owner) |
+| P4 | Abstract is not written | Abstract | plan §8.3 (owner writes about 120 words); `TODO(copy)` | pending (owner) |
+| P5 | The paper has 17 sections; its biology (complementary learning systems, reconsolidation, forgetting curve, synaptic homeostasis) is inspiration and convergence, with citations | What the paper covers | plan §8.3, §12.8 | pending |
+| P6 | Topic by section: §2 and §15 extraction, §3 what is kept, §4 and §8 confidence and decay, §5 two brains and review (Fig. 4), §6 maintenance and contradictions, §7 retrieval and ranking, §9 evidence and edges, §12 benchmark runs, §14–§16 speculative vision, §17 MCP interface | What the paper covers | plan §1.7A (section references), §1.7B, §8.3, §1.8, C2; titles are `TODO(fact)` | pending (owner) |
+| P7 | The paper has not yet been corrected; twelve passages differ from Reverie | Errata | plan §1.7A, §8.3 | pending |
+| P8 | Errata 1–12: tools, extraction model (none named), no MMR, ranking factors, confidence bump scope, edges created by the diffuser, maintenance tasks, challenged marking, rejected evidence, reconsolidation exception, half-lives of the odds, unverifiable requirements count (not repeated) | Errata | plan §1.7A rows 1–12 (PRODUCT.md §3.2, §6, §7.2, §9, §13, §14) | pending |
+| P9 | BibTeX built from title, author, year and month; URL only when a domain is set | Cite | `lib/cite.ts`; plan §8.3, §20 (P7) | n/a |
+| P10 | How it works describes what Reverie does today, including where it differs from the paper | What this changed | plan §12.5 | pending |

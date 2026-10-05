@@ -1,0 +1,43 @@
+/* Paper page (T8, abstract fallback). Same visual language as EC-Bench and How it works: two voices, hairline rules, no cards. */
+
+.pp { padding-bottom: 40px; }
+.pp .mono-label { font-family: var(--font-mono), ui-monospace, Menlo, monospace; font-size: 12.5px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+.pp code { font-size: .86em; background: var(--paper-sunken); padding: .08em .32em; border-radius: var(--radius); overflow-wrap: anywhere; }
+.pp-head { padding-top: 72px; }
+.pp-head h1 { max-width: 20ch; text-wrap: balance; }
+.pp-byline { margin: 24px 0 0; display: flex; flex-wrap: wrap; gap: 6px 18px; color: var(--ink-2); font-size: var(--fs-ui); }
+.pp-head .lead { margin-top: 24px; max-width: 46ch; font-size: var(--fs-lead); line-height: 1.55; color: var(--ink-2); text-wrap: pretty; }
+.pp-head .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+
+.pp-sec { padding-top: 72px; scroll-margin-top: 80px; }
+@media (min-width: 1024px) { .pp-sec { padding-top: 112px; } }
+.pp-sec > h2 { margin: 0 0 24px; font-size: var(--fs-h2); line-height: 1.15; letter-spacing: -0.015em; font-weight: 400; scroll-margin-top: 90px; }
+.pp .prose-col { max-width: 62ch; }
+.pp .prose-col > * + * { margin-top: 1.1rem; }
+.pp .prose-col p, .pp .rows li { text-wrap: pretty; }
+.pp .todo { font-family: var(--font-mono), ui-monospace, Menlo, monospace; font-size: 12px; color: var(--ink-3); border: 1px dashed var(--ink-4); border-radius: var(--radius); padding: 0 5px; white-space: nowrap; }
+
+.pp .rows { list-style: none; margin: 0; padding: 0; max-width: 62ch; border-top: 1px solid var(--ink); }
+.pp .rows li { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+.pp .rows .where { font-family: var(--font-mono), ui-monospace, Menlo, monospace; font-size: 13px; color: var(--ink-3); padding-top: 4px; }
+
+/* errata */
+.pp-errata { margin-top: 8px; padding: 22px 20px 6px; border: 1px solid var(--rule-strong); border-left: 3px solid var(--accent); border-radius: var(--radius); background: var(--surface); }
+.pp-errata > p { margin: 0 0 18px; max-width: 62ch; color: var(--ink-2); }
+.pp-errata ol { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
+.pp-errata li { padding: 18px 0 20px; border-bottom: 1px solid var(--rule); }
+.pp-errata li:last-child { border-bottom: 0; }
+.pp-errata h3 { margin: 0 0 10px; font-size: 19px; font-weight: 500; line-height: 1.3; }
+.pp-errata h3 .n { font-family: var(--font-mono), ui-monospace, Menlo, monospace; font-size: 13px; color: var(--ink-3); margin-right: 10px; font-weight: 400; }
+.pp-errata dl { margin: 0; display: grid; grid-template-columns: minmax(0, 1fr); row-gap: 10px; }
+.pp-errata dt { font-family: var(--font-mono), ui-monospace, Menlo, monospace; font-size: 11.5px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+.pp-errata dd { margin: 2px 0 0; font-size: 17px; line-height: 1.5; color: var(--ink-2); overflow-wrap: anywhere; text-wrap: pretty; }
+@media (min-width: 900px) {
+  .pp-errata { padding: 28px 32px 8px; }
+  .pp-errata dl { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 40px; }
+}
+
+/* cite */
+.pp-cite pre { margin: 0 0 16px; padding: 16px; max-width: 62ch; overflow-x: auto; background: var(--paper-sunken); border-radius: var(--radius); font-family: var(--font-mono), ui-monospace, Menlo, monospace; font-size: 13.5px; line-height: 1.55; white-space: pre-wrap; overflow-wrap: anywhere; }
+.pp-cite .cite-status { margin-left: 14px; font-size: 15px; color: var(--ink-2); }
+.pp-next .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
