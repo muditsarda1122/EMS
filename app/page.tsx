@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import "./home.css";
 import ArrowLink from "@/components/ui/ArrowLink";
 import ButtonLink from "@/components/ui/ButtonLink";
@@ -13,6 +14,11 @@ import VideoSlot, { videoSlotMode } from "@/components/video/VideoSlot";
 import { siteConfig, isRepoPublic } from "@/content/site.config";
 import specimen from "@/content/specimens/token-refresh.json";
 import type { ConclusionSpecimen } from "@/components/specimen/ConclusionRecord";
+
+export const metadata: Metadata = {
+  title: { absolute: "Reverie — memory for coding agents" },
+  description: siteConfig.description,
+};
 
 export default function HomePage() {
   const repoUrl = siteConfig.repository.url;

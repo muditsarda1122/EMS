@@ -25,6 +25,8 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
+  // TODO(fact): P7. No domain yet, so no metadataBase; set `domain` in site.config.ts to switch on absolute URLs.
+  ...(siteConfig.domain ? { metadataBase: new URL(`https://${siteConfig.domain}`) } : {}),
   title: {
     default: "Reverie — memory for coding agents",
     template: "%s · Reverie",

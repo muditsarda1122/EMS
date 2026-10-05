@@ -144,3 +144,14 @@ Every factual sentence on the page, grouped by section. Sources are plan section
 | P8 | Errata 1–12: tools, extraction model (none named), no MMR, ranking factors, confidence bump scope, edges created by the diffuser, maintenance tasks, challenged marking, rejected evidence, reconsolidation exception, half-lives of the odds, unverifiable requirements count (not repeated) | Errata | plan §1.7A rows 1–12 (PRODUCT.md §3.2, §6, §7.2, §9, §13, §14) | pending |
 | P9 | BibTeX built from title, author, year and month; URL only when a domain is set | Cite | `lib/cite.ts`; plan §8.3, §20 (P7) | n/a |
 | P10 | How it works describes what Reverie does today, including where it differs from the paper | What this changed | plan §12.5 | pending |
+
+## T9: About (`/about`)
+
+| # | Site claim (paraphrased) | Section | Source | Last verified |
+|---|---|---|---|---|
+| A1 | Reverie is built by Mudit Sarda; bio and links not written | Header | plan §8.7; bio is `TODO(copy)` (P8) | pending (owner) |
+| A2 | Reverie keeps the conclusions an agent reaches, not a record of everything it did; understanding carries over between sessions | How we work | plan §8.7 ("understanding over information"), C2 | pending |
+| A3 | We benchmark our own ideas; the first version loaded memory before the agent began work and on our benchmark the agent did worse; the runs are on EC-Bench | How we work | plan §8.7, C17 | pending |
+| A4 | Memory is stored locally; you review what is kept; grounded in your repository; superseded documents stay available, labelled | How we work | plan §8.7, §1.8 ("memory is stored locally"), C5, C7, §12.4 | pending |
+| A5 | Names: Reverie product; Engineering Cognition research program; `ec` code prefix; EMS first version | Names | plan §8.7, §11.5 | pending |
+| A6 | Contact email | Contact | `content/site.config.ts` | pending (owner) |
