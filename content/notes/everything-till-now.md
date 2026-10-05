@@ -2,6 +2,11 @@
 title: "Everything till now"
 date: "2026-07-29"
 excerpt: "This article documents the thinking that has shaped EMS. It is a research log—a record of the questions, assumptions, experiments, failures, and redesigns that have gradually transformed a simple engineering idea into an open research problem."
+status: "Historical"
+editorsNote: "Editor's note, October 2026. This entry describes Reverie's first version, then called EMS. Its benchmark section reports an aggregate improvement that later analysis revisited: the gain came from the cognition-reuse metric, while groundedness and quality were lower with memory. See EC-Bench for the current picture."
+seeAlso:
+  - label: "EC-Bench: the current picture"
+    href: "/research/ec-bench"
 ---
 
 # 1. Introduction — Why this project exists

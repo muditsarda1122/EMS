@@ -59,3 +59,16 @@ against the claim; `pending` means it has not been checked against the product y
 | T4a-5 | Fig. 3 and facts: one SQLite file, no account, every extracted conclusion passes review, hosted or Ollama extraction | Home S5 | C12, C15, C29 | pending |
 | T4a-6 | Research: first version loaded memory before the agent started and made it worse on our benchmark | Home S6 | C17 (owner sign-off pending after reconciliation) | pending |
 | T4a-7 | Paper date "September 2026" | Home S6 | C24 | pending |
+
+## Research index and notebook copy added in T6
+
+| # | Claim | Where | Source | Last verified |
+|---|---|---|---|---|
+| T6-1 | Lede: Reverie comes out of Engineering Cognition; we publish what we find, including when it doesn't work | Research | Plan §8.2 | 2026-10-05 |
+| T6-2 | Lineage entries and dates (30 Jun, 15 Jul, 18 Jul, 29 Jul, 13–15 Aug, 5 Sep); `verified: false` in `content/research.ts` until the owner checks each | Research | Plan §8.2; see C24 | pending (owner) |
+| T6-3 | Paper summary line restating the second architecture (conclusions as units, two brains, review, confidence, contradictions, grounding, retrieval on request) | Research, Start here | Plan §8.2 (Aug 2026); `TODO(copy)` | pending (owner) |
+| T6-4 | EC-Bench "Ongoing"; continuity experiment "In design", "A controlled comparison. Not yet run." | Research, Evaluation | Plan §8.2; IMPLEMENTATION-TASKS T7 (planned controlled comparison) | pending |
+| T6-5 | Technical Report note: aggregate gain came from the cognition-reuse metric; four of five metrics lower with memory | Research, Archive | Plan §8.2 (verbatim example); see C17 | pending |
+| T6-6 | Archive notes for Engineering Cognition, Engineering Memory System and Short Report (first version loaded repository memory into each session; superseded) | Research, Archive | Plan §8.2 lineage; `TODO(copy)` | pending (owner) |
+| T6-7 | "Earlier documents call the first version the Engineering Memory System (EMS)." | Research, Archive | Plan §8.2 | 2026-10-05 |
+| T6-8 | Editor's note on "Everything till now" | Notebook entry | Plan §8.6 (draft text, verbatim) | 2026-10-05 |
