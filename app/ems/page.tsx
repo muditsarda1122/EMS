@@ -244,10 +244,10 @@ export default function EMSPage() {
 
           <p className="mt-6 text-lg text-secondary leading-relaxed text-editorial max-w-2xl mx-auto">
             EMS is currently an active research project.
-            If you're interested in discussing the research,
+            If you&rsquo;re interested in discussing the research,
             early experiments,
             or potential collaborations,
-            we'd be happy to hear from you.
+            we&rsquo;d be happy to hear from you.
           </p>
 
           <a

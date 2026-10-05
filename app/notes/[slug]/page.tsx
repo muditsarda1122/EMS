@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -48,13 +49,13 @@ export default async function ArticlePage({ params }: PageProps) {
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-20 lg:px-8">
-      <a
+      <Link
         href="/notes"
         className="inline-flex text-sm text-secondary hover:text-accent transition-colors"
       >
         <span aria-hidden="true" className="mr-2">←</span>
         Back to Notes
-      </a>
+      </Link>
 
       <div className="mt-12 mb-16">
         <p className="text-sm text-secondary tabular-nums">{article.date}</p>

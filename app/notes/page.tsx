@@ -63,7 +63,7 @@ export default function NotesPage() {
 
             <div className="mt-12 border-t border-border pt-8">
               <p className="text-base text-primary italic">
-                "Negative results, abandoned hypotheses, and unfinished experiments are part of every research program. We share work only after it contributes something enduring."
+                &ldquo;Negative results, abandoned hypotheses, and unfinished experiments are part of every research program. We share work only after it contributes something enduring.&rdquo;
               </p>
             </div>
           </section>
