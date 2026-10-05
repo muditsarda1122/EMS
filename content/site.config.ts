@@ -15,6 +15,7 @@ export type SiteConfig = {
   claims: { anyMcpAgent: boolean };
   nav: NavItem[];
   author: string;
+  links: { linkedin: string };
 };
 
 export const siteConfig: SiteConfig = {
@@ -35,6 +36,7 @@ export const siteConfig: SiteConfig = {
     { label: "About", href: "/about" },
   ],
   author: "Mudit Sarda",
+  links: { linkedin: "https://www.linkedin.com/in/mudit-sarda-ab84991bb/" },
 };
 
 /** State B: the repository is public. */
