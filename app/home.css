@@ -1,0 +1,216 @@
+/* Homepage (T4a). Ported from design/homepage-preview/home.html; colours come from tokens. */
+
+.home .section { padding-top: 160px; }
+.home .s-head { align-items: end; }
+.home .s-head h2 { grid-column: 1 / 8; }
+.home .s-head .aside { grid-column: 8 / 13; color: var(--ink-2); font-size: 18.5px; line-height: 1.5; }
+.home h2 { font-size: 42px; line-height: 1.12; letter-spacing: -0.016em; font-weight: 400; margin: 0; }
+.home .display { font-size: clamp(2.5rem, 1.4rem + 3.6vw, 4.125rem); line-height: 1.04; letter-spacing: -0.022em; font-weight: 400; margin: 0; }
+.home .lead { font-size: 21px; line-height: 1.55; color: var(--ink-2); }
+.home .mono-label { font-family: var(--font-mono), ui-monospace, Menlo, monospace; font-size: 12.5px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+.home .caption { font-style: italic; font-size: 15px; line-height: 1.5; color: var(--ink-2); }
+.home .caption .fig-n { color: var(--ink); margin-right: 6px; font-style: normal; }
+.home figure.fig { margin: 52px 0 0; }
+.home figure.fig svg { display: block; width: 100%; height: auto; overflow: visible; }
+.home figure.fig figcaption { margin-top: 18px; max-width: 780px; }
+.home .more { margin-top: 36px; }
+.home .mob, .home .f1-mobile, .home .o1-mobile, .home .f2-mobile, .home .hv-mobile, .home figure.fig svg.mob, .home .s2-fig svg.mob { display: none; }
+
+/* colour helpers for SVG (tokens, so dark mode works) */
+.f-ink { fill: var(--ink); } .f-ink2 { fill: var(--ink-2); } .f-ink3 { fill: var(--ink-3); } .f-ink4 { fill: var(--ink-4); }
+.f-paper { fill: var(--paper); } .f-amber { fill: var(--challenged); } .f-sunken { fill: var(--paper-sunken); } .f-haze { fill: var(--rule-strong); }
+.s-ink { stroke: var(--ink); } .s-ink3 { stroke: var(--ink-3); } .s-amber { stroke: var(--challenged); }
+.sw-22 { stroke-width: 2.2; }
+
+/* ---------- hero ---------- */
+.home .hero { padding-top: 88px; align-items: start; }
+.home .hero-copy { grid-column: 1 / 7; }
+.home .hero-copy p { text-wrap: pretty; }
+.home .hero-copy .lead { margin-top: 28px; font-size: 20px; }
+.home .hero-copy .agents { margin-top: 20px; font-size: 16px; color: var(--ink-2); }
+.home .ctas { display: flex; gap: 12px; margin-top: 32px; }
+.home .hero-visual { grid-column: 7 / 13; position: relative; height: 420px; margin: 6px 0 0; }
+.home .hero-visual .hv-card { position: absolute; left: 0; top: 22px; width: 330px; }
+.home .hero-visual .hv-card .specimen { width: 330px; }
+.home .hero-visual svg.hv-net { position: absolute; left: 330px; top: 0; width: min(258px, calc(100% - 330px)); height: 420px; overflow: visible; }
+.home .hero-visual figcaption { position: absolute; left: 0; top: 380px; width: min(588px, 100%); display: flex; gap: 10px; align-items: baseline; margin: 0; }
+.home .hv-mobile div { font-size: 14.5px; line-height: 1.4; padding: 8px 0 2px; color: var(--ink-3); }
+.home .hv-mobile .rel { font-family: var(--font-mono), ui-monospace, Menlo, monospace; font-size: 11px; color: var(--ink-3); display: block; letter-spacing: .04em; }
+.home .hv-mobile s { color: var(--ink-3); }
+
+/* ---------- problem ---------- */
+.home .s2-left { grid-column: 1 / 7; }
+.home .s2-left .pull { margin-top: 30px; max-width: 24em; font-size: 21px; line-height: 1.4; color: var(--ink-2); padding-left: 18px; border-left: 1px solid var(--ink); }
+.home .s2-fig { grid-column: 7 / 13; margin: 10px 0 0; }
+.home .s2-fig svg { display: block; width: 100%; height: auto; overflow: visible; }
+.home .s2-fig figcaption { margin-top: 14px; }
+
+/* ---------- memory map (M1): animated; static under reduced motion (ported from design/homepage-preview/home.html) ---------- */
+.home figure.fig-mm { margin-top: 72px; }
+.mm-wrap { position: relative; }
+.mm-toggle { position: absolute; right: 0; top: -40px; font-family: var(--mono); font-size: 12px; color: var(--ink-2);
+  background: transparent; border: 1px solid var(--rule-strong); border-radius: 2px; padding: 4px 10px; cursor: pointer; }
+.mm { --cycle: 16s; }
+.mm .anim { animation-duration: var(--cycle); animation-iteration-count: infinite; animation-timing-function: ease-in-out; animation-fill-mode: both; }
+.mm.paused .anim { animation-play-state: paused; }
+.mm .a1-dashed { animation-name: a1-dashed; }
+.mm .a1-solid { animation-name: a1-solid; }
+.mm .lab-new { animation-name: lab-new; fill: var(--ink-3); }
+.mm .lab-added { animation-name: lab-added; }
+.mm .e-a1n2 { stroke-dasharray: 100 200; animation-name: e-a1n2; }
+.mm .e-a1n2-head { animation-name: e-a1n2-head; }
+.mm .n2-rect { animation-name: n2-strong; }
+.mm .lab-strong { animation-name: lab-strong; }
+.mm .c1 { animation-name: c1-in; }
+.mm .e-contra { stroke-dasharray: 100 200; animation-name: e-contra; }
+.mm .n1-amber { animation-name: n1-amber; }
+.mm .lab-challenged { animation-name: lab-challenged; }
+.mm .n1-strike { stroke-dasharray: 100 200; animation-name: n1-strike; }
+.mm .n1-body { animation-name: n1-dim; }
+.mm .e-replaces { animation-name: e-replaces; }
+.mm .lab-superseded { animation-name: lab-superseded; }
+.mm .n6 { animation-name: n6-fade; }
+.mm .lab-fading { animation-name: lab-fading; }
+
+@keyframes a1-dashed { 0%,3% {opacity:0; transform:translateX(-28px)} 9%,14% {opacity:1; transform:none} 18%,100% {opacity:0; transform:none} }
+@keyframes a1-solid { 0%,14% {opacity:0} 18%,90% {opacity:1} 96%,100% {opacity:0} }
+@keyframes lab-new { 0%,4% {opacity:0} 8%,13% {opacity:1} 16%,100% {opacity:0} }
+@keyframes lab-added { 0%,15% {opacity:0} 18%,32% {opacity:1} 36%,100% {opacity:0} }
+@keyframes e-a1n2 { 0%,20% {stroke-dashoffset:102; opacity:0} 21% {opacity:1} 27%,90% {stroke-dashoffset:0; opacity:1} 96%,100% {stroke-dashoffset:0; opacity:0} }
+@keyframes e-a1n2-head { 0%,26% {opacity:0} 27.5%,90% {opacity:1} 96%,100% {opacity:0} }
+@keyframes n2-strong { 0%,25% {stroke: var(--rule-strong); stroke-width:1} 31%,90% {stroke: var(--ink); stroke-width:2.4} 96%,100% {stroke: var(--rule-strong); stroke-width:1} }
+@keyframes lab-strong { 0%,25% {opacity:0} 29%,46% {opacity:1} 50%,100% {opacity:0} }
+@keyframes c1-in { 0%,35% {opacity:0; transform:translateY(-18px)} 40%,90% {opacity:1; transform:none} 96%,100% {opacity:0; transform:none} }
+@keyframes e-contra { 0%,40% {stroke-dashoffset:102; opacity:0} 41% {opacity:1} 45%,58% {stroke-dashoffset:0; opacity:1} 62%,100% {stroke-dashoffset:0; opacity:0} }
+@keyframes n1-amber { 0%,44% {opacity:0} 47%,58% {opacity:1} 62%,100% {opacity:0} }
+@keyframes lab-challenged { 0%,44% {opacity:0} 47%,57% {opacity:1} 60%,100% {opacity:0} }
+@keyframes n1-strike { 0%,58% {stroke-dashoffset:102} 63%,90% {stroke-dashoffset:0} 96%,100% {stroke-dashoffset:102} }
+@keyframes n1-dim { 0%,58% {opacity:1} 63%,90% {opacity:.45} 96%,100% {opacity:1} }
+@keyframes e-replaces { 0%,58% {opacity:0} 63%,90% {opacity:1} 96%,100% {opacity:0} }
+@keyframes lab-superseded { 0%,60% {opacity:0} 64%,84% {opacity:1} 88%,100% {opacity:0} }
+@keyframes n6-fade { 0%,60% {opacity:1} 86%,92% {opacity:.2} 98%,100% {opacity:1} }
+@keyframes lab-fading { 0%,70% {opacity:0} 74%,92% {opacity:1} 96%,100% {opacity:0} }
+
+/* Reduced motion: every event shown at once, annotated; no button. */
+@media (prefers-reduced-motion: reduce) {
+  .mm .anim { animation: none !important; }
+  .mm .a1-dashed, .mm .lab-new, .mm .e-contra, .mm .n1-amber, .mm .lab-challenged { opacity: 0; }
+  .mm .a1-solid, .mm .lab-added, .mm .lab-strong, .mm .c1, .mm .e-replaces, .mm .lab-superseded, .mm .lab-fading { opacity: 1; }
+  .mm .e-a1n2 { stroke-dashoffset: 0; opacity: 1; }
+  .mm .e-a1n2-head { opacity: 1; }
+  .mm .n2-rect { stroke: var(--ink); stroke-width: 2.4; }
+  .mm .n1-strike { stroke-dashoffset: 0; }
+  .mm .n1-body { opacity: .45; }
+  .mm .n6 { opacity: .2; }
+  .mm-toggle { display: none; }
+}
+.home .legend { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 16px; font-size: 15px; color: var(--ink-2); }
+.home .legend span { display: inline-flex; align-items: center; gap: 8px; }
+.home figure.fig .legend svg { width: 30px; height: 14px; display: inline-block; }
+.home .panel-label { margin: 56px 0 16px; padding-top: 18px; border-top: 1px solid var(--rule); }
+
+/* ---------- side by side (S3b) ---------- */
+.home .vs { margin: 52px 0 0; }
+.home .vs-frame { display: grid; grid-template-columns: 1fr 1fr; height: 260px; border: 1px dashed var(--ink-4); border-radius: 2px; }
+.home .vs-half { padding: 22px 24px; display: flex; flex-direction: column; justify-content: space-between; }
+.home .vs-half + .vs-half { border-left: 1px dashed var(--ink-4); }
+.home .vs-label { font-size: 19px; font-weight: 500; }
+.home .vs-cond { font-style: italic; font-size: 15.5px; color: var(--ink-3); }
+.home .vs-status { margin-top: 14px; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+
+/* ---------- ownership (O1) ---------- */
+.home .facts3 { margin: 44px 0 0; list-style: none; padding: 0; }
+.home .facts3 li { grid-column: span 4; border-top: 1px solid var(--ink); padding: 14px 24px 0 0; font-size: 17.5px; line-height: 1.5; }
+.home .facts3 b { font-weight: 500; display: block; margin-bottom: 2px; }
+.home .facts3 span { color: var(--ink-2); }
+
+/* ---------- research ---------- */
+.home .s6 .left { grid-column: 1 / 6; }
+.home .s6 .left p { margin-top: 20px; font-size: 18.5px; }
+.home .s6 .left p.second { color: var(--ink-2); }
+.home .rlist { grid-column: 7 / 13; list-style: none; margin: 8px 0 0; padding: 0; border-top: 1px solid var(--ink); }
+.home .rlist li a { display: grid; grid-template-columns: 112px 1fr; column-gap: 16px; padding: 18px 0 19px; border-bottom: 1px solid var(--rule); }
+.home .rlist li a:hover .title { text-decoration: underline; text-decoration-color: var(--rule-strong); text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.home .rlist li.next a, .home .rlist li.next > div { display: grid; grid-template-columns: 112px 1fr; column-gap: 16px; padding: 18px 0 19px; border-bottom: 1px dashed var(--ink-4); }
+.home .rlist .kind { padding-top: 6px; }
+.home .rlist .title { font-size: 21px; line-height: 1.32; letter-spacing: -0.005em; }
+.home .rlist .meta { margin-top: 5px; font-size: 15px; color: var(--ink-2); display: flex; gap: 10px; align-items: center; }
+.home .s6 .more { grid-column: 7 / 13; margin-top: 24px; }
+
+/* ---------- closing ---------- */
+.home .s7 { padding-top: 168px; }
+.home .s7 .inner { border-top: 1px solid var(--ink); padding-top: 38px; }
+.home .s7 h2 { grid-column: 1 / 7; }
+.home .s7 .right { grid-column: 7 / 13; }
+.home .s7 .right p { font-size: 19px; line-height: 1.55; color: var(--ink-2); max-width: 30em; }
+.home .s7 .ctas { margin-top: 22px; }
+
+/* ---------- mobile compositions ---------- */
+.home .st { padding: 4px 0 22px; }
+.home .st svg { width: 100%; max-width: 330px; height: auto; display: block; }
+.home .st h3 { margin: 10px 0 2px; font-size: 19px; font-weight: 500; }
+.home .st h3 .n { color: var(--ink-3); font-weight: 300; margin-right: 8px; }
+.home .st p { font-size: 16px; color: var(--ink-2); line-height: 1.45; }
+.home .m-boundary { display: flex; align-items: center; gap: 10px; margin: 0 0 18px; font-style: italic; font-size: 14px; color: var(--ink-3); }
+.home .m-boundary::before, .home .m-boundary::after { content: ""; flex: 1; border-top: 1px dashed var(--ink-3); }
+.home .m-life { list-style: none; margin: 0; padding: 0 0 0 18px; border-left: 1px solid var(--rule-strong); }
+.home .m-life li { position: relative; padding: 0 0 16px 4px; }
+.home .m-life li::before { content: ""; position: absolute; left: -23px; top: 8px; width: 9px; height: 9px; border-radius: 50%; background: var(--paper); border: 1px solid var(--ink); }
+.home .m-life .st2 { font-family: var(--font-mono), ui-monospace, Menlo, monospace; font-size: 12px; color: var(--ink); }
+.home .m-life .ev { font-size: 15.5px; color: var(--ink-2); }
+.home .m-life .cb { display: block; margin: 6px 0 0; width: 150px; height: 4px; border: 1px solid var(--rule-strong); position: relative; }
+.home .m-life .cb i { position: absolute; left: 0; top: 0; bottom: 0; }
+.home .m-foot { margin-top: 4px; font-style: italic; font-size: 14.5px; color: var(--ink-2); }
+.home .o1m-hub { border: 1px solid var(--ink); border-left: 4px solid var(--accent); background: var(--surface); padding: 12px 14px; }
+.home .o1m-hub b { font-weight: 500; font-size: 19px; display: block; }
+.home .o1m-hub code { font-family: var(--font-mono), ui-monospace, Menlo, monospace; font-size: 12.5px; }
+.home .o1m-hub i { display: block; font-size: 14px; color: var(--ink-2); }
+.home .o1m-agents { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding-top: 14px; position: relative; }
+.home .o1m-agents::before { content: ""; position: absolute; left: 24px; top: 0; height: 14px; border-left: 1px solid var(--ink-3); }
+.home .o1m-agents span { border: 1px solid var(--rule-strong); background: var(--surface); padding: 7px 10px; font-size: 15.5px; border-radius: 2px; }
+.home .o1m-agents span.byhand { border: 1px dashed var(--ink-3); background: none; color: var(--ink-2); }
+
+/* narrower desktops: stack the two-column sections so figures keep their size */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .home .hero-copy, .home .s2-left, .home .s2-fig, .home .s6 .left, .home .rlist, .home .s6 .more, .home .s7 h2, .home .s7 .right { grid-column: 1 / 13; }
+  .home .hero-visual { grid-column: 1 / 13; margin-top: 48px; }
+  .home .s2-fig { margin-top: 40px; }
+  .home .rlist { margin-top: 32px; }
+  .home .s6 .more { margin-top: 24px; }
+  .home .s-head h2 { grid-column: 1 / 8; }
+  .home .s-head .aside { grid-column: 8 / 13; }
+}
+
+@media (max-width: 767px) {
+  .home .grid-12 { display: block; }
+  .home .hero { padding-top: 40px; }
+  .home .display { font-size: 40px; line-height: 1.06; }
+  .home .hero-copy .lead { font-size: 18.5px; margin-top: 20px; }
+  .home .ctas { flex-wrap: wrap; }
+  .home .hero-visual { height: auto; margin-top: 40px; }
+  .home .hero-visual .hv-card { position: static; width: auto; }
+  .home .hero-visual .hv-card .specimen { width: auto; }
+  .home .hero-visual svg.hv-net { display: none; }
+  .home .hero-visual figcaption { position: static; width: auto; margin-top: 12px; }
+  .home .hv-mobile { display: block; margin: 0 0 0 16px; padding: 4px 0 0 14px; border-left: 1px solid var(--rule-strong); }
+  .home .section { padding-top: 100px; }
+  .home h2 { font-size: 29px; line-height: 1.16; }
+  .home .s2-left .pull { font-size: 19px; margin-top: 22px; }
+  .home .s2-fig { margin-top: 32px; }
+  .home .s-head .aside { margin-top: 10px; font-size: 17px; }
+  .home figure.fig svg.desk, .home .s2-fig svg.desk { display: none; }
+  .home .mob, .home .f1-mobile, .home .o1-mobile, .home .f2-mobile, .home figure.fig svg.mob, .home .s2-fig svg.mob { display: block; }
+  .home figure.fig { margin-top: 28px; }
+  .home figure.fig-mm { margin-top: 48px; }
+  .mm-toggle { top: -34px; }
+  .home .panel-label { margin-top: 40px; }
+  .home .facts3 li { margin-top: 18px; }
+  .home .rlist { margin-top: 30px; }
+  .home .vs { margin-top: 28px; }
+  .home .vs-frame { grid-template-columns: 1fr; height: auto; }
+  .home .vs-half { min-height: 116px; padding: 16px 18px; }
+  .home .vs-half + .vs-half { border-left: 0; border-top: 1px dashed var(--ink-4); }
+  .home .rlist li a, .home .rlist li.next a, .home .rlist li.next > div { grid-template-columns: 1fr; row-gap: 4px; }
+  .home .s7 { padding-top: 104px; }
+  .home .s7 .right { margin-top: 16px; }
+}

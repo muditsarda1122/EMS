@@ -51,3 +51,5 @@ dist/*
 
 # ygrep
 .fastembed_cache
+# screenshots
+.screenshots/

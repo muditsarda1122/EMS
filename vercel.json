@@ -1,0 +1,20 @@
+{
+  "redirects": [
+    { "source": "/ems", "destination": "/how-it-works", "permanent": true },
+    { "source": "/ethos", "destination": "/about", "permanent": true },
+    { "source": "/ec-bench", "destination": "/research/ec-bench", "permanent": true },
+    { "source": "/notes", "destination": "/research#notebook", "permanent": true },
+    { "source": "/notes/:slug", "destination": "/research/notes/:slug", "permanent": true },
+    { "source": "/EMS-artefacts/:file", "destination": "/research/archive/:file", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/opengraph-image",
+      "headers": [{ "key": "Content-Type", "value": "image/png" }]
+    },
+    {
+      "source": "/:path*/opengraph-image",
+      "headers": [{ "key": "Content-Type", "value": "image/png" }]
+    }
+  ]
+}

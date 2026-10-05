@@ -1,0 +1,20 @@
+{
+  "label": "conclusion",
+  "status": "reviewed",
+  "cognition": "Cache invalidation must follow token refresh; clearing the cache first serves stale authentication tokens.",
+  "type": "invariant",
+  "scope": "repo:myapp > module:auth",
+  "confidence": 0.67,
+  "grounding": {
+    "files": ["auth/token_manager.rs", "auth/cache.rs"],
+    "commit": "d64d0e0",
+    "symbols": ["TokenManager::refresh", "TokenManager::clear_cache"]
+  },
+  "framingNote": "Verify against current code before acting.",
+  "related": [
+    { "relation": "supports", "text": "Token refresh completes before any cache read" },
+    { "relation": "depends on", "text": "TokenManager is the only writer of the token cache" },
+    { "relation": "replaced", "text": "Random logouts come from session-store expiry", "struck": true }
+  ],
+  "captured": { "source": "illustrative" }
+}

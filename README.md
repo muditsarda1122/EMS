@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Reverie website
 
-## Getting Started
+The public website for Reverie, memory for coding agents. It explains what the product does and how it works, and it hosts the research behind it: the EC-Bench results, the paper, the notebook and the archive of earlier documents.
 
-First, run the development server:
+This repository is the website only. It contains no installation instructions for Reverie itself.
+
+Stack: Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4. The site is a static export written to `dist/`.
+
+## Run, build, test
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev            # development server on http://localhost:3000
+npm run build          # static export to dist/
+npm run lint
+npx tsc --noEmit
+npm test               # unit tests for lib/*.test.ts (node --test)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Screenshots
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+`scripts/shoot.mjs` serves `dist/` locally and screenshots the routes you give it at 1440 and 390 px, in light and dark, into `.screenshots/` (git-ignored). It also reports horizontal overflow at 360 and 390 px. Build first.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+node scripts/shoot.mjs / /how-it-works /research /research/ec-bench /about
+```
 
-## Learn More
+It uses Playwright, found as an npm package or at `/opt/node-tools/node_modules/playwright`.
 
-To learn more about Next.js, take a look at the following resources:
+## Content model
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Everything the pages say lives in `content/`, apart from page layout and diagram geometry.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Path | Holds |
+|---|---|
+| `content/site.config.ts` | Site name, tagline, contact, navigation, configuration switches (below) |
+| `content/research.ts` | Typed list of research documents: kind, status, dates, superseded-by, PDF |
+| `content/paper.ts` | The paper's abstract, errata and citation data |
+| `content/bench-runs.ts` | EC-Bench runs and caveats |
+| `content/lifecycle-scenario.ts` | The scenario behind the lifecycle diagrams |
+| `content/specimens/` | The example memory record and its anatomy |
+| `content/notes/*.md` | Notebook entries (Markdown with frontmatter, including `editorsNote`) |
+| `public/research/archive/` | The archived PDFs |
 
-## Deploy on Vercel
+Diagram components are in `components/diagrams/`; page chrome in `components/site/`; shared pieces in `components/ui/`. Open Graph images are rendered at build from `lib/og/` (the Newsreader font there is under the SIL Open Font License, see `lib/og/OFL.txt`).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Copy and claims
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`docs/claims-ledger.md` lists every factual sentence on the site with its source. A new factual sentence needs a row there. Missing copy is marked `TODO(copy)` and unverified facts `TODO(fact)`.
+
+## Configuration switches
+
+Set in `content/site.config.ts`. Pages read these and never hard-code a state.
+
+- `repository.url` and `repository.ref`: `null` is State A (repository not public; the header call to action is Contact). A URL is State B (the call to action is GitHub and repository links appear).
+- `experiment.status`: `hidden`, `design`, `running` or `published`. Anything but `hidden` shows the continuity experiment page and its homepage slot (`experiment.homepageSlot`).
+- `domain`: `null` keeps URLs relative. Set it to get absolute Open Graph, sitemap and canonical URLs.
+- `claims.anyMcpAgent`: whether the site says any MCP agent works. Set it to `false` if that check fails.
+- `supportedAgents`, `version`, `contactEmail`, `nav`.
+
+## Hosting
+
+`vercel.json` holds the permanent redirects from the old routes (`/ems`, `/ethos`, `/ec-bench`, `/notes`, `/notes/:slug`, `/EMS-artefacts/:file`) and the `Content-Type: image/png` header for the extensionless `opengraph-image` files. Next's `redirects()` does not work with a static export, which is why they are here. On another host, reproduce them there.
+
+## Design references
+
+- `WEBSITE-DESIGN-PLAN.md`: the design plan (voice, tokens, pages, redirects, architecture).
+- `DIAGRAM-PLAN.md`: every diagram's data and layout.
+- `IMPLEMENTATION-TASKS.md`: the build tasks and the rules each one follows.
+- `design/homepage-preview/`: the static homepage preview, its fonts and reference screenshots.
