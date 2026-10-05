@@ -21,7 +21,7 @@ against the claim; `pending` means it has not been checked against the product y
 | C13 | Local MCP server started by your agent; four named tools | Home, How it works | PRODUCT.md §3; INSTALLATION.md §7–8 | pending |
 | C14 | Other MCP clients can be set up by hand | Home, How it works | INSTALLATION.md §10.5 | pending |
 | C15 | Extraction uses the configured LLM; Ollama for local; embeddings and retrieval local | Home, How it works | PRODUCT.md §1, §2.6, §21.8; INSTALLATION.md §6 | pending |
-| C16 | What is sent to the LLM (prompt, reasoning, classification pairs) | How it works | PRODUCT.md §4, §6–7 | pending |
+| C16 | What is sent to the LLM (prompt, reasoning, final output, classification pairs) | How it works | PRODUCT.md §4, §6–7; `ec_observe` passes the final output to the extractor (`ec/mcp_server.py`, owner check 5 Oct 2026) | pending (confirm the final output reaches the extraction prompt) |
 | C17 | The first version loaded relevant memory into the agent's context before it started work; on our benchmark that made the agent worse | Home, Research | paper §2, §7, §12; Short Report §4.2 per-metric table, §5.1 | pending |
 | C18 | No run shows a clear advantage yet | How it works, EC-Bench | PRODUCT.md §17; paper §12; Short Report table | pending |
 | C19 | Tested on macOS only | How it works | INSTALLATION.md §6, §11 | pending |
@@ -82,7 +82,7 @@ Every factual sentence on the page, grouped by section. Sources are plan section
 | H1 | Each conclusion is the smallest self-contained piece of engineering understanding that could change a future decision (reworded in T7 to remove a circular definition); the paper's information-versus-conclusion pair | How it works §1 | plan §1.4, §8.1 | pending |
 | H2 | Three-question test, one conclusion per record, self-review rejects what the code shows, "zero is a valid output" | §1 | plan §1.3, §1.4 | pending |
 | H3 | The extractor rejects facts, code descriptions, process steps and summaries | §1 | plan §1.3 (C2) | pending |
-| H4 | ECU: eight types, seven scope levels plus a path, six statuses (scope order beyond "engineering → subsystem" is TODO(fact)) | §1 | plan §1.4 | pending |
+| H4 | ECU: eight types, seven scope levels plus a path, six statuses. Scope order matches `SCOPE_LEVELS` (`ec/config.py`) | §1 | plan §1.4; product code (owner check, 5 Oct 2026) | scope order 2026-10-05; rest pending |
 | H5 | Fig. 3 annotations ①–⑨ (one conclusion per record; scope sets fade, ranking, retirement; log-odds; ranking uses decayed value; retrievable statuses; source sets prior; grounding checked; related returned together; framing note) | §1 | DIAGRAM-PLAN F3 | pending |
 | H6 | Session brain: per repo and branch, immediate, unreviewed, ranked slightly lower; canonical brain: reviewed, long-term, shared across projects | §2 | plan §8.1, §1.3 (C3) | pending |
 | H7 | Evidence about long-term conclusions waits as pending until its source is accepted | §2 | plan §8.1, §1.3 (C30) | pending |
@@ -100,14 +100,14 @@ Every factual sentence on the page, grouped by section. Sources are plan section
 | H19 | Framing note; agents don't always ask; asking is an instruction, not enforced | §5 | plan §1.3, §8.1 (C6) | pending |
 | H20 | One SQLite file at `~/.ec/ec.db` shared by projects; no Reverie account | §6 | plan §1.1 (C12) | pending |
 | H21 | Local stdio MCP server spawned by the agent; maintenance in the background | §6 | plan §1.1 (C13) | pending |
-| H22 | Tool rows: what ec_observe, ec_query, ec_reconsolidate do and when called (ec_get_summary and the session column are TODO(fact)) | §6 | plan §1.3, §8.1, DIAGRAM-PLAN F4 | pending |
-| H23 | Installer configures an MCP entry and an instructions file for each of four agents (C1; P11 pending) | §6 | plan §8.1 | pending |
+| H22 | Tool rows: what `ec_observe`, `ec_query`, `ec_get_summary` and `ec_reconsolidate` do, when the agent calls them, and which need an active session (all but `ec_get_summary`; without one they return an error) | §6 | `ec/mcp_server.py`, `ec/session.py` (owner check, 5 Oct 2026) | 2026-10-05 |
+| H23 | For each of four agents the installer adds an MCP entry and wires the instructions into `~/.claude/CLAUDE.md`, `~/.cursor/rules/ec.md`, `~/.config/opencode/AGENTS.md` or `~/.codex/AGENTS.md` | §6 | `ec/install.py` (owner check, 5 Oct 2026); end-to-end check C1 pending | 2026-10-05 (files) |
 | H24 | Every connected agent shares the file; switching agents or model keeps memory; other MCP agents set up by hand (gated by `claims.anyMcpAgent`) | §6, FAQ | plan §1.5 (C14, C27, C29) | pending |
-| H25 | LLM endpoint hosted by default or Ollama; sent: prompt, reasoning, candidate pairs; never leaves: database, embeddings, retrieval | §6, FAQ | plan §1.1, §8.1 (C15, C16) | pending |
+| H25 | LLM endpoint hosted by default or Ollama; sent: prompt, reasoning, final output, candidate pairs; never leaves: database, embeddings, retrieval | §6, FAQ | plan §1.1, §8.1 (C15, C16) | pending |
 | H26 | Naming note: `ec` prefix stands for Engineering Cognition | §6 | plan §8.1, §11.5 | pending |
 | H27 | Limits: macOS only; terminal review; you start/end sessions; single-attempt LLM extraction; no edit/delete interface; no clear benchmark advantage | §7 | plan §8.1 (C18–C22) | pending |
 | H28 | "Last reviewed 5 October 2026" | §7 | plan date; owner to confirm | pending |
-| H29 | FAQ: instruction files vs Reverie; data flow; what you do; why not automatic; does it make agents better; which agents; open source (no licence claim) | §8 | plan §8.1, §1.8 | pending |
+| H29 | FAQ: instruction files vs Reverie; data flow; what you do; why not automatic; does it make agents better; which agents; open source ("It will be" until the repository opens; then the licence from `siteConfig.repository.licence`) | §8 | plan §8.1, §1.8; owner instruction 5 Oct 2026 (going open source) | pending; open source 2026-10-05 |
 
 ## T7: EC-Bench (`/research/ec-bench`)
 
@@ -149,12 +149,13 @@ Every factual sentence on the page, grouped by section. Sources are plan section
 
 | # | Site claim (paraphrased) | Section | Source | Last verified |
 |---|---|---|---|---|
-| A1 | Reverie is built by Mudit Sarda; bio and links not written | Header | plan §8.7; bio is `TODO(copy)` (P8) | pending (owner) |
+| A1 | Reverie is built by Mudit Sarda: software engineer at Dhiway in Bangalore (trust infrastructure), engineer by training, a year and a half of coding with AI | Header | Owner, 5 Oct 2026 | 2026-10-05 (owner supplied) |
 | A2 | Reverie keeps the conclusions an agent reaches, not a record of everything it did; understanding carries over between sessions | How we work | plan §8.7 ("understanding over information"), C2 | pending |
 | A3 | We benchmark our own ideas; the first version loaded memory before the agent began work and on our benchmark the agent did worse; the runs are on EC-Bench | How we work | plan §8.7, C17 | pending |
 | A4 | Memory is stored locally; you review what is kept; grounded in your repository; superseded documents stay available, labelled | How we work | plan §8.7, §1.8 ("memory is stored locally"), C5, C7, §12.4 | pending |
 | A5 | Names: Reverie product; Engineering Cognition research program; `ec` code prefix; EMS first version | Names | plan §8.7, §11.5 | pending |
-| A6 | Contact email | Contact | `content/site.config.ts` | pending (owner) |
+| A6 | Contact email and LinkedIn | Contact | `content/site.config.ts`; owner, 5 Oct 2026 | 2026-10-05 (owner supplied) |
+| A7 | Why we built it: a permissions error broke a session and its context had to be copied by hand; developers improve with every session while each session starts from zero | Why we built it | Owner, 5 Oct 2026 | 2026-10-05 (owner supplied) |
 
 ## T11: QA additions
 

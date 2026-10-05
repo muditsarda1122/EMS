@@ -8,7 +8,7 @@ export type SiteConfig = {
   description: string;
   domain: string | null;
   contactEmail: string;
-  repository: { url: string | null; ref: string | null };
+  repository: { url: string | null; ref: string | null; licence: string | null };
   experiment: { status: ExperimentStatus; homepageSlot: boolean };
   version: string | null; // TODO(fact): product version not stated in the plan
   supportedAgents: string[];
@@ -25,7 +25,7 @@ export const siteConfig: SiteConfig = {
     "Reverie keeps the engineering conclusions your coding agent reaches, reviewed by you, grounded in your repository, and revised as evidence changes. Works with Claude Code, Cursor, OpenCode and Codex.",
   domain: null,
   contactEmail: "muditsarda23@gmail.com",
-  repository: { url: null, ref: null },
+  repository: { url: null, ref: null, licence: null },
   experiment: { status: "hidden", homepageSlot: true },
   version: null,
   supportedAgents: ["Claude Code", "Cursor", "OpenCode", "Codex"],

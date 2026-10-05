@@ -1,6 +1,5 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
 import "./how.css";
 import ArrowLink from "@/components/ui/ArrowLink";
 import ButtonLink from "@/components/ui/ButtonLink";
@@ -33,8 +32,7 @@ const TOC = [
 ] as const;
 
 const TYPES = ["implication", "constraint", "principle", "decision", "observation", "pattern", "invariant", "trade-off"];
-// TODO(fact): the plan names the seven levels only as "engineering → subsystem". The middle order follows the retirement
-// groups in plan §8.1 (engineering/domain · organization/project · repo/module/subsystem).
+// Broadest to narrowest, as in the product's SCOPE_LEVELS (ec/config.py).
 const SCOPES = ["engineering", "domain", "organization", "project", "repo", "module", "subsystem"];
 const STATUSES = ["active", "challenged", "superseded", "deprecated", "open_question", "archived"];
 
@@ -49,9 +47,13 @@ const GROUNDING: Record<string, string[] | null> = {
   install: null,
 };
 
-function Todo({ children = "TODO(fact)" }: { children?: ReactNode }) {
-  return <span className="todo">{children}</span>;
-}
+// Where the installer wires Reverie's instructions in for each agent (ec/install.py).
+const INSTRUCTION_FILES: Record<string, string> = {
+  "Claude Code": "~/.claude/CLAUDE.md",
+  Cursor: "~/.cursor/rules/ec.md",
+  OpenCode: "~/.config/opencode/AGENTS.md",
+  Codex: "~/.codex/AGENTS.md",
+};
 
 function ModuleNote({ id }: { id: string }) {
   if (!isRepoPublic()) return null;
@@ -94,6 +96,7 @@ function InlineList({ items }: { items: string[] }) {
 export default function HowItWorksPage() {
   const stateB = isRepoPublic() && siteConfig.repository.url !== null;
   const repoUrl = siteConfig.repository.url;
+  const licence = siteConfig.repository.licence;
   const agents = siteConfig.supportedAgents;
   const any = siteConfig.claims.anyMcpAgent;
 
@@ -345,50 +348,50 @@ export default function HowItWorksPage() {
               <tbody>
                 <tr>
                   <th scope="row" data-label="Tool"><code>ec_observe</code></th>
-                  <td data-label="What it does">Passes the prompt and the agent’s reasoning to the extractor, which keeps the conclusions.</td>
+                  <td data-label="What it does">Passes the prompt, the agent’s reasoning and its final output to the extractor, which keeps the conclusions in the session brain.</td>
                   <td data-label="When your agent calls it">When it reaches a conclusion.</td>
-                  <td data-label="Needs an active session?"><Todo /></td>
+                  <td data-label="Needs an active session?">Yes</td>
                 </tr>
                 <tr>
                   <th scope="row" data-label="Tool"><code>ec_query</code></th>
                   <td data-label="What it does">Returns relevant conclusions from both brains, grouped with their neighbours and framed.</td>
                   <td data-label="When your agent calls it">After it has read the code.</td>
-                  <td data-label="Needs an active session?"><Todo /></td>
+                  <td data-label="Needs an active session?">Yes</td>
                 </tr>
                 <tr>
                   <th scope="row" data-label="Tool"><code>ec_get_summary</code></th>
-                  <td data-label="What it does"><Todo /></td>
-                  <td data-label="When your agent calls it"><Todo /></td>
-                  <td data-label="Needs an active session?"><Todo /></td>
+                  <td data-label="What it does">Reports counts from the canonical brain by scope and status, the last maintenance run and what awaits your review.</td>
+                  <td data-label="When your agent calls it">Once, at the start of a session.</td>
+                  <td data-label="Needs an active session?">No</td>
                 </tr>
                 <tr>
                   <th scope="row" data-label="Tool"><code>ec_reconsolidate</code></th>
                   <td data-label="What it does">Updates a conclusion it just retrieved, with verified evidence, and records the update.</td>
                   <td data-label="When your agent calls it">When it finds verified evidence about a conclusion it has just retrieved.</td>
-                  <td data-label="Needs an active session?"><Todo /></td>
+                  <td data-label="Needs an active session?">Yes</td>
                 </tr>
               </tbody>
             </table>
+            <p className="tbl-note">Tools that need a session return an error until you start one.</p>
 
             <h3 className="t-h3 tbl-h" id="supported-agents">Supported agents</h3>
             <table className="hiw-table agents">
               <thead>
                 <tr>
                   <th scope="col">Agent</th>
-                  <th scope="col">What the installer configures</th>
+                  <th scope="col">Instructions file</th>
                 </tr>
               </thead>
               <tbody>
                 {agents.map((a) => (
                   <tr key={a}>
                     <th scope="row" data-label="Agent">{a}</th>
-                    <td data-label="What the installer configures">An MCP entry and an instructions file</td>
+                    <td data-label="Instructions file">{INSTRUCTION_FILES[a] ? <code>{INSTRUCTION_FILES[a]}</code> : "An instructions file"}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
-            {/* TODO(fact): which instructions file each agent gets (INSTALLATION.md §7–8). */}
-            <p className="tbl-note"><Todo>TODO(fact)</Todo> The instructions file for each agent.</p>
+            <p className="tbl-note">For each agent, the installer adds an MCP entry and wires Reverie’s instructions into the file shown.</p>
 
             <div className="prose-col">
               <p>
@@ -406,7 +409,7 @@ export default function HowItWorksPage() {
               <p>
                 <b>Models and data.</b> Reverie stores memory locally. Extraction and classification use an LLM endpoint: hosted
                 by default, or a local model through Ollama. What it sends there is the prompt, the agent’s reasoning and
-                candidate pairs of conclusions for classification. The database, the embeddings and retrieval never leave your
+                final output, and candidate pairs of conclusions for classification. The database, the embeddings and retrieval never leave your
                 machine.
               </p>
               <p className="naming">
@@ -452,8 +455,8 @@ export default function HowItWorksPage() {
               <details>
                 <summary>Does my code leave my machine?</summary>
                 <p>
-                  Parts of your sessions can. Extraction sends the prompt and the agent’s reasoning to the configured LLM
-                  endpoint, and classification sends candidate pairs of conclusions. That endpoint is hosted by default, or a
+                  Parts of your sessions can. Extraction sends the prompt, the agent’s reasoning and its final output to the
+                  configured LLM endpoint, and classification sends candidate pairs of conclusions. That endpoint is hosted by default, or a
                   local model if you use Ollama. The database, the embeddings and retrieval never leave your machine.
                 </p>
               </details>
@@ -488,11 +491,12 @@ export default function HowItWorksPage() {
                 <p>
                   {stateB && repoUrl ? (
                     <>
-                      The code is in <a className="text-link" href={repoUrl} target="_blank" rel="noopener noreferrer">the repository ↗</a>.{" "}
-                      <Todo>TODO(fact)</Todo> The licence.
+                      {licence ? "Yes. " : null}The code is in{" "}
+                      <a className="text-link" href={repoUrl} target="_blank" rel="noopener noreferrer">the repository ↗</a>
+                      {licence ? `, under the ${licence} licence` : null}.
                     </>
                   ) : (
-                    "Not yet. The repository isn’t public, and we haven’t published a licence."
+                    "It will be. The repository opens soon, licence included."
                   )}
                 </p>
               </details>
