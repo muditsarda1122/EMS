@@ -168,7 +168,8 @@
 .home .o1m-agents { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding-top: 14px; position: relative; }
 .home .o1m-agents::before { content: ""; position: absolute; left: 24px; top: 0; height: 14px; border-left: 1px solid var(--ink-3); }
 .home .o1m-agents span { border: 1px solid var(--rule-strong); background: var(--surface); padding: 7px 10px; font-size: 15.5px; border-radius: 2px; }
-.home .o1m-agents span.byhand { border: 1px dashed var(--ink-3); background: none; color: var(--ink-2); }
+.home .o1m-agents span.soon { border: 1px dashed var(--ink-3); background: none; color: var(--ink-2); }
+.home figure.fig svg.tick { display: inline-block; width: 14px; height: 14px; overflow: visible; }
 
 /* narrower desktops: stack the two-column sections so figures keep their size */
 @media (max-width: 1023px) and (min-width: 768px) {

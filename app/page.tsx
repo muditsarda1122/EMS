@@ -1,8 +1,10 @@
+import { Fragment } from "react";
 import type { Metadata } from "next";
 import "./home.css";
 import ArrowLink from "@/components/ui/ArrowLink";
 import ButtonLink from "@/components/ui/ButtonLink";
 import Tag from "@/components/ui/Tag";
+import Tick from "@/components/ui/Tick";
 import HeroGraph from "@/components/diagrams/HeroGraph";
 import SessionsStrip from "@/components/diagrams/SessionsStrip";
 import SessionBoundary from "@/components/diagrams/SessionBoundary";
@@ -11,7 +13,7 @@ import MemoryMapControls from "@/components/diagrams/MemoryMapControls";
 import ConclusionLifecycle from "@/components/diagrams/ConclusionLifecycle";
 import OwnershipHub from "@/components/diagrams/OwnershipHub";
 import VideoSlot, { videoSlotMode } from "@/components/video/VideoSlot";
-import { siteConfig, isRepoPublic } from "@/content/site.config";
+import { siteConfig, isRepoPublic, readyAgents, comingSoon, listText } from "@/content/site.config";
 import specimen from "@/content/specimens/token-refresh.json";
 import type { ConclusionSpecimen } from "@/components/specimen/ConclusionRecord";
 
@@ -25,8 +27,9 @@ export default function HomePage() {
   const stateB = isRepoPublic() && repoUrl !== null;
   const slotShown = videoSlotMode() !== "none";
   const videoPublished = siteConfig.experiment.status === "published";
-  const agents = siteConfig.supportedAgents.join(", ");
-  const any = siteConfig.claims.anyMcpAgent;
+  const ready = readyAgents();
+  const soon = comingSoon();
+  const anyReady = siteConfig.claims.anyMcpAgent === "ready";
 
   return (
     <div className="home">
@@ -39,8 +42,21 @@ export default function HomePage() {
             your code — so the next session builds on them.
           </p>
           <p className="agents">
-            Works with {agents}
-            {any ? " — any MCP agent, on any model." : "."}
+            Works with{" "}
+            {ready.map((name, i) => (
+              <Fragment key={name}>
+                {i > 0 ? (i === ready.length - 1 ? " and " : ", ") : null}
+                {name}
+                <Tick />
+              </Fragment>
+            ))}
+            {anyReady ? " and any MCP agent" : null}, on any model.
+            {soon.length > 0 ? (
+              <>
+                {" "}
+                <span className="agent-soon">{listText(soon)}</span> <Tag>Coming soon</Tag>
+              </>
+            ) : null}
           </p>
           <div className="ctas">
             <ButtonLink href="/how-it-works">How it works</ButtonLink>
@@ -99,7 +115,7 @@ export default function HomePage() {
       <section className="section wrap">
         <div className="grid-12 s-head">
           <h2>Your memory, not your agent’s.</h2>
-          <p className="aside">Switch agents or models — what you’ve built up stays with you, on your machine.</p>
+          <p className="aside">Switch models today, and agents soon: what you’ve built up stays with you, on your machine.</p>
         </div>
         <OwnershipHub />
         <ul className="facts3 grid-12">
