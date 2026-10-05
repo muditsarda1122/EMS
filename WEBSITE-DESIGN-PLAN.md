@@ -265,7 +265,12 @@ The visitor already knows instruction files (`AGENTS.md`, `CLAUDE.md`, rules), t
 
 ### 3.1 Method and limits
 
-The research ran on 2026-10-05 using web search. **Direct fetches of `letta.com`, `supermemory.ai`, `getzep.com`, `dribbble.com` and `pinterest.com` were blocked by this environment's network policy**, so product facts below come from search-result summaries of the vendors' own pages, docs, changelogs and papers (URLs in §3.5). Treat every cell as *"as described publicly on that date"*. Where evidence was missing, the cell says *not established* rather than "no".
+The research ran on 2026-10-05 in two passes.
+
+- **Pass 1 (web search).** Direct fetches of `letta.com`, `supermemory.ai`, `getzep.com`, `dribbble.com` and `pinterest.com` were blocked by the original environment's network policy, so the first pass used search-result summaries of the vendors' own pages, docs, changelogs and papers.
+- **Pass 2 (direct fetches, verified).** A research session in the owner's *Custom* environment fetched the Letta, Supermemory and Zep pages directly. Their rows below are now **verified against the vendors' current pages**. Still blocked in that environment: `docs.letta.com`, `www.framer.com`, and the image CDNs `i.pinimg.com` and `cdn.dribbble.com`. The Dribbble page sits behind a bot challenge.
+
+Treat every cell as *"as described publicly on that date"*. Where evidence was missing, the cell says *not established* rather than "no".
 
 ### 3.2 Landscape
 
@@ -293,12 +298,12 @@ E. Research systems close to Reverie's ideas
 
 | Product | Who it serves | Integration | Where memory lives | What is remembered | Conflicts and updates | Review before durable? | Checked against code? | When memory enters the agent |
 |---|---|---|---|---|---|---|---|---|
-| **Letta** (platform) | Developers building stateful agents | Agents API/SDK, ADE; agents self-edit memory blocks; sleep-time agents consolidate | Letta server (cloud or self-hosted) | Labelled memory blocks, archival memory | Agent rewrites; background consolidation | Not established | Not established | Blocks always in context, plus tools |
-| **Letta Code** | Developers (a coding agent) | *Is* the agent | Git-backed memory files, cloned locally | The agent's context files, skills | Agent rewrites files; git history | Not established | Not established | File tree in system prompt |
-| **Zep / Graphiti** | Developers and enterprises building agents | API/SDK, open-source Graphiti, MCP | Zep cloud, or self-hosted Graphiti | Entities, relations, facts with validity windows | Old facts invalidated (validity closed), history kept | Not established | No | Graph and semantic search on request |
+| **Letta** (verified) | Positions itself as "an AI research lab … building machines that learn". Offers Letta Agent ("stateful agents for your team"), Letta Code, and an Agent SDK. | Whole agents (CLI, desktop), SDK; brings your own model | "Run locally or on the cloud"; context git-tracked through MemFS | Memory files, skills, prompts | The agent edits its own memory (every change versioned in git); background "memory reflection" and "defragmentation"; sleep-time compute | None stated (git history gives after-the-fact audit) | Not stated (the codebase is explored at initialisation) | Varies by product |
+| **Letta Code** (verified) | Developers (a coding agent: "a memory-first agent that can take actions on your local computer") | *Is* the agent (`npm i -g @letta-ai/letta-code`) | Git-backed memory repository, cloned to the local filesystem and kept in sync | Memory files with frontmatter, skills; initialised by exploring the codebase and past conversations | Agent rewrites files; git conflict resolution for concurrent subagents | None stated | Not stated | The file tree is always in the system prompt; a `system/` directory is fully loaded; other files are read on demand |
+| **Zep / Graphiti** (verified) | Enterprise developers ("the unified context layer for enterprise data"); a Memory MCP server (Aug 2026) | API/SDK; MCP; open-source Graphiti | Zep Cloud, bring-your-own-cloud, or self-hosted Graphiti | Context graphs per user, account or domain: entities, relationships, dated facts linked to sources | "As facts change, Graphiti invalidates the old ones"; validity windows; history kept | None (governance means access policy and audit, not approval) | No (facts are traced to data sources, not code) | Retrieved per request |
 | **Mem0** (platform) | Developers building AI apps | API/SDK | Cloud, or open-source self-hosted | Extracted facts and preferences | LLM chooses ADD/UPDATE/DELETE/NOOP; graph variant marks relations obsolete | No | No | Search on request |
 | **OpenMemory** (Mem0) | Individuals using AI tools, including coding | MCP | Local (vector DB + dashboard) | Typed memories (preference, implementation…) | As Mem0 | Dashboard to view and edit | No | MCP search |
-| **Supermemory** | App builders (API); coding-agent users (plugin) | API, MCP, Claude Code/OpenCode plugin | Hosted (core says it can run locally) | Facts, user profiles, documents, team memory | "Handles updates, contradictions, automatic forgetting" | Auto-capture | No | Recall in plugin; API search |
+| **Supermemory** (verified) | App builders ("the default engine for memory and continual learning for agents") **and** coding-agent users, through Claude Code and OpenCode plugins | API/SDK, hook-based plugins, hosted MCP | Hosted by default; self-hosted or local mode available | Files, chats, URLs; user profiles (static and dynamic); conversations and important tool use from coding sessions; shared project knowledge | "Updates, merges, infers and forgets"; facts "updated when facts change, and forgotten when they expire" (the word "contradiction" was not found) | None (automatic, or triggered by phrases like "remember this") | No | Claude Code plugin: "before each turn, Claude decides whether recalling memory would help". OpenCode plugin: injected at session start. MCP: search on request |
 | **Claude Code Auto Memory** | Claude Code users | Native | Local `MEMORY.md` per project | Notes the agent writes about the project | "Auto Dream" merges and deletes contradicted notes | No (files are editable) | No | Loaded at session start |
 | **GitHub Copilot Memory** | Copilot users | Native (agent, review, CLI) | GitHub (hosted) | Repository facts with citations; user preferences | Stores a corrected version if code contradicts | After the fact: owners can review and delete | **Yes**: citations checked against the current branch before use; 28-day expiry unless revalidated | Used when relevant |
 | **Windsurf** | Windsurf users | Native | Local, per workspace | Auto-generated memories | Not established | No | No | When the agent deems relevant |
@@ -316,13 +321,24 @@ E. Research systems close to Reverie's ideas
 
 1. **The category is table stakes.** "Memory for your coding agent" says what Reverie is, not why to choose it, so the hero must reach *conclusions, reviewed, grounded* within its first sentence.
 2. **Every individual mechanism has an analogue somewhere.** Copilot checks citations, Hindsight keeps opinions with confidence, Zep invalidates facts, Augment reviews memories, and ByteRover has lifecycles. Reverie's defensible ground is the **combination** plus the **unit of memory**. The site states what Reverie does concretely and never makes comparative or "first" claims.
-3. **Most tools push memory into the session** (at start or before every prompt). Reverie's deliberate *pull* stance, derived from a measured failure, is the most counter-intuitive and most explainable difference. It deserves an explicit FAQ answer and a place in Fig. 1.
+3. **Most tools push memory into the session** (at start or before every prompt), but not all: Supermemory's Claude Code plugin lets the model decide before each turn whether to recall. So "the agent decides" alone isn't unique. Reverie's distinctive version is narrower and more explainable:
+   - the agent asks **after reading the code**;
+   - results come framed as **"verify against current code"**;
+   - the stance comes from a **measured anchoring failure**.
+
+   It deserves an explicit FAQ answer and a place in Fig. 1.
 4. **Review has a cost.** Cursor *removed* its approve-before-save memories. Reverie should present review as a choice with a reason, and note that the current session benefits before review happens.
-5. **The category markets with benchmark wins** (LongMemEval, LoCoMo). Reverie's honest ledger is unusual. It should be framed as rigour, never apologised for, and never placed on the homepage as numbers.
+5. **The category markets with benchmark wins.** Verified on the current homepages and research pages:
+   - Zep: LoCoMo 94.7%, LongMemEval 90.2%;
+   - Letta: LoCoMo 74.0%;
+   - Supermemory: SWE-ContextBench figures and "64% cheaper".
+
+   Reverie's honest ledger is unusual. It should be framed as rigour, never apologised for, and never placed on the homepage as numbers.
 6. **Hosted vs local splits the segment.** "One SQLite file on your machine, no account" is a real trust attribute, as long as the LLM-extraction data flow is stated just as plainly.
 
 ### 3.5 Sources (accessed 2026-10-05)
 
+Fetched directly in pass 2: <https://www.letta.com>, <https://www.letta.com/agent/>, <https://www.letta.com/research/>, <https://supermemory.ai>, <https://supermemory.ai/docs/integrations/claude-code>, <https://supermemory.ai/mcp/>, <https://www.getzep.com>, <https://www.getzep.com/platform/graphiti/>
 Letta Code and context repositories: <https://www.letta.com/blog/context-repositories/>, <https://www.letta.com/agent/>
 Letta platform: <https://moge.ai/product/letta>, <https://sudoall.com/letta-stateful-agents-nodejs/>
 Supermemory plugin and MCP: <https://supermemory.ai/docs/integrations/claude-code>, <https://github.com/supermemoryai/claude-supermemory>, <https://supermemory.ai/mcp/>
@@ -521,6 +537,8 @@ Each page uses vocabulary appropriate to its depth, and each term is introduced 
 
 ## 7. Homepage specification
 
+**Reference rendering.** [`design/homepage-preview/`](./design/homepage-preview/) contains a static HTML rendering of this section, with screenshots at 1440 px and 390 px. It is the visual target for implementation. Port tokens, measurements and SVG geometry from it. Where wording differs between the preview and this plan, the preview is newer.
+
 **Shape:** seven sections plus one reserved slot. About **480 words** of copy. **Three visuals** (the hero specimen, Fig. 1, Fig. 2). **No numbers.** Left-aligned editorial layout throughout. The page tells **one story through one conclusion**, which the paper's own example inspired: an agent finds out why users are being logged out at random (the cache is cleared before the token refresh finishes). That one conclusion appears as:
 
 - the retrieved specimen in the hero;
@@ -538,7 +556,7 @@ One thread makes the page memorable and keeps every visual doing a job. All copy
 |---|---|
 | **Purpose** | Category, mechanism and control in one breath, with the remembered unit made visible. |
 | **Headline** | **Your coding agent shouldn't start every session as a stranger.** |
-| **Supporting copy** | Reverie is memory for coding agents. It keeps the engineering conclusions your agent reaches while you work (root causes, constraints, decisions), reviewed by you and grounded in your repository, so later sessions can build on them. |
+| **Supporting copy** | Reverie is memory for coding agents. It keeps the engineering conclusions your agent reaches while you work — root causes, constraints, decisions — reviewed by you and grounded in your repository, so later sessions can build on them. |
 | **Agents line** | Works with Claude Code, Cursor, OpenCode and Codex. Memory stays on your machine. |
 | **Visual** | **V1, hero specimen** (right column on desktop, below the copy on mobile): one reviewed conclusion *as the agent receives it from `ec_query`*. The conclusion text is set in serif; the fields (type, scope, confidence, grounding files and symbols, commit, related conclusions, status) in mono; the framing note *"Past engineering understanding. Verify against current code before acting."* sits at the foot. Caption: *"A reviewed conclusion, as your agent gets it back in a later session."* See `DIAGRAM-PLAN.md` V1. |
 | **Calls to action** | **How it works** (primary) · *View on GitHub ↗* (State B) or *Read the research* (State A) |
@@ -561,7 +579,7 @@ The recommended headline is the paper's own image ("the agent is a stranger"). B
 |---|---|
 | **Purpose** | Make the continuity problem felt, then name the hard part. |
 | **Headline** | **The bottleneck isn't intelligence. It's continuity.** |
-| **Supporting copy** | You spend an afternoon with your agent working out why users are being logged out at random. Together you find the cause (the cache is cleared before the token refresh finishes), fix it, and rule out an alternative. Then the session ends, and the next one begins without any of it. <br><br> A bigger context window holds more of one session; it doesn't carry understanding into the next. A saved transcript keeps everything that was said, dead ends included. **The hard part isn't storing more. It's deciding what deserves to be remembered.** |
+| **Supporting copy** | You spend an afternoon with your agent working out why users are being logged out at random. Together you find the cause — the cache is cleared before the token refresh finishes — fix it, and rule out an alternative. Then the session ends, and the next one begins without any of it. <br><br> A bigger context window holds more of one session; it doesn't carry understanding into the next. A saved transcript keeps everything that was said, dead ends included. **The hard part isn't storing more. It's deciding what deserves to be remembered.** |
 | **Visual** | None. Typographic: the headline at H2 display size; the last sentence set as a pull line. |
 | **Call to action** | None. Scrolling continues into the mechanism. |
 | **Why it exists** | Goal 2, and the intellectual hook ("that's actually an interesting problem"). It introduces the throughline conclusion. |
@@ -574,9 +592,9 @@ The recommended headline is the paper's own image ("the agent is a stranger"). B
 | | |
 |---|---|
 | **Purpose** | The mechanism, understood in about 20 seconds. |
-| **Headline** | **How it works** |
+| **Headline** | **How it works**, with an aside in the right column: "Three steps, across the session boundary — and you decide what crosses it." |
 | **Visual** | **Fig. 1, "Across the session boundary"** (full width). Session 1 and Session 2 sit side by side with the boundary between them. A repository band runs across the top ("the code persists"). A long-term memory band runs across the bottom. Extraction happens in Session 1; review sits at the boundary; the request (`ec_query`) happens in Session 2 *after* the agent reads the code. See `DIAGRAM-PLAN.md` F1. |
-| **Steps** (numbered list beside or under the figure) | **1 · Extract.** When your agent works something out, it hands its reasoning to Reverie. Reverie keeps the conclusion and rejects the rest: facts anyone could read in the code, descriptions, the play-by-play. <br> **2 · Review.** Conclusions wait in session memory, already usable in that session. When you end the session, you accept, reject or skip each one in your terminal. Only what you accept becomes long-term memory. <br> **3 · Retrieve.** In a later session, your agent asks for what's relevant, after it has read the code, not before. It gets the conclusions back with their confidence, scope and the files they concern, marked as past understanding to verify. |
+| **Steps** (three columns under the figure, aligned with its three regions; each led by a large light index numeral, Swiss-style) | **1 · Extract.** When your agent works something out, it hands its reasoning to Reverie. Reverie keeps the conclusion and rejects the rest: facts anyone could read in the code, descriptions, the play-by-play. <br> **2 · Review.** Conclusions wait in session memory, already usable in that session. When you end the session, you accept, reject or skip each one in your terminal. Only what you accept becomes long-term memory. <br> **3 · Retrieve.** In a later session, your agent asks for what's relevant, after it has read the code, not before. It gets the conclusions back with their confidence, scope and the files they concern, marked as past understanding to verify. |
 | **Interaction** | Hovering over or focusing a step highlights the matching region of Fig. 1 (progressive enhancement; static without JavaScript). |
 | **Call to action** | *Read the full mechanism →* (`/how-it-works`) |
 | **Why it exists** | Goals 3, 6 and 7. Placing review at the boundary and the request after reading the code makes the two governance ideas visible. |
@@ -591,7 +609,7 @@ The recommended headline is the paper's own image ("the agent is a stranger"). B
 | | |
 |---|---|
 | **Purpose** | Show that what's remembered is governed: it can strengthen, be challenged, be replaced with history kept, or be retired when its code disappears. |
-| **Headline** | **Memory that can change its mind.** |
+| **Headline** | **Memory that can change its mind.**, with an aside in the right column: "One conclusion, followed through later sessions." |
 | **Visual** | **Fig. 2, "The life of a conclusion"** (summary variant): the throughline conclusion moves through six states (extracted → accepted → supported → contradicted (challenged) → open question → superseded by a newer conclusion you preferred). A small confidence bar per state is computed with Reverie's real update rules, without numerals here. See `DIAGRAM-PLAN.md` F2. |
 | **Supporting copy** (four lines) | **Evidence moves confidence.** A supporting conclusion raises it, a contradicting one lowers it, and conclusions nobody uses fade. <br> **Contradictions stay visible.** The challenged conclusion isn't overwritten; if the conflict persists, it comes to you as an open question. <br> **Replacements keep history.** Accepted conclusions are never rewritten: a new one supersedes the old, which is kept and linked. <br> **The code has the last word.** If the files a conclusion cites are deleted, conclusions about that code are retired; general principles are kept. |
 | **Call to action** | *How conclusions change →* (`/how-it-works#change`) |
@@ -990,9 +1008,27 @@ Effectively none. Typographic glyphs (→ ↗ ? ×) and the status marks in §10
 
 ### 10.14 What the taste references contributed
 
-**The four references could not be opened from this environment.** The network policy blocked `dribbble.com` and `pinterest.com`, and search engines don't index Pinterest pins. The only lead: a template called **"Verity"** (Kadir Calik, Framer Marketplace, June 2026) is publicly described as a *"dark, cinematic design that includes interactive product dashboards"* for AI SaaS products. It is *probably* related to the Dribbble shot, but that is **unverified**.
+**The four reference images still haven't been seen.** Even in the owner's Custom environment, the image CDNs (`i.pinimg.com`, `cdn.dribbble.com`) were blocked, and the Dribbble page is behind a bot challenge. The Pinterest pages' **text metadata** was readable, though:
 
-The decisions above therefore rest on the qualities named in the brief (composition, spacing, hierarchy, restraint, typography, balance of copy and visuals, product presentation, pacing):
+| Reference | What its metadata says | Dominant colour (from Pinterest) |
+|---|---|---|
+| Verity (Dribbble) | Unreadable. A same-named Framer template (Kadir Calik, June 2026) is described as a "dark, cinematic design featuring interactive product dashboards". Probably related, unverified. | — |
+| Pin 139893132164917102 | "The Secret Project — Aristide Benoist … Vertical list design, Minimalist design website, Minimal swiss design"; "a focus on typography and a clean design"; a large numeral as a left-hand section index | `#eae8eb` |
+| Pin 696932111131213029 | "Infographic about problem design … Comparison graph, Information visualization design": a three-part problem analysis, each part led by a plain statistic with a cited source | `#f8f8f8` |
+| Pin 890235051349985849 | "Newsletter article layout, Article page ui design, White minimalist design": a featured article above a grid of smaller article entries | `#f0f0f0` |
+
+**Common traits** (moderate confidence, since they come from metadata):
+
+- light neutral backgrounds;
+- typography-led, Swiss-minimal layouts;
+- editorial, document-like structure (numbered lists, category labels above titles, article indexes);
+- evidence shown plainly, with sources;
+- restraint;
+- practical copy.
+
+These match the direction above. One device was borrowed directly: **large light index numerals** for the homepage's three steps. The Research index (§8.2) can follow the featured-entry-plus-list pattern of the fourth reference.
+
+The decisions above also rest on the qualities named in the brief (composition, spacing, hierarchy, restraint, typography, balance of copy and visuals, product presentation, pacing):
 
 | Taken | Rejected for Reverie |
 |---|---|
@@ -1417,7 +1453,7 @@ Vercel is assumed, since Vercel Analytics is installed. Redirects go in `vercel.
 | 3 | **Repository timing:** when public, under what licence, at what URL? | Drives CTA state, grounding links, the "open source" answer | State A until a LICENSE exists |
 | 4 | **Pre-release contact:** mailto only, or a newsletter or form service? Offer "early access"? | A static site has no form backend | Mailto; no "early access" promise |
 | 5 | **Continuity experiment:** publish the protocol before results (`design` state)? Video hosting: self-hosted or embed? | Placeholder strategy; privacy | Yes, preregister; self-host |
-| 6 | **Visual references:** can you share screenshots (the four links were blocked here)? Do they imply a dark default? | Taste alignment before implementation | Light default plus system dark mode |
+| 6 | **Visual references:** please paste screenshots of the four references into a session, or into `design/references/`. The image hosts stay blocked even in the Custom environment, and Dribbble serves a bot challenge. Do they imply a dark default? | Taste alignment before implementation; the metadata already points to light, Swiss-minimal and editorial (§10.14) | Light default plus system dark mode |
 | 7 | **Typefaces:** approve Newsreader and IBM Plex Mono (or Source Serif 4 / JetBrains Mono)? | Identity | Newsreader + Plex Mono |
 | 8 | **About:** name the individual and use "I", or keep "we"? Bio, links, portrait? | Honesty about scale vs voice | Name the author; "we" for the research voice |
 | 9 | **Domain:** is `ems.dev` owned and used? New domain for Reverie? | Metadata, Open Graph, JSON-LD | Remove `ems.dev` until confirmed |
@@ -1432,7 +1468,12 @@ Vercel is assumed, since Vercel Analytics is installed. Redirects go in `vercel.
 | 18 | **Homepage research claim** ("made the agent worse"): sign-off after #1? | Public negative claim | Keep, after sign-off |
 | 19 | **Competitor section visibility:** this repository is public; keep §3 here or move it to a private location? | Section 3 names products | Your call |
 
-**Environment note.** Direct fetches to `www.letta.com`, `supermemory.ai`, `www.getzep.com`, `dribbble.com` and `in.pinterest.com` were denied by this cloud environment's network policy. To allow them in future sessions, edit the environment's **Network access** setting (cloud environment menu → Edit → a broader level, or Custom with those domains added).
+**Environment note.**
+
+- The *Default* environment denied `www.letta.com`, `supermemory.ai`, `www.getzep.com`, `dribbble.com` and `in.pinterest.com`. They were then fetched from the owner's *Custom* environment.
+- Still denied there: `i.pinimg.com`, `s.pinimg.com`, `cdn.dribbble.com`, `docs.letta.com`, `www.framer.com`.
+- To allow more hosts, edit the environment's **Network access** setting: cloud environment menu → Edit → Custom → add the domains.
+- A running session keeps the environment it started with, so changes apply to sessions started afterwards.
 
 ---
 

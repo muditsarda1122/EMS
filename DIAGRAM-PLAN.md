@@ -3,6 +3,7 @@
 **Status:** proposal for review. **No diagram has been drawn or coded.**
 **Date:** 2026-10-05 · **Companion to:** [`WEBSITE-DESIGN-PLAN.md`](./WEBSITE-DESIGN-PLAN.md) (§9 summarises this file)
 **Approval:** every visual below needs sign-off before implementation. §8 is a review checklist.
+**Reference rendering:** V1, F1 and F2 are drawn in [`design/homepage-preview/home.html`](./design/homepage-preview/home.html), in both the desktop SVG and the mobile HTML compositions, with screenshots in `design/homepage-preview/screenshots/`. Port their geometry when implementing. Where wording differs between the preview and this file, the preview is newer.
 
 All factual elements cite their source. Most cite **PRODUCT.md** (the implementation archaeology) or **INSTALLATION.md**; a few cite the paper *Reverie: A Biological Memory Architecture for AI Agents* (5 Sep 2026), but only where the paper agrees with the implementation (see design plan §1.7A).
 
