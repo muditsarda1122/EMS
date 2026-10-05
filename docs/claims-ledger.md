@@ -79,7 +79,7 @@ Every factual sentence on the page, grouped by section. Sources are plan section
 
 | # | Site claim (paraphrased) | Page | Source | Last verified |
 |---|---|---|---|---|
-| H1 | A conclusion is the smallest self-contained engineering conclusion that could change a future decision; the paper's information-versus-conclusion pair | How it works §1 | plan §1.4, §8.1 | pending |
+| H1 | Each conclusion is the smallest self-contained piece of engineering understanding that could change a future decision (reworded in T7 to remove a circular definition); the paper's information-versus-conclusion pair | How it works §1 | plan §1.4, §8.1 | pending |
 | H2 | Three-question test, one conclusion per record, self-review rejects what the code shows, "zero is a valid output" | §1 | plan §1.3, §1.4 | pending |
 | H3 | The extractor rejects facts, code descriptions, process steps and summaries | §1 | plan §1.3 (C2) | pending |
 | H4 | ECU: eight types, seven scope levels plus a path, six statuses (scope order beyond "engineering → subsystem" is TODO(fact)) | §1 | plan §1.4 | pending |
@@ -108,3 +108,24 @@ Every factual sentence on the page, grouped by section. Sources are plan section
 | H27 | Limits: macOS only; terminal review; you start/end sessions; single-attempt LLM extraction; no edit/delete interface; no clear benchmark advantage | §7 | plan §8.1 (C18–C22) | pending |
 | H28 | "Last reviewed 5 October 2026" | §7 | plan date; owner to confirm | pending |
 | H29 | FAQ: instruction files vs Reverie; data flow; what you do; why not automatic; does it make agents better; which agents; open source (no licence claim) | §8 | plan §8.1, §1.8 | pending |
+
+## T7: EC-Bench (`/research/ec-bench`)
+
+| # | Site claim (paraphrased) | Section | Source | Last verified |
+|---|---|---|---|---|
+| E1 | EC-Bench asks whether what an agent worked out earlier changes what it does later (lede) | Header | plan §8.4 | pending |
+| E2 | Most coding benchmarks evaluate single episodes; continuity needs sequences of sessions | Why a new benchmark | plan §8.4 (condensed from the old `/ec-bench` page) | pending |
+| E3 | A run: FastAPI repository, 30 prompts, three sequential sessions of 14, 13 and 3 (investigation and architecture; implementation and debugging; planning) | How a run works, Fig. 6 | PRODUCT.md §17 via plan §8.4, DIAGRAM-PLAN F6 | pending |
+| E4 | Each arm has its own repository copy and isolated memory; fresh context per prompt in the Reverie arm; the harness auto-accepts review between sessions | How a run works, Fig. 6 | PRODUCT.md §17 runner behaviour via plan §8.4, DIAGRAM-PLAN F6 | pending |
+| E5 | One LLM judge reads full transcripts; five metrics with weights 0.30, 0.30, 0.15, 0.15, 0.10 | How a run works, Fig. 6 | PRODUCT.md §17 via plan §8.4, §11.3 | pending |
+| E6 | Held constant: repository, prompts, agent harness, model, judge. Differs: access to Reverie | Fig. 6 | DIAGRAM-PLAN F6; owner to confirm it matches the ledger runs (open) | pending |
+| E7 | So far no run shows a clear advantage; first run's aggregate favoured memory but the gain came from the cognition-reuse metric; second architecture narrowed the gap under a protocol that favoured the baseline (draft copy) | Results so far | plan §8.4, §1.7B (C18) | pending |
+| E8 | The write-ups disagree on some exact figures; figures are shown only when reconciled | Results so far | plan §1.7B | pending |
+| E9 | July 2026 row: first version (memory injected before work) vs stateless baseline, 30 prompts; four of five metrics lower with memory; a later write-up reports the baseline ahead in aggregate. Judge not stated (TODO(fact)) | Ledger | plan §1.7B; Technical Report 001, Short Report | pending |
+| E10 | Run `20260813-141550` row: v2, headless, fresh context per prompt vs interactive chat memory (baseline added 15 August, mixed protocol), 30 prompts, baseline ahead on all five metrics, judge GLM-5.2 (LLM, full transcript); paper reports different figures, with outliers removed, and a different ECU count | Ledger | plan §1.7B, §19.3 (judge field), §8.4 | pending |
+| E11 | Controlled comparison row: planned, same protocol in both arms, not yet run | Ledger, What's next | plan §8.4 | pending |
+| E12 | Learned: retrieval timing matters as much as retrieval quality; accumulated knowledge expands scope (elaboration is TODO(copy)); tasks need different modes; memory helped on cognition reuse and hurt on the other four in the first run | What we learned | plan §8.4 (Short Report §5), §1.7B, C17 | pending |
+| E13 | Not tested: human review (auto-accept); contradiction and supersession (stored run produced no `contradicts` or `supersedes` edges); more than one repository or agent | What these runs did not test | plan §8.4, C26 | pending |
+| E14 | Threats: small sample, one repository, one agent type, LLM judge, outlier removal in the paper's figures, mixed protocol in the stored run | Threats to validity | plan §8.4 | pending |
+| E15 | Next: controlled rerun with the same protocol in both arms, continuity experiment, more repositories, a human judge alongside the LLM | What's next | plan §8.4 | pending |
+| E16 | The first run's finding changed the design: Reverie no longer loads memory at session start; the agent asks after reading the code | What this changed | plan §8.4, C17 | pending |

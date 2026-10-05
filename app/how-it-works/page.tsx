@@ -134,8 +134,8 @@ export default function HowItWorksPage() {
             <h2 id="remembered-h">What gets remembered</h2>
             <div className="prose-col">
               <p>
-                Reverie keeps conclusions, not facts. A conclusion is the smallest self-contained engineering conclusion that could
-                change a future decision.
+                Reverie keeps conclusions, not facts. Each one is the smallest self-contained piece of engineering understanding
+                that could change a future decision.
               </p>
               <p>
                 That <code>TokenManager.refresh()</code> is called before <code>cache.clear()</code> is information. That cache
