@@ -1,9 +1,9 @@
 # Reverie website: diagram and visual plan
 
-**Status:** proposal for review. **No diagram has been coded for the site.** The homepage figures are drawn in the static preview only.
+**Status:** **approved by the owner on 2026-10-05.** No diagram has been coded for the site yet; the homepage figures are drawn in the static preview. Implementation follows `IMPLEMENTATION-TASKS.md`.
 **Date:** 2026-10-05 · **Companion to:** [`WEBSITE-DESIGN-PLAN.md`](./WEBSITE-DESIGN-PLAN.md) (§9 summarises this file)
 **Approval:** every visual below needs sign-off before implementation. §8 is a review checklist.
-**Reference rendering:** V1, P1, F1, M1, F2 and O1 are drawn in [`design/homepage-preview/home.html`](./design/homepage-preview/home.html) (version 2), in both desktop and mobile compositions. Screenshots, and a storyboard of the M1 animation, are in `design/homepage-preview/screenshots/`. Port their geometry and keyframes when implementing. Where wording differs between the preview and this file, the preview is newer.
+**Reference rendering:** V1, P1, F1, M1, F2 and O1, and the reserved V2 frame, are drawn in [`design/homepage-preview/home.html`](./design/homepage-preview/home.html) (version 2), in both desktop and mobile compositions. Screenshots, and a storyboard of the M1 animation, are in `design/homepage-preview/screenshots/`. Port their geometry and keyframes when implementing. Where wording differs between the preview and this file, the preview is newer.
 **Revision 2 (2026-10-05):** after the owner's review of the first preview, the homepage became visual-led. V1 and F1 were simplified, F2 lost its supporting copy, and P1, M1 and O1 were added. §1, §3, §5, §7 and §8 are updated.
 
 All factual elements cite their source. Most cite **PRODUCT.md** (the implementation archaeology) or **INSTALLATION.md**; a few cite the paper *Reverie: A Biological Memory Architecture for AI Agents* (5 Sep 2026), but only where the paper agrees with the implementation (see design plan §1.7A).
@@ -25,7 +25,7 @@ All factual elements cite their source. Most cite **PRODUCT.md** (the implementa
 
 | Page | Visuals | Count |
 |---|---|---|
-| Home `/` | V1 hero graph · P1 Every session starts from zero · F1 From one session to the next · Fig. 2: M1 memory map above F2 one conclusion, up close · O1 Your memory, not your agent's | **6** (owner exception) |
+| Home `/` | V1 hero graph · P1 Every session starts from zero · F1 From one session to the next · Fig. 2: M1 memory map above F2 one conclusion, up close · O1 Your memory, not your agent's · plus the S3b video slot (a reserved frame until V2 exists) | **6** plus the slot (owner exception) |
 | Home, after the continuity experiment is published | V1 · P1 · F1 · M1 · O1 · V2 side-by-side recording (F2 leaves the homepage; S4 links to F5) | **6** |
 | How it works `/how-it-works` | F3 Anatomy of a conclusion · F4 Two brains and a review gate · F5 The life of a conclusion, step by step | **3** |
 | Paper `/research/biological-memory-architecture` | F4 (reused) · F5 static variant (reused) | **2** |
@@ -356,12 +356,13 @@ Extracted  You accept it  Supported and used  A new one disagrees  Conflict pers
 | Field | Specification |
 |---|---|
 | **Name** | V2, the continuity experiment recording |
-| **Pages** | Continuity experiment (published state); Home slot S3b (published state). |
+| **Pages** | Continuity experiment (published state); Home S3b, which shows a reserved frame now and the video once published. |
 | **Purpose** | Let a visitor *watch* the same agent continue work across sessions with and without Reverie, as evidence. It is not an advertisement. |
 | **Question it answers** | "What does Reverie actually change in a real session?" |
 | **Contains** | (1) **Highlight cut** (90 s or less): a composited side-by-side, produced for legibility (zoomed crops, large terminal type), with **on-screen speed-up disclosure** and session chapter cards. (2) **Full recordings** per arm, with chapters (Session 1, 2, 3…) and key-moment markers. (3) **Captions** (WebVTT) and a **text transcript**. (4) **Metadata block** next to the player, as listed in design plan §13. |
 | **Leaves out** | Background music, outcome text over the video ("Reverie wins"), any splicing that changes the order of events, any unexplained speed changes. |
-| **Composition** | Desktop: the highlight player full width (16:9), with the metadata block in a right column or directly below; full recordings below as two players with optional synchronised play and seek. Home S3b: poster frame, play button, one-line neutral description, date, link. |
+| **Composition** | **Experiment page (desktop):** the highlight player at full width (16:9), with the metadata block in a right column or directly below. The full recordings sit below as two players with optional synchronised play and seek. <br>**Home S3b:** the condition labels (*Without Reverie*, *With Reverie*) in a two-column row above the poster frame and play button. Below: one metadata line (date · agent and model · sessions · speed-up) and *Protocol, recordings and results →*. |
+| **Reserved state (Home, now)** | A dashed 1200 × 260 frame split into two halves, labelled *Without Reverie* and *With Reverie*. Each half names its condition: *No memory between sessions* and *Reviewed conclusions between sessions*. Under it: an `In design` tag and *"The recording will appear here, whatever it shows."* There is no player, play button or thumbnail, and nothing that predicts a result. On mobile the halves stack. |
 | **Why a visual beats text** | Continuity is a behaviour over time. Seeing the agent ask for, retrieve and verify a conclusion (or fail to) is direct evidence that no description can replace. |
 | **Static or interactive** | Interactive: a native `<video>` element with custom chapter links. No autoplay with sound; a muted autoplay preview on Home is **not** used. |
 | **Mobile** | The highlight cut plays as produced. The full recordings use one player with a `Without · With Reverie` segmented toggle that preserves the current timestamp when switching. Never a shrunken split screen of terminal text. |
@@ -479,6 +480,6 @@ For each visual, please confirm or strike:
 | F4 Two brains and a review gate | ☐ | ☐ | ☐ | n/a | Show the `ec_reconsolidate` exception as drawn? |
 | F5 Life of a conclusion, step by step | ☐ | ☐ | ☐ | ☐ (stepper) | Worked numbers in §6 |
 | F6 How an EC-Bench run works | ☐ | ☐ | ☐ | n/a | Confirm protocol accuracy |
-| V2 Side-by-side recording | ☐ | ☐ | ☐ | ☐ | Hosting; preregistration |
+| V2 Side-by-side recording | ☐ | ☐ | ☐ | ☐ | Hosting; preregistration; the homepage slot is visible before release (owner decision) |
 | Retire all eight existing SVGs (§5) | ☐ | | | | |
 | "No diagram" pages (§4) | ☐ | | | | |

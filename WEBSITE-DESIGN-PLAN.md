@@ -1,6 +1,6 @@
 # Reverie website: design plan
 
-**Status:** proposal for review. Nothing in this plan has been implemented.
+**Status:** **approved by the owner on 2026-10-05.** Implementation runs on the `redesign` branch, task by task (see [`IMPLEMENTATION-TASKS.md`](./IMPLEMENTATION-TASKS.md)).
 **Date:** 2026-10-05
 **Branch:** `claude/elegant-hopper-xg43jw`
 **Scope:** a ground-up redesign of the Reverie website, from information architecture down to the design system and an implementation plan.
@@ -26,14 +26,14 @@ It also uses a read-only pass over this repository (including the four PDFs in `
 | What the site is for | A product site for Reverie, backed by its research. The order is: product, then how it works, then why it's different, then the research that explains and tests it. |
 | Positioning | **Reverie is memory for coding agents. It keeps the engineering conclusions your agent reaches, reviewed by you, grounded in your repository, and revised as evidence changes. The memory is yours, not your agent's: one local file that any MCP agent can use, on any model.** |
 | Category frame | Reverie sits among tools that give *the coding agent you already use* persistent memory. Being in that category isn't what makes it different: many tools are there now (§3). What differs is *what* it keeps (conclusions), *how belief is governed* (confidence, contradiction, supersession, grounding, review, and retrieval only when the agent asks) and *whose memory it is*: the developer's, shared by every agent they connect. |
-| Homepage | Seven short sections plus one reserved slot. About 340 words of copy and no numbers. It is visual-led: a diagram wherever one explains better than text (owner rule, 2026-10-05). Six visuals, one of them animated. |
+| Homepage | Eight short sections, one of them the reserved place for the comparison video (S3b). About 340 words of copy and no numbers. It is visual-led: a diagram wherever one explains better than text (owner rule, 2026-10-05). Six visuals, one of them animated. |
 | Pages | Home, How it works, Research, paper (web-native), EC-Bench, Continuity experiment (reserved), Notebook entries, About, 404. |
 | Navigation | `Reverie` · How it works · Research · About · **[GitHub]** (or **Contact** until the repository is public). |
 | Removed | `/ems`, `/ethos`, `/notes` (index), and all eight existing SVG components. Also the "At a Glance" cards, "The Shift" poem, the "Research Before Systems" manifesto, the scroll-fade animation layers and framer-motion. |
 | Moved | `/ec-bench` → `/research/ec-bench`; `/notes/everything-till-now` → `/research/notes/everything-till-now` (with an editor's note); PDFs → `/research/archive/`. |
 | Visual direction | "Two voices": a serif speaks for ideas and a monospace speaks for the system. Warm paper and ink, one ink-blue accent, and status colours used only where they mean something. Hairline rules, near-square corners, no cards, no gradients, no scroll animation. There is one explanatory animation (the homepage memory map); it can be paused and is static under reduced motion. |
 | Diagrams | Nine figures and two artifacts across the whole site. No page has more than three visuals, except the homepage, which is visual-led by owner decision. Five pages have none. Full spec in `DIAGRAM-PLAN.md`. |
-| Comparison video | It gets its own research page, `/research/continuity-experiment`. Until results exist, that page publishes the protocol, and the homepage shows the experiment only as a dated "in design" line in the research section. A homepage video slot opens once results are published. |
+| Comparison video | A homepage section reserves its place now (S3b, after How it works; owner decision). Until the recording exists, it is a dashed two-sided frame marked `In design`; then the side-by-side video takes the same spot. Protocol, recordings and results live on `/research/continuity-experiment`. Nothing about the result appears before it exists. |
 | Benchmark numbers | **None on the homepage or How it works.** EC-Bench numbers appear only on the EC-Bench page, in a results ledger, after the owner reconciles conflicting figures (§1.7). |
 | Blocked on the owner | Reconcile the benchmark numbers, correct the paper, capture a real `ec_query` specimen, decide repository and licence timing, confirm the domain and hosting, and share the visual references (§20). |
 
@@ -557,9 +557,9 @@ Each page uses vocabulary appropriate to its depth, and each term is introduced 
 4. **No tool names on the homepage.** They belong on How it works.
 
 **Shape.**
-- Seven sections plus one reserved slot.
+- Eight sections: S1–S7 plus S3b, the place reserved for the comparison video.
 - About **340 words** of copy (down from about 480), counting the hero specimen and the captions, plus short figure labels.
-- **Six visuals across five sections**: V1, P1, F1, Fig. 2 (M1 above F2) and O1. The homepage is exempt from the three-visual cap by owner decision (§9).
+- **Six visuals across five sections**: V1, P1, F1, Fig. 2 (M1 above F2) and O1, plus the video slot. The homepage is exempt from the three-visual cap by owner decision (§9).
 - **No numbers.** Left-aligned editorial layout throughout.
 
 **One story through one conclusion.** An agent finds out why users are being logged out at random: the cache is cleared before the token refresh finishes. That thread appears as:
@@ -621,13 +621,22 @@ The recommended headline is the paper's own image ("the agent is a stranger"). B
 | **Why it exists** | Goals 3 and 6, plus the "after reading the code" stance. Review at the session boundary and the request after reading the code make the two governance ideas visible. |
 | **Deliberately leaves out** | The separate steps block (its content is now inside the figure); tool names; confidence maths; relationship types; maintenance; scope levels; model names; hover highlighting (nothing left to link to). |
 
-**Reserved slot S3b, "Watch it work"** (hidden until the continuity experiment is published; see §13). When it opens, it holds:
-- a poster frame and player for the side-by-side highlight recording;
-- a one-line neutral description;
-- the date;
-- *"Protocol, recordings and results →"*.
+### S3b. Side by side: *Can I see it work?*
 
-To keep the homepage from growing, **the lower panel of Fig. 2 (F2) then leaves the homepage**. F5 on How it works already covers it.
+The place for the comparison video. Per the owner's decision on 2026-10-05, it is **visible now**, before the recording exists.
+
+| | |
+|---|---|
+| **Purpose** | Hold the side-by-side recording: the same agent, on the same repository and tasks, across the same sessions, once without Reverie and once with it. Until the recording exists, the section reserves the place honestly. |
+| **Headline** | **The same agent, with and without Reverie.**, with an aside in the right column: "Same repository, same tasks, same sessions — side by side." |
+| **Before the recording** (now) | **The frame:** a dashed frame, 1200 × 260. Dashed means "not yet", as everywhere on the site. <br>**The halves:** it splits into *Without Reverie* and *With Reverie*. Each half has one italic line naming its condition: *No memory between sessions* and *Reviewed conclusions between sessions*. <br>**Underneath:** an `In design` tag (or `In progress` while recording) and *"The recording will appear here, whatever it shows."* In the `design` and `running` states, *How we'll run it →* is added. <br>**Never shown:** no player, play button or thumbnail, and nothing that predicts a result. |
+| **After the recording** (`published`) | The frame becomes the video module (V2): <br>• the condition labels above the two halves, in the same two-column grid; <br>• a 16:9 poster frame with a native player (click to play, no autoplay, captions); <br>• under it, one line of metadata: date · agent and model · sessions · "Sped up N×", then *Protocol, recordings and results →*. <br>The format follows the owner's reference: one composited side-by-side recording of the same task, with the setup disclosed. |
+| **Placement** | After How it works, so the mechanism comes first and the evidence follows; before Memory. |
+| **Mobile** | Before the recording, the two halves stack. After it, the composited highlight plays as produced (§13). |
+| **Why it exists** | Goals 8 and 9. Once the recording exists, it is direct evidence of continuity. Until then, it is a visible commitment to publish the result either way. |
+| **Deliberately leaves out** | Fake footage, mock terminals, an empty player, outcome language ("Reverie wins"), and any number before the results are published. |
+
+When the video is published, **the lower panel of Fig. 2 (F2) leaves the homepage**, so the page doesn't grow. F5 on How it works already covers it.
 
 ---
 
@@ -668,7 +677,7 @@ Alternative headline: "Kept as beliefs, not facts."
 | **Purpose** | Show the research foundation and the honesty that defines it, then route researchers onward. |
 | **Headline** | **Built by measuring what didn't work.** |
 | **Supporting copy** | Our first version loaded memory into the agent before it started. On our benchmark, that made it worse — it trusted memory over the code. So Reverie keeps reviewed conclusions, and lets the agent ask. <br><br> We publish results either way. |
-| **List** (typographic, three rows, each a link) | **Paper:** *Reverie: A Biological Memory Architecture for AI Agents* · September 2026 <br> **Benchmark:** *EC-Bench: what we measure, and what we've found* · Method, results and limits <br> **Next:** *The same agent, with and without Reverie* · `In design` |
+| **List** (typographic, each row a link) | **Paper:** *Reverie: A Biological Memory Architecture for AI Agents* · September 2026 <br> **Benchmark:** *EC-Bench: what we measure, and what we've found* · Method, results and limits <br> A third row, **Next:** *The same agent, with and without Reverie* · `In design`, appears only while S3b is hidden. |
 | **Call to action** | *All research →* (`/research`) |
 | **Why it exists** | Goal 9. It also states the value "research before claims" by *doing* it rather than declaring a principle. |
 | **Deliberately leaves out** | Every number; the biology story (one click away in the paper); the list of archived PDFs. |
@@ -862,13 +871,13 @@ The full specification (purpose, question answered, content, exclusions, composi
 | F4 | Two brains and a review gate | How it works; Paper | Architecture diagram | None |
 | F5 | The life of a conclusion, step by step | How it works; Paper (static) | Interactive state timeline with computed confidence | Stepper (buttons, keyboard, aria-live) |
 | F6 | How an EC-Bench run works | EC-Bench (variant on Experiment) | Protocol diagram | None |
-| V2 | Side-by-side recording | Experiment; Home slot S3b (when published) | Video module | Player, chapters, condition toggle on mobile |
+| V2 | Side-by-side recording | Experiment; Home S3b (a reserved, dashed frame until published) | Video module | Player, chapters, condition toggle on mobile |
 
 **Per-page count:**
 
 | Page | Visuals | Count |
 |---|---|---|
-| Home | V1, P1, F1, M1 with F2, O1 (when the video ships, V2 joins and F2 leaves) | 6, by owner decision |
+| Home | V1, P1, F1, M1 with F2, O1, plus the S3b video slot (a reserved frame now; V2 when published, and F2 then leaves) | 6 plus the slot, by owner decision |
 | How it works | F3, F4, F5 | 3 |
 | Paper | F4, F5 static | 2 |
 | EC-Bench | F6 | 1 |
@@ -1184,15 +1193,17 @@ The rename from EMS to Reverie, and the `ec` code prefix, are explained in exact
 
 ## 13. Comparison-video placement
 
-**Where it lives:** its own research page, `/research/continuity-experiment`. An experiment needs its protocol, artifacts and caveats next to the recording, and a homepage section can't carry that honestly. The homepage gets a compact module (slot S3b) once results exist.
+**Where it lives:** its own research page, `/research/continuity-experiment`. An experiment needs its protocol, artifacts and caveats next to the recording, and a homepage section can't carry that honestly. The homepage holds the recording itself in S3b. That section is visible now as a reserved frame (owner decision, 2026-10-05) and shows the video once it is published.
+
+**The owner's reference format:** one composited video with two labelled halves, both systems running the same task in a recorded run, with the comparison setup disclosed. The highlight cut below follows it.
 
 **Lifecycle**, controlled by a single setting, `site.config.ts → experiment.status`:
 
 | Status | Experiment page | Research index | Homepage |
 |---|---|---|---|
-| `hidden` | Not generated | Row: "Continuity experiment · In design" (no link) | S6 "Next" line, no link |
-| `design` (**recommended**) | **Live**: question, hypothesis stated neutrally, protocol, what will be published, last-updated date. *No empty video frame.* The copy says: "Recordings and results will be published here when the runs are complete, whatever they show." | Linked, `In design` | S6 "Next" line, linked |
-| `running` | As `design`, plus a run log (dates) | `Running` | Same |
+| `hidden` | Not generated | Row: "Continuity experiment · In design" (no link) | S3b shows the reserved frame, with no link. With `homepageSlot: false`, S3b is hidden and S6 shows a "Next" line instead. |
+| `design` (**recommended**) | **Live**: question, hypothesis stated neutrally, protocol, what will be published, last-updated date. *No empty video frame.* The copy says: "Recordings and results will be published here when the runs are complete, whatever they show." | Linked, `In design` | S3b reserved frame, plus *How we'll run it →* |
+| `running` | As `design`, plus a run log (dates) | `Running` | Same, with the tag `In progress` |
 | `published` | Full page (below) | `Published` | **S3b opens**: poster frame, player, one-line neutral description, date, "Protocol, recordings and results →". The lower panel of Fig. 2 (F2) leaves the homepage (§7 S3b). |
 
 Publishing the protocol before the results (status `design`) makes the "placeholder" a preregistration rather than an unfinished section, which fits the project's honesty.
@@ -1394,7 +1405,7 @@ components/
   research/    ResearchList · Lineage · ResultsLedger · Citation
   video/       ComparisonVideo (V2; built when the experiment ships)
 content/
-  site.config.ts          name, tagline, domain, contactEmail, repository {url|null, ref}, experiment {status}, claims {anyMcpAgent}, version, supportedAgents
+  site.config.ts          name, tagline, domain, contactEmail, repository {url|null, ref}, experiment {status, homepageSlot}, claims {anyMcpAgent}, version, supportedAgents
   research.ts             research entries (index, lineage, archive)
   bench-runs.ts           results ledger rows (with sources and reconciliation status)
   specimens/*.json        captured ec_query outputs (V1/F3)
@@ -1436,10 +1447,11 @@ type BenchRun = {
 
 ### 19.4 Configuration states
 
-`site.config.ts` holds three switches:
+`site.config.ts` holds four switches:
 
 - `repository.url: string | null`, which controls the CTA states (§4.5) and the grounding-note links;
 - `experiment.status: "hidden" | "design" | "running" | "published"`, which controls §13;
+- `experiment.homepageSlot: boolean` (default `true`, owner decision), which shows S3b's reserved frame before publication;
 - `claims.anyMcpAgent: boolean`, which controls the "any MCP agent" wording in the hero and the dashed record in Fig. 3 (§20, question 20).
 
 No other conditional logic is needed.
@@ -1494,7 +1506,7 @@ Vercel is assumed, since Vercel Analytics is installed. Redirects go in `vercel.
 | 2 | **Paper corrections** (§1.7A, 12 items): revise to v1.1 before web publication? | The paper would otherwise contradict the product pages | Revise; fall back to an abstract page plus errata |
 | 3 | **Repository timing:** when public, under what licence, at what URL? | Drives CTA state, grounding links, the "open source" answer | State A until a LICENSE exists |
 | 4 | **Pre-release contact:** mailto only, or a newsletter or form service? Offer "early access"? | A static site has no form backend | Mailto; no "early access" promise |
-| 5 | **Continuity experiment:** publish the protocol before results (`design` state)? Video hosting: self-hosted or embed? | Placeholder strategy; privacy | Yes, preregister; self-host |
+| 5 | **Continuity experiment:** publish the protocol before results (`design` state)? Video hosting: self-hosted or embed? | Placeholder strategy; privacy | Yes, preregister; self-host. The homepage slot already shows (owner decision, 2026-10-05) |
 | 6 | **Visual references:** please paste screenshots of the four references into a session, or into `design/references/`. The image hosts stay blocked even in the Custom environment, and Dribbble serves a bot challenge. Do they imply a dark default? | Taste alignment before implementation; the metadata already points to light, Swiss-minimal and editorial (§10.14) | Light default plus system dark mode |
 | 7 | **Typefaces:** approve Newsreader and IBM Plex Mono (or Source Serif 4 / JetBrains Mono)? | Identity | Newsreader + Plex Mono |
 | 8 | **About:** name the individual and use "I", or keep "we"? Bio, links, portrait? | Honesty about scale vs voice | Name the author; "we" for the research voice |

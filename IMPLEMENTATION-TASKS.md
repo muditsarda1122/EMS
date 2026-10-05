@@ -1,6 +1,6 @@
 # Reverie website: implementation tasks
 
-**Status:** ready for implementation once the owner approves the design. **Date:** 2026-10-05.
+**Status:** **design approved by the owner on 2026-10-05; implementation under way.** **Date:** 2026-10-05.
 **Revision 2 (2026-10-05):** updated for the visual-led homepage (preview version 2). The homepage task is split into T4a (sections and static figures) and T4b (the memory-map animation). The motion and blur rules have one exception each, and P13 and P14 are new owner decisions.
 
 This file breaks [`WEBSITE-DESIGN-PLAN.md`](./WEBSITE-DESIGN-PLAN.md) and [`DIAGRAM-PLAN.md`](./DIAGRAM-PLAN.md) into **self-contained tasks**, each small enough for one focused session. The visual target for the homepage is [`design/homepage-preview/`](./design/homepage-preview/): an HTML rendering plus screenshots.
@@ -17,7 +17,7 @@ This file breaks [`WEBSITE-DESIGN-PLAN.md`](./WEBSITE-DESIGN-PLAN.md) and [`DIAG
 
 **Branching.** The live site deploys from `main` (Vercel, assumed). Use an integration branch:
 
-1. Create a branch called `redesign` from `main`. The first session does this.
+1. Create a branch called `redesign` from `claude/elegant-hopper-xg43jw`, which holds these documents and the preview (`main` doesn't have them until that branch is merged). The first session does this.
 2. Point every task session at `redesign`, through a PR into `redesign` or commits on it.
 3. Use `redesign`'s preview deployment to review.
 4. Merge `redesign` into `main` only after T11 passes.
@@ -131,7 +131,7 @@ Sonnet is fine for every task. T4a, T4b and T5 are the most design-sensitive, so
   - a `.prose` long-form style (replacing `.article-content`, restyled to the new tokens).
   - Keep the old `btn-editorial`, `card-editorial`, `text-editorial` and `section-animate` styles inside a `/* LEGACY — delete in T10 */` block, because old pages still use them.
 - **`content/site.config.ts`.**
-  - Fields: name, tagline, description, `domain: null`, contactEmail (`muditsarda23@gmail.com`), `repository: { url: null, ref: null }`, `experiment: { status: "hidden" }`, version, supportedAgents (Claude Code, Cursor, OpenCode, Codex), `claims: { anyMcpAgent: true }` (P13), nav items.
+  - Fields: name, tagline, description, `domain: null`, contactEmail (`muditsarda23@gmail.com`), `repository: { url: null, ref: null }`, `experiment: { status: "hidden", homepageSlot: true }`, version, supportedAgents (Claude Code, Cursor, OpenCode, Codex), `claims: { anyMcpAgent: true }` (P13), nav items.
   - Export typed helpers, for example `isRepoPublic()`.
 - **Components.**
   - `components/site/Wordmark.tsx`.
@@ -241,9 +241,10 @@ Sonnet is fine for every task. T4a, T4b and T5 are the most design-sensitive, so
   - S1: hero split, with the copy in columns 1–6 and `HeroGraph` in columns 7–12;
   - S2: the heading and pull line on the left, `SessionsStrip` (P1) on the right;
   - S3: Fig. 1 with its labels inside the figure (there is no separate steps block), then the arrow link;
+  - S3b: the side-by-side section with `VideoSlot`, the reserved dashed frame (plan §7 S3b);
   - S4: Fig. 2 (the memory map and its legend, the panel label, the lifecycle, the caption), then the arrow link;
   - S5: `OwnershipHub` (O1), the three facts, the arrow link;
-  - S6: the research list, with mono category labels and a dashed `In design` tag;
+  - S6: the research list, with mono category labels. The dashed `In design` "Next" row appears only while S3b is hidden;
   - S7: the closing section in State A or State B.
 - **`components/diagrams/HeroGraph.tsx`** (V1). It combines three parts:
   - `ConclusionRecord variant="compact"`;
@@ -262,7 +263,12 @@ Sonnet is fine for every task. T4a, T4b and T5 are the most design-sensitive, so
   - A desktop SVG; on mobile, the hub plus a two-column agent grid.
   - The agents come from `site.config.ts → supportedAgents`.
   - The dashed *Any MCP agent* record, and "any MCP agent" in the hero, render only when `claims.anyMcpAgent` is true (P13).
-- **Reserved slot S3b.** Renders nothing unless `experiment.status === "published"` (§7, §13).
+- **`components/video/VideoSlot.tsx`** (S3b), driven by config:
+  - when `experiment.status !== "published"` and `experiment.homepageSlot` is true, it renders the reserved frame. That is two dashed halves with their condition lines, the status tag (`In design`, or `In progress` while running) and the caption, plus *How we'll run it →* in the `design` and `running` states;
+  - when the status is `published`, it renders `ComparisonVideo` (T12);
+  - otherwise it renders nothing.
+  
+  There is no player, play button or thumbnail before publication.
 - Add claims-ledger rows for every homepage claim (C1–C17 and C27–C32 as applicable).
 
 **Acceptance**
@@ -467,7 +473,7 @@ Sonnet is fine for every task. T4a, T4b and T5 are the most design-sensitive, so
 - **`published` state** (later):
   - the `ComparisonVideo` component (highlight cut plus per-condition recordings with a timestamp-preserving toggle on mobile, captions and transcript);
   - the metadata block, a ledger row and caveats;
-  - turn on homepage slot S3b, which removes F2 (the lower panel of Fig. 2) from the homepage.
+  - switch homepage S3b from the reserved frame to the video, which also removes F2 (the lower panel of Fig. 2) from the homepage.
 
 **Blocked by.** P6.
 **Size.** S (design state) or L (published).

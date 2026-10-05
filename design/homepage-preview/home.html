@@ -194,6 +194,16 @@ figure.fig .legend svg { width: 30px; height: 14px; display: inline-block; }
   .mm-toggle { display: none; }
 }
 
+/* ---------- side by side (S3b, reserved video slot) ---------- */
+.vs { margin: 52px 0 0; }
+.vs-labels, .vs-frame { display: grid; grid-template-columns: 1fr 1fr; }
+.vs-frame { height: 260px; border: 1px dashed var(--ink-4); border-radius: 2px; }
+.vs-half { padding: 22px 24px; display: flex; flex-direction: column; justify-content: space-between; }
+.vs-half + .vs-half { border-left: 1px dashed var(--ink-4); }
+.vs-label { font-size: 19px; font-weight: 500; }
+.vs-cond { font-style: italic; font-size: 15.5px; color: var(--ink-3); }
+.vs-status { margin-top: 14px; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+
 /* ---------- ownership (O1) ---------- */
 .facts3 { margin: 44px 0 0; list-style: none; padding: 0; }
 .facts3 li { grid-column: span 4; border-top: 1px solid var(--ink); padding: 14px 24px 0 0; font-size: 17.5px; line-height: 1.5; }
@@ -264,6 +274,10 @@ footer { margin-top: 144px; border-top: 1px solid var(--rule); padding: 50px 0 4
   .panel-label { margin-top: 40px; }
   .facts3 li { margin-top: 18px; }
   .rlist { margin-top: 30px; }
+  .vs { margin-top: 28px; }
+  .vs-frame { grid-template-columns: 1fr; height: auto; }
+  .vs-half { min-height: 116px; padding: 16px 18px; }
+  .vs-half + .vs-half { border-left: 0; border-top: 1px dashed var(--ink-4); }
   .rlist li { grid-template-columns: 1fr; row-gap: 4px; }
   .s7 { padding-top: 104px; }
   .s7 .right { margin-top: 16px; }
@@ -526,6 +540,21 @@ footer { margin-top: 144px; border-top: 1px solid var(--rule); padding: 50px 0 4
   <p class="more"><a class="arrow-link" href="#">The full mechanism →</a></p>
 </section>
 
+<!-- S3b Side by side: reserved space for the comparison video (dashed until the recording exists) -->
+<section class="section wrap">
+  <div class="grid s-head">
+    <h2>The same agent, with and without Reverie.</h2>
+    <p class="aside">Same repository, same tasks, same sessions — side by side.</p>
+  </div>
+  <figure class="vs" aria-label="Reserved space for the side-by-side recording">
+    <div class="vs-frame">
+      <div class="vs-half"><span class="vs-label">Without Reverie</span><span class="vs-cond">No memory between sessions</span></div>
+      <div class="vs-half"><span class="vs-label">With Reverie</span><span class="vs-cond">Reviewed conclusions between sessions</span></div>
+    </div>
+    <figcaption class="vs-status"><span class="tag dashed">In design</span><span class="caption">The recording will appear here, whatever it shows.</span></figcaption>
+  </figure>
+</section>
+
 <!-- S4 Memory that can change its mind (M1 + F2) -->
 <section class="section wrap">
   <div class="grid s-head">
@@ -723,7 +752,6 @@ footer { margin-top: 144px; border-top: 1px solid var(--rule); padding: 50px 0 4
   <ul class="rlist">
     <li><span class="mono-label kind">Paper</span><div><div class="title">Reverie: A Biological Memory Architecture for AI Agents</div><div class="meta">September 2026</div></div></li>
     <li><span class="mono-label kind">Benchmark</span><div><div class="title">EC-Bench: what we measure, and what we’ve found</div><div class="meta">Method, results and limits</div></div></li>
-    <li><span class="mono-label kind">Next</span><div><div class="title">The same agent, with and without Reverie</div><div class="meta"><span class="tag dashed">In design</span></div></div></li>
   </ul>
   <p class="more"><a class="arrow-link" href="#">All research →</a></p>
 </section>

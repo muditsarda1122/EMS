@@ -1,12 +1,15 @@
 # Homepage preview: a design reference, not site code
 
-A static rendering of the homepage specified in [`WEBSITE-DESIGN-PLAN.md`](../../WEBSITE-DESIGN-PLAN.md) §7, with the figures V1, P1, F1, M1, F2 and O1 from [`DIAGRAM-PLAN.md`](../../DIAGRAM-PLAN.md). It has two jobs: to let the design be reviewed visually before implementation, and to give implementation sessions an exact visual target.
+A static rendering of the homepage specified in [`WEBSITE-DESIGN-PLAN.md`](../../WEBSITE-DESIGN-PLAN.md) §7, with the figures V1, P1, F1, M1, F2 and O1 from [`DIAGRAM-PLAN.md`](../../DIAGRAM-PLAN.md), and the reserved place for the comparison video (S3b). It has two jobs: to let the design be reviewed visually before implementation, and to give implementation sessions an exact visual target.
 
 This is **version 2**. It follows the owner's review of version 1:
 - less text;
 - diagrams in place of paragraphs;
 - an animated memory map;
-- the "your memory, not your agent's" section.
+- the "your memory, not your agent's" section;
+- a reserved place for the side-by-side comparison video.
+
+The owner approved this design on 2026-10-05.
 
 | Path | What it is |
 |---|---|
@@ -24,6 +27,7 @@ This is **version 2**. It follows the owner's review of version 1:
   - It loops every 16 seconds and has a pause button.
   - With reduced motion it shows a static, annotated map.
   - The production component must also pause while the map is off screen (see `IMPLEMENTATION-TASKS.md`, T4).
-- **Draft copy**, pending owner approval.
+- **The video slot (S3b)** in its state before the recording exists: a dashed two-sided frame marked `In design`. There is no player and nothing that predicts a result. Once the video is published it takes the same spot (plan §7 S3b, §13).
+- **Copy** as approved; small wording changes can still happen during implementation.
 
 **Using it during implementation.** Port the design tokens, measurements, SVG geometry and keyframes from `home.html` into React components; don't copy the file wholesale. Where its wording differs from the plan, this preview is newer.
