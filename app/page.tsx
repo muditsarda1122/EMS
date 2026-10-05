@@ -85,7 +85,7 @@ export default function HomePage() {
           </figcaption>
         </figure>
         <p className="more">
-          <ArrowLink href="/how-it-works#lifecycle">How conclusions change</ArrowLink>
+          <ArrowLink href="/how-it-works#change">How conclusions change</ArrowLink>
         </p>
       </section>
 
@@ -102,7 +102,7 @@ export default function HomePage() {
           <li><b>Your choice of model.</b><span>Extraction runs hosted, or locally with Ollama.</span></li>
         </ul>
         <p className="more">
-          <ArrowLink href="/how-it-works#data">Data, setup and limits</ArrowLink>
+          <ArrowLink href="/how-it-works#install">Data, setup and limits</ArrowLink>
         </p>
       </section>
 

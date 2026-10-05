@@ -13,6 +13,10 @@ export type ConclusionSpecimen = {
   /** TODO(fact): exact framing-note wording from PRODUCT.md §13; the short form is used for now. */
   framingNote: string;
   related?: { relation: string; text: string; struck?: boolean }[];
+  /** How the conclusion was reached (full variant only; Fig. 3 annotates it). */
+  source?: string;
+  /** Lifecycle status, for example `active` (full variant only). The header shows the brain. */
+  lifecycleStatus?: string;
   captured: { source: "illustrative" | "captured"; date?: string; reverieVersion?: string };
 };
 
@@ -32,17 +36,29 @@ function Path({ children }: { children: string }) {
   );
 }
 
+export type MarkerKey = "cognition" | "type" | "scope" | "confidence" | "status" | "source" | "grounding" | "related" | "framing";
+
 export default function ConclusionRecord({
   data,
   variant = "compact",
   showTag = true,
+  markers,
 }: {
   data: ConclusionSpecimen;
   variant?: "compact" | "full";
   /** Print the `Example` tag for illustrative data. Pass false where the caption carries it. */
   showTag?: boolean;
+  /** Numbered markers at the right edge of rows (Fig. 3). Full variant only. */
+  markers?: Partial<Record<MarkerKey, number>>;
 }) {
   const full = variant === "full";
+  const mk = (k: MarkerKey) =>
+    full && markers?.[k] ? (
+      <span className="sp-mk" data-mk={markers[k]} aria-hidden="true">
+        {markers[k]}
+      </span>
+    ) : null;
+  const mc = (k: MarkerKey) => (full && markers?.[k] ? "has-mk" : undefined);
   const reviewed = data.status === "reviewed";
   const statusText = full ? (reviewed ? "canonical · reviewed" : "session · unreviewed") : data.status;
   const pct = Math.round(data.confidence * 100);
@@ -56,21 +72,50 @@ export default function ConclusionRecord({
           {statusText}
         </span>
       </div>
-      <p className="sp-cognition">{data.cognition}</p>
+      <p className={`sp-cognition ${mc("cognition") ?? ""}`.trim()}>
+        {data.cognition}
+        {mk("cognition")}
+      </p>
       <dl className="sp-fields">
         <dt>type</dt>
-        <dd>{data.type}</dd>
+        <dd className={mc("type")}>
+          {data.type}
+          {mk("type")}
+        </dd>
         <dt>scope</dt>
-        <dd>{data.scope}</dd>
+        <dd className={mc("scope")}>
+          {data.scope}
+          {mk("scope")}
+        </dd>
         <dt>confidence</dt>
-        <dd>
+        <dd className={mc("confidence")}>
           {data.confidence.toFixed(2)}
           <span className="cbar" role="img" aria-label={`${pct} percent`}>
             <i style={{ width: `${pct}%` }} />
           </span>
+          {mk("confidence")}
         </dd>
+        {full && data.lifecycleStatus ? (
+          <>
+            <dt>status</dt>
+            <dd className={mc("status")}>
+              {data.lifecycleStatus}
+              {mk("status")}
+            </dd>
+          </>
+        ) : null}
+        {full && data.source ? (
+          <>
+            <dt>source</dt>
+            <dd className={mc("source")}>
+              {data.source}
+              {mk("source")}
+            </dd>
+          </>
+        ) : null}
         <dt>grounding</dt>
-        <dd>
+        <dd className={mc("grounding")}>
+          {mk("grounding")}
           {data.grounding.files.map((f, i) => (
             <span key={f}>
               {i > 0 ? <br /> : null}
@@ -96,7 +141,8 @@ export default function ConclusionRecord({
         ) : null}
       </dl>
       {full && data.related?.length ? (
-        <ul className="sp-related">
+        <ul className={`sp-related ${mc("related") ?? ""}`.trim()}>
+          {mk("related")}
           {data.related.map((r) => (
             <li key={r.text}>
               <span className="rel">{r.relation}</span>
@@ -105,7 +151,10 @@ export default function ConclusionRecord({
           ))}
         </ul>
       ) : null}
-      <p className="sp-foot">{data.framingNote}</p>
+      <p className={`sp-foot ${mc("framing") ?? ""}`.trim()}>
+        {data.framingNote}
+        {mk("framing")}
+      </p>
       {showTag && data.captured.source === "illustrative" ? (
         <div style={{ padding: "0 16px 12px" }}>
           <Tag>Example</Tag>

@@ -72,3 +72,39 @@ against the claim; `pending` means it has not been checked against the product y
 | T6-6 | Archive notes for Engineering Cognition, Engineering Memory System and Short Report (first version loaded repository memory into each session; superseded) | Research, Archive | Plan §8.2 lineage; `TODO(copy)` | pending (owner) |
 | T6-7 | "Earlier documents call the first version the Engineering Memory System (EMS)." | Research, Archive | Plan §8.2 | 2026-10-05 |
 | T6-8 | Editor's note on "Everything till now" | Notebook entry | Plan §8.6 (draft text, verbatim) | 2026-10-05 |
+
+## T5: How it works (`/how-it-works`)
+
+Every factual sentence on the page, grouped by section. Sources are plan sections (the owner's source documents were not available; P12). `pending` = not yet checked against the product.
+
+| # | Site claim (paraphrased) | Page | Source | Last verified |
+|---|---|---|---|---|
+| H1 | A conclusion is the smallest self-contained engineering conclusion that could change a future decision; the paper's information-versus-conclusion pair | How it works §1 | plan §1.4, §8.1 | pending |
+| H2 | Three-question test, one conclusion per record, self-review rejects what the code shows, "zero is a valid output" | §1 | plan §1.3, §1.4 | pending |
+| H3 | The extractor rejects facts, code descriptions, process steps and summaries | §1 | plan §1.3 (C2) | pending |
+| H4 | ECU: eight types, seven scope levels plus a path, six statuses (scope order beyond "engineering → subsystem" is TODO(fact)) | §1 | plan §1.4 | pending |
+| H5 | Fig. 3 annotations ①–⑨ (one conclusion per record; scope sets fade, ranking, retirement; log-odds; ranking uses decayed value; retrievable statuses; source sets prior; grounding checked; related returned together; framing note) | §1 | DIAGRAM-PLAN F3 | pending |
+| H6 | Session brain: per repo and branch, immediate, unreviewed, ranked slightly lower; canonical brain: reviewed, long-term, shared across projects | §2 | plan §8.1, §1.3 (C3) | pending |
+| H7 | Evidence about long-term conclusions waits as pending until its source is accepted | §2 | plan §8.1, §1.3 (C30) | pending |
+| H8 | Review at session end in the terminal: open questions first, accept/reject/skip per group or item; skipped carry forward | §2 | plan §8.1 (C4) | pending |
+| H9 | Reconsolidation updates a just-retrieved conclusion immediately with verified evidence, recorded; the documented exception to review (C5) | §2, Fig. 4 | plan §1.8, §8.1 | pending |
+| H10 | The two-brain split came from a practical problem and later mirrored fast encoding / slow consolidation | §2 | plan §8.1 (C23) | pending |
+| H11 | Fig. 4 contents: tool arrows, brain notes, gate outcomes, maintenance tasks | §2 | DIAGRAM-PLAN F4 | pending |
+| H12 | Confidence: prior from source and scope; log-odds updates weighted by similarity and the other's confidence; stored and reversible; fades by scope; retrieval reinforces | §3 | plan §8.1 (C8) | pending |
+| H13 | Four relationship types; contradiction pre-check then adjudication; challenged, never hidden; open question after a scope-dependent time with four choices | §3 | plan §8.1 (C9) | pending |
+| H14 | Accepted wording never changes; supersession keeps history; dependents of a weakened conclusion are challenged | §3 | plan §8.1 (C10) | pending |
+| H15 | Fig. 5 step values (0.56, 0.66, 0.67, 0.55, 0.61, 0.62; r = 0.78, 0.84 as example inputs; priors 0.52, 0.61) computed by `lib/confidence.ts`; step 5 decay "computed from config" until P5 | §3 | DIAGRAM-PLAN §6, F5 | pending |
+| H16 | Files, symbols and commit recorded at extraction; periodic background check; scope → retired-when table; dependents challenged and reported at next review; far behind HEAD flagged, never retires | §4 | plan §8.1 (C11) | pending |
+| H17 | Memory is not loaded at session start; our first version did and the agent did worse on our benchmark | §5, FAQ | plan §8.1 (C17) | pending |
+| H18 | Retrieval: task mode (five), both brains searched, filtered by status/scope/relevance, ranking factors, grouping, mode-dependent budget | §5 | plan §8.1 | pending |
+| H19 | Framing note; agents don't always ask; asking is an instruction, not enforced | §5 | plan §1.3, §8.1 (C6) | pending |
+| H20 | One SQLite file at `~/.ec/ec.db` shared by projects; no Reverie account | §6 | plan §1.1 (C12) | pending |
+| H21 | Local stdio MCP server spawned by the agent; maintenance in the background | §6 | plan §1.1 (C13) | pending |
+| H22 | Tool rows: what ec_observe, ec_query, ec_reconsolidate do and when called (ec_get_summary and the session column are TODO(fact)) | §6 | plan §1.3, §8.1, DIAGRAM-PLAN F4 | pending |
+| H23 | Installer configures an MCP entry and an instructions file for each of four agents (C1; P11 pending) | §6 | plan §8.1 | pending |
+| H24 | Every connected agent shares the file; switching agents or model keeps memory; other MCP agents set up by hand (gated by `claims.anyMcpAgent`) | §6, FAQ | plan §1.5 (C14, C27, C29) | pending |
+| H25 | LLM endpoint hosted by default or Ollama; sent: prompt, reasoning, candidate pairs; never leaves: database, embeddings, retrieval | §6, FAQ | plan §1.1, §8.1 (C15, C16) | pending |
+| H26 | Naming note: `ec` prefix stands for Engineering Cognition | §6 | plan §8.1, §11.5 | pending |
+| H27 | Limits: macOS only; terminal review; you start/end sessions; single-attempt LLM extraction; no edit/delete interface; no clear benchmark advantage | §7 | plan §8.1 (C18–C22) | pending |
+| H28 | "Last reviewed 5 October 2026" | §7 | plan date; owner to confirm | pending |
+| H29 | FAQ: instruction files vs Reverie; data flow; what you do; why not automatic; does it make agents better; which agents; open source (no licence claim) | §8 | plan §8.1, §1.8 | pending |

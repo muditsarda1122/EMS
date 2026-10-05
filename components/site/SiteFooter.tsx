@@ -17,7 +17,7 @@ export default function SiteFooter() {
             <ul>
               <li><Link href="/how-it-works">How it works</Link></li>
               <li><Link href="/how-it-works#supported-agents">Supported agents</Link></li>
-              <li><Link href="/how-it-works#questions">Questions</Link></li>
+              <li><Link href="/how-it-works#faq">Questions</Link></li>
             </ul>
           </nav>
 
