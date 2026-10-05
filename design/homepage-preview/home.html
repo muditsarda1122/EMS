@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reverie — memory for coding agents (homepage preview)</title>
+<title>Reverie — memory for coding agents (homepage preview v2)</title>
 <style>
 @font-face { font-family: 'Newsreader'; font-style: normal; font-weight: 200 800; font-display: block;
   src: url(fonts/newsreader-latin-standard-normal.woff2) format('woff2-variations'); }
@@ -16,7 +16,7 @@
 
 :root {
   --paper: #FAFAF7; --paper-sunken: #F2F1EC; --surface: #FFFFFF;
-  --ink: #17171B; --ink-2: #55555D; --ink-3: #6E6E76;
+  --ink: #17171B; --ink-2: #55555D; --ink-3: #6E6E76; --ink-4: #A8A8AE;
   --rule: rgba(23,23,27,.12); --rule-strong: rgba(23,23,27,.24);
   --accent: #2C4A7E; --accent-wash: rgba(44,74,126,.08); --challenged: #9A5F0E;
   --serif: 'Newsreader', Georgia, serif;
@@ -26,21 +26,21 @@
 html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
 body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--serif);
   font-size: 18px; line-height: 1.6; font-optical-sizing: auto; }
+main { overflow-x: clip; }
 a { color: inherit; text-decoration: none; }
 p { margin: 0; }
-code, .mono { font-family: var(--mono); font-size: .84em; letter-spacing: 0; }
 
 .wrap { max-width: 1296px; margin: 0 auto; padding: 0 48px; }
 .grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; }
 
-/* ---------- nav ---------- */
+/* nav */
 .nav { position: sticky; top: 0; background: var(--paper); z-index: 5; }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 76px; }
 .wordmark { font-size: 27px; font-weight: 500; letter-spacing: -0.012em; }
 .nav-links { display: flex; align-items: center; gap: 34px; font-size: 16px; color: var(--ink-2); font-weight: 450; }
-.nav-links a.current { color: var(--ink); }
+.nav-links .menu { display: none; }
 
-/* ---------- buttons ---------- */
+/* buttons */
 .btn { display: inline-flex; align-items: center; height: 46px; padding: 0 20px; border-radius: 2px;
   font-family: var(--serif); font-size: 16.5px; font-weight: 500; letter-spacing: .005em; border: 1px solid var(--ink); }
 .btn-primary { background: var(--ink); color: var(--paper); }
@@ -48,140 +48,188 @@ code, .mono { font-family: var(--mono); font-size: .84em; letter-spacing: 0; }
 .btn-sm { height: 36px; padding: 0 14px; font-size: 15px; }
 .arrow-link { display: inline-block; font-size: 17px; font-weight: 500; border-bottom: 1px solid var(--rule-strong); padding-bottom: 2px; }
 
-/* ---------- type ---------- */
-.display { font-size: 68px; line-height: 1.04; letter-spacing: -0.022em; font-weight: 400; margin: 0; }
+/* type */
+.display { font-size: 66px; line-height: 1.04; letter-spacing: -0.022em; font-weight: 400; margin: 0; }
 h2 { font-size: 42px; line-height: 1.12; letter-spacing: -0.016em; font-weight: 400; margin: 0; }
 .lead { font-size: 21px; line-height: 1.55; color: var(--ink-2); }
 .mono-label { font-family: var(--mono); font-size: 12.5px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
 .caption { font-style: italic; font-size: 15px; line-height: 1.5; color: var(--ink-2); }
-.caption .fig-n { font-style: italic; color: var(--ink); margin-right: 6px; }
-
-/* ---------- sections ---------- */
-.section { padding-top: 168px; }
-.hero { padding-top: 92px; align-items: start; }
-.hero-copy { grid-column: 1 / 8; padding-right: 24px; }
-.hero-copy .lead { margin-top: 30px; max-width: 34em; }
-.hero-copy .agents { margin-top: 22px; font-size: 16px; color: var(--ink-2); }
-.ctas { display: flex; gap: 12px; margin-top: 34px; }
-.hero-specimen { grid-column: 8 / 13; margin: 10px 0 0; }
-
-/* ---------- specimen (V1) ---------- */
-.specimen { background: var(--surface); border: 1px solid var(--rule); border-radius: 2px; }
-.sp-head { display: flex; flex-wrap: wrap; gap: 4px 16px; justify-content: space-between; align-items: center; padding: 13px 20px 12px;
-  border-bottom: 1px solid var(--rule); font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); }
-.sp-head > span { white-space: nowrap; }
-.sp-status { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); }
-.sp-status i { display: inline-block; width: 3px; height: 14px; background: var(--accent); }
-.sp-cognition { padding: 20px 20px 4px; font-size: 21px; line-height: 1.42; letter-spacing: -0.004em; }
-.sp-fields { margin: 14px 0 0; padding: 0 20px 18px; display: grid; grid-template-columns: 96px 1fr;
-  row-gap: 7px; font-family: var(--mono); font-size: 13px; line-height: 1.55; }
-.sp-fields dt { color: var(--ink-3); }
-.sp-fields dd { margin: 0; color: var(--ink); overflow-wrap: anywhere; }
-.sp-fields .dim { color: var(--ink-3); }
-.cbar { display: inline-block; vertical-align: middle; width: 132px; height: 4px; margin-left: 12px;
-  border: 1px solid var(--rule-strong); position: relative; top: -1px; }
-.cbar i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--ink); }
-.sp-foot { border-top: 1px solid var(--rule); padding: 13px 20px 14px; font-style: italic; font-size: 15px; color: var(--ink-2); }
-.hero-specimen figcaption { margin-top: 12px; display: flex; gap: 10px; align-items: baseline; }
+.caption .fig-n { color: var(--ink); margin-right: 6px; }
 .tag { font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase;
   color: var(--ink-3); border: 1px solid var(--rule-strong); border-radius: 2px; padding: 1px 6px; font-style: normal; }
 .tag.dashed { border-style: dashed; }
 
-/* ---------- problem (S2) ---------- */
-.s2 h2 { grid-column: 1 / 6; }
-.s2 .body { grid-column: 7 / 13; }
-.s2 .body p + p { margin-top: 18px; }
-.pull { margin-top: 30px !important; font-size: 27px; line-height: 1.3; letter-spacing: -0.01em; padding-left: 20px;
-  border-left: 1px solid var(--ink); }
-
-/* ---------- how it works (S3) ---------- */
+.section { padding-top: 160px; }
 .s-head { align-items: end; }
 .s-head h2 { grid-column: 1 / 7; }
-.s-head .aside { grid-column: 8 / 13; color: var(--ink-2); font-size: 18px; }
+.s-head .aside { grid-column: 8 / 13; color: var(--ink-2); font-size: 18.5px; line-height: 1.5; }
 figure.fig { margin: 52px 0 0; }
 figure.fig svg { display: block; width: 100%; height: auto; overflow: visible; }
-figure.fig figcaption { margin-top: 20px; max-width: 760px; }
-.steps { list-style: none; margin: 46px 0 0; padding: 0; }
-.steps li { border-top: 1px solid var(--ink); padding-top: 16px; }
-.steps li:nth-child(1) { grid-column: 1 / 5; }
-.steps li:nth-child(2) { grid-column: 5 / 9; }
-.steps li:nth-child(3) { grid-column: 9 / 13; }
-.steps .n { display: block; font-size: 46px; line-height: 1; font-weight: 300; color: var(--ink-3); margin: 2px 0 14px; letter-spacing: -0.02em; }
-.steps h3 { margin: 0 0 8px; font-size: 21px; font-weight: 500; letter-spacing: -0.005em; }
-.steps p { font-size: 16.5px; line-height: 1.58; color: var(--ink-2); padding-right: 12px; }
-.more { margin-top: 40px; }
+figure.fig figcaption { margin-top: 18px; max-width: 780px; }
+.more { margin-top: 36px; }
+.mob, .f1-mobile, .o1-mobile, .f2-mobile, .hv-mobile, figure.fig svg.mob, .s2-fig svg.mob { display: none; }
 
-/* svg text styles */
-.t-band { font-family: var(--serif); font-style: italic; font-size: 15px; fill: var(--ink-2); }
-.t-label { font-family: var(--mono); font-size: 12.5px; font-weight: 500; letter-spacing: .08em; fill: var(--ink-3); }
-.t-body { font-family: var(--serif); font-size: 16.5px; fill: var(--ink); }
-.t-body-sm { font-family: var(--serif); font-size: 15px; fill: var(--ink); }
-.t-mono { font-family: var(--mono); font-size: 13px; fill: var(--ink); }
+/* ---------- hero ---------- */
+.hero { padding-top: 88px; align-items: start; }
+.hero-copy { grid-column: 1 / 7; }
+.hero-copy .lead { margin-top: 28px; font-size: 20px; }
+.hero-copy .agents { margin-top: 20px; font-size: 16px; color: var(--ink-2); }
+.ctas { display: flex; gap: 12px; margin-top: 32px; }
+.hero-visual { grid-column: 7 / 13; position: relative; height: 420px; margin: 6px 0 0; }
+.hero-visual .hv-card { position: absolute; left: 0; top: 22px; width: 330px; }
+.hero-visual svg.hv-net { position: absolute; left: 330px; top: 0; width: 258px; height: 420px; overflow: visible; }
+.hero-visual figcaption { position: absolute; left: 0; top: 380px; width: 588px; display: flex; gap: 10px; align-items: baseline; }
+
+/* specimen */
+.specimen { background: var(--surface); border: 1px solid var(--rule); border-radius: 2px; }
+.sp-head { display: flex; flex-wrap: wrap; gap: 4px 14px; justify-content: space-between; align-items: center; padding: 11px 16px 10px;
+  border-bottom: 1px solid var(--rule); font-family: var(--mono); font-size: 11.5px; color: var(--ink-2); }
+.sp-head > span { white-space: nowrap; }
+.sp-status { display: inline-flex; align-items: center; gap: 7px; color: var(--ink); }
+.sp-status i { display: inline-block; width: 3px; height: 13px; background: var(--accent); }
+.sp-cognition { padding: 16px 16px 2px; font-size: 18.5px; line-height: 1.4; letter-spacing: -0.004em; }
+.sp-fields { margin: 12px 0 0; padding: 0 16px 14px; display: grid; grid-template-columns: 82px 1fr;
+  row-gap: 5px; font-family: var(--mono); font-size: 12px; line-height: 1.5; }
+.sp-fields dt { color: var(--ink-3); }
+.sp-fields dd { margin: 0; color: var(--ink); overflow-wrap: anywhere; }
+.sp-fields .dim { color: var(--ink-3); }
+.cbar { display: inline-block; vertical-align: middle; width: 96px; height: 4px; margin-left: 10px;
+  border: 1px solid var(--rule-strong); position: relative; top: -1px; }
+.cbar i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--ink); }
+.sp-foot { border-top: 1px solid var(--rule); padding: 10px 16px 11px; font-style: italic; font-size: 14px; line-height: 1.45; color: var(--ink-2); }
+
+/* svg text + shapes */
+.t-title { font-family: var(--serif); font-size: 19.5px; font-weight: 500; fill: var(--ink); }
+.t-num { font-family: var(--serif); font-size: 19.5px; font-weight: 300; fill: var(--ink-3); }
+.t-line { font-family: var(--serif); font-size: 15.5px; fill: var(--ink-2); }
+.t-note { font-family: var(--serif); font-style: italic; font-size: 13.5px; fill: var(--ink-3); }
+.t-rec { font-family: var(--serif); font-size: 13px; fill: var(--ink); }
+.t-rec-sm { font-family: var(--serif); font-size: 12.5px; fill: var(--ink); }
 .t-mono-sm { font-family: var(--mono); font-size: 11.5px; fill: var(--ink-2); }
-.t-note { font-family: var(--serif); font-style: italic; font-size: 14px; fill: var(--ink-3); }
-.t-rec { font-family: var(--serif); font-size: 13.5px; fill: var(--ink); }
-.t-gate { font-family: var(--serif); font-size: 18px; font-weight: 500; fill: var(--ink); }
-.dimt { fill: var(--ink-3); }
+.t-ev { font-family: var(--serif); font-style: italic; font-size: 14px; fill: var(--ink); }
+.t-hub { font-family: var(--serif); font-size: 21px; font-weight: 500; fill: var(--ink); }
+.t-agent { font-family: var(--serif); font-size: 17px; fill: var(--ink); }
 .box { fill: var(--surface); stroke: var(--rule-strong); stroke-width: 1; }
-.container { fill: var(--surface); stroke: var(--rule-strong); stroke-width: 1; }
-.gate { fill: var(--surface); stroke: var(--ink); stroke-width: 1.25; }
 .rec-session { fill: none; stroke: var(--ink); stroke-width: 1; stroke-dasharray: 3 3; }
 .rec-canon { fill: var(--surface); stroke: var(--rule-strong); stroke-width: 1; }
-.rec-canon-strong { fill: var(--surface); stroke: var(--ink); stroke-width: 1; }
+.rec-strong { fill: var(--surface); stroke: var(--ink); stroke-width: 1; }
 .bar-accent { fill: var(--accent); }
 .bar-amber { fill: var(--challenged); }
 .flow { stroke: var(--ink); stroke-width: 1.4; fill: none; }
+.edge { stroke: var(--ink-3); stroke-width: 1; fill: none; }
+.edge-dash { stroke: var(--ink-3); stroke-width: 1; fill: none; stroke-dasharray: 3 3; }
 .dash { stroke: var(--ink-3); stroke-width: 1; stroke-dasharray: 4 4; }
-.hair { stroke: var(--rule-strong); stroke-width: 1; }
 .track { fill: none; stroke: var(--rule-strong); stroke-width: 1; }
+.reason { fill: #E6E5E0; }
 
-/* ---------- evolution (S4) ---------- */
-.fig2 { margin-top: 56px !important; }
-.facts { margin-top: 48px; row-gap: 30px; }
-.facts > div { grid-column: span 6; border-top: 1px solid var(--rule); padding-top: 16px; padding-right: 32px; }
-.facts b { font-weight: 500; }
-.facts p { font-size: 17.5px; line-height: 1.58; }
+/* ---------- problem ---------- */
+.s2-left { grid-column: 1 / 7; }
+.s2-left .pull { margin-top: 30px; max-width: 24em; font-size: 21px; line-height: 1.4; color: var(--ink-2); padding-left: 18px; border-left: 1px solid var(--ink); }
+.s2-fig { grid-column: 7 / 13; margin: 10px 0 0; }
+.s2-fig svg { display: block; width: 100%; height: auto; overflow: visible; }
+.s2-fig figcaption { margin-top: 14px; }
 
-/* ---------- install (S5) ---------- */
-.s5 h2 { grid-column: 1 / 5; }
-.spec { grid-column: 6 / 13; margin: 0; border-top: 1px solid var(--ink); }
-.spec .row { display: grid; grid-template-columns: 210px 1fr; column-gap: 24px; padding: 18px 0 19px; border-bottom: 1px solid var(--rule); }
-.spec dt { font-weight: 500; font-size: 18px; }
-.spec dd { margin: 0; font-size: 17.5px; line-height: 1.58; }
-.spec dd code { color: var(--ink); background: var(--paper-sunken); padding: 1px 5px; border-radius: 2px; }
-.footnote { grid-column: 6 / 13; margin-top: 18px; font-size: 15.5px; color: var(--ink-2); font-style: italic; }
+/* ---------- memory map (M1) ---------- */
+figure.fig-mm { margin-top: 72px; }
+.mm-wrap { position: relative; }
+.mm-toggle { position: absolute; right: 0; top: -40px; font-family: var(--mono); font-size: 12px; color: var(--ink-2);
+  background: transparent; border: 1px solid var(--rule-strong); border-radius: 2px; padding: 4px 10px; cursor: pointer; }
+.legend { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 16px; font-size: 15px; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+figure.fig .legend svg { width: 30px; height: 14px; display: inline-block; }
+.panel-label { margin: 56px 0 16px; padding-top: 18px; border-top: 1px solid var(--rule); }
 
-/* ---------- research (S6) ---------- */
+.mm { --cycle: 16s; }
+.mm .anim { animation-duration: var(--cycle); animation-iteration-count: infinite; animation-timing-function: ease-in-out; animation-fill-mode: both; }
+.mm.paused .anim { animation-play-state: paused; }
+.a1-dashed { animation-name: a1-dashed; }
+.a1-solid { animation-name: a1-solid; }
+.lab-new { animation-name: lab-new; fill: var(--ink-3); }
+.lab-added { animation-name: lab-added; }
+.e-a1n2 { stroke-dasharray: 100 200; animation-name: e-a1n2; }
+.e-a1n2-head { animation-name: e-a1n2-head; }
+.n2-rect { animation-name: n2-strong; }
+.lab-strong { animation-name: lab-strong; }
+.c1 { animation-name: c1-in; }
+.e-contra { stroke-dasharray: 100 200; animation-name: e-contra; }
+.n1-amber { animation-name: n1-amber; }
+.lab-challenged { animation-name: lab-challenged; }
+.n1-strike { stroke-dasharray: 100 200; animation-name: n1-strike; }
+.n1-body { animation-name: n1-dim; }
+.e-replaces { animation-name: e-replaces; }
+.lab-superseded { animation-name: lab-superseded; }
+.n6 { animation-name: n6-fade; }
+.lab-fading { animation-name: lab-fading; }
+
+@keyframes a1-dashed { 0%,3% {opacity:0; transform:translateX(-28px)} 9%,14% {opacity:1; transform:none} 18%,100% {opacity:0; transform:none} }
+@keyframes a1-solid { 0%,14% {opacity:0} 18%,90% {opacity:1} 96%,100% {opacity:0} }
+@keyframes lab-new { 0%,4% {opacity:0} 8%,13% {opacity:1} 16%,100% {opacity:0} }
+@keyframes lab-added { 0%,15% {opacity:0} 18%,32% {opacity:1} 36%,100% {opacity:0} }
+@keyframes e-a1n2 { 0%,20% {stroke-dashoffset:102; opacity:0} 21% {opacity:1} 27%,90% {stroke-dashoffset:0; opacity:1} 96%,100% {stroke-dashoffset:0; opacity:0} }
+@keyframes e-a1n2-head { 0%,26% {opacity:0} 27.5%,90% {opacity:1} 96%,100% {opacity:0} }
+@keyframes n2-strong { 0%,25% {stroke: rgba(23,23,27,.24); stroke-width:1} 31%,90% {stroke: #17171B; stroke-width:2.4} 96%,100% {stroke: rgba(23,23,27,.24); stroke-width:1} }
+@keyframes lab-strong { 0%,25% {opacity:0} 29%,46% {opacity:1} 50%,100% {opacity:0} }
+@keyframes c1-in { 0%,35% {opacity:0; transform:translateY(-18px)} 40%,90% {opacity:1; transform:none} 96%,100% {opacity:0; transform:none} }
+@keyframes e-contra { 0%,40% {stroke-dashoffset:102; opacity:0} 41% {opacity:1} 45%,58% {stroke-dashoffset:0; opacity:1} 62%,100% {stroke-dashoffset:0; opacity:0} }
+@keyframes n1-amber { 0%,44% {opacity:0} 47%,58% {opacity:1} 62%,100% {opacity:0} }
+@keyframes lab-challenged { 0%,44% {opacity:0} 47%,57% {opacity:1} 60%,100% {opacity:0} }
+@keyframes n1-strike { 0%,58% {stroke-dashoffset:102} 63%,90% {stroke-dashoffset:0} 96%,100% {stroke-dashoffset:102} }
+@keyframes n1-dim { 0%,58% {opacity:1} 63%,90% {opacity:.45} 96%,100% {opacity:1} }
+@keyframes e-replaces { 0%,58% {opacity:0} 63%,90% {opacity:1} 96%,100% {opacity:0} }
+@keyframes lab-superseded { 0%,60% {opacity:0} 64%,84% {opacity:1} 88%,100% {opacity:0} }
+@keyframes n6-fade { 0%,60% {opacity:1} 86%,92% {opacity:.2} 98%,100% {opacity:1} }
+@keyframes lab-fading { 0%,70% {opacity:0} 74%,92% {opacity:1} 96%,100% {opacity:0} }
+
+/* Reduced motion (also used for the static screenshot): every event shown at once, annotated. */
+@media (prefers-reduced-motion: reduce) {
+  .mm .anim { animation: none !important; }
+  .a1-dashed, .lab-new, .e-contra, .n1-amber, .lab-challenged { opacity: 0; }
+  .a1-solid, .lab-added, .lab-strong, .c1, .e-replaces, .lab-superseded, .lab-fading { opacity: 1; }
+  .e-a1n2 { stroke-dashoffset: 0; opacity: 1; }
+  .e-a1n2-head { opacity: 1; }
+  .n2-rect { stroke: #17171B; stroke-width: 2.4; }
+  .n1-strike { stroke-dashoffset: 0; }
+  .n1-body { opacity: .45; }
+  .n6 { opacity: .2; }
+  .mm-toggle { display: none; }
+}
+
+/* ---------- ownership (O1) ---------- */
+.facts3 { margin: 44px 0 0; list-style: none; padding: 0; }
+.facts3 li { grid-column: span 4; border-top: 1px solid var(--ink); padding: 14px 24px 0 0; font-size: 17.5px; line-height: 1.5; }
+.facts3 b { font-weight: 500; display: block; margin-bottom: 2px; }
+.facts3 span { color: var(--ink-2); }
+
+/* ---------- research ---------- */
 .s6 .left { grid-column: 1 / 6; }
-.s6 .left p { margin-top: 22px; font-size: 18px; }
+.s6 .left p { margin-top: 20px; font-size: 18.5px; }
 .s6 .left p.second { color: var(--ink-2); }
 .rlist { grid-column: 7 / 13; list-style: none; margin: 8px 0 0; padding: 0; border-top: 1px solid var(--ink); }
-.rlist li { display: grid; grid-template-columns: 112px 1fr; column-gap: 16px; padding: 20px 0 21px; border-bottom: 1px solid var(--rule); }
+.rlist li { display: grid; grid-template-columns: 112px 1fr; column-gap: 16px; padding: 18px 0 19px; border-bottom: 1px solid var(--rule); }
 .rlist .kind { padding-top: 6px; }
 .rlist .title { font-size: 21px; line-height: 1.32; letter-spacing: -0.005em; }
-.rlist .meta { margin-top: 6px; font-size: 15px; color: var(--ink-2); display: flex; gap: 10px; align-items: center; }
-.s6 .more { grid-column: 7 / 13; margin-top: 26px; }
+.rlist .meta { margin-top: 5px; font-size: 15px; color: var(--ink-2); display: flex; gap: 10px; align-items: center; }
+.s6 .more { grid-column: 7 / 13; margin-top: 24px; }
 
-/* ---------- closing (S7) ---------- */
-.s7 { padding-top: 176px; }
-.s7 .inner { border-top: 1px solid var(--ink); padding-top: 40px; }
+/* ---------- closing ---------- */
+.s7 { padding-top: 168px; }
+.s7 .inner { border-top: 1px solid var(--ink); padding-top: 38px; }
 .s7 h2 { grid-column: 1 / 7; }
 .s7 .right { grid-column: 7 / 13; }
 .s7 .right p { font-size: 19px; line-height: 1.55; color: var(--ink-2); max-width: 30em; }
-.s7 .ctas { margin-top: 28px; }
+.s7 .ctas { margin-top: 22px; }
 
 /* ---------- footer ---------- */
-footer { margin-top: 152px; border-top: 1px solid var(--rule); padding: 52px 0 40px; }
+footer { margin-top: 144px; border-top: 1px solid var(--rule); padding: 50px 0 40px; }
 .foot-cols .brand { grid-column: 1 / 5; }
 .foot-cols .brand p { margin-top: 8px; color: var(--ink-2); font-size: 16px; }
 .foot-cols .col { grid-column: span 2; }
 .foot-cols .col:nth-of-type(2) { grid-column: 7 / 9; }
 .foot-cols h4 { margin: 0 0 12px; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
 .foot-cols ul { list-style: none; margin: 0; padding: 0; font-size: 16px; line-height: 2.05; }
-.baseline { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; font-size: 14px; color: var(--ink-3); }
+.baseline { margin-top: 46px; padding-top: 20px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; font-size: 14px; color: var(--ink-3); }
 
-/* ---------- mobile compositions ---------- */
-.fig-mobile { display: none; }
+/* ---------- mobile ---------- */
 @media (max-width: 767px) {
   .wrap { padding: 0 20px; }
   .grid { display: block; }
@@ -189,69 +237,126 @@ footer { margin-top: 152px; border-top: 1px solid var(--rule); padding: 52px 0 4
   .wordmark { font-size: 24px; }
   .nav-links a:not(.btn) { display: none; }
   .nav-links { gap: 10px; }
-  .menu { display: inline-flex !important; }
+  .nav-links .menu { display: inline-flex; }
   .hero { padding-top: 40px; }
   .hero-copy { padding-right: 0; }
-  .display { font-size: 41px; line-height: 1.06; }
-  .hero-copy .lead { font-size: 18.5px; margin-top: 22px; }
+  .display { font-size: 40px; line-height: 1.06; }
+  .hero-copy .lead { font-size: 18.5px; margin-top: 20px; }
   .ctas { flex-wrap: wrap; }
-  .hero-specimen { margin-top: 44px; }
-  .sp-cognition { font-size: 19px; }
-  .sp-fields { grid-template-columns: 86px 1fr; font-size: 12.5px; }
-  .cbar { width: 90px; }
-  .section { padding-top: 104px; }
+  .hero-visual { height: auto; margin-top: 40px; }
+  .hero-visual .hv-card { position: static; width: auto; }
+  .hero-visual svg.hv-net { display: none; }
+  .hero-visual figcaption { position: static; width: auto; margin-top: 12px; }
+  .hv-mobile { display: block; margin: 0 0 0 16px; padding: 4px 0 0 14px; border-left: 1px solid var(--rule-strong); opacity: .55; }
+  .hv-mobile div { font-size: 14.5px; line-height: 1.4; padding: 8px 0 2px; }
+  .hv-mobile .rel { font-family: var(--mono); font-size: 11px; color: var(--ink-3); display: block; letter-spacing: .04em; }
+  .hv-mobile s { color: var(--ink-3); }
+  .section { padding-top: 100px; }
   h2 { font-size: 29px; line-height: 1.16; }
-  .s2 .body { margin-top: 22px; }
-  .pull { font-size: 22px; }
-  .s-head .aside { margin-top: 10px; }
-  figure.fig svg.fig-desktop { display: none; }
-  .fig-mobile { display: block; }
-  figure.fig { margin-top: 30px; }
-  .steps li { margin-top: 26px; }
-  .facts > div { margin-top: 20px; padding-right: 0; }
-  .spec { margin-top: 26px; }
-  .spec .row { grid-template-columns: 1fr; row-gap: 4px; }
-  .rlist { margin-top: 32px; }
+  .s2-left .pull { font-size: 19px; margin-top: 22px; }
+  .s2-fig { margin-top: 32px; }
+  .s-head .aside { margin-top: 10px; font-size: 17px; }
+  figure.fig svg.desk, .s2-fig svg.desk { display: none; }
+  .mob, .f1-mobile, .o1-mobile, .f2-mobile, figure.fig svg.mob, .s2-fig svg.mob { display: block; }
+  figure.fig { margin-top: 28px; }
+  figure.fig-mm { margin-top: 48px; }
+  .mm-toggle { top: -34px; }
+  .panel-label { margin-top: 40px; }
+  .facts3 li { margin-top: 18px; }
+  .rlist { margin-top: 30px; }
   .rlist li { grid-template-columns: 1fr; row-gap: 4px; }
-  .s7 { padding-top: 112px; }
-  .s7 .right { margin-top: 18px; }
+  .s7 { padding-top: 104px; }
+  .s7 .right { margin-top: 16px; }
   footer { margin-top: 96px; }
   .foot-cols .col { margin-top: 28px; }
   .baseline { flex-direction: column; gap: 6px; }
 }
-.menu { display: none; }
-
-/* mobile figure 1 */
-.m-fig { font-size: 15.5px; }
-.m-lab { margin: 0 0 10px; }
-.m-step { background: var(--surface); border: 1px solid var(--rule-strong); border-radius: 2px; padding: 11px 14px; line-height: 1.45; }
-.m-step.plain { background: none; border: none; padding: 0 0 0 2px; }
-.m-arrow { padding: 6px 0 6px 16px; font-family: var(--mono); font-size: 12.5px; color: var(--ink); position: relative; }
-.m-arrow::before { content: "↓"; font-family: var(--serif); font-size: 17px; margin-right: 10px; color: var(--ink); }
-.m-arrow.up::before { content: "↑"; }
-.m-arrow .note { font-family: var(--serif); font-style: italic; color: var(--ink-3); font-size: 14px; margin-left: 6px; }
-.m-mem { border: 1px solid var(--rule-strong); background: var(--surface); padding: 10px 12px 12px; border-radius: 2px; }
-.m-mem .lbl { font-style: italic; font-size: 13.5px; color: var(--ink-3); margin-bottom: 8px; }
-.m-rec { border: 1px dashed var(--ink); border-radius: 2px; padding: 6px 10px; font-size: 14px; }
-.m-rec.solid { border: 1px solid var(--rule-strong); border-left: 3px solid var(--accent); background: var(--surface); }
-.m-boundary { display: flex; align-items: center; gap: 10px; margin: 16px 0; font-style: italic; font-size: 14px; color: var(--ink-3); }
+/* mobile F1 */
+.st { padding: 4px 0 22px; }
+.st svg { width: 100%; max-width: 330px; height: auto; display: block; }
+.st h3 { margin: 10px 0 2px; font-size: 19px; font-weight: 500; }
+.st h3 .n { color: var(--ink-3); font-weight: 300; margin-right: 8px; }
+.st p { font-size: 16px; color: var(--ink-2); line-height: 1.45; }
+.m-boundary { display: flex; align-items: center; gap: 10px; margin: 0 0 18px; font-style: italic; font-size: 14px; color: var(--ink-3); }
 .m-boundary::before, .m-boundary::after { content: ""; flex: 1; border-top: 1px dashed var(--ink-3); }
-.m-gate { border: 1.25px solid var(--ink); background: var(--surface); padding: 10px 14px; border-radius: 2px; }
-.m-gate b { font-weight: 500; font-size: 17px; }
-.m-band { background: var(--paper-sunken); padding: 10px 12px 12px; }
-.m-band .lbl { font-style: italic; font-size: 13.5px; color: var(--ink-2); margin-bottom: 8px; }
-/* mobile figure 2 */
+/* mobile F2 lifecycle */
 .m-life { list-style: none; margin: 0; padding: 0 0 0 18px; border-left: 1px solid var(--rule-strong); }
-.m-life li { position: relative; padding: 0 0 18px 4px; }
+.m-life li { position: relative; padding: 0 0 16px 4px; }
 .m-life li::before { content: ""; position: absolute; left: -23px; top: 8px; width: 9px; height: 9px; border-radius: 50%; background: var(--paper); border: 1px solid var(--ink); }
-.m-life .st { font-family: var(--mono); font-size: 12px; color: var(--ink); }
-.m-life .ev { font-size: 15.5px; color: var(--ink-2); margin-top: 2px; }
+.m-life .st2 { font-family: var(--mono); font-size: 12px; color: var(--ink); }
+.m-life .ev { font-size: 15.5px; color: var(--ink-2); }
 .m-life .cb { display: block; margin: 6px 0 0; width: 150px; height: 4px; border: 1px solid var(--rule-strong); position: relative; }
 .m-life .cb i { position: absolute; left: 0; top: 0; bottom: 0; }
-.m-foot { margin-top: 6px; font-style: italic; font-size: 14.5px; color: var(--ink-2); }
+.m-foot { margin-top: 4px; font-style: italic; font-size: 14.5px; color: var(--ink-2); }
+/* mobile O1 */
+.o1m-hub { border: 1px solid var(--ink); border-left: 4px solid var(--accent); background: var(--surface); padding: 12px 14px; }
+.o1m-hub b { font-weight: 500; font-size: 19px; display: block; }
+.o1m-hub code { font-family: var(--mono); font-size: 12.5px; }
+.o1m-hub i { display: block; font-size: 14px; color: var(--ink-2); }
+.o1m-agents { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 0 0 0 0; padding-top: 14px; position: relative; }
+.o1m-agents::before { content: ""; position: absolute; left: 24px; top: 0; height: 14px; border-left: 1px solid var(--ink-3); }
+.o1m-agents span { border: 1px solid var(--rule-strong); background: var(--surface); padding: 7px 10px; font-size: 15.5px; border-radius: 2px; }
+.o1m-agents span.byhand { border: 1px dashed var(--ink-3); background: none; color: var(--ink-2); }
 </style>
 </head>
 <body>
+
+<!-- Shared drawings: arrow markers and the four Fig. 1 stations (desktop and mobile reuse them) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M1.6,1.6 L8.6,5 L1.6,8.4" fill="none" stroke="#17171B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ahg" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M1.6,1.6 L8.6,5 L1.6,8.4" fill="none" stroke="#6E6E76" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <symbol id="st1" viewBox="0 0 240 150">
+      <rect x="10" y="6" width="220" height="138" rx="2" class="box"/>
+      <rect x="28" y="24" width="168" height="5" class="reason"/>
+      <rect x="28" y="37" width="138" height="5" class="reason"/>
+      <rect x="28" y="50" width="152" height="5" class="reason"/>
+      <rect x="28" y="72" width="184" height="26" rx="2" class="rec-session"/>
+      <text x="40" y="89.5" class="t-rec" style="fill:#6E6E76">conclusion</text>
+      <rect x="28" y="106" width="142" height="26" rx="2" class="rec-session"/>
+      <text x="40" y="123.5" class="t-rec" style="fill:#6E6E76">conclusion</text>
+    </symbol>
+    <symbol id="st2" viewBox="0 0 240 150">
+      <rect x="6" y="38" width="76" height="26" rx="2" class="rec-session"/>
+      <rect x="6" y="86" width="76" height="26" rx="2" class="rec-session"/>
+      <line x1="84" y1="51" x2="108" y2="51" class="flow" marker-end="url(#ah)"/>
+      <line x1="84" y1="99" x2="108" y2="99" class="flow" marker-end="url(#ah)"/>
+      <line x1="120" y1="12" x2="120" y2="138" stroke="#17171B" stroke-width="2.2"/>
+      <rect x="134" y="38" width="76" height="26" rx="2" class="rec-strong"/>
+      <rect x="134" y="38" width="3" height="26" class="bar-accent"/>
+      <text x="218" y="57" class="t-title" style="font-size:17px">✓</text>
+      <g opacity=".45">
+        <rect x="134" y="86" width="76" height="26" rx="2" class="rec-canon"/>
+        <line x1="142" y1="99" x2="202" y2="99" stroke="#6E6E76" stroke-width="1"/>
+        <text x="218" y="105" class="t-title" style="font-size:17px;fill:#6E6E76">×</text>
+      </g>
+    </symbol>
+    <symbol id="st3" viewBox="0 0 240 150">
+      <rect x="0" y="6" width="240" height="138" fill="#F2F1EC"/>
+      <line x1="66" y1="42" x2="66" y2="64" class="edge"/>
+      <line x1="170" y1="42" x2="160" y2="64" class="edge"/>
+      <rect x="16" y="22" width="96" height="20" rx="2" class="rec-canon"/><rect x="16" y="22" width="3" height="20" class="bar-accent"/>
+      <rect x="124" y="22" width="102" height="20" rx="2" class="rec-strong" style="stroke-width:2.2"/><rect x="124" y="22" width="3" height="20" class="bar-accent"/>
+      <rect x="16" y="64" width="84" height="20" rx="2" class="rec-canon"/><rect x="16" y="64" width="3" height="20" class="bar-accent"/>
+      <rect x="112" y="64" width="110" height="20" rx="2" class="rec-canon"/><rect x="112" y="64" width="3" height="20" class="bar-accent"/>
+      <g opacity=".3"><rect x="40" y="106" width="120" height="20" rx="2" class="rec-canon"/><rect x="40" y="106" width="3" height="20" class="bar-accent"/></g>
+    </symbol>
+    <symbol id="st4" viewBox="0 0 240 150">
+      <rect x="10" y="6" width="220" height="138" rx="2" class="box"/>
+      <rect x="28" y="24" width="160" height="5" class="reason"/>
+      <rect x="28" y="37" width="128" height="5" class="reason"/>
+      <rect x="28" y="50" width="146" height="5" class="reason"/>
+      <rect x="28" y="78" width="170" height="26" rx="2" class="rec-strong"/>
+      <rect x="28" y="78" width="3" height="26" class="bar-accent"/>
+      <text x="40" y="95.5" class="t-rec">relevant conclusion</text>
+      <text x="28" y="128" class="t-note">checked against the code</text>
+    </symbol>
+  </defs>
+</svg>
 
 <header class="nav">
   <div class="wrap nav-inner">
@@ -271,294 +376,354 @@ footer { margin-top: 152px; border-top: 1px solid var(--rule); padding: 52px 0 4
 <section class="hero wrap grid">
   <div class="hero-copy">
     <h1 class="display">Your coding agent shouldn’t start every session as a stranger.</h1>
-    <p class="lead">Reverie is memory for coding agents. It keeps the engineering conclusions your agent reaches while you work — root causes, constraints, decisions — reviewed by you and grounded in your repository, so later sessions can build on them.</p>
-    <p class="agents">Works with Claude Code, Cursor, OpenCode and Codex. Memory stays on your machine.</p>
+    <p class="lead">Reverie is memory for coding agents. It keeps the conclusions your agent reaches — reviewed by you, grounded in your code — so the next session builds on them.</p>
+    <p class="agents">Works with Claude Code, Cursor, OpenCode, Codex — any MCP agent, on any model.</p>
     <div class="ctas">
       <a class="btn btn-primary" href="#">How it works</a>
       <a class="btn btn-secondary" href="#">Read the research</a>
     </div>
   </div>
-  <figure class="hero-specimen">
-    <div class="specimen">
+
+  <figure class="hero-visual">
+    <div class="hv-card specimen">
       <div class="sp-head">
-        <span>ec_query · group 1</span>
-        <span class="sp-status"><i></i>canonical · reviewed</span>
+        <span>conclusion</span>
+        <span class="sp-status"><i></i>reviewed</span>
       </div>
       <p class="sp-cognition">Cache invalidation must follow token refresh; clearing the cache first serves stale authentication tokens.</p>
       <dl class="sp-fields">
         <dt>type</dt><dd>invariant</dd>
         <dt>scope</dt><dd>repo:myapp &gt; module:auth</dd>
         <dt>confidence</dt><dd>0.67<span class="cbar"><i style="width:67%"></i></span></dd>
-        <dt>source</dt><dd>debugging</dd>
-        <dt>grounding</dt><dd>auth/token_manager.rs · auth/cache.rs<br>TokenManager::refresh<br>TokenManager::clear_cache<br><span class="dim">@ d64d0e07c1ab</span></dd>
-        <dt>related</dt><dd>supported by 1 conclusion</dd>
+        <dt>grounding</dt><dd>auth/token_manager.rs<br>auth/cache.rs <span class="dim">@ d64d0e0</span></dd>
       </dl>
-      <p class="sp-foot">Past engineering understanding. Verify against current code before acting.</p>
+      <p class="sp-foot">Verify against current code before acting.</p>
     </div>
-    <figcaption><span class="caption">A reviewed conclusion, as your agent gets it back in a later session.</span><span class="tag">Example</span></figcaption>
+
+    <svg class="hv-net" viewBox="0 0 258 420" aria-hidden="true">
+      <defs><filter id="haze" x="-10%" y="-30%" width="120%" height="160%"><feGaussianBlur stdDeviation="1.1"/></filter></defs>
+      <!-- second ring: out of focus, so the eye stays on the card -->
+      <g opacity=".42" filter="url(#haze)">
+        <line x1="196" y1="92" x2="204" y2="114" class="edge"/>
+        <rect x="168" y="114" width="90" height="30" rx="2" class="rec-canon"/><rect x="168" y="114" width="3" height="30" class="bar-accent"/>
+        <rect x="178" y="124" width="58" height="4" fill="#CFCFCB"/><rect x="178" y="132" width="40" height="4" fill="#CFCFCB"/>
+        <line x1="188" y1="222" x2="196" y2="244" class="edge"/>
+        <rect x="160" y="244" width="94" height="30" rx="2" class="rec-canon"/><rect x="160" y="244" width="3" height="30" class="bar-accent"/>
+        <rect x="170" y="254" width="62" height="4" fill="#CFCFCB"/><rect x="170" y="262" width="44" height="4" fill="#CFCFCB"/>
+      </g>
+      <!-- first ring: legible but receded -->
+      <g opacity=".55">
+        <path d="M56,67 C32,67 22,90 4,94" class="edge" marker-end="url(#ahg)"/>
+        <path d="M4,186 C26,186 34,197 54,197" class="edge-dash" marker-end="url(#ahg)"/>
+        <path d="M4,276 C26,276 34,327 54,327" class="edge" marker-end="url(#ahg)"/>
+      </g>
+      <g opacity=".7">
+        <text x="58" y="34" class="t-mono-sm">supports</text>
+        <text x="58" y="164" class="t-mono-sm">depends on</text>
+        <text x="58" y="294" class="t-mono-sm">replaced</text>
+      </g>
+      <g opacity=".5">
+        <rect x="58" y="42" width="180" height="50" rx="2" class="rec-canon"/><rect x="58" y="42" width="3" height="50" class="bar-accent"/>
+        <text x="70" y="63" class="t-rec-sm">Token refresh completes</text>
+        <text x="70" y="80" class="t-rec-sm">before any cache read</text>
+        <rect x="58" y="172" width="180" height="50" rx="2" class="rec-canon"/><rect x="58" y="172" width="3" height="50" class="bar-accent"/>
+        <text x="70" y="193" class="t-rec-sm">TokenManager is the only</text>
+        <text x="70" y="210" class="t-rec-sm">writer of the token cache</text>
+        <rect x="58" y="302" width="180" height="50" rx="2" class="rec-canon"/>
+        <text x="70" y="323" class="t-rec-sm" style="fill:#6E6E76">Random logouts come from</text>
+        <text x="70" y="340" class="t-rec-sm" style="fill:#6E6E76">session-store expiry</text>
+        <line x1="69" y1="319" x2="229" y2="319" stroke="#6E6E76"/>
+        <line x1="69" y1="336" x2="184" y2="336" stroke="#6E6E76"/>
+      </g>
+    </svg>
+
+    <div class="hv-mobile" aria-hidden="true">
+      <div><span class="rel">supports</span>Token refresh completes before any cache read</div>
+      <div><span class="rel">depends on</span>TokenManager is the only writer of the token cache</div>
+      <div><span class="rel">replaced</span><s>Random logouts come from session-store expiry</s></div>
+    </div>
+    <figcaption><span class="caption">One reviewed conclusion and its links.</span><span class="tag">Example</span></figcaption>
   </figure>
 </section>
 
 <!-- S2 Problem -->
 <section class="section wrap grid s2">
-  <h2>The bottleneck isn’t intelligence. It’s continuity.</h2>
-  <div class="body">
-    <p>You spend an afternoon with your agent working out why users are being logged out at random. Together you find the cause — the cache is cleared before the token refresh finishes — fix it, and rule out an alternative. Then the session ends, and the next one begins without any of it.</p>
-    <p>A bigger context window holds more of one session; it doesn’t carry understanding into the next. A saved transcript keeps everything that was said, dead ends included.</p>
-    <p class="pull">The hard part isn’t storing more. It’s deciding what deserves to be remembered.</p>
+  <div class="s2-left">
+    <h2>The bottleneck isn’t intelligence. It’s continuity.</h2>
+    <p class="pull">The hard part isn’t storing more. It’s knowing what’s worth remembering.</p>
   </div>
+  <figure class="s2-fig">
+    <svg class="desk" viewBox="0 0 588 196" role="img" aria-labelledby="s2cap">
+      <line x1="534" y1="24" x2="534" y2="194" class="dash"/>
+      <text x="534" y="14" text-anchor="middle" class="t-note">session ends</text>
+      <g class="t-mono-sm"><text x="0" y="52">Monday</text><text x="0" y="112">Tuesday</text><text x="0" y="172">Wednesday</text></g>
+      <g class="reason">
+        <rect x="96" y="45" width="40" height="6"/><rect x="141" y="45" width="24" height="6"/><rect x="170" y="45" width="56" height="6"/><rect x="231" y="45" width="30" height="6"/><rect x="266" y="45" width="44" height="6"/>
+        <rect x="96" y="105" width="40" height="6"/><rect x="141" y="105" width="24" height="6"/><rect x="170" y="105" width="56" height="6"/><rect x="231" y="105" width="30" height="6"/><rect x="266" y="105" width="44" height="6"/>
+        <rect x="96" y="165" width="40" height="6"/><rect x="141" y="165" width="24" height="6"/><rect x="170" y="165" width="56" height="6"/><rect x="231" y="165" width="30" height="6"/><rect x="266" y="165" width="44" height="6"/>
+      </g>
+      <rect x="320" y="34" width="192" height="28" rx="2" class="rec-session"/><text x="332" y="52.5" class="t-rec">why users get logged out</text>
+      <rect x="320" y="94" width="192" height="28" rx="2" class="rec-session"/><text x="332" y="112.5" class="t-rec">why users get logged out</text>
+      <rect x="320" y="154" width="192" height="28" rx="2" class="rec-session"/><text x="332" y="172.5" class="t-rec">why users get logged out</text>
+    </svg>
+    <svg class="mob" viewBox="0 0 350 236" role="img" aria-labelledby="s2cap">
+      <line x1="330" y1="24" x2="330" y2="228" class="dash"/>
+      <text x="350" y="12" text-anchor="end" class="t-note">session ends</text>
+      <g class="t-mono-sm"><text x="0" y="38">Monday</text><text x="0" y="108">Tuesday</text><text x="0" y="178">Wednesday</text></g>
+      <g class="reason">
+        <rect x="0" y="57" width="30" height="6"/><rect x="35" y="57" width="18" height="6"/><rect x="58" y="57" width="36" height="6"/><rect x="99" y="57" width="20" height="6"/>
+        <rect x="0" y="127" width="30" height="6"/><rect x="35" y="127" width="18" height="6"/><rect x="58" y="127" width="36" height="6"/><rect x="99" y="127" width="20" height="6"/>
+        <rect x="0" y="197" width="30" height="6"/><rect x="35" y="197" width="18" height="6"/><rect x="58" y="197" width="36" height="6"/><rect x="99" y="197" width="20" height="6"/>
+      </g>
+      <rect x="128" y="46" width="186" height="28" rx="2" class="rec-session"/><text x="139" y="64.5" class="t-rec">why users get logged out</text>
+      <rect x="128" y="116" width="186" height="28" rx="2" class="rec-session"/><text x="139" y="134.5" class="t-rec">why users get logged out</text>
+      <rect x="128" y="186" width="186" height="28" rx="2" class="rec-session"/><text x="139" y="204.5" class="t-rec">why users get logged out</text>
+    </svg>
+    <figcaption class="caption" id="s2cap">Each new session works it out again, from zero.</figcaption>
+  </figure>
 </section>
 
-<!-- S3 How it works -->
+<!-- S3 How it works (F1) -->
 <section class="section wrap">
   <div class="grid s-head">
     <h2>How it works</h2>
-    <p class="aside">Three steps, across the session boundary — and you decide what crosses it.</p>
+    <p class="aside">From one session to the next — and you decide what’s kept.</p>
   </div>
-
   <figure class="fig">
-    <svg class="fig-desktop" viewBox="0 0 1200 482" role="img" aria-labelledby="f1cap">
-      <defs>
-        <marker id="ah" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-          <path d="M1.6,1.6 L8.6,5 L1.6,8.4" fill="none" stroke="#17171B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </marker>
-      </defs>
-      <!-- repository band -->
-      <rect x="0" y="0" width="1200" height="40" fill="#F2F1EC"/>
-      <text x="16" y="25.5" class="t-band">your repository — the code persists across sessions</text>
-
-      <!-- session labels -->
-      <text x="0" y="88" class="t-label">SESSION 1</text>
-      <text x="730" y="88" class="t-label">SESSION 2</text>
-
-      <!-- boundary -->
-      <line x1="600" y1="50" x2="600" y2="148" class="dash"/>
-      <rect x="546" y="81" width="108" height="24" fill="#FAFAF7"/>
-      <text x="600" y="98" text-anchor="middle" class="t-note">session ends</text>
-
-      <!-- Session 1 -->
-      <text x="0" y="124" class="t-body">Your agent works out why users are being logged out</text>
-      <line x1="24" y1="138" x2="24" y2="176" class="flow" marker-end="url(#ah)"/>
-      <text x="40" y="162" class="t-mono">ec_observe</text>
-      <rect x="0" y="182" width="430" height="60" rx="2" class="box"/>
-      <text x="16" y="207" class="t-body-sm"><tspan font-weight="500">Extract.</tspan> Keeps the conclusion; rejects facts,</text>
-      <text x="16" y="229" class="t-body-sm">descriptions of the code and the play-by-play.</text>
-      <line x1="24" y1="244" x2="24" y2="270" class="flow" marker-end="url(#ah)"/>
-      <rect x="0" y="276" width="430" height="76" rx="2" class="container"/>
-      <text x="14" y="297" class="t-note">session memory · unreviewed, usable now</text>
-      <rect x="14" y="308" width="304" height="32" rx="2" class="rec-session"/>
-      <text x="26" y="329" class="t-rec" style="font-size:13px">cache invalidation must follow token refresh</text>
-      <rect x="330" y="308" width="86" height="32" rx="2" class="rec-session"/>
-      <text x="373" y="329" text-anchor="middle" class="t-note" style="font-size:13.5px">+ 1 more</text>
-      <line x1="430" y1="314" x2="533" y2="314" class="flow" marker-end="url(#ah)"/>
-
-      <!-- Review gate -->
-      <rect x="535" y="152" width="130" height="182" rx="2" class="gate"/>
-      <text x="600" y="182" text-anchor="middle" class="t-gate">Review</text>
-      <line x1="551" y1="196" x2="649" y2="196" class="hair"/>
-      <text x="551" y="222" class="t-body-sm">accept</text>
-      <text x="551" y="248" class="t-body-sm">reject <tspan class="dimt">×</tspan></text>
-      <text x="551" y="274" class="t-body-sm">skip</text>
-      <text x="551" y="294" class="t-note">→ next session</text>
-      <text x="600" y="322" text-anchor="middle" class="t-note">in your terminal</text>
-
-      <!-- long-term memory band -->
-      <rect x="0" y="386" width="1200" height="96" fill="#F2F1EC"/>
-      <text x="16" y="410" class="t-band">long-term memory — reviewed</text>
-      <rect x="16" y="424" width="206" height="38" rx="2" class="rec-canon"/>
-      <rect x="16" y="424" width="3" height="38" class="bar-accent"/>
-      <text x="30" y="448" class="t-rec dimt">retry only idempotent writes</text>
-      <rect x="236" y="424" width="214" height="38" rx="2" class="rec-canon"/>
-      <rect x="236" y="424" width="3" height="38" class="bar-accent"/>
-      <text x="250" y="448" class="t-rec dimt">config loads before the logger</text>
-      <rect x="470" y="424" width="360" height="38" rx="2" class="rec-canon-strong"/>
-      <rect x="470" y="424" width="3" height="38" class="bar-accent"/>
-      <text x="486" y="448" class="t-rec">cache invalidation must follow token refresh</text>
-      <line x1="600" y1="334" x2="600" y2="420" class="flow" marker-end="url(#ah)"/>
-      <text x="611" y="372" class="t-note">accepted</text>
-
-      <!-- Session 2 -->
-      <text x="730" y="124" class="t-body">Your agent reads the auth code</text>
-      <line x1="754" y1="138" x2="754" y2="176" class="flow" marker-end="url(#ah)"/>
-      <text x="770" y="162" class="t-mono">ec_query</text>
-      <rect x="730" y="182" width="262" height="84" rx="2" class="box"/>
-      <text x="746" y="207" class="t-body-sm">Relevant conclusions come</text>
-      <text x="746" y="229" class="t-body-sm">back, with confidence, scope</text>
-      <text x="746" y="251" class="t-body-sm">and the files they concern.</text>
-      <line x1="786" y1="422" x2="786" y2="270" class="flow" marker-end="url(#ah)"/>
-      <text x="800" y="350" class="t-note">only what applies</text>
-      <line x1="992" y1="224" x2="1024" y2="224" class="flow" marker-end="url(#ah)"/>
-      <text x="1032" y="208" class="t-body-sm">Verifies them against</text>
-      <text x="1032" y="230" class="t-body-sm">the current code,</text>
-      <text x="1032" y="252" class="t-body-sm">then continues.</text>
+    <svg class="desk" viewBox="0 0 1200 270" role="img" aria-labelledby="f1cap">
+      <line x1="300" y1="0" x2="300" y2="262" class="dash"/>
+      <rect x="252" y="0" width="96" height="20" fill="#FAFAF7"/>
+      <text x="300" y="14" text-anchor="middle" class="t-note">session ends</text>
+      <line x1="900" y1="0" x2="900" y2="262" class="dash"/>
+      <rect x="850" y="0" width="100" height="20" fill="#FAFAF7"/>
+      <text x="900" y="14" text-anchor="middle" class="t-note">next session</text>
+      <use href="#st1" x="30" y="24" width="240" height="150"/>
+      <use href="#st2" x="330" y="24" width="240" height="150"/>
+      <use href="#st3" x="630" y="24" width="240" height="150"/>
+      <use href="#st4" x="930" y="24" width="240" height="150"/>
+      <line x1="262" y1="99" x2="334" y2="99" class="flow" marker-end="url(#ah)"/>
+      <line x1="568" y1="75" x2="626" y2="75" class="flow" marker-end="url(#ah)"/>
+      <line x1="872" y1="115" x2="956" y2="115" class="flow" marker-end="url(#ah)"/>
+      <text x="40" y="212"><tspan class="t-num">1</tspan><tspan class="t-title" dx="10">Your agent works</tspan></text>
+      <text x="40" y="238" class="t-line">Conclusions are extracted as it goes.</text>
+      <text x="340" y="212"><tspan class="t-num">2</tspan><tspan class="t-title" dx="10">You review</tspan></text>
+      <text x="340" y="238" class="t-line">Keep what’s right. Drop the rest.</text>
+      <text x="640" y="212"><tspan class="t-num">3</tspan><tspan class="t-title" dx="10">Memory builds up</tspan></text>
+      <text x="640" y="238" class="t-line">Grounded in your code.</text>
+      <text x="940" y="212"><tspan class="t-num">4</tspan><tspan class="t-title" dx="10">Your agent asks</tspan></text>
+      <text x="940" y="238" class="t-line">After reading the code, not before.</text>
     </svg>
-
-    <div class="fig-mobile m-fig">
-      <p class="mono-label m-lab">Session 1</p>
-      <div class="m-step plain">Your agent works out why users are being logged out</div>
-      <div class="m-arrow">ec_observe</div>
-      <div class="m-step"><b style="font-weight:500">Extract.</b> Keeps the conclusion; rejects facts, descriptions of the code and the play-by-play.</div>
-      <div class="m-arrow"></div>
-      <div class="m-mem"><div class="lbl">session memory · unreviewed, usable now</div><div class="m-rec">cache invalidation must follow token refresh</div></div>
+    <div class="f1-mobile">
+      <div class="st"><svg viewBox="0 0 240 150" aria-hidden="true"><use href="#st1"/></svg><h3><span class="n">1</span>Your agent works</h3><p>Conclusions are extracted as it goes.</p></div>
       <div class="m-boundary">session ends</div>
-      <div class="m-gate"><b>Review</b> <span style="color:var(--ink-2)">— in your terminal</span><br>accept · reject × · skip → next session</div>
-      <div class="m-arrow"><span class="note" style="margin-left:0">accepted</span></div>
-      <div class="m-band"><div class="lbl">long-term memory — reviewed</div><div class="m-rec solid">cache invalidation must follow token refresh</div></div>
-      <div class="m-boundary">later</div>
-      <p class="mono-label m-lab">Session 2</p>
-      <div class="m-step plain">Your agent reads the auth code</div>
-      <div class="m-arrow">ec_query</div>
-      <div class="m-step">Relevant conclusions come back, with confidence, scope and the files they concern. <span style="color:var(--ink-3);font-style:italic">↑ from long-term memory, only what applies</span></div>
-      <div class="m-arrow"></div>
-      <div class="m-step plain">Verifies them against the current code, then continues.</div>
+      <div class="st"><svg viewBox="0 0 240 150" aria-hidden="true"><use href="#st2"/></svg><h3><span class="n">2</span>You review</h3><p>Keep what’s right. Drop the rest.</p></div>
+      <div class="st"><svg viewBox="0 0 240 150" aria-hidden="true"><use href="#st3"/></svg><h3><span class="n">3</span>Memory builds up</h3><p>Grounded in your code.</p></div>
+      <div class="m-boundary">next session</div>
+      <div class="st"><svg viewBox="0 0 240 150" aria-hidden="true"><use href="#st4"/></svg><h3><span class="n">4</span>Your agent asks</h3><p>After reading the code, not before.</p></div>
     </div>
-
-    <figcaption class="caption" id="f1cap"><span class="fig-n">Fig. 1</span>Across the session boundary. A conclusion reaches a later session only through your review — and only when your agent asks for it.</figcaption>
+    <figcaption class="caption" id="f1cap"><span class="fig-n">Fig. 1</span>Dashed: not yet reviewed. Solid, with a blue edge: reviewed by you.</figcaption>
   </figure>
-
-  <ol class="steps grid">
-    <li><h3><span class="n">1</span>Extract</h3><p>When your agent works something out, it hands its reasoning to Reverie. Reverie keeps the conclusion and rejects the rest: facts anyone could read in the code, descriptions, the play-by-play.</p></li>
-    <li><h3><span class="n">2</span>Review</h3><p>Conclusions wait in session memory, already usable in that session. When you end the session, you accept, reject or skip each one in your terminal. Only what you accept becomes long-term memory.</p></li>
-    <li><h3><span class="n">3</span>Retrieve</h3><p>In a later session, your agent asks for what’s relevant — after it has read the code, not before. It gets back conclusions with their confidence, scope and files, marked as past understanding to verify.</p></li>
-  </ol>
-  <p class="more"><a class="arrow-link" href="#">Read the full mechanism →</a></p>
+  <p class="more"><a class="arrow-link" href="#">The full mechanism →</a></p>
 </section>
 
-<!-- S4 Evolution -->
+<!-- S4 Memory that can change its mind (M1 + F2) -->
 <section class="section wrap">
   <div class="grid s-head">
     <h2>Memory that can change its mind.</h2>
-    <p class="aside">One conclusion, followed through later sessions.</p>
+    <p class="aside">Conclusions behave like beliefs: evidence strengthens them, contradictions challenge them, and disuse lets them fade.</p>
   </div>
 
-  <figure class="fig fig2">
-    <svg class="fig-desktop" viewBox="0 0 1200 262" role="img" aria-labelledby="f2cap">
-      <defs>
-        <marker id="ah2" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-          <path d="M1.6,1.6 L8.6,5 L1.6,8.4" fill="none" stroke="#17171B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </marker>
-      </defs>
-      <!-- newer conclusion C above state 6 -->
-      <rect x="1018" y="0" width="164" height="34" rx="2" class="rec-canon-strong"/>
-      <rect x="1018" y="0" width="3" height="34" class="bar-accent"/>
+  <figure class="fig fig-mm">
+    <div class="mm-wrap">
+      <button class="mm-toggle" type="button" onclick="var m=document.getElementById('mm');m.classList.toggle('paused');this.textContent=m.classList.contains('paused')?'▶ play':'❚❚ pause';">❚❚ pause</button>
+      <div id="mm" class="mm">
+        <!-- desktop map -->
+        <svg class="desk" viewBox="0 0 1200 280" role="img" aria-labelledby="f2cap">
+          <g>
+            <path d="M234,224 C262,224 272,204 296,202" class="edge-dash" marker-end="url(#ahg)"/>
+            <path d="M462,196 C496,190 510,146 536,138" class="edge-dash" marker-end="url(#ahg)"/>
+            <path d="M468,72 C500,74 514,116 536,124" class="edge" marker-end="url(#ahg)"/>
+            <path d="M622,218 C622,196 622,170 622,150" class="edge-dash" marker-end="url(#ahg)"/>
+            <path d="M900,168 C910,140 920,122 936,110" class="edge" marker-end="url(#ahg)"/>
+            <path d="M1012,78 C1030,66 1042,58 1056,52" class="edge" marker-end="url(#ahg)"/>
+            <path d="M872,200 C872,214 870,226 868,240" class="edge" marker-end="url(#ahg)"/>
+          </g>
+          <rect x="40" y="24" width="132" height="28" rx="2" class="rec-canon"/><rect x="40" y="24" width="3" height="28" class="bar-accent"/><text x="52" y="42.5" class="t-rec">flags default to off</text>
+          <rect x="40" y="210" width="192" height="28" rx="2" class="rec-canon"/><rect x="40" y="210" width="3" height="28" class="bar-accent"/><text x="52" y="228.5" class="t-rec">retry only idempotent writes</text>
+          <rect class="n2-rect anim rec-canon" x="280" y="58" width="186" height="28" rx="2"/><rect x="280" y="58" width="3" height="28" class="bar-accent"/><text x="292" y="76.5" class="t-rec">cache reads wait for refresh</text>
+          <rect x="300" y="188" width="160" height="28" rx="2" class="rec-canon"/><rect x="300" y="188" width="3" height="28" class="bar-accent"/><text x="312" y="206.5" class="t-rec">one db pool per worker</text>
+          <g class="n1-body anim"><rect x="540" y="118" width="164" height="28" rx="2" class="rec-canon"/><rect x="540" y="118" width="3" height="28" class="bar-accent"/><text x="552" y="136.5" class="t-rec">tokens refresh at expiry</text></g>
+          <rect class="n1-amber anim bar-amber" x="540" y="118" width="3" height="28"/>
+          <line class="n1-strike anim" pathLength="100" x1="551" y1="132" x2="692" y2="132" stroke="#6E6E76" stroke-width="1.2"/>
+          <rect x="548" y="220" width="184" height="28" rx="2" class="rec-canon"/><rect x="548" y="220" width="3" height="28" class="bar-accent"/><text x="560" y="238.5" class="t-rec">errors mapped in one place</text>
+          <rect x="800" y="170" width="174" height="28" rx="2" class="rec-canon"/><rect x="800" y="170" width="3" height="28" class="bar-accent"/><text x="812" y="188.5" class="t-rec">config loads before logger</text>
+          <rect x="890" y="80" width="142" height="28" rx="2" class="rec-canon"/><rect x="890" y="80" width="3" height="28" class="bar-accent"/><text x="902" y="98.5" class="t-rec">rate limit is per user</text>
+          <rect x="1030" y="22" width="152" height="28" rx="2" class="rec-canon"/><rect x="1030" y="22" width="3" height="28" class="bar-accent"/><text x="1042" y="40.5" class="t-rec">API version in header</text>
+          <rect x="812" y="244" width="138" height="28" rx="2" class="rec-canon"/><rect x="812" y="244" width="3" height="28" class="bar-accent"/><text x="824" y="262.5" class="t-rec">log level set per env</text>
+          <g class="n6 anim">
+            <path d="M1060,188 C1052,150 1036,124 1016,112" class="edge-dash" marker-end="url(#ahg)"/>
+            <rect x="1010" y="190" width="160" height="28" rx="2" class="rec-canon"/><rect x="1010" y="190" width="3" height="28" class="bar-accent"/><text x="1022" y="208.5" class="t-rec">build cache per lockfile</text>
+          </g>
+          <!-- events -->
+          <g class="a1-dashed anim"><rect x="40" y="116" width="156" height="28" rx="2" class="rec-session"/><text x="52" y="134.5" class="t-rec">cache cleared too early</text></g>
+          <g class="a1-solid anim"><rect x="40" y="116" width="156" height="28" rx="2" class="rec-strong"/><rect x="40" y="116" width="3" height="28" class="bar-accent"/><text x="52" y="134.5" class="t-rec">cache cleared too early</text></g>
+          <text class="lab-new anim t-ev" x="40" y="108">new · awaiting review</text>
+          <text class="lab-added anim t-ev" x="40" y="108">added after review</text>
+          <path class="e-a1n2 anim" pathLength="100" d="M198,124 C226,112 246,80 276,72" stroke="#17171B" stroke-width="1.4" fill="none"/>
+          <path class="e-a1n2-head anim" d="M198,124 C226,112 246,80 276,72" stroke="none" fill="none" marker-end="url(#ah)"/>
+          <text class="lab-strong anim t-ev" x="280" y="50">strengthened</text>
+          <g class="c1 anim"><rect x="566" y="20" width="188" height="28" rx="2" class="rec-strong"/><rect x="566" y="20" width="3" height="28" class="bar-accent"/><text x="578" y="38.5" class="t-rec">tokens refresh before expiry</text></g>
+          <path class="e-contra anim" pathLength="100" d="M640,50 C636,74 630,94 626,114" stroke="#9A5F0E" stroke-width="1.4" fill="none"/>
+          <line class="e-contra anim" pathLength="100" x1="617" y1="109" x2="635" y2="112" stroke="#9A5F0E" stroke-width="1.6"/>
+          <text class="lab-challenged anim t-ev" x="716" y="137" style="fill:#9A5F0E">challenged</text>
+          <g class="e-replaces anim"><path d="M640,50 C636,74 630,94 626,114" stroke="#17171B" stroke-width="1.2" fill="none" marker-end="url(#ah)"/><text x="646" y="88" class="t-mono-sm">replaces</text></g>
+          <text class="lab-superseded anim t-ev" x="716" y="137">superseded · kept</text>
+          <text class="lab-fading anim t-ev" x="1010" y="238">fading · unused</text>
+        </svg>
+        <!-- mobile map -->
+        <svg class="mob" viewBox="0 0 360 410" role="img" aria-labelledby="f2cap">
+          <path d="M90,328 C92,310 96,296 100,282" class="edge-dash" marker-end="url(#ahg)"/>
+          <rect class="n2-rect anim rec-canon" x="150" y="30" width="186" height="28" rx="2"/><rect x="150" y="30" width="3" height="28" class="bar-accent"/><text x="162" y="48.5" class="t-rec">cache reads wait for refresh</text>
+          <g class="n1-body anim"><rect x="40" y="250" width="164" height="28" rx="2" class="rec-canon"/><rect x="40" y="250" width="3" height="28" class="bar-accent"/><text x="52" y="268.5" class="t-rec">tokens refresh at expiry</text></g>
+          <rect class="n1-amber anim bar-amber" x="40" y="250" width="3" height="28"/>
+          <line class="n1-strike anim" pathLength="100" x1="51" y1="264" x2="192" y2="264" stroke="#6E6E76" stroke-width="1.2"/>
+          <rect x="10" y="330" width="160" height="28" rx="2" class="rec-canon"/><rect x="10" y="330" width="3" height="28" class="bar-accent"/><text x="22" y="348.5" class="t-rec">one db pool per worker</text>
+          <g class="n6 anim"><rect x="186" y="370" width="160" height="28" rx="2" class="rec-canon"/><rect x="186" y="370" width="3" height="28" class="bar-accent"/><text x="198" y="388.5" class="t-rec">build cache per lockfile</text></g>
+          <g class="a1-dashed anim"><rect x="10" y="100" width="156" height="28" rx="2" class="rec-session"/><text x="22" y="118.5" class="t-rec">cache cleared too early</text></g>
+          <g class="a1-solid anim"><rect x="10" y="100" width="156" height="28" rx="2" class="rec-strong"/><rect x="10" y="100" width="3" height="28" class="bar-accent"/><text x="22" y="118.5" class="t-rec">cache cleared too early</text></g>
+          <text class="lab-new anim t-ev" x="10" y="92">new · awaiting review</text>
+          <text class="lab-added anim t-ev" x="10" y="92">added after review</text>
+          <path class="e-a1n2 anim" pathLength="100" d="M168,106 C182,92 190,76 200,62" stroke="#17171B" stroke-width="1.4" fill="none"/>
+          <path class="e-a1n2-head anim" d="M168,106 C182,92 190,76 200,62" stroke="none" fill="none" marker-end="url(#ah)"/>
+          <text class="lab-strong anim t-ev" x="150" y="22">strengthened</text>
+          <g class="c1 anim"><rect x="160" y="170" width="188" height="28" rx="2" class="rec-strong"/><rect x="160" y="170" width="3" height="28" class="bar-accent"/><text x="172" y="188.5" class="t-rec">tokens refresh before expiry</text></g>
+          <path class="e-contra anim" pathLength="100" d="M220,200 C206,218 190,232 176,246" stroke="#9A5F0E" stroke-width="1.4" fill="none"/>
+          <line class="e-contra anim" pathLength="100" x1="171" y1="237" x2="183" y2="249" stroke="#9A5F0E" stroke-width="1.6"/>
+          <text class="lab-challenged anim t-ev" x="214" y="269" style="fill:#9A5F0E">challenged</text>
+          <g class="e-replaces anim"><path d="M220,200 C206,218 190,232 176,246" stroke="#17171B" stroke-width="1.2" fill="none" marker-end="url(#ah)"/><text x="206" y="230" class="t-mono-sm">replaces</text></g>
+          <text class="lab-superseded anim t-ev" x="214" y="269">superseded · kept</text>
+          <text class="lab-fading anim t-ev" x="186" y="362">fading · unused</text>
+        </svg>
+      </div>
+      <div class="legend" aria-hidden="true">
+        <span><svg viewBox="0 0 30 14"><rect x="1" y="1" width="28" height="12" rx="1" fill="none" stroke="#17171B" stroke-dasharray="3 2"/></svg>new, awaiting review</span>
+        <span><svg viewBox="0 0 30 14"><rect x="1" y="1" width="28" height="12" rx="1" fill="#fff" stroke="#17171B" stroke-width="2.2"/></svg>strengthened</span>
+        <span><svg viewBox="0 0 30 14"><rect x="1" y="1" width="28" height="12" rx="1" fill="#fff" stroke="rgba(23,23,27,.24)"/><rect x="1" y="1" width="3" height="12" fill="#9A5F0E"/></svg>challenged</span>
+        <span><svg viewBox="0 0 30 14"><rect x="1" y="1" width="28" height="12" rx="1" fill="#fff" stroke="rgba(23,23,27,.24)"/><line x1="5" y1="7" x2="25" y2="7" stroke="#6E6E76"/></svg>superseded, kept</span>
+        <span><svg viewBox="0 0 30 14"><rect x="1" y="1" width="28" height="12" rx="1" fill="#fff" stroke="rgba(23,23,27,.24)" opacity=".3"/></svg>fading when unused</span>
+      </div>
+    </div>
+
+    <p class="mono-label panel-label">One conclusion, up close</p>
+    <svg class="desk" viewBox="0 0 1200 250" role="img" aria-label="The life of one conclusion">
+      <rect x="1018" y="0" width="164" height="34" rx="2" class="rec-strong"/><rect x="1018" y="0" width="3" height="34" class="bar-accent"/>
       <text x="1032" y="22" class="t-rec">newer conclusion</text>
-      <line x1="1100" y1="36" x2="1100" y2="62" class="flow" marker-end="url(#ah2)"/>
+      <line x1="1100" y1="36" x2="1100" y2="62" class="flow" marker-end="url(#ah)"/>
       <text x="1110" y="54" class="t-mono-sm">replaces</text>
-
-      <!-- records row y=66..114 -->
-      <!-- 1 extracted (session) -->
-      <rect x="18" y="66" width="164" height="48" rx="2" class="rec-session"/>
-      <text x="32" y="86" class="t-rec">cache invalidation</text>
-      <text x="32" y="104" class="t-rec">follows token refresh</text>
-      <line x1="186" y1="90" x2="214" y2="90" class="flow" marker-end="url(#ah2)"/>
-      <!-- 2 accepted -->
-      <rect x="218" y="66" width="164" height="48" rx="2" class="rec-canon-strong"/>
-      <rect x="218" y="66" width="3" height="48" class="bar-accent"/>
-      <text x="232" y="86" class="t-rec">cache invalidation</text>
-      <text x="232" y="104" class="t-rec">follows token refresh</text>
-      <line x1="386" y1="90" x2="414" y2="90" class="flow" marker-end="url(#ah2)"/>
-      <!-- 3 supported -->
-      <rect x="418" y="66" width="164" height="48" rx="2" class="rec-canon-strong"/>
-      <rect x="418" y="66" width="3" height="48" class="bar-accent"/>
-      <text x="432" y="86" class="t-rec">cache invalidation</text>
-      <text x="432" y="104" class="t-rec">follows token refresh</text>
-      <line x1="586" y1="90" x2="614" y2="90" class="flow" marker-end="url(#ah2)"/>
-      <!-- 4 challenged -->
-      <rect x="618" y="66" width="164" height="48" rx="2" class="rec-canon-strong"/>
-      <rect x="618" y="66" width="3" height="48" class="bar-amber"/>
-      <text x="632" y="86" class="t-rec">cache invalidation</text>
-      <text x="632" y="104" class="t-rec">follows token refresh</text>
-      <line x1="786" y1="90" x2="814" y2="90" class="flow" marker-end="url(#ah2)"/>
-      <!-- 5 open question -->
-      <rect x="818" y="66" width="164" height="48" rx="2" class="rec-session"/>
-      <text x="832" y="86" class="t-rec">cache invalidation</text>
-      <text x="832" y="104" class="t-rec">follows token refresh</text>
-      <text x="970" y="87" text-anchor="middle" class="t-gate" style="font-size:16px">?</text>
-      <line x1="986" y1="90" x2="1014" y2="90" class="flow" marker-end="url(#ah2)"/>
-      <!-- 6 superseded -->
-      <rect x="1018" y="66" width="164" height="48" rx="2" class="rec-canon"/>
-      <text x="1032" y="86" class="t-rec dimt">cache invalidation</text>
-      <text x="1032" y="104" class="t-rec dimt">follows token refresh</text>
-      <line x1="1031" y1="82" x2="1145" y2="82" stroke="#6E6E76" stroke-width="1"/>
-      <line x1="1031" y1="100" x2="1161" y2="100" stroke="#6E6E76" stroke-width="1"/>
-
-      <!-- state labels -->
+      <rect x="18" y="66" width="164" height="48" rx="2" class="rec-session"/><text x="32" y="86" class="t-rec">cache invalidation</text><text x="32" y="104" class="t-rec">follows token refresh</text>
+      <line x1="186" y1="90" x2="214" y2="90" class="flow" marker-end="url(#ah)"/>
+      <rect x="218" y="66" width="164" height="48" rx="2" class="rec-strong"/><rect x="218" y="66" width="3" height="48" class="bar-accent"/><text x="232" y="86" class="t-rec">cache invalidation</text><text x="232" y="104" class="t-rec">follows token refresh</text>
+      <line x1="386" y1="90" x2="414" y2="90" class="flow" marker-end="url(#ah)"/>
+      <rect x="418" y="66" width="164" height="48" rx="2" class="rec-strong" style="stroke-width:2.2"/><rect x="418" y="66" width="3" height="48" class="bar-accent"/><text x="432" y="86" class="t-rec">cache invalidation</text><text x="432" y="104" class="t-rec">follows token refresh</text>
+      <line x1="586" y1="90" x2="614" y2="90" class="flow" marker-end="url(#ah)"/>
+      <rect x="618" y="66" width="164" height="48" rx="2" class="rec-strong"/><rect x="618" y="66" width="3" height="48" class="bar-amber"/><text x="632" y="86" class="t-rec">cache invalidation</text><text x="632" y="104" class="t-rec">follows token refresh</text>
+      <line x1="786" y1="90" x2="814" y2="90" class="flow" marker-end="url(#ah)"/>
+      <rect x="818" y="66" width="164" height="48" rx="2" class="rec-session"/><text x="832" y="86" class="t-rec">cache invalidation</text><text x="832" y="104" class="t-rec">follows token refresh</text>
+      <text x="970" y="87" text-anchor="middle" class="t-title" style="font-size:16px">?</text>
+      <line x1="986" y1="90" x2="1014" y2="90" class="flow" marker-end="url(#ah)"/>
+      <rect x="1018" y="66" width="164" height="48" rx="2" class="rec-canon"/><text x="1032" y="86" class="t-rec" style="fill:#6E6E76">cache invalidation</text><text x="1032" y="104" class="t-rec" style="fill:#6E6E76">follows token refresh</text>
+      <line x1="1031" y1="82" x2="1145" y2="82" stroke="#6E6E76"/><line x1="1031" y1="100" x2="1161" y2="100" stroke="#6E6E76"/>
       <g class="t-mono-sm" text-anchor="middle">
-        <text x="100" y="140" style="fill:#17171B">session · unreviewed</text>
-        <text x="300" y="140" style="fill:#17171B">canonical · reviewed</text>
-        <text x="500" y="140" style="fill:#17171B">supported</text>
+        <text x="100" y="140" style="fill:#17171B">unreviewed</text>
+        <text x="300" y="140" style="fill:#17171B">reviewed</text>
+        <text x="500" y="140" style="fill:#17171B">reviewed</text>
         <text x="700" y="140" style="fill:#9A5F0E">challenged</text>
         <text x="900" y="140" style="fill:#17171B">open question</text>
-        <text x="1100" y="140" style="fill:#6E6E76">superseded · kept</text>
+        <text x="1100" y="140" style="fill:#6E6E76">superseded</text>
       </g>
-
-      <!-- confidence bars: track 120 wide; values 0.56 0.56 0.67 0.55 0.55(frozen) 0.55(frozen) -->
       <rect x="40" y="152" width="120" height="5" class="track"/><rect x="40" y="152" width="67.2" height="5" fill="#17171B"/>
       <rect x="240" y="152" width="120" height="5" class="track"/><rect x="240" y="152" width="67.2" height="5" fill="#17171B"/>
       <rect x="440" y="152" width="120" height="5" class="track"/><rect x="440" y="152" width="80.4" height="5" fill="#17171B"/>
       <rect x="640" y="152" width="120" height="5" class="track"/><rect x="640" y="152" width="66" height="5" fill="#9A5F0E"/>
       <rect x="840" y="152" width="120" height="5" class="track"/><rect x="840" y="152" width="66" height="5" fill="#A8A8AE"/>
       <rect x="1040" y="152" width="120" height="5" class="track"/><rect x="1040" y="152" width="66" height="5" fill="#A8A8AE"/>
-
-      <!-- events -->
-      <g class="t-body-sm" text-anchor="middle" style="fill:#55555D">
-        <text x="100" y="186">Your agent works it out</text><text x="100" y="206">in a session</text>
-        <text x="300" y="186">You accept it</text><text x="300" y="206">at review</text>
-        <text x="500" y="186">A later conclusion agrees;</text><text x="500" y="206">your agent uses it</text>
-        <text x="700" y="186">After a migration, a new</text><text x="700" y="206">conclusion disagrees</text>
-        <text x="900" y="186">The conflict persists;</text><text x="900" y="206">confidence is frozen</text>
-        <text x="1100" y="186">You prefer the newer one;</text><text x="1100" y="206">the old one stays linked</text>
+      <g class="t-line" text-anchor="middle" style="font-size:14.5px">
+        <text x="100" y="186">Extracted</text>
+        <text x="300" y="186">You accept it</text>
+        <text x="500" y="186">Supported and used</text>
+        <text x="700" y="186">A new one disagrees</text>
+        <text x="900" y="186">Conflict persists</text>
+        <text x="1100" y="186">You prefer the newer</text>
       </g>
-      <text x="0" y="252" class="t-note" style="fill:#55555D;font-size:15px">If the code it cites is deleted, a conclusion like this is retired automatically.</text>
+      <text x="0" y="234" class="t-note" style="fill:#55555D;font-size:15px">If the code it cites is deleted, a conclusion like this is retired automatically.</text>
     </svg>
-
-    <div class="fig-mobile">
+    <div class="f2-mobile">
       <ol class="m-life">
-        <li><span class="st">session · unreviewed</span><div class="ev">Your agent works it out in a session.</div><span class="cb"><i style="width:56%;background:var(--ink)"></i></span></li>
-        <li><span class="st">canonical · reviewed</span><div class="ev">You accept it at review.</div><span class="cb"><i style="width:56%;background:var(--ink)"></i></span></li>
-        <li><span class="st">supported</span><div class="ev">A later conclusion agrees; your agent uses it.</div><span class="cb"><i style="width:67%;background:var(--ink)"></i></span></li>
-        <li><span class="st" style="color:var(--challenged)">challenged</span><div class="ev">After a migration, a new conclusion disagrees.</div><span class="cb"><i style="width:55%;background:var(--challenged)"></i></span></li>
-        <li><span class="st">open question</span><div class="ev">The conflict persists; confidence is frozen.</div><span class="cb"><i style="width:55%;background:#A8A8AE"></i></span></li>
-        <li><span class="st" style="color:var(--ink-3)">superseded · kept</span><div class="ev">You prefer the newer conclusion; the old one stays linked.</div><span class="cb"><i style="width:55%;background:#A8A8AE"></i></span></li>
+        <li><span class="st2">unreviewed</span><div class="ev">Extracted in a session.</div><span class="cb"><i style="width:56%;background:var(--ink)"></i></span></li>
+        <li><span class="st2">reviewed</span><div class="ev">You accept it.</div><span class="cb"><i style="width:56%;background:var(--ink)"></i></span></li>
+        <li><span class="st2">reviewed</span><div class="ev">Supported and used.</div><span class="cb"><i style="width:67%;background:var(--ink)"></i></span></li>
+        <li><span class="st2" style="color:var(--challenged)">challenged</span><div class="ev">A new conclusion disagrees.</div><span class="cb"><i style="width:55%;background:var(--challenged)"></i></span></li>
+        <li><span class="st2">open question</span><div class="ev">The conflict persists.</div><span class="cb"><i style="width:55%;background:#A8A8AE"></i></span></li>
+        <li><span class="st2" style="color:var(--ink-3)">superseded</span><div class="ev">You prefer the newer one. This one is kept.</div><span class="cb"><i style="width:55%;background:#A8A8AE"></i></span></li>
       </ol>
       <p class="m-foot">If the code it cites is deleted, a conclusion like this is retired automatically.</p>
     </div>
-
-    <figcaption class="caption" id="f2cap"><span class="fig-n">Fig. 2</span>The life of a conclusion. Bars show confidence, computed with Reverie’s update rules (example values).</figcaption>
+    <figcaption class="caption" id="f2cap"><span class="fig-n">Fig. 2</span>Example values, computed with Reverie’s update rules.</figcaption>
   </figure>
-
-  <div class="grid facts">
-    <div><p><b>Evidence moves confidence.</b> A supporting conclusion raises it, a contradicting one lowers it, and conclusions nobody uses fade.</p></div>
-    <div><p><b>Contradictions stay visible.</b> The challenged conclusion isn’t overwritten; if the conflict persists, it comes to you as an open question.</p></div>
-    <div><p><b>Replacements keep history.</b> Accepted conclusions are never rewritten: a new one supersedes the old, which is kept and linked.</p></div>
-    <div><p><b>The code has the last word.</b> If the files a conclusion cites are deleted, conclusions about that code are retired; general principles are kept.</p></div>
-  </div>
   <p class="more"><a class="arrow-link" href="#">How conclusions change →</a></p>
 </section>
 
-<!-- S5 What you're installing -->
-<section class="section wrap grid s5">
-  <h2>What you’re installing</h2>
-  <dl class="spec">
-    <div class="row"><dt>A local memory</dt><dd>One SQLite file in your home directory, shared across your projects. No account, no cloud service, no vector database.</dd></div>
-    <div class="row"><dt>An MCP server</dt><dd>Your agent starts it and calls four tools: <code>ec_observe</code>, <code>ec_query</code>, <code>ec_get_summary</code>, <code>ec_reconsolidate</code>.</dd></div>
-    <div class="row"><dt>Agent setup</dt><dd>The installer configures Claude Code, Cursor, OpenCode and Codex. Other MCP clients can be set up by hand.</dd></div>
-    <div class="row"><dt>Your choice of model</dt><dd>Extraction uses the LLM endpoint you configure — hosted, or local through Ollama. Embeddings and retrieval always run locally.</dd></div>
-  </dl>
-  <p class="footnote">Setup instructions will live in the repository. <a class="arrow-link" style="font-style:normal;font-size:15.5px;margin-left:8px" href="#">Data, setup and limits →</a></p>
+<!-- S5 Your memory, not your agent's (O1) -->
+<section class="section wrap">
+  <div class="grid s-head">
+    <h2>Your memory, not your agent’s.</h2>
+    <p class="aside">Switch agents or models — what you’ve built up stays with you, on your machine.</p>
+  </div>
+  <figure class="fig">
+    <svg class="desk" viewBox="0 0 1200 290" role="img" aria-labelledby="f3cap">
+      <path d="M310,92 C390,92 400,128 468,132" class="edge"/>
+      <path d="M310,198 C390,198 400,170 468,166" class="edge"/>
+      <path d="M890,52 C810,52 800,112 734,118" class="edge"/>
+      <path d="M890,148 C820,148 800,146 734,146" class="edge"/>
+      <path d="M890,244 C810,244 800,180 734,174" class="edge-dash"/>
+      <text x="350" y="82" class="t-mono-sm" style="fill:#6E6E76">MCP</text>
+      <text x="812" y="136" class="t-mono-sm" style="fill:#6E6E76">MCP</text>
+      <rect x="470" y="88" width="262" height="116" rx="2" class="rec-strong"/>
+      <rect x="470" y="88" width="4" height="116" class="bar-accent"/>
+      <text x="494" y="126" class="t-hub">Your memory</text>
+      <text x="494" y="152" class="t-mono-sm" style="font-size:12.5px;fill:#17171B">~/.ec/ec.db</text>
+      <text x="494" y="180" class="t-note" style="font-size:14px;fill:#55555D">on your machine · reviewed by you</text>
+      <rect x="110" y="70" width="200" height="44" rx="2" class="rec-canon"/><text x="130" y="98" class="t-agent">Claude Code</text>
+      <rect x="110" y="176" width="200" height="44" rx="2" class="rec-canon"/><text x="130" y="204" class="t-agent">Cursor</text>
+      <rect x="890" y="30" width="200" height="44" rx="2" class="rec-canon"/><text x="910" y="58" class="t-agent">OpenCode</text>
+      <rect x="890" y="126" width="200" height="44" rx="2" class="rec-canon"/><text x="910" y="154" class="t-agent">Codex</text>
+      <rect x="890" y="222" width="200" height="44" rx="2" class="rec-session" style="stroke:#6E6E76"/><text x="910" y="250" class="t-agent" style="fill:#55555D">Any MCP agent</text>
+    </svg>
+    <div class="o1-mobile">
+      <div class="o1m-hub"><b>Your memory</b><code>~/.ec/ec.db</code><i>on your machine · reviewed by you</i></div>
+      <div class="o1m-agents"><span>Claude Code</span><span>Cursor</span><span>OpenCode</span><span>Codex</span><span class="byhand">Any MCP agent</span></div>
+    </div>
+    <figcaption class="caption" id="f3cap"><span class="fig-n">Fig. 3</span>Solid: set up for you. Dashed: set up by hand.</figcaption>
+  </figure>
+  <ul class="facts3 grid">
+    <li><b>Stored on your machine.</b><span>One SQLite file. No Reverie account.</span></li>
+    <li><b>You approve what’s kept.</b><span>Every extracted conclusion passes your review.</span></li>
+    <li><b>Your choice of model.</b><span>Extraction runs hosted, or locally with Ollama.</span></li>
+  </ul>
+  <p class="more"><a class="arrow-link" href="#">Data, setup and limits →</a></p>
 </section>
 
 <!-- S6 Research -->
 <section class="section wrap grid s6">
   <div class="left">
     <h2>Built by measuring what didn’t work.</h2>
-    <p>Reverie’s first version loaded relevant memory into the agent’s context before it started work. On our benchmark, that made the agent worse: it trusted what it was told instead of reading the code. That result shaped everything after it — keep only conclusions, review them, and let the agent ask when it needs to.</p>
-    <p class="second">We publish our results whether or not they favour Reverie.</p>
+    <p>Our first version loaded memory into the agent before it started. On our benchmark, that made it worse — it trusted memory over the code. So Reverie keeps reviewed conclusions, and lets the agent ask.</p>
+    <p class="second">We publish results either way.</p>
   </div>
   <ul class="rlist">
-    <li><span class="mono-label kind">Paper</span><div><div class="title">Reverie: A Biological Memory Architecture for AI Agents</div><div class="meta">September 2026 · Read online or download the PDF</div></div></li>
-    <li><span class="mono-label kind">Benchmark</span><div><div class="title">EC-Bench: what we measure, and what we’ve found so far</div><div class="meta">Method, results ledger and limits</div></div></li>
-    <li><span class="mono-label kind">Next</span><div><div class="title">The continuity experiment: the same agent, with and without Reverie</div><div class="meta"><span class="tag dashed">In design</span> Protocol published before results</div></div></li>
+    <li><span class="mono-label kind">Paper</span><div><div class="title">Reverie: A Biological Memory Architecture for AI Agents</div><div class="meta">September 2026</div></div></li>
+    <li><span class="mono-label kind">Benchmark</span><div><div class="title">EC-Bench: what we measure, and what we’ve found</div><div class="meta">Method, results and limits</div></div></li>
+    <li><span class="mono-label kind">Next</span><div><div class="title">The same agent, with and without Reverie</div><div class="meta"><span class="tag dashed">In design</span></div></div></li>
   </ul>
   <p class="more"><a class="arrow-link" href="#">All research →</a></p>
 </section>
@@ -568,7 +733,7 @@ footer { margin-top: 152px; border-top: 1px solid var(--rule); padding: 52px 0 4
   <div class="inner grid">
     <h2>The repository opens soon.</h2>
     <div class="right">
-      <p>Reverie is a Python package and a local MCP server, being prepared for public release. Want to know when it’s out, or talk about the research?</p>
+      <p>Want to know when it’s out, or talk about the research?</p>
       <div class="ctas"><a class="btn btn-primary" href="#">Get in touch</a><a class="btn btn-secondary" href="#">How it works</a></div>
     </div>
   </div>

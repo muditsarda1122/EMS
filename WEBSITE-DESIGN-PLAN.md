@@ -4,7 +4,8 @@
 **Date:** 2026-10-05
 **Branch:** `claude/elegant-hopper-xg43jw`
 **Scope:** a ground-up redesign of the Reverie website, from information architecture down to the design system and an implementation plan.
-**Design freeze:** no website code, styles, diagrams or content were changed while this plan was written. The only files added are this plan and its companion, [`DIAGRAM-PLAN.md`](./DIAGRAM-PLAN.md).
+**Design freeze:** no website code, styles, diagrams or content were changed while this plan was written. The only files added are planning documents: this plan, [`DIAGRAM-PLAN.md`](./DIAGRAM-PLAN.md) and [`IMPLEMENTATION-TASKS.md`](./IMPLEMENTATION-TASKS.md). There is also a static design preview in [`design/homepage-preview/`](./design/homepage-preview/), which is not part of the site build.
+**Revision 2 (2026-10-05):** the homepage was revised after the owner reviewed the first preview. It now has less text and more diagrams, an animated memory map, and a section on who owns the memory. The changes touch §0, §1.5, §2, §4, §7, §9, §10, §11, §13, §15, §16, §19 and §20.
 
 **Sources.** The plan draws on five documents:
 
@@ -23,15 +24,15 @@ It also uses a read-only pass over this repository (including the four PDFs in `
 | Question | Decision |
 |---|---|
 | What the site is for | A product site for Reverie, backed by its research. The order is: product, then how it works, then why it's different, then the research that explains and tests it. |
-| Positioning | **Reverie is memory for coding agents. It keeps the engineering conclusions your agent reaches, reviewed by you, grounded in your repository, and revised as evidence changes.** |
-| Category frame | Reverie sits among tools that give *the coding agent you already use* persistent memory. Being in that category isn't what makes it different: many tools are there now (§3). What differs is *what* it keeps (conclusions) and *how belief is governed*: confidence, contradiction, supersession, grounding, review, and retrieval only when the agent asks. |
-| Homepage | Seven short sections plus one reserved slot. About 480 words, three visuals, no numbers. |
+| Positioning | **Reverie is memory for coding agents. It keeps the engineering conclusions your agent reaches, reviewed by you, grounded in your repository, and revised as evidence changes. The memory is yours, not your agent's: one local file that any MCP agent can use, on any model.** |
+| Category frame | Reverie sits among tools that give *the coding agent you already use* persistent memory. Being in that category isn't what makes it different: many tools are there now (§3). What differs is *what* it keeps (conclusions), *how belief is governed* (confidence, contradiction, supersession, grounding, review, and retrieval only when the agent asks) and *whose memory it is*: the developer's, shared by every agent they connect. |
+| Homepage | Seven short sections plus one reserved slot. About 340 words of copy and no numbers. It is visual-led: a diagram wherever one explains better than text (owner rule, 2026-10-05). Six visuals, one of them animated. |
 | Pages | Home, How it works, Research, paper (web-native), EC-Bench, Continuity experiment (reserved), Notebook entries, About, 404. |
 | Navigation | `Reverie` · How it works · Research · About · **[GitHub]** (or **Contact** until the repository is public). |
 | Removed | `/ems`, `/ethos`, `/notes` (index), and all eight existing SVG components. Also the "At a Glance" cards, "The Shift" poem, the "Research Before Systems" manifesto, the scroll-fade animation layers and framer-motion. |
 | Moved | `/ec-bench` → `/research/ec-bench`; `/notes/everything-till-now` → `/research/notes/everything-till-now` (with an editor's note); PDFs → `/research/archive/`. |
-| Visual direction | "Two voices": a serif speaks for ideas and a monospace speaks for the system. Warm paper and ink, one ink-blue accent, and status colours used only where they mean something. Hairline rules, near-square corners, no cards, no gradients, no scroll animation. |
-| Diagrams | Six new figures and two artifacts across the whole site. Never more than three visuals on any page; five pages have none. Full spec in `DIAGRAM-PLAN.md`. |
+| Visual direction | "Two voices": a serif speaks for ideas and a monospace speaks for the system. Warm paper and ink, one ink-blue accent, and status colours used only where they mean something. Hairline rules, near-square corners, no cards, no gradients, no scroll animation. There is one explanatory animation (the homepage memory map); it can be paused and is static under reduced motion. |
+| Diagrams | Nine figures and two artifacts across the whole site. No page has more than three visuals, except the homepage, which is visual-led by owner decision. Five pages have none. Full spec in `DIAGRAM-PLAN.md`. |
 | Comparison video | It gets its own research page, `/research/continuity-experiment`. Until results exist, that page publishes the protocol, and the homepage shows the experiment only as a dated "in design" line in the research section. A homepage video slot opens once results are published. |
 | Benchmark numbers | **None on the homepage or How it works.** EC-Bench numbers appear only on the EC-Bench page, in a results ledger, after the owner reconciles conflicting figures (§1.7). |
 | Blocked on the owner | Reconcile the benchmark numbers, correct the paper, capture a real `ec_query` specimen, decide repository and licence timing, confirm the domain and hosting, and share the visual references (§20). |
@@ -124,7 +125,7 @@ This comes after the market research in §3. None of the items below is unique o
 3. **A structural review boundary.** Nothing *extracted from a session* reaches long-term memory without the developer's review. A separate session tier means the current session benefits immediately anyway.
 4. **Grounding with consequences.** Conclusions cite files and symbols, which are checked against the live repository. Scope rules decide what dies with deleted code: principles survive, module-level conclusions don't. Dependent conclusions are then challenged, and the change is reported at the next review.
 5. **Pull, not push.** The agent asks for memory, by design *after reading the code*, and receives results framed as "verify before acting". This stance came from a measured failure: proactive injection made the agent worse.
-6. **Local and agent-agnostic.** One file, no account, and MCP across four agents.
+6. **Yours, not your agent's.** The memory is one local file with no Reverie account. Every agent you connect shares it: the installer sets up four, and any other MCP agent can be set up by hand. It works whatever model the agent runs, so switching agents or models keeps what you've built.
 7. **Research that publishes its negative results.**
 
 ### 1.6 Implemented, research, absent
@@ -225,7 +226,7 @@ The visitor already knows instruction files (`AGENTS.md`, `CLAUDE.md`, rules), t
 
 ### 2.3 Positioning statement (internal)
 
-> For developers who work with a coding agent across many sessions on the same codebase, **Reverie** is a local memory that keeps the engineering conclusions those sessions reach, reviewed by the developer, tied to the code, and revised as evidence changes, so later sessions can build on earlier ones instead of starting over. Reverie treats what it remembers as **beliefs**: each has a confidence, a scope, a source, references to code, and relationships to other beliefs, and contradictions remain visible until a person resolves them.
+> For developers who work with a coding agent across many sessions on the same codebase, **Reverie** is a local memory that keeps the engineering conclusions those sessions reach, reviewed by the developer, tied to the code, and revised as evidence changes, so later sessions can build on earlier ones instead of starting over. Reverie treats what it remembers as **beliefs**: each has a confidence, a scope, a source, references to code, and relationships to other beliefs, and contradictions remain visible until a person resolves them. The memory belongs to the developer, not to any one agent: it lives in one local file that every MCP agent they use can share, whatever model the agent runs.
 
 ### 2.4 Proof points (each traceable)
 
@@ -238,8 +239,10 @@ The visitor already knows instruction files (`AGENTS.md`, `CLAUDE.md`, rules), t
 | Supersession preserves history | PRODUCT.md §5.1, §9, §12 |
 | Grounding verified against the repo | PRODUCT.md §14.2, §21.5 |
 | Agent asks after reading code | PRODUCT.md §3.2 (tool description); INSTALLATION.md §7.6 |
-| One local SQLite file; no cloud, no vector DB | PRODUCT.md §1, §13, §15 |
+| One local SQLite file; no cloud database, no vector DB | PRODUCT.md §1, §13, §15 |
 | Four agents configured by the installer | INSTALLATION.md §2 |
+| Any other MCP client can be set up by hand | INSTALLATION.md §10.5 |
+| One memory shared by every connected agent, so switching agents or models keeps it | PRODUCT.md §1, §15 (one file, shared); INSTALLATION.md §7–8 (each agent's MCP entry starts the same server) |
 | Ollama option for local extraction | INSTALLATION.md §4–6; PRODUCT.md §2.6 |
 | Designed from measured failure | paper §2, §7, §12; Short Report §5.1 |
 
@@ -253,6 +256,10 @@ The visitor already knows instruction files (`AGENTS.md`, `CLAUDE.md`, rules), t
 | "your agent asks for it when it needs it" | "context injected automatically" |
 | "memory stays on your machine" | "nothing leaves your machine" (unless the Ollama case is stated) |
 | "works with Claude Code, Cursor, OpenCode and Codex" | "works with any agent" |
+| "any MCP agent", only next to the four named agents and on a page that also says the others are set up by hand | "plug and play with any agent", "one-click setup for every tool" |
+| "on any model" (the model your agent runs) | "model-agnostic AI", "any LLM" (extraction needs a configured endpoint or Ollama) |
+| "your memory, not your agent's" / "stays with you when you switch agents" | "sync across devices", "portable to any tool" (there is no sync) |
+| "fades when unused" | "forgets", "deletes stale memories" (nothing is hard-deleted) |
 | "built from research; we publish results either way" | "proven", "benchmarked to outperform", "X% better" |
 | "inspired by how biological memory consolidates" | "works like the human brain" |
 
@@ -392,23 +399,26 @@ Everything else (depth, research, the people behind it) is one click away.
 | "I understand what this is." | Hero | Category sentence, plus a real specimen of a remembered conclusion |
 | "That's an interesting problem." | Problem section | The continuity story in four sentences, plus "the hard part is deciding what deserves to be remembered" |
 | "I understand how it works." | Fig. 1 and three steps | Extract → review → retrieve, drawn across a session boundary |
-| "This is technically serious." | Fig. 2, "What you're installing", How it works | Belief dynamics with real update rules, the concrete local footprint, named MCP tools, grounding notes that cite implementing modules |
+| "This is technically serious." | Fig. 2, the hero specimen, How it works | Belief dynamics with real update rules, the concrete local footprint, named MCP tools (on How it works), grounding notes that cite implementing modules |
 | "I want to inspect it." | Research section, closing call to action, GitHub in the nav | Repository link (once public), honest research, the paper |
 
-### 4.4 The ten comprehension goals, mapped
+### 4.4 The comprehension goals, mapped
+
+Goals 1–10 come from the brief. Goal 11 was added at the owner's request in revision 2.
 
 | # | Goal | Primary place | Reinforced at |
 |---|---|---|---|
 | 1 | Memory for coding agents | Hero headline and first sentence | Metadata, nav |
-| 2 | Agents lose understanding between sessions | Problem section | Fig. 1 |
-| 3 | Conclusions, not conversations | Hero specimen, hero sentence | Fig. 1 step 1; How it works §1 |
-| 4 | Conclusions persist, relate and evolve | Fig. 2 and its four lines | How it works §3 (Fig. 5) |
-| 5 | Grounded in the actual repository | Hero sentence, specimen grounding row | Fig. 2 last line; How it works §4 |
-| 6 | The developer controls what becomes durable | Hero sentence | Fig. 1 review gate; How it works §2 |
-| 7 | Works with agents developers already use | Hero agents line | "What you're installing"; How it works §6 |
-| 8 | Real and technically serious | Specimen, "What you're installing" | How it works throughout |
+| 2 | Agents lose understanding between sessions | Problem section (P1) | Fig. 1 session lines |
+| 3 | Conclusions, not conversations | Hero specimen, hero sentence | Fig. 1 station 1; How it works §1 |
+| 4 | Conclusions persist, relate and evolve | Fig. 2 (memory map and lifecycle) | Hero neighbours; How it works §3 (Fig. 5) |
+| 5 | Grounded in the actual repository | Hero sentence, specimen grounding row | Fig. 1 station 3; Fig. 2 footnote; How it works §4 |
+| 6 | The developer controls what becomes durable | Hero sentence, Fig. 1 station 2 | Fig. 3 facts; How it works §2 |
+| 7 | Works with agents developers already use | Hero agents line | Fig. 3; How it works §6 |
+| 8 | Real and technically serious | Hero specimen, Fig. 2 | How it works throughout |
 | 9 | Research behind it | Research section | Research index, paper, EC-Bench |
 | 10 | A real implementation to inspect | Closing call to action, nav | How it works grounding notes |
+| 11 | The memory is the developer's, not the agent's: it works with any MCP agent, on any model | S5 and Fig. 3 | Hero agents line; How it works §6 |
 
 ### 4.5 Conversion strategy
 
@@ -537,16 +547,29 @@ Each page uses vocabulary appropriate to its depth, and each term is introduced 
 
 ## 7. Homepage specification
 
-**Reference rendering.** [`design/homepage-preview/`](./design/homepage-preview/) contains a static HTML rendering of this section, with screenshots at 1440 px and 390 px. It is the visual target for implementation. Port tokens, measurements and SVG geometry from it. Where wording differs between the preview and this plan, the preview is newer.
+**Reference rendering.** [`design/homepage-preview/`](./design/homepage-preview/) contains a static HTML rendering of this section (version 2), with screenshots at 1440 px and 390 px and a storyboard of the memory-map animation. It is the visual target for implementation. Port tokens, measurements, SVG geometry and keyframes from it. Where wording differs between the preview and this plan, the preview is newer.
 
-**Shape:** seven sections plus one reserved slot. About **480 words** of copy. **Three visuals** (the hero specimen, Fig. 1, Fig. 2). **No numbers.** Left-aligned editorial layout throughout. The page tells **one story through one conclusion**, which the paper's own example inspired: an agent finds out why users are being logged out at random (the cache is cleared before the token refresh finishes). That one conclusion appears as:
+**Revision 2 (owner review, 2026-10-05).** The first preview carried too much text for a developer deciding quickly. This version follows four owner decisions:
 
-- the retrieved specimen in the hero;
-- the discovery in the problem story;
-- the thing that crosses the session boundary in Fig. 1;
-- the belief that evolves in Fig. 2.
+1. **Prefer a diagram wherever it explains better than text.** The problem story, the steps under Fig. 1 and the four lines under Fig. 2 are now carried by figures.
+2. **Show belief change as a living structure.** An animated memory map shows conclusions being added, strengthened, challenged, superseded and fading.
+3. **Say whose memory it is.** It belongs to the developer, not the agent, so it works with any MCP agent, on any model.
+4. **No tool names on the homepage.** They belong on How it works.
 
-One thread makes the page memorable and keeps every visual doing a job. All copy below is a **draft for owner approval**.
+**Shape.**
+- Seven sections plus one reserved slot.
+- About **340 words** of copy (down from about 480), counting the hero specimen and the captions, plus short figure labels.
+- **Six visuals across five sections**: V1, P1, F1, Fig. 2 (M1 above F2) and O1. The homepage is exempt from the three-visual cap by owner decision (§9).
+- **No numbers.** Left-aligned editorial layout throughout.
+
+**One story through one conclusion.** An agent finds out why users are being logged out at random: the cache is cleared before the token refresh finishes. That thread appears as:
+
+- the reviewed conclusion in the hero, with its neighbours;
+- the conclusion worked out again every day in P1;
+- the conclusions that strengthen, challenge and replace each other in the memory map;
+- the conclusion whose life the lower panel of Fig. 2 follows.
+
+All copy below is a **draft for owner approval**.
 
 ---
 
@@ -554,14 +577,14 @@ One thread makes the page memorable and keeps every visual doing a job. All copy
 
 | | |
 |---|---|
-| **Purpose** | Category, mechanism and control in one breath, with the remembered unit made visible. |
+| **Purpose** | Category, value and control in one look, with the remembered unit and its links visible. |
 | **Headline** | **Your coding agent shouldn't start every session as a stranger.** |
-| **Supporting copy** | Reverie is memory for coding agents. It keeps the engineering conclusions your agent reaches while you work — root causes, constraints, decisions — reviewed by you and grounded in your repository, so later sessions can build on them. |
-| **Agents line** | Works with Claude Code, Cursor, OpenCode and Codex. Memory stays on your machine. |
-| **Visual** | **V1, hero specimen** (right column on desktop, below the copy on mobile): one reviewed conclusion *as the agent receives it from `ec_query`*. The conclusion text is set in serif; the fields (type, scope, confidence, grounding files and symbols, commit, related conclusions, status) in mono; the framing note *"Past engineering understanding. Verify against current code before acting."* sits at the foot. Caption: *"A reviewed conclusion, as your agent gets it back in a later session."* See `DIAGRAM-PLAN.md` V1. |
+| **Supporting copy** | Reverie is memory for coding agents. It keeps the conclusions your agent reaches — reviewed by you, grounded in your code — so the next session builds on them. |
+| **Agents line** | Works with Claude Code, Cursor, OpenCode, Codex — any MCP agent, on any model. (Claims C1, C27 and C28. "Any MCP agent" is the owner's position, and INSTALLATION.md §10.5 documents manual setup. It is verified before launch, §20 question 20, and controlled by `claims.anyMcpAgent`.) |
+| **Visual** | **V1, the hero graph.** It sits in columns 7–12 on desktop and below the copy on mobile. See `DIAGRAM-PLAN.md` V1. <br>• **The specimen:** a compact record of one reviewed conclusion. The header reads `conclusion` · `reviewed`. The conclusion is in serif; type, scope, a confidence bar and grounding are in mono. The foot reads *"Verify against current code before acting."* <br>• **The neighbours:** three **hazy neighbours** to its right, at reduced contrast. Each has its relationship in mono: `supports`, `depends on` (dashed), `replaced` (struck through). <br>• **The second ring:** two out-of-focus records hint that the memory goes further. <br>• **Caption:** *"One reviewed conclusion and its links."* plus an `Example` tag. <br>• **Mobile:** the neighbours become an indented list under the specimen. |
 | **Calls to action** | **How it works** (primary) · *View on GitHub ↗* (State B) or *Read the research* (State A) |
-| **Why it exists** | It meets goals 1, 3, 5, 6 and 7 before any scrolling. The specimen shows the unit of memory, which is Reverie's real difference, instead of describing it. |
-| **Deliberately leaves out** | Install commands; benchmark claims; the words *ECU*, *canonical*, *Engineering Cognition*; logos; any fake app window chrome (no traffic-light dots). |
+| **Why it exists** | It meets goals 1, 3, 4, 5, 6, 7 and 11 before any scrolling. The specimen shows the unit of memory; the neighbours show that memories are connected, not a list. |
+| **Deliberately leaves out** | Install commands; benchmark claims; tool names; the words *ECU*, *canonical*, *Engineering Cognition*; logos; fake app window chrome (no traffic-light dots). |
 
 Alternative headlines, for owner choice:
 
@@ -577,13 +600,13 @@ The recommended headline is the paper's own image ("the agent is a stranger"). B
 
 | | |
 |---|---|
-| **Purpose** | Make the continuity problem felt, then name the hard part. |
+| **Purpose** | Make the continuity problem felt at a glance, then name the hard part. |
 | **Headline** | **The bottleneck isn't intelligence. It's continuity.** |
-| **Supporting copy** | You spend an afternoon with your agent working out why users are being logged out at random. Together you find the cause — the cache is cleared before the token refresh finishes — fix it, and rule out an alternative. Then the session ends, and the next one begins without any of it. <br><br> A bigger context window holds more of one session; it doesn't carry understanding into the next. A saved transcript keeps everything that was said, dead ends included. **The hard part isn't storing more. It's deciding what deserves to be remembered.** |
-| **Visual** | None. Typographic: the headline at H2 display size; the last sentence set as a pull line. |
+| **Pull line** (under the headline) | The hard part isn't storing more. It's knowing what's worth remembering. |
+| **Visual** | **P1, "Every session starts from zero"** (columns 7–12). Three rows, Monday to Wednesday. In each one, the agent's reasoning (grey bars) arrives at the same dashed conclusion, *why users get logged out*, and stops at a dashed "session ends" line. Caption: *"Each new session works it out again, from zero."* See `DIAGRAM-PLAN.md` P1. |
 | **Call to action** | None. Scrolling continues into the mechanism. |
-| **Why it exists** | Goal 2, and the intellectual hook ("that's actually an interesting problem"). It introduces the throughline conclusion. |
-| **Deliberately leaves out** | Competitor or approach bashing beyond two clauses; the H.M. case study (that belongs to the paper); any chart of "understanding over time". The old sawtooth chart is retired (`DIAGRAM-PLAN.md` §5). |
+| **Why it exists** | Goal 2, shown rather than told: the repetition does the work the paragraph used to do. |
+| **Deliberately leaves out** | The problem paragraph (P1 replaces it); criticism of other approaches; the H.M. case study (it belongs to the paper); any chart of "understanding over time". The old sawtooth chart is retired (`DIAGRAM-PLAN.md` §5). |
 
 ---
 
@@ -591,16 +614,20 @@ The recommended headline is the paper's own image ("the agent is a stranger"). B
 
 | | |
 |---|---|
-| **Purpose** | The mechanism, understood in about 20 seconds. |
-| **Headline** | **How it works**, with an aside in the right column: "Three steps, across the session boundary — and you decide what crosses it." |
-| **Visual** | **Fig. 1, "Across the session boundary"** (full width). Session 1 and Session 2 sit side by side with the boundary between them. A repository band runs across the top ("the code persists"). A long-term memory band runs across the bottom. Extraction happens in Session 1; review sits at the boundary; the request (`ec_query`) happens in Session 2 *after* the agent reads the code. See `DIAGRAM-PLAN.md` F1. |
-| **Steps** (three columns under the figure, aligned with its three regions; each led by a large light index numeral, Swiss-style) | **1 · Extract.** When your agent works something out, it hands its reasoning to Reverie. Reverie keeps the conclusion and rejects the rest: facts anyone could read in the code, descriptions, the play-by-play. <br> **2 · Review.** Conclusions wait in session memory, already usable in that session. When you end the session, you accept, reject or skip each one in your terminal. Only what you accept becomes long-term memory. <br> **3 · Retrieve.** In a later session, your agent asks for what's relevant, after it has read the code, not before. It gets the conclusions back with their confidence, scope and the files they concern, marked as past understanding to verify. |
-| **Interaction** | Hovering over or focusing a step highlights the matching region of Fig. 1 (progressive enhancement; static without JavaScript). |
-| **Call to action** | *Read the full mechanism →* (`/how-it-works`) |
-| **Why it exists** | Goals 3, 6 and 7. Placing review at the boundary and the request after reading the code makes the two governance ideas visible. |
-| **Deliberately leaves out** | Confidence maths, relationship types, maintenance, scope levels, tool parameters, model names. |
+| **Purpose** | The mechanism, understood in about ten seconds. |
+| **Headline** | **How it works**, with an aside in the right column: "From one session to the next — and you decide what's kept." |
+| **Visual** | **Fig. 1, "From one session to the next"** (full width). Four drawn stations, with a dashed "session ends" line after the first and a dashed "next session" line before the last. See `DIAGRAM-PLAN.md` F1. Each station has a numbered title and one line: <br>**1 Your agent works.** Conclusions are extracted as it goes. <br>**2 You review.** Keep what's right. Drop the rest. <br>**3 Memory builds up.** Grounded in your code. <br>**4 Your agent asks.** After reading the code, not before. <br>Caption: *"Fig. 1 Dashed: not yet reviewed. Solid, with a blue edge: reviewed by you."* The caption teaches the visual grammar the rest of the page uses. |
+| **Call to action** | *The full mechanism →* (`/how-it-works`) |
+| **Why it exists** | Goals 3 and 6, plus the "after reading the code" stance. Review at the session boundary and the request after reading the code make the two governance ideas visible. |
+| **Deliberately leaves out** | The separate steps block (its content is now inside the figure); tool names; confidence maths; relationship types; maintenance; scope levels; model names; hover highlighting (nothing left to link to). |
 
-**Reserved slot S3b, "Watch it work"** (hidden until the continuity experiment is published; see §13). When it opens, it holds a poster frame and player for the side-by-side highlight recording, a one-line neutral description, the date, and *"Protocol, recordings and results →"*. To stay within three visuals per page, **Fig. 2 then moves off the homepage** and S4 becomes text plus a link to Fig. 5.
+**Reserved slot S3b, "Watch it work"** (hidden until the continuity experiment is published; see §13). When it opens, it holds:
+- a poster frame and player for the side-by-side highlight recording;
+- a one-line neutral description;
+- the date;
+- *"Protocol, recordings and results →"*.
+
+To keep the homepage from growing, **the lower panel of Fig. 2 (F2) then leaves the homepage**. F5 on How it works already covers it.
 
 ---
 
@@ -608,30 +635,29 @@ The recommended headline is the paper's own image ("the agent is a stranger"). B
 
 | | |
 |---|---|
-| **Purpose** | Show that what's remembered is governed: it can strengthen, be challenged, be replaced with history kept, or be retired when its code disappears. |
-| **Headline** | **Memory that can change its mind.**, with an aside in the right column: "One conclusion, followed through later sessions." |
-| **Visual** | **Fig. 2, "The life of a conclusion"** (summary variant): the throughline conclusion moves through six states (extracted → accepted → supported → contradicted (challenged) → open question → superseded by a newer conclusion you preferred). A small confidence bar per state is computed with Reverie's real update rules, without numerals here. See `DIAGRAM-PLAN.md` F2. |
-| **Supporting copy** (four lines) | **Evidence moves confidence.** A supporting conclusion raises it, a contradicting one lowers it, and conclusions nobody uses fade. <br> **Contradictions stay visible.** The challenged conclusion isn't overwritten; if the conflict persists, it comes to you as an open question. <br> **Replacements keep history.** Accepted conclusions are never rewritten: a new one supersedes the old, which is kept and linked. <br> **The code has the last word.** If the files a conclusion cites are deleted, conclusions about that code are retired; general principles are kept. |
+| **Purpose** | Show memory as a living structure governed like belief. Conclusions are added, strengthened, challenged, replaced with their history kept, and fade when unused. |
+| **Headline** | **Memory that can change its mind.**, with an aside in the right column: "Conclusions behave like beliefs: evidence strengthens them, contradictions challenge them, and disuse lets them fade." |
+| **Visual** | **Fig. 2**, one figure in two panels. See `DIAGRAM-PLAN.md` M1 and F2. <br>**Top: M1, the memory map** (animated). About thirteen short conclusions with links between them, on a 16-second loop: <br>• a new conclusion slides in dashed (*new · awaiting review*), turns solid (*added after review*) and strengthens the conclusion it supports (*strengthened*); <br>• a newer conclusion drops in and contradicts an older one (amber, *challenged*), then replaces it, which is struck through and dimmed (*superseded · kept*); <br>• an unused conclusion fades (*fading · unused*). <br>A legend sits under the map and a pause button above it. <br>**Bottom: F2, "One conclusion, up close."** One conclusion through six states, with confidence bars computed by Reverie's rules (no numerals) and a footnote about deleted code. <br>Caption: *"Fig. 2 Example values, computed with Reverie's update rules."* |
+| **Motion** | The only animation on the site (§16). It has a pause control, stops when off screen, and is static and fully annotated under reduced motion. |
 | **Call to action** | *How conclusions change →* (`/how-it-works#change`) |
-| **Why it exists** | Goals 4 and 5: the most distinctive behaviour, and the hardest to convey in text alone. |
-| **Deliberately leaves out** | Log-odds, thresholds, priors, the names of the four edge types, numeric confidence. |
+| **Why it exists** | Goals 4 and 5: the most distinctive behaviour, and the hardest to convey in text alone. The owner asked for strengthening and forgetting to be visible. |
+| **Deliberately leaves out** | The four supporting lines (the aside, the map's labels and the lifecycle now carry them); log-odds, thresholds, priors and numerals; the word "forget", because conclusions fade and nothing is hard-deleted. |
 
 Alternative headline: "Kept as beliefs, not facts."
 
 ---
 
-### S5. What you're installing: *What is this, physically, and where does my data go?*
+### S5. Your memory, not your agent's: *Whose memory is it, and where does it live?*
 
 | | |
 |---|---|
-| **Purpose** | The concrete, local, inspectable footprint, plus an honest data-flow line. |
-| **Headline** | **What you're installing** |
-| **Supporting copy** (a definition list in two columns on desktop) | **A local memory.** One SQLite file in your home directory, shared across your projects. No account, no cloud service, no vector database. <br> **An MCP server.** Your agent starts it and calls four tools: `ec_observe`, `ec_query`, `ec_get_summary`, `ec_reconsolidate`. <br> **Agent setup.** The installer configures Claude Code, Cursor, OpenCode and Codex. Other MCP clients can be set up by hand. <br> **Your choice of model.** Extraction uses the LLM endpoint you configure: hosted, or local through Ollama. Embeddings and retrieval always run locally. |
-| **Footnote line** | Setup instructions live in the repository (link in State B; "will live" in State A). |
-| **Visual** | None (typographic spec list; tool names in mono). |
+| **Purpose** | Ownership and portability: the memory belongs to the developer, not to any one agent or model, and it lives on their machine. |
+| **Headline** | **Your memory, not your agent's.**, with an aside in the right column: "Switch agents or models — what you've built up stays with you, on your machine." |
+| **Visual** | **O1, Fig. 3, the ownership hub.** See `DIAGRAM-PLAN.md` O1. <br>• **Centre:** *Your memory* (`~/.ec/ec.db`, *on your machine · reviewed by you*). <br>• **Around it:** Claude Code and Cursor on the left, OpenCode and Codex on the right, all solid (set up by the installer). *Any MCP agent* is dashed (set up by hand). Thin connectors are labelled `MCP`. <br>• **Caption:** *"Fig. 3 Solid: set up for you. Dashed: set up by hand."* <br>• **Mobile:** the hub, then the agents in a two-column grid. |
+| **Facts** (three short columns) | **Stored on your machine.** One SQLite file. No Reverie account. <br>**You approve what's kept.** Every extracted conclusion passes your review. <br>**Your choice of model.** Extraction runs hosted, or locally with Ollama. |
 | **Call to action** | *Data, setup and limits →* (`/how-it-works#install`) |
-| **Why it exists** | Goals 7, 8 and 10. It answers the skeptical developer's first two questions (what is it, physically, and does my code leave my machine?) without a single command. |
-| **Deliberately leaves out** | Commands, file paths beyond "home directory", dependency lists, test counts, version numbers, OS claims. |
+| **Why it exists** | Goals 7, 8, 10 and 11. It answers "will this lock me in?" and "where does my data go?" without a single command. |
+| **Deliberately leaves out** | Commands; MCP tool names; dependency lists; test counts; version numbers; OS claims; "nothing leaves your machine" (hosted extraction sends text to the configured endpoint, §1.8). |
 
 ---
 
@@ -641,12 +667,12 @@ Alternative headline: "Kept as beliefs, not facts."
 |---|---|
 | **Purpose** | Show the research foundation and the honesty that defines it, then route researchers onward. |
 | **Headline** | **Built by measuring what didn't work.** |
-| **Supporting copy** | Reverie's first version loaded relevant memory into the agent's context before it started work. On our benchmark, that made the agent worse: it trusted what it was told instead of reading the code. That result shaped everything after it: keep only conclusions, review them, and let the agent ask when it needs to. <br><br> We publish our results whether or not they favour Reverie. |
-| **List** (typographic, three rows, each a link) | **Paper:** *Reverie: A Biological Memory Architecture for AI Agents* · Sep 2026 <br> **Benchmark:** *EC-Bench: what we measure, and what we've found so far* <br> **Next:** *The continuity experiment: the same agent, with and without Reverie* · `In design` |
+| **Supporting copy** | Our first version loaded memory into the agent before it started. On our benchmark, that made it worse — it trusted memory over the code. So Reverie keeps reviewed conclusions, and lets the agent ask. <br><br> We publish results either way. |
+| **List** (typographic, three rows, each a link) | **Paper:** *Reverie: A Biological Memory Architecture for AI Agents* · September 2026 <br> **Benchmark:** *EC-Bench: what we measure, and what we've found* · Method, results and limits <br> **Next:** *The same agent, with and without Reverie* · `In design` |
 | **Call to action** | *All research →* (`/research`) |
 | **Why it exists** | Goal 9. It also states the value "research before claims" by *doing* it rather than declaring a principle. |
 | **Deliberately leaves out** | Every number; the biology story (one click away in the paper); the list of archived PDFs. |
-| **Gate** | The sentence "made the agent worse" is consistent across the paper and the July per-metric table. The owner signs off on it after the §1.7B reconciliation. |
+| **Gate** | The sentence "made it worse" is consistent across the paper and the July per-metric table. The owner signs off on it after the §1.7B reconciliation. |
 
 ---
 
@@ -655,7 +681,7 @@ Alternative headline: "Kept as beliefs, not facts."
 | | State A (before release) | State B (repository public) |
 |---|---|---|
 | **Headline** | **The repository opens soon.** | **Read the code.** |
-| **Copy** | Reverie is a Python package and a local MCP server, being prepared for public release. Want to know when it's out, or talk about the research? | Reverie is a Python package and a local MCP server. The repository has the source, the extraction prompt, the benchmark harness and setup instructions. |
+| **Copy** | Want to know when it's out, or talk about the research? | The source, the extraction prompt, the benchmark harness and setup instructions are in the repository. |
 | **Calls to action** | **Get in touch** (mailto, subject "Reverie") · *How it works* | **View the repository ↗** · *How it works* |
 | **Why it exists** | Goal 10: a single clear next action. | |
 | **Leaves out** | Newsletter forms, star counts, testimonials. | |
@@ -686,7 +712,7 @@ Alternative headline: "Kept as beliefs, not facts."
 | 3 | **How a conclusion changes** (`#change`) | Beliefs, with evidence and history. | **Confidence:** a starting prior from how the conclusion was reached and its scope; supporting or contradicting conclusions move it in log-odds, weighted by similarity and the other conclusion's confidence; every update is stored and reversible; unused conclusions fade at a rate set by scope; retrieval reinforces. **Relationships:** supports, contradicts, supersedes, depends on. **Contradictions:** a computable pre-check, then adjudication; the existing conclusion is marked *challenged* (never hidden); after a scope-dependent time it becomes an *open question*, and you choose: investigate, prefer one, mark both valid in different contexts, or archive. **Supersession:** accepted wording never changes; a new conclusion replaces the old, which is frozen, kept and linked. Dependents of a weakened conclusion are challenged. | **Fig. 5** (interactive stepper with computed values) |
 | 4 | **Grounded in your repository** (`#grounding`) | The code has the last word. | What's recorded: files, symbols and the commit at extraction. How it's checked: periodically, in the background. What happens: a small table of scope → *retired when* (engineering/domain: never · organization/project: when all cited files are gone · repo/module/subsystem: when any cited file or symbol is gone). Dependents are challenged; you're told at your next review; being far behind HEAD is flagged but never retires anything. | Table (not counted as a diagram) |
 | 5 | **How your agent gets it back** (`#retrieval`) | It asks, after reading the code. | Why not load memory at session start: the anchoring finding, in two sentences, linked to EC-Bench. What happens on a request: a task mode is inferred (debugging, implementation, investigation, planning, architecture); both brains are searched; results are filtered by status, scope and relevance; ranking weighs similarity, confidence (after decay), session activity and how connected a conclusion is; each result comes grouped with the conclusions that support, contradict or depend on it, or replace it; everything fits a budget that depends on the mode. What the agent receives (→ Fig. 3) and the framing note. Honest limit: agents don't always ask when they should. | — (refers to Fig. 3) |
-| 6 | **What you're installing** (`#install`) | Local, inspectable, explicit about data. | **Storage:** one SQLite file at `~/.ec/ec.db`, shared by your projects. **Server:** spawned by your agent over stdio; runs maintenance in the background. **Tools table** (MCP): name · what it does · when the agent calls it · needs an active session? **Agents table:** agent · what the installer configures (MCP entry and instructions file). **Models and data:** what is sent to the configured LLM (the prompt, the agent's reasoning, candidate pairs for classification), what never leaves the machine (the database, embeddings, retrieval), and the Ollama option. **Naming note:** *in the code, Reverie's package, commands and tools use the prefix `ec`, for Engineering Cognition, the research program behind it.* Setup instructions: in the repository. | Two tables (not counted) |
+| 6 | **What you're installing** (`#install`) | Local, inspectable, explicit about data. | **Storage:** one SQLite file at `~/.ec/ec.db`, shared by your projects. **Server:** spawned by your agent over stdio; runs maintenance in the background. **Tools table** (MCP): name · what it does · when the agent calls it · needs an active session? **Agents table:** agent · what the installer configures (MCP entry and instructions file). **Across agents and models:** every agent you connect shares the same file, so switching agents, or the model an agent runs, keeps your memory; agents beyond the four are set up by hand (steps in the repository). **Models and data:** what is sent to the configured LLM (the prompt, the agent's reasoning, candidate pairs for classification), what never leaves the machine (the database, embeddings, retrieval), and the Ollama option. **Naming note:** *in the code, Reverie's package, commands and tools use the prefix `ec`, for Engineering Cognition, the research program behind it.* Setup instructions: in the repository. | Two tables (not counted) |
 | 7 | **Limits, today** (`#limits`) | What doesn't work yet. | Developed and tested on macOS; other platforms aren't verified. Review happens in the terminal only. You start and end sessions yourself; the agent never does. Extraction depends on an LLM and makes a single attempt per observation. There is no interface for editing or deleting long-term memory yet beyond review decisions. Our benchmark hasn't shown a clear advantage yet (→ EC-Bench). A *Last reviewed* date is shown. | — |
 | 8 | **Questions** (`#faq`) | Straight answers. | Native `<details>` items: <br>1. *Doesn't my agent already have memory?* Instruction files and built-in memories store notes that load into sessions; Reverie stores reviewed conclusions with confidence, scope, code references and relationships, retrieved on request; it works alongside instruction files. <br>2. *Does my code leave my machine?* Precise data-flow answer (as in §6). <br>3. *What do I have to do?* Start a session, work, review at the end. <br>4. *Why doesn't it load memory automatically?* The anchoring answer. <br>5. *Does Reverie make my agent better?* That's what the research is testing; the honest current answer, with a link. <br>6. *Which agents are supported?* Four, plus manual MCP setup. <br>7. *Is it open source?* State-driven answer; no claim until a LICENSE exists. | — |
 | 9 | Next | — | "Read the research →" · State B: "View the repository ↗" | — |
@@ -826,9 +852,12 @@ The full specification (purpose, question answered, content, exclusions, composi
 
 | ID | Visual | Page(s) | Type | Interaction |
 |---|---|---|---|---|
-| V1 | Hero specimen: a reviewed conclusion as the agent receives it | Home | Typeset artifact (HTML text) | None (optional "view as JSON" toggle on How it works) |
-| F1 | Across the session boundary | Home | Process diagram | Step hover/focus highlight (enhancement) |
-| F2 | The life of a conclusion (summary) | Home | State timeline | None |
+| V1 | Hero graph: a reviewed conclusion and its hazy neighbours (the specimen is reused in F3) | Home | Typeset artifact plus SVG | None |
+| P1 | Every session starts from zero | Home | Repetition strip | None |
+| F1 | From one session to the next | Home | Process diagram (four stations) | None |
+| M1 | The memory map | Home (Fig. 2, top panel) | Animated network | 16 s loop with a pause button; stops off screen; static under reduced motion |
+| F2 | One conclusion, up close (summary lifecycle) | Home (Fig. 2, bottom panel) | State timeline | None |
+| O1 | Your memory, not your agent's | Home (Fig. 3) | Hub diagram | None |
 | F3 | Anatomy of a conclusion | How it works | Annotated specimen | None |
 | F4 | Two brains and a review gate | How it works; Paper | Architecture diagram | None |
 | F5 | The life of a conclusion, step by step | How it works; Paper (static) | Interactive state timeline with computed confidence | Stepper (buttons, keyboard, aria-live) |
@@ -839,12 +868,14 @@ The full specification (purpose, question answered, content, exclusions, composi
 
 | Page | Visuals | Count |
 |---|---|---|
-| Home | V1, F1, F2 (F2 swaps for V2 when the video ships) | 3 |
+| Home | V1, P1, F1, M1 with F2, O1 (when the video ships, V2 joins and F2 leaves) | 6, by owner decision |
 | How it works | F3, F4, F5 | 3 |
 | Paper | F4, F5 static | 2 |
 | EC-Bench | F6 | 1 |
 | Experiment | none (design state) / V2 plus an optional F6 variant (published) | 0 / ≤ 2 |
 | Research index, Notebook, About, 404 | — | 0 |
+
+**The cap.** Every page except the homepage keeps the limit of three visuals. The homepage is visual-led by owner decision (2026-10-05): a diagram replaces text wherever it explains better. Each homepage figure still replaces copy rather than decorating it.
 
 **Pages where no diagram is necessary:** Research index, Notebook entries, About, 404, and the continuity experiment in its design state.
 
@@ -905,12 +936,12 @@ Sizes use fluid `clamp()` between the two columns. Prose measure: 62 characters 
 | `--rule` | `rgba(23,23,27,.12)` | Hairlines | — |
 | `--rule-strong` | `rgba(23,23,27,.24)` | Secondary button borders, axes | — |
 | `--accent` | `#2C4A7E` (ink blue) | Links, focus ring, the "reviewed" mark | ≈ 8.4:1 |
-| `--accent-wash` | `#2C4A7E` at 8% | Step highlight in Fig. 1 | — |
+| `--accent-wash` | `#2C4A7E` at 8% | Current-step highlight in Fig. 5 | — |
 | `--challenged` | `#9A5F0E` (amber) | The challenged or contradicts mark *only* | ≈ 4.9:1 |
 
 **Dark theme** (follows `prefers-color-scheme`; same tokens): paper `#111114`, surface `#18181C`, ink `#ECEBE6`, ink-2 `#B4B3AD`, ink-3 `#8E8D88`, rule `rgba(236,235,230,.14)`, accent `#8FA9D8`, challenged `#E0A84F`. No theme toggle; the system preference decides.
 
-**Rules.** No gradients, glows, blur or glass. The accent is never used for decoration. Amber appears only where something is genuinely challenged or contradicted. Colour never carries meaning alone; every status also has a glyph and a label.
+**Rules.** No gradients, glows, blur or glass. The one exception is the slight blur on the hero graph's out-of-focus records, which the owner asked for (hazy neighbours). The accent is never used for decoration. Amber appears only where something is genuinely challenged or contradicted. Colour never carries meaning alone; every status also has a glyph and a label.
 
 The palette keeps the current site's warm-paper identity, which is a real differentiator against white-and-purple AI pages, but deepens the blue to ink for contrast and seriousness.
 
@@ -935,6 +966,8 @@ The palette keeps the current site's warm-paper identity, which is a real differ
 
 The rule that ties it together: **hollow means unreviewed; solid means reviewed.** Applied everywhere, it makes the review boundary visible at a glance.
 
+**Short labels on the homepage.** The homepage uses `reviewed` and `unreviewed`, without `canonical` or `session`. The full labels appear on How it works and in the paper. Explanatory event labels such as *strengthened*, *superseded · kept* and *fading · unused* are serif italic, because they explain rather than name a status.
+
 ### 10.5 Spacing and grid
 
 - **Base unit 4 px.** Scale: 4, 8, 12, 16, 24, 32, 48, 64, 96, 128, 160.
@@ -944,10 +977,10 @@ The rule that ties it together: **hollow means unreviewed; solid means reviewed.
 
 | Pattern | Columns | Used for |
 |---|---|---|
-| Split | Text in 1–5, artifact in 7–12 | Hero |
-| Statement | Columns 1–8 | Problem |
-| Figure | Full width, caption in columns 1–6 | Figs 1 and 2 |
-| Spec list | Label in 1–3, value in 4–10 | What you're installing |
+| Split | Text in 1–6, artifact or figure in 7–12 | Hero, Problem |
+| Figure | Full width, caption in columns 1–6 | Figs 1, 2 and 3 |
+| Facts row | Three columns of four, each under a 1 px ink rule | Your memory, not your agent's |
+| Spec list | Label in 1–3, value in 4–10 | How it works tables |
 | Prose | 66 characters, offset to column 3 | Research |
 
 Everything is left-aligned. There are no centred hero stacks, which avoids the template look.
@@ -977,7 +1010,7 @@ Focus: 2 px `--accent` outline at 2 px offset, on everything.
 ### 10.9 Technical artifacts ("specimens")
 
 - **Container:** surface background, 1 px rule, 2 px radius, 20–24 px padding.
-- **Header strip:** a mono label on the left (for example `ec_query · group 1`), the status mark and label on the right. **No fake window chrome**: no title-bar dots and no prompt decoration.
+- **Header strip:** a mono label on the left (`conclusion` on the homepage; `ec_query · group 1` on How it works), the status mark and label on the right. **No fake window chrome**: no title-bar dots and no prompt decoration.
 - **Body:** the conclusion text in Newsreader 20 px (it's an idea); fields as a two-column mono list (label in ink-2, value in ink); the confidence value with a thin 1 px bar; grounding paths in mono that wrap at `/`.
 - **Content rule:** every specimen is **captured from real output** (`ec_query` formatted or JSON payload). If example values are used, the specimen is labelled `Example`.
 - **Inline code:** Plex Mono on `--paper-sunken`, 2 px radius. Block code is avoided on product pages; long-form articles use a simple sunken block.
@@ -990,7 +1023,7 @@ Focus: 2 px `--accent` outline at 2 px offset, on everything.
 - Labels: serif for concepts, mono for artifacts. Figure number and caption below in serif italic.
 - Built as HTML/CSS grid plus inline SVG connectors, so text is real, selectable, translatable and reflowable.
 - Dedicated mobile compositions, never a scaled-down desktop SVG.
-- No ambient animation; no flowing dots.
+- No ambient animation and no flowing dots. The single exception is M1, an explanatory loop with a pause control (§16).
 
 ### 10.11 Image treatment
 
@@ -1067,7 +1100,7 @@ Every factual sentence on the site maps to a row in a **claims ledger**, kept in
 | C9 | Contradictions are kept; persistent conflicts become open questions you resolve | Home, How it works | PRODUCT.md §7.2, §10, §14 |
 | C10 | Accepted wording never changes; supersession keeps history | Home, How it works | PRODUCT.md §5.1, §9 |
 | C11 | Deleted code retires conclusions about it; principles survive | Home, How it works | PRODUCT.md §14.2 |
-| C12 | One SQLite file, shared across projects; no account, cloud service or vector DB | Home, How it works | PRODUCT.md §1, §2.5, §13, §15 |
+| C12 | One SQLite file, shared across projects; no Reverie account, no cloud database, no vector DB (hosted extraction still needs an LLM key; see C15) | Home, How it works | PRODUCT.md §1, §2.5, §13, §15 |
 | C13 | Local MCP server started by your agent; four named tools | Home, How it works | PRODUCT.md §3; INSTALLATION.md §7–8 |
 | C14 | Other MCP clients can be set up by hand | Home, How it works | INSTALLATION.md §10.5 |
 | C15 | Extraction uses the configured LLM; Ollama for local; embeddings and retrieval local | Home, How it works | PRODUCT.md §1, §2.6, §21.8; INSTALLATION.md §6 |
@@ -1082,6 +1115,12 @@ Every factual sentence on the site maps to a row in a **claims ledger**, kept in
 | C24 | Research dates | Research | PDF title pages; the paper; article frontmatter |
 | C25 | EC-Bench design (repository, prompts, sessions, judge, weights) | EC-Bench | PRODUCT.md §17 |
 | C26 | The stored run produced no `contradicts` or `supersedes` edges | EC-Bench | PRODUCT.md §17, §22.1 |
+| C27 | Works with any MCP agent; agents other than the four are set up by hand | Home (hero, Fig. 3), How it works | INSTALLATION.md §10.5; a check with one client the installer doesn't configure is pending (§20, question 20) |
+| C28 | Works on any model your agent runs; Reverie doesn't depend on the agent's model | Home | PRODUCT.md §3 (a local MCP server that the agent calls as tools) |
+| C29 | Every connected agent uses the same memory, so switching agents or models keeps it | Home (S5) | PRODUCT.md §1, §15; INSTALLATION.md §7–8 |
+| C30 | A new conclusion affects long-term conclusions only after you review it | Home (Fig. 2 map) | PRODUCT.md §7.2, §8 (pending updates applied at review) |
+| C31 | Unused conclusions fade; nothing is hard-deleted | Home (Fig. 2 map, S4 aside) | PRODUCT.md §11 (lazy decay, never written), §14; paper §8 |
+| C32 | Related conclusions come linked: supports, depends on, replaces | Home (V1) | PRODUCT.md §12 (relationship types), §13 (grouped results) |
 
 ### 11.3 Numbers ledger
 
@@ -1106,9 +1145,11 @@ The test applied to every number is the one from the brief: *"where did this exa
 
 ### 11.4 Length budgets
 
+**Principle (owner rule, 2026-10-05):** prefer a diagram wherever it explains better than text. A figure label is at most eight words.
+
 | Page | Budget |
 |---|---|
-| Home | ≤ 500 words |
+| Home | ≤ 350 words of copy, counting the specimen and captions (revision 2 is about 340) |
 | How it works | ≤ 2,200 |
 | Research index | ≤ 400, plus entries |
 | EC-Bench | ≤ 1,500 |
@@ -1152,7 +1193,7 @@ The rename from EMS to Reverie, and the `ec` code prefix, are explained in exact
 | `hidden` | Not generated | Row: "Continuity experiment · In design" (no link) | S6 "Next" line, no link |
 | `design` (**recommended**) | **Live**: question, hypothesis stated neutrally, protocol, what will be published, last-updated date. *No empty video frame.* The copy says: "Recordings and results will be published here when the runs are complete, whatever they show." | Linked, `In design` | S6 "Next" line, linked |
 | `running` | As `design`, plus a run log (dates) | `Running` | Same |
-| `published` | Full page (below) | `Published` | **S3b opens**: poster frame, player, one-line neutral description, date, "Protocol, recordings and results →". Fig. 2 leaves the homepage (§7 S3b). |
+| `published` | Full page (below) | `Published` | **S3b opens**: poster frame, player, one-line neutral description, date, "Protocol, recordings and results →". The lower panel of Fig. 2 (F2) leaves the homepage (§7 S3b). |
 
 Publishing the protocol before the results (status `design`) makes the "placeholder" a preregistration rather than an unfinished section, which fits the project's honesty.
 
@@ -1224,7 +1265,7 @@ Hosting: self-hosted MP4/WebM with a poster versus a privacy-respecting embed is
 3. **Figures:** every diagram is a `<figure>` with a `<figcaption>` (number, title, one-sentence takeaway) **and** a structured text equivalent (an ordered list of the steps or states, visually hidden, linked with `aria-describedby`). Diagram text is real HTML text wherever possible.
 4. **Colour is never the only signal:** statuses have glyphs and labels; contradiction edges carry a tick mark as well as amber.
 5. **Keyboard:** everything operable. The Fig. 5 stepper uses real buttons, supports ←/→ when focused, and announces each step and its confidence value through `aria-live="polite"`. Focus is always visible (2 px accent ring).
-6. **Motion:** honour `prefers-reduced-motion`; nothing moves without user action anyway (§16).
+6. **Motion:** honour `prefers-reduced-motion`. The only motion that starts without user action is the M1 memory map. It has a visible pause button, stops when it leaves the viewport, and is replaced by a static, fully annotated map under reduced motion (WCAG 2.2.2, Pause, Stop, Hide). Its structured text equivalent lists the five events in order.
 7. **Video:** captions, transcript, no autoplay with sound, a pause control, and a speed-up disclosure in text.
 8. **Language and reading:** plain-language summaries before technical detail; the FAQ uses native `<details>`.
 9. **Content robustness:** no content hidden behind JavaScript. The current `AnimateSections`, which starts every section at opacity 0, is removed.
@@ -1234,11 +1275,11 @@ Hosting: self-hosted MP4/WebM with a poster versus a privacy-respecting embed is
 
 ## 16. Animation principles
 
-**Rule:** *motion only explains, and only when the visitor asks for it.*
+**Rule:** *motion only explains, and only when the visitor asks for it.* There is one exception, approved by the owner in revision 2: the homepage memory map (M1), because belief change is about time and a still image can't show it.
 
 | Allowed | Where | Spec |
 |---|---|---|
-| Linked highlighting | Home S3 steps ↔ Fig. 1 regions | Wash fade-in, 150 ms ease-out, on hover or focus |
+| Explanatory loop | Home, Fig. 2 top panel (M1) | A 16 s CSS keyframe cycle of five events: added, strengthened, challenged, superseded, fading. New conclusions slide in by at most 28 px. It starts only when in view, pauses off screen (IntersectionObserver), has a visible pause/play button, and under reduced motion is replaced by the static annotated map. |
 | State transition | Fig. 5 stepper | Confidence bar width and status mark change, 200 ms ease-out; under reduced motion, instant |
 | UI feedback | Buttons, links, nav sheet | Colour 150 ms; sheet opacity 150 ms (no slide under reduced motion) |
 | Video | V2 | User-initiated playback only |
@@ -1247,14 +1288,14 @@ Hosting: self-hosted MP4/WebM with a poster versus a privacy-respecting embed is
 
 - scroll-triggered reveals of any kind (`FadeIn` and `AnimateSections` are removed);
 - page-load fades;
-- looping or ambient animation, including SMIL flow dots;
+- looping or ambient animation, including SMIL flow dots (M1 is the single, explanatory exception);
 - parallax;
 - typing effects;
 - counters;
 - cursor effects;
 - hover lifts on containers.
 
-**Removed:** the `framer-motion` dependency (its only use was `ConceptualEvolution`, which is retired). CSS transitions cover every allowed case.
+**Removed:** the `framer-motion` dependency (its only use was `ConceptualEvolution`, which is retired). CSS transitions and keyframes cover every allowed case.
 
 ---
 
@@ -1329,8 +1370,8 @@ If hosting isn't Vercel, use static meta-refresh pages instead (§20).
 | Framework | Keep Next.js 16 (App Router), React 19, TypeScript strict, static export (`output: "export"`). |
 | Styling | Keep Tailwind CSS v4, with all design tokens as CSS variables in `@theme` (light) plus a `prefers-color-scheme: dark` override. |
 | Content | Markdown in `content/` (gray-matter plus react-markdown/remark-gfm, as today). For the paper, **MDX** (`@next/mdx`) so Figs 4 and 5 can be embedded inline. Alternative: a TSX page assembling markdown sections. |
-| Diagrams | React **server components** (zero client JavaScript), except the Fig. 5 stepper and the Fig. 1 hover link (small client islands). |
-| Client JavaScript budget | Nav toggle, Fig. 1 highlight, Fig. 5 stepper; V2 player later. Nothing else. |
+| Diagrams | React **server components** (zero client JavaScript), except the M1 controls and the Fig. 5 stepper (small client islands). |
+| Client JavaScript budget | Nav toggle, M1 pause button and off-screen observer, Fig. 5 stepper; V2 player later. Nothing else. |
 | Fonts | `next/font/google`: Newsreader (variable, opsz and weight axes, normal and italic) and IBM Plex Mono (400, 500). Preload display and body only. |
 
 ### 19.2 Proposed file structure
@@ -1348,12 +1389,12 @@ app/
 components/
   site/        Wordmark · SiteNav · SiteFooter · RepoCta
   ui/          ButtonLink · ArrowLink · StatusTag · Prose · Toc · Figure · Faq · SpecList · EditorsNote · GroundingNote
-  specimen/    ConclusionRecord (V1, used inside F3)
-  diagrams/    SessionBoundary (F1) · ConclusionLifecycle (F2/F5) · ConclusionAnatomy (F3) · TwoBrains (F4) · BenchProtocol (F6)
+  specimen/    ConclusionRecord (V1 card, used again inside F3)
+  diagrams/    HeroGraph (V1) · SessionsStrip (P1) · SessionBoundary (F1) · MemoryMap (M1, client island) · ConclusionLifecycle (F2/F5) · OwnershipHub (O1) · ConclusionAnatomy (F3) · TwoBrains (F4) · BenchProtocol (F6)
   research/    ResearchList · Lineage · ResultsLedger · Citation
   video/       ComparisonVideo (V2; built when the experiment ships)
 content/
-  site.config.ts          name, tagline, domain, contactEmail, repository {url|null, ref}, experiment {status}, version, supportedAgents
+  site.config.ts          name, tagline, domain, contactEmail, repository {url|null, ref}, experiment {status}, claims {anyMcpAgent}, version, supportedAgents
   research.ts             research entries (index, lineage, archive)
   bench-runs.ts           results ledger rows (with sources and reconciliation status)
   specimens/*.json        captured ec_query outputs (V1/F3)
@@ -1395,10 +1436,11 @@ type BenchRun = {
 
 ### 19.4 Configuration states
 
-`site.config.ts` holds two switches:
+`site.config.ts` holds three switches:
 
 - `repository.url: string | null`, which controls the CTA states (§4.5) and the grounding-note links;
-- `experiment.status: "hidden" | "design" | "running" | "published"`, which controls §13.
+- `experiment.status: "hidden" | "design" | "running" | "published"`, which controls §13;
+- `claims.anyMcpAgent: boolean`, which controls the "any MCP agent" wording in the hero and the dashed record in Fig. 3 (§20, question 20).
 
 No other conditional logic is needed.
 
@@ -1430,10 +1472,10 @@ Vercel is assumed, since Vercel Analytics is installed. Redirects go in `vercel.
 
 | Phase | Work | Depends on |
 |---|---|---|
-| **0. Content prerequisites (owner)** | Reconcile benchmark figures (§1.7B); correct the paper (§1.7A); capture a real `ec_query` output for V1/F3; confirm the four-agent claim end to end; decide repository/licence timing and contact method; confirm domain and hosting; approve fonts; About copy; experiment status; share visual references | — |
+| **0. Content prerequisites (owner)** | Reconcile benchmark figures (§1.7B); correct the paper (§1.7A); capture a real `ec_query` output for V1/F3; confirm the four-agent claim end to end; test one MCP client the installer doesn't configure; decide repository/licence timing and contact method; confirm domain and hosting; approve fonts; About copy; experiment status; share visual references | — |
 | **1. Foundation** | Tokens (light and dark), fonts, `site.config.ts`, layout, nav, footer, 404, `vercel.json` redirects, deletion of dead components and animation layers, removal of `framer-motion` | Approval of this plan |
 | **2. Diagram groundwork** | `lib/confidence.ts` plus tests; shared diagram primitives (record, band, edge, status mark) per `DIAGRAM-PLAN.md` §2 | `DIAGRAM-PLAN.md` approval |
-| **3. Homepage** | S1–S7, V1, F1 (with hover link), F2 | Phase 0 specimen (or a labelled example) |
+| **3. Homepage** | S1–S7, V1, P1, F1, M1 with F2, O1 | Phase 0 specimen (or a labelled example) |
 | **4. How it works** | §8.1 content, F3, F4, F5 stepper, tables, FAQ, limits | Phase 2 |
 | **5. Research** | Index (lineage, entries, archive), notebook migration with editor's note, PDF moves | Phase 1 |
 | **6. EC-Bench** | Page, F6, `ResultsLedger` with guards | Phase 0 reconciliation for figures; can ship without figures |
@@ -1467,6 +1509,8 @@ Vercel is assumed, since Vercel Analytics is installed. Redirects go in `vercel.
 | 17 | **`llms.txt`:** include? | Agent-readable summary | Optional, phase 8 |
 | 18 | **Homepage research claim** ("made the agent worse"): sign-off after #1? | Public negative claim | Keep, after sign-off |
 | 19 | **Competitor section visibility:** this repository is public; keep §3 here or move it to a private location? | Section 3 names products | Your call |
+| 20 | **"Any MCP agent":** run Reverie end to end in at least one MCP client the installer doesn't configure (for example Windsurf, Zed or Cline) before launch? | Claim C27 in the hero | Ship it (`claims.anyMcpAgent: true`). If the check fails, set it to `false`: the hero then says "Works with Claude Code, Cursor, OpenCode and Codex", and Fig. 3 drops the dashed record |
+| 21 | **Memory-map animation:** approve the single exception to the no-ambient-motion rule? | §16; accessibility | Keep it, with pause, off-screen stop and a reduced-motion static state |
 
 **Environment note.**
 

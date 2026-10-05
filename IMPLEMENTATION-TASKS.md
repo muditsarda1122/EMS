@@ -1,6 +1,7 @@
 # Reverie website: implementation tasks
 
 **Status:** ready for implementation once the owner approves the design. **Date:** 2026-10-05.
+**Revision 2 (2026-10-05):** updated for the visual-led homepage (preview version 2). The homepage task is split into T4a (sections and static figures) and T4b (the memory-map animation). The motion and blur rules have one exception each, and P13 and P14 are new owner decisions.
 
 This file breaks [`WEBSITE-DESIGN-PLAN.md`](./WEBSITE-DESIGN-PLAN.md) and [`DIAGRAM-PLAN.md`](./DIAGRAM-PLAN.md) into **self-contained tasks**, each small enough for one focused session. The visual target for the homepage is [`design/homepage-preview/`](./design/homepage-preview/): an HTML rendering plus screenshots.
 
@@ -26,11 +27,12 @@ Partially redesigned pages never go live.
 **Order and dependencies.**
 
 ```text
-T1 Foundation ─┬─► T2 Confidence maths ─► T3 Diagram primitives + specimen ─┬─► T4 Homepage ─► T5 How it works ─► T8 Paper
+T1 Foundation ─┬─► T2 Confidence maths ─► T3 Diagram primitives + specimen ─┬─► T4a Homepage ─┬─► T4b Memory map animation
+               │                                                           │                └─► T5 How it works ─► T8 Paper
                │                                                           └─► T7 EC-Bench
                ├─► T6 Research index + notebook + archive
                └─► T9 About + SEO
-T4…T9 ──► T10 Cleanup + redirects + README ──► T11 QA ──► merge redesign → main
+T4a…T9 ──► T10 Cleanup + redirects + README ──► T11 QA ──► merge redesign → main
 T12 Continuity experiment page: whenever the owner is ready (after T6)
 ```
 
@@ -40,14 +42,15 @@ T12 Continuity experiment page: whenever the owner is ready (after T6)
 |---|---|---|
 | A | T1 | |
 | B | T2 + T3 | Small and related |
-| C | T4 | Design-critical: compare against the preview screenshots carefully |
+| C | T4a | Design-critical: compare against the preview screenshots carefully |
+| C2 | T4b | Compare frames against the storyboard |
 | D | T5 | Attach the source docs (P12) |
 | E | T6 + T7 | |
 | F | T8 + T9 | When P2, P7 and P8 are ready |
 | G | T10 + T11 | |
 | Later | T12 | |
 
-Sonnet is fine for every task. T4 and T5 are the most design-sensitive, so ask for a screenshot comparison in the PR.
+Sonnet is fine for every task. T4a, T4b and T5 are the most design-sensitive, so ask for a screenshot comparison in the PR.
 
 ---
 
@@ -66,16 +69,16 @@ Sonnet is fine for every task. T4 and T5 are the most design-sensitive, so ask f
    - **IBM Plex Mono** only for things that literally exist in Reverie (tool names, statuses, field names, values, paths, identifiers) and for small data labels.
    - Agent product names (Claude Code, Cursor…) are prose, so they are serif.
 4. **Visual system** (plan §10). Use the tokens only.
-   - Never use gradients, shadows (except the focus ring), blur or glass, rounded-2xl/3xl, pills, card grids, icon libraries or stock or AI imagery.
+   - Never use gradients, shadows (except the focus ring), blur or glass, rounded-2xl/3xl, pills, card grids, icon libraries or stock or AI imagery. The single exception is the slight blur on the hero graph's out-of-focus records (T4a).
    - Radius is 2 px. Use hairline rules (1 px).
-5. **Motion** (plan §16). No scroll-triggered animation of any kind, no page-load fades, no loops. Only the listed hover and focus transitions and the Fig. 5 stepper, all of which respect `prefers-reduced-motion`.
+5. **Motion** (plan §16). No scroll-triggered animation of any kind, no page-load fades, no loops. Allowed: the listed hover and focus transitions, the Fig. 5 stepper and **the one exception, the M1 memory map (T4b)**. M1 has a pause button, pauses off screen and is static under reduced motion. Everything respects `prefers-reduced-motion`.
 6. **Static export stays.** Keep `output: "export"`. Don't use API routes, server actions, `next/headers`, or `redirects()` in `next.config` (redirects go in `vercel.json` in T10).
 7. **Accessibility** (plan §15).
    - Semantic landmarks and one `h1` per page.
    - Every figure is a `<figure>` with a caption and a text equivalent.
    - Focus is always visible.
    - Colour never carries meaning alone.
-8. **Diagrams** (`DIAGRAM-PLAN.md` §2). One data definition drives a desktop SVG (real `<text>`) and a mobile HTML composition below 768 px, never a scaled-down SVG. Port geometry from `design/homepage-preview/home.html`.
+8. **Diagrams** (`DIAGRAM-PLAN.md` §2). One data definition drives a desktop SVG (real `<text>`) and a mobile composition below 768 px, never a scaled-down SVG. The mobile composition is HTML, or a second SVG re-laid for the narrow width (as P1 and M1 do in the preview). Port geometry from `design/homepage-preview/home.html`.
 9. **Keep the build green.** Never delete a component that an existing page still imports; T10 removes legacy code.
 10. **Configuration states.** Read `repository.url` and `experiment.status` from `content/site.config.ts`. Never hard-code State A or State B.
 
@@ -95,7 +98,7 @@ Sonnet is fine for every task. T4 and T5 are the most design-sensitive, so ask f
 |---|---|---|---|
 | P1 | Reconcile benchmark figures (#1) | Numbers in T7's ledger | T7 ships with outcomes and caveats, no figures |
 | P2 | Corrected paper text, abstract and PDF (#2) | T8 full text | T8 abstract page plus errata box |
-| P3 | A real `ec_query` output capture (exact format), ideally from a small demo repo | Final V1 and F3 content | Use the example values with an `Example` tag |
+| P3 | A real `ec_query` output capture (exact format), ideally from a small demo repo | Final F3 content (V1 is an illustration with the same field shape) | Use the example values with an `Example` tag |
 | P4 | Repository URL and licence (#3) | State B | State A (`repository.url = null`) |
 | P5 | Product constants from `DEFAULT_CONFIG`: decay λ per scope (module, repo, project, organization, domain) and open-question persistence limits per scope | The F5 decay ghost bar and step-7 wording | Show "computed from config" text instead of a value |
 | P6 | Continuity experiment status: preregister? (#5) | T12 | `hidden` |
@@ -105,7 +108,9 @@ Sonnet is fine for every task. T4 and T5 are the most design-sensitive, so ask f
 | P10 | Hosting confirmation (#10) | T10 redirects | `vercel.json` |
 | P11 | All four agents verified end to end (#11) | The wording of claim C1 | Keep "Works with…" but flag it in the PR |
 | P12 | Make `PRODUCT.md`, `INSTALLATION.md` and the paper available to T5, T7 and T8 sessions by attaching them; they are not in this repository | Fact-checking of How it works, EC-Bench and the paper | Implementers use only the plan's stated facts; anything else is `TODO(fact)` |
-| — | **Approve the homepage copy** in the preview (draft) | T4 final copy | Build with the preview copy; owner edits later |
+| P13 | Run Reverie in one MCP client the installer doesn't configure (#20) | The "any MCP agent" wording in the hero and Fig. 3 | `claims.anyMcpAgent: true`, the owner's position, documented in INSTALLATION.md §10.5. Set it to `false` if the check fails |
+| P14 | Approve the memory-map animation as the one motion exception (#21) | T4b | Build it, with pause, off-screen stop and a reduced-motion static state |
+| — | **Approve the homepage copy** in the preview (draft) | T4a final copy | Build with the preview copy; owner edits later |
 
 ---
 
@@ -126,7 +131,7 @@ Sonnet is fine for every task. T4 and T5 are the most design-sensitive, so ask f
   - a `.prose` long-form style (replacing `.article-content`, restyled to the new tokens).
   - Keep the old `btn-editorial`, `card-editorial`, `text-editorial` and `section-animate` styles inside a `/* LEGACY — delete in T10 */` block, because old pages still use them.
 - **`content/site.config.ts`.**
-  - Fields: name, tagline, description, `domain: null`, contactEmail (`muditsarda23@gmail.com`), `repository: { url: null, ref: null }`, `experiment: { status: "hidden" }`, version, supportedAgents (Claude Code, Cursor, OpenCode, Codex), nav items.
+  - Fields: name, tagline, description, `domain: null`, contactEmail (`muditsarda23@gmail.com`), `repository: { url: null, ref: null }`, `experiment: { status: "hidden" }`, version, supportedAgents (Claude Code, Cursor, OpenCode, Codex), `claims: { anyMcpAgent: true }` (P13), nav items.
   - Export typed helpers, for example `isRepoPublic()`.
 - **Components.**
   - `components/site/Wordmark.tsx`.
@@ -208,8 +213,8 @@ Sonnet is fine for every task. T4 and T5 are the most design-sensitive, so ask f
   - `Band`, `FlowArrow` (shared marker), `Boundary` (with a label that interrupts the line), `Gate`, `ConfidenceBar` (solid, frozen, or a ghost for *effective*);
   - relationship edges: supports, contradicts (amber tick), supersedes (`replaces` label), depends on (dashed).
 
-  Use tokens, not hex values, so dark mode works.
-- **`components/specimen/ConclusionRecord.tsx`.** Renders from JSON:
+  `Record` also takes `haze: "soft" | "blur"` for V1's neighbours (about 50% opacity) and its out-of-focus second ring (about 40% opacity, blurred about 1 px). Use tokens, not hex values, so dark mode works.
+- **`components/specimen/ConclusionRecord.tsx`.** It has two variants: `compact` (330 px; header `conclusion` · `reviewed`; type, scope, confidence and grounding; the foot "Verify against current code before acting.") for the homepage, and `full` for F3. It renders from JSON:
   - a header label and status mark;
   - the cognition text in serif;
   - a field list in mono;
@@ -225,36 +230,78 @@ Sonnet is fine for every task. T4 and T5 are the most design-sensitive, so ask f
 
 ---
 
-### T4 · Homepage `/`
+### T4a · Homepage `/`: sections and static figures
 
-**Goal.** Build the homepage exactly as specified and as rendered in the preview.
+**Goal.** Build the homepage exactly as specified and as rendered in the preview, with every figure in place. The memory map ships here in its static form; T4b animates it.
 
-**Read first.** Plan §7 (all of it), §4.5, §16; `DIAGRAM-PLAN.md` V1, F1, F2 and §6; `design/homepage-preview/home.html` and `screenshots/`.
+**Read first.** Plan §7 (all of it), §4.5, §15; `DIAGRAM-PLAN.md` V1, P1, F1, M1, F2, O1 and §6; `design/homepage-preview/home.html` and `screenshots/`.
 
 **Do**
-- **`app/page.tsx`.** Rewrite it with S1–S7 using the preview's copy and layout:
-  - S1: hero split (copy left, `ConclusionRecord` right);
-  - S2: hanging heading;
-  - S3: Fig. 1, then three steps with large index numerals aligned under the figure regions;
-  - S4: Fig. 2, then four facts in a two-by-two grid;
-  - S5: spec list;
-  - S6: research list with mono category labels and a dashed `In design` tag;
-  - S7: closing section in State A or State B.
-- **`components/diagrams/SessionBoundary.tsx` (F1).**
-  - Desktop SVG: port the geometry from the preview, including drawing the long-term band *before* the accept arrow.
-  - Mobile HTML composition.
-  - Optional enhancement: a small client island that highlights the matching figure region when a step is hovered or focused.
-- **`components/diagrams/ConclusionLifecycle.tsx`**, `variant="summary"` (F2). Bars come from `lib/confidence.ts` via `content/lifecycle-scenario.ts`; no numerals.
+- **`app/page.tsx`.** Rewrite it with S1–S7, using the preview's copy and layout:
+  - S1: hero split, with the copy in columns 1–6 and `HeroGraph` in columns 7–12;
+  - S2: the heading and pull line on the left, `SessionsStrip` (P1) on the right;
+  - S3: Fig. 1 with its labels inside the figure (there is no separate steps block), then the arrow link;
+  - S4: Fig. 2 (the memory map and its legend, the panel label, the lifecycle, the caption), then the arrow link;
+  - S5: `OwnershipHub` (O1), the three facts, the arrow link;
+  - S6: the research list, with mono category labels and a dashed `In design` tag;
+  - S7: the closing section in State A or State B.
+- **`components/diagrams/HeroGraph.tsx`** (V1). It combines three parts:
+  - `ConclusionRecord variant="compact"`;
+  - the SVG network: three hazy neighbours and the blurred second ring;
+  - the mobile list.
+- **`components/diagrams/SessionsStrip.tsx`** (P1): a desktop SVG and a separate, re-laid mobile SVG.
+- **`components/diagrams/SessionBoundary.tsx`** (F1): the four station drawings as reusable symbols, a desktop SVG and the stacked mobile composition.
+- **`components/diagrams/MemoryMap.tsx`** (M1, static part).
+  - Port the desktop and mobile map SVGs from the preview, with the class names the keyframes will need.
+  - Render them in their end state, with every event visible as under reduced motion. Include the legend.
+  - Leave a slot for the T4b controls.
+- **`components/diagrams/ConclusionLifecycle.tsx`**, `variant="summary"` (F2).
+  - Bars come from `lib/confidence.ts` via `content/lifecycle-scenario.ts`; no numerals.
+  - Status labels: `unreviewed`, `reviewed`, `reviewed`, `challenged`, `open question`, `superseded`.
+- **`components/diagrams/OwnershipHub.tsx`** (O1).
+  - A desktop SVG; on mobile, the hub plus a two-column agent grid.
+  - The agents come from `site.config.ts → supportedAgents`.
+  - The dashed *Any MCP agent* record, and "any MCP agent" in the hero, render only when `claims.anyMcpAgent` is true (P13).
 - **Reserved slot S3b.** Renders nothing unless `experiment.status === "published"` (§7, §13).
-- Add claims-ledger rows for every homepage claim (C1–C17 as applicable).
+- Add claims-ledger rows for every homepage claim (C1–C17 and C27–C32 as applicable).
 
 **Acceptance**
 - The 1440 px and 390 px screenshots match the preview (font-metric differences are fine).
-- No digits in the copy except dates and tool names.
+- At 1280 px and 1440 px, nothing crosses the 1200 px content edge. Check the hero network in particular.
+- No digits in the copy except dates.
 - Each figure has a caption and a text equivalent.
 - Keyboard focus is visible on every link and button.
 
 **Size.** L.
+
+---
+
+### T4b · The memory map animation (M1)
+
+**Goal.** Animate Fig. 2's memory map exactly as the preview does. It is the site's one motion exception.
+
+**Read first.** `DIAGRAM-PLAN.md` M1; plan §15 (item 6) and §16; the `.mm` classes, keyframes and reduced-motion block in `design/homepage-preview/home.html`; `screenshots/memory-map-storyboard.png`.
+
+**Do**
+- **Port the keyframes and animation classes** from the preview into the component's styles. Keep three details from the preview:
+  - one shared `--cycle: 16s`;
+  - `pathLength="100"` on drawn edges, with `stroke-dasharray: 100 200` and a start offset of 102;
+  - arrowheads as separate paths that fade in only after their line has drawn.
+- **Reduced motion.** Under `prefers-reduced-motion: reduce` there is no animation: every event's end state is shown and the pause button is hidden.
+- **Client island** (`MemoryMapControls.tsx`, `'use client'`, under 5 KB gzipped):
+  - **Button:** a real `<button aria-pressed>` with the accessible name "Pause animation" or "Play animation", and the visible text `❚❚ pause` or `▶ play`.
+  - **Off-screen pause:** an IntersectionObserver pauses the animation when less than 30% of the map is visible. It resumes when the map is visible again, unless the visitor paused it.
+  - **Mechanism:** pausing toggles a `paused` class on the map root, which sets `animation-play-state: paused`.
+- **Text equivalent:** a visually hidden ordered list of the five events, linked with `aria-describedby`.
+
+**Acceptance**
+- Frames at 1.7, 3.3, 4.9, 8.0, 11.2 and 14.0 s match the storyboard. Seek with `document.getAnimations().forEach(a => { a.pause(); a.currentTime = t; })`, as the preview render did.
+- No arrowhead appears before its line has drawn.
+- Under reduced motion, the static map shows every label and there is no button.
+- The pause button works from the keyboard, and the animation pauses off screen.
+- Only opacity, transforms, stroke properties and colour change: no layout shift.
+
+**Size.** M.
 
 ---
 
@@ -269,7 +316,7 @@ Sonnet is fine for every task. T4 and T5 are the most design-sensitive, so ask f
   - a sticky table of contents at 1024 px and wider; a `<details>` "On this page" list on mobile;
   - sections 1–9 per §8.1;
   - prose written **only** from facts stated in the plan or attached docs, otherwise `TODO(fact)`.
-- **F3** `ConclusionAnatomy`: reuse `ConclusionRecord` with numbered annotations; leader lines on desktop, a numbered list on mobile. Optional *View as JSON* in a `<details>`.
+- **F3** `ConclusionAnatomy`: reuse `ConclusionRecord variant="full"`, with the real capture once P3 arrives, with numbered annotations; leader lines on desktop, a numbered list on mobile. Optional *View as JSON* in a `<details>`.
 - **F4** `TwoBrains`. Draw the `ec_reconsolidate` exception exactly as specified.
 - **F5** `ConclusionLifecycle variant="detailed"`. A client stepper:
   - Prev and Next buttons, plus ←/→ when focused;
@@ -400,7 +447,7 @@ Sonnet is fine for every task. T4 and T5 are the most design-sensitive, so ask f
 - Lint, typecheck and build.
 - Screenshots of **every route** at 360, 390, 768, 1024, 1280 and 1440 px, light and dark.
 - An axe scan of every page (install `@axe-core/playwright` in a scratch directory, not the repo), plus Lighthouse if available.
-- A keyboard-only pass; a reduced-motion pass.
+- A keyboard-only pass; a reduced-motion pass (the M1 static map must show every event); check that M1 pauses off screen and from its button.
 - **Claims audit:** every factual sentence has a ledger row.
 - **Numbers audit:** grep the copy for digits and check each against §11.3.
 - Fix small issues. List larger ones for the owner.
@@ -420,7 +467,7 @@ Sonnet is fine for every task. T4 and T5 are the most design-sensitive, so ask f
 - **`published` state** (later):
   - the `ComparisonVideo` component (highlight cut plus per-condition recordings with a timestamp-preserving toggle on mobile, captions and transcript);
   - the metadata block, a ledger row and caveats;
-  - turn on homepage slot S3b, which moves Fig. 2 off the homepage.
+  - turn on homepage slot S3b, which removes F2 (the lower panel of Fig. 2) from the homepage.
 
 **Blocked by.** P6.
 **Size.** S (design state) or L (published).

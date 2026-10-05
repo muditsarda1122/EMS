@@ -1,9 +1,10 @@
 # Reverie website: diagram and visual plan
 
-**Status:** proposal for review. **No diagram has been drawn or coded.**
+**Status:** proposal for review. **No diagram has been coded for the site.** The homepage figures are drawn in the static preview only.
 **Date:** 2026-10-05 · **Companion to:** [`WEBSITE-DESIGN-PLAN.md`](./WEBSITE-DESIGN-PLAN.md) (§9 summarises this file)
 **Approval:** every visual below needs sign-off before implementation. §8 is a review checklist.
-**Reference rendering:** V1, F1 and F2 are drawn in [`design/homepage-preview/home.html`](./design/homepage-preview/home.html), in both the desktop SVG and the mobile HTML compositions, with screenshots in `design/homepage-preview/screenshots/`. Port their geometry when implementing. Where wording differs between the preview and this file, the preview is newer.
+**Reference rendering:** V1, P1, F1, M1, F2 and O1 are drawn in [`design/homepage-preview/home.html`](./design/homepage-preview/home.html) (version 2), in both desktop and mobile compositions. Screenshots, and a storyboard of the M1 animation, are in `design/homepage-preview/screenshots/`. Port their geometry and keyframes when implementing. Where wording differs between the preview and this file, the preview is newer.
+**Revision 2 (2026-10-05):** after the owner's review of the first preview, the homepage became visual-led. V1 and F1 were simplified, F2 lost its supporting copy, and P1, M1 and O1 were added. §1, §3, §5, §7 and §8 are updated.
 
 All factual elements cite their source. Most cite **PRODUCT.md** (the implementation archaeology) or **INSTALLATION.md**; a few cite the paper *Reverie: A Biological Memory Architecture for AI Agents* (5 Sep 2026), but only where the paper agrees with the implementation (see design plan §1.7A).
 
@@ -11,20 +12,21 @@ All factual elements cite their source. Most cite **PRODUCT.md** (the implementa
 
 ## 1. Rules and budget
 
-1. **Zero to three diagrams or explanatory visuals per page.** Zero is a valid answer.
+1. **Zero to three diagrams or explanatory visuals per page.** Zero is a valid answer. **Exception:** the homepage is visual-led by owner decision (2026-10-05) and carries six visuals, each replacing copy.
 2. A visual must communicate something that would otherwise be **harder to understand**. Decoration fails this test.
 3. Every element of every visual is **true to the implementation**. Example values are computed with the product's real rules and labelled `Example`.
 4. **Nothing imitates a product UI that doesn't exist**: no app windows, dashboards, title-bar dots or fake terminals.
-5. Diagrams are **static by default**. Interaction is allowed only when it explains (Fig. 5) or links text to figure (Fig. 1). There is no ambient animation.
+5. Diagrams are **static by default**. Interaction is allowed only when it explains (Fig. 5). There is no ambient animation, with one exception: **M1**, the homepage memory map. It is an explanatory loop with a pause button; it stops off screen and is static under reduced motion.
 6. Every visual has a **mobile composition**: content re-laid vertically, never scaled down, with text never below 13 px.
 7. Every visual has a **text equivalent** (design plan §15).
+8. **Prefer a diagram wherever it explains better than text** (owner rule, 2026-10-05). Figure labels are at most eight words.
 
 ### Budget by page
 
 | Page | Visuals | Count |
 |---|---|---|
-| Home `/` | V1 hero specimen · F1 Across the session boundary · F2 The life of a conclusion (summary) | **3** |
-| Home, after the continuity experiment is published | V1 · F1 · V2 side-by-side recording (F2 leaves the homepage; S4 links to F5) | **3** |
+| Home `/` | V1 hero graph · P1 Every session starts from zero · F1 From one session to the next · Fig. 2: M1 memory map above F2 one conclusion, up close · O1 Your memory, not your agent's | **6** (owner exception) |
+| Home, after the continuity experiment is published | V1 · P1 · F1 · M1 · O1 · V2 side-by-side recording (F2 leaves the homepage; S4 links to F5) | **6** |
 | How it works `/how-it-works` | F3 Anatomy of a conclusion · F4 Two brains and a review gate · F5 The life of a conclusion, step by step | **3** |
 | Paper `/research/biological-memory-architecture` | F4 (reused) · F5 static variant (reused) | **2** |
 | EC-Bench `/research/ec-bench` | F6 How an EC-Bench run works | **1** |
@@ -36,7 +38,7 @@ All factual elements cite their source. Most cite **PRODUCT.md** (the implementa
 
 **Tables are not counted as diagrams.** They are typographic content (the MCP tools, the supported agents, scope retirement rules, the results ledger, the archive list) and follow the design system's table styles.
 
-**One throughline.** The homepage and How it works illustrate the *same* example conclusion, the token-refresh invariant from the paper's own example: *"Cache invalidation must follow token refresh; clearing the cache first serves stale authentication tokens."* It appears in V1 (retrieved), F1 (crossing the boundary), F2 and F5 (evolving) and F3 (dissected). §6 contains the worked numbers.
+**One throughline.** The homepage and How it works illustrate the *same* example conclusion, the token-refresh invariant from the paper's own example: *"Cache invalidation must follow token refresh; clearing the cache first serves stale authentication tokens."* It appears in V1 (with its neighbours), P1 (worked out again each day), M1 (among related conclusions), F2 and F5 (evolving) and F3 (dissected). §6 contains the worked numbers.
 
 ---
 
@@ -53,7 +55,10 @@ All factual elements cite their source. Most cite **PRODUCT.md** (the implementa
 | **Open question** | Dashed stroke plus `?` glyph | `open question` (mono) |
 | **Superseded / deprecated** | Text in `--ink-3` with a strike-through | `superseded` or `deprecated` (mono) |
 | **Band** (persists over time) | Full-width `--paper-sunken` rectangle, no radius | Label top-left, serif italic (for example *your repository*, *long-term memory*) |
-| **Process arrow** | 1.5 px ink line, 6 px open arrowhead | Tool names in mono (`ec_observe`), actions in serif |
+| **Process arrow** | 1.5 px ink line, 6 px open arrowhead | Tool names in mono (`ec_observe`), actions in serif. No tool names on the homepage. |
+| **Hazy neighbour** (V1) | A record at about 50% opacity, still legible | Serif 12.5 px; relationship label in mono above |
+| **Out-of-focus record** (V1) | A small record with grey text bars, about 40% opacity, blurred about 1 px | — |
+| **Event label** (M1) | — | Serif italic 14 px; it explains a change (for example *strengthened*) and is never a status name |
 | **Session boundary** | Vertical dashed 1 px `--ink-3` line | *session ends* (serif italic) |
 | **Gate** | Narrow bordered box | **Review** (serif 500) plus outcomes |
 | **Edge: supports** | Solid 1 px line, filled arrowhead | — |
@@ -67,7 +72,7 @@ The visual law: **hollow means unreviewed; solid means reviewed.** It is the sam
 ### 2.2 Type and colour
 
 - **Two voices.** Concepts and prose are set in **Newsreader**. Anything that exists in the implementation (tool names, statuses, field names, values, paths) is set in **IBM Plex Mono**.
-- **Colour.** Ink on paper, with `--accent` only for the reviewed bar and the hover/focus wash. `--challenged` (amber) is used only for challenged states and contradiction ticks. No other colours. Dark theme: tokens swap automatically (design plan §10.3).
+- **Colour.** Ink on paper, with `--accent` only for the reviewed bar and the current-step wash in Fig. 5. `--challenged` (amber) is used only for challenged states and contradiction ticks. No other colours. Dark theme: tokens swap automatically (design plan §10.3).
 - **Minimum sizes.** Diagram text at least 13 px rendered; stroke at least 1 px; arrowheads at least 6 px.
 
 ### 2.3 Construction
@@ -77,7 +82,7 @@ The visual law: **hollow means unreviewed; solid means reviewed.** It is the sam
   - **Mobile (< 768 px):** HTML/CSS vertical layout (ordered lists, small inline SVG arrows).
 
   Only one composition is rendered at a time (`display: none` on the other), so assistive technology reads one.
-- Implemented as **React server components** (no client JavaScript), except F5 (stepper) and the F1 ↔ Home step highlight (a tiny client island).
+- Implemented as **React server components** (no client JavaScript), except F5 (stepper) and M1 (pause button and off-screen observer), which are small client islands.
 - Confidence values come from `lib/confidence.ts`, a TypeScript port of the `ec/confidence.py` rules using `DEFAULT_CONFIG` constants. Its unit tests compare against values from the Python implementation (design plan §19.3).
 
 ### 2.4 Captions and accessibility pattern
@@ -86,7 +91,7 @@ The visual law: **hollow means unreviewed; solid means reviewed.** It is the sam
 <figure aria-labelledby="fig1-cap" aria-describedby="fig1-desc">
   <svg role="img" aria-labelledby="fig1-cap">…</svg>          <!-- desktop composition -->
   <ol class="mobile-composition">…</ol>                         <!-- mobile composition -->
-  <figcaption id="fig1-cap"><i>Fig. 1</i> Across the session boundary. One-sentence takeaway.</figcaption>
+  <figcaption id="fig1-cap"><i>Fig. 1</i> From one session to the next. One-sentence takeaway.</figcaption>
   <div id="fig1-desc" class="sr-only"><!-- ordered, structured text equivalent --></div>
 </figure>
 ```
@@ -97,110 +102,163 @@ Figure numbers run per page (Fig. 1, Fig. 2…) and are serif italic. The captio
 
 ## 3. Visual specifications
 
-### V1 · Hero specimen: "A reviewed conclusion, as your agent gets it back"
+### V1 · The hero graph: "One reviewed conclusion and its links"
 
 | Field | Specification |
 |---|---|
-| **Name** | V1, the hero specimen |
-| **Page** | Home, S1 (hero). Its data is reused by F3 on How it works. |
-| **Purpose** | Show the *unit of memory* at first glance: a single conclusion with its confidence, scope, grounding and status, in the form the agent actually receives. |
+| **Name** | V1, the hero graph |
+| **Page** | Home, S1 (hero). The specimen card is reused at full detail by F3 on How it works. |
+| **Purpose** | Show the *unit of memory* at first glance (one conclusion with its confidence, scope, grounding and status), and show that conclusions are connected, without showing many of them. |
 | **Question it answers** | "What exactly does Reverie remember?" |
-| **Contains** | **Header:** the mono label `ec_query · group 1` on the left; the status mark and `canonical · reviewed` on the right. **Conclusion text** (serif 20 px): *"Cache invalidation must follow token refresh; clearing the cache first serves stale authentication tokens."* **Field list** (mono): `type invariant` · `scope repo:myapp › module:auth` · `confidence 0.67` plus a thin bar · `source debugging` · `grounding auth/token_manager.rs · auth/cache.rs`, `TokenManager::refresh · TokenManager::clear_cache`, `@ d64d0e07c1ab` · `related supported by 1`. **Footer** (serif italic): *"Past engineering understanding. Verify against current code before acting."* **Caption:** *"A reviewed conclusion, as your agent gets it back in a later session."* plus an `Example` tag if values are illustrative. |
-| **Leaves out** | Window chrome (no dots or title bar), UUIDs, embeddings, metadata timestamps, retrieval scores, any "dashboard" framing, any second record. |
-| **Composition** | Desktop: right half of the hero (columns 7–12), top-aligned with the headline. Surface background, 1 px rule, 2 px radius, 24 px padding. Mobile: full width below the hero copy and calls to action. |
-| **Why a visual beats text** | "Engineering conclusions with confidence and grounding" is abstract. One concrete record makes it immediately legible and shows the system is real. This is the honest version of the "show the product" principle, since the product's real surface is text the agent receives. |
+| **Contains** | **Specimen** (330 px wide): <br>• Header: `conclusion` on the left; the reviewed mark and `reviewed` on the right. <br>• Conclusion, in serif 18.5 px: *"Cache invalidation must follow token refresh; clearing the cache first serves stale authentication tokens."* <br>• Fields, in mono: `type invariant` · `scope repo:myapp > module:auth` · `confidence 0.67` with a thin bar · `grounding auth/token_manager.rs`, `auth/cache.rs @ d64d0e0`. <br>• Foot, in serif italic: *"Verify against current code before acting."* <br>**First ring** (hazy, at about 50% opacity, still legible): three neighbours to the right, each with a mono relationship label: <br>• `supports`: *"Token refresh completes before any cache read"* (solid edge into the card); <br>• `depends on`: *"TokenManager is the only writer of the token cache"* (dashed edge out of the card); <br>• `replaced`: *"Random logouts come from session-store expiry"* (struck through; the card replaced it). <br>**Second ring** (out of focus): two small records with grey text bars, blurred by about 1 px, linked to the first ring. <br>**Caption:** *"One reviewed conclusion and its links."* plus an `Example` tag. |
+| **Leaves out** | Tool names (`ec_query`); the words *canonical* and *ECU*; window chrome; UUIDs, embeddings, timestamps and scores; more than three legible neighbours; any dashboard framing. |
+| **Composition** | **Desktop:** columns 7–12 (588 px). The card is on the left and the network fills the remaining 258 px; nothing crosses the grid's right edge. **Mobile:** the card at full width, then the neighbours as an indented list at reduced opacity. |
+| **Why a visual beats text** | One concrete record makes "engineering conclusions with confidence and grounding" legible at once. The faded neighbours say "connected memory" without a paragraph, and the blur keeps the eye on the card. |
 | **Static or interactive** | Static. |
-| **Mobile** | Full width; mono at 13 px; paths wrap at `/` and `::`; field labels stay in a left column at 9 characters wide; no horizontal scroll. |
-| **Sources** | Field set and order: PRODUCT.md §13 (formatted output: CONCLUSION, CONFIDENCE with label, brain and reviewed flag, flags, SCOPE, TYPE, SOURCE, GROUNDING, SYMBOLS, slots; framing note verbatim) and §5.1 (fields). Example conclusion, files, symbols and commit: PRODUCT.md §5.3 (shape exact, values illustrative), lightly reworded to the throughline. `confidence 0.67`: the worked scenario in §6 (step 4). `canonical · reviewed`: PRODUCT.md §13 (brain and reviewed flags). |
-| **Before launch** | **Capture the exact label wording and field order from a real `ec_query` run** (format verbatim). Prefer real values from a small demo repository built around this scenario; otherwise keep the §6 example values and show the `Example` tag. |
+| **Mobile** | As above; mono at 13 px; paths wrap at `/`; no horizontal scroll. |
+| **Sources** | Fields: PRODUCT.md §13 and §5.1. Relationship types (supports, depends_on, supersedes): PRODUCT.md §12. Results returned grouped with related conclusions: PRODUCT.md §13. `confidence 0.67`: §6, step 4. The foot shortens the framing note in PRODUCT.md §13. Example conclusion, files and commit: PRODUCT.md §5.3 (shape exact, values illustrative). |
+| **Before launch** | V1 is an illustration labelled `Example`, not a literal `ec_query` output, but its fields must match a real record's shape. The literal capture now goes to F3 on How it works. The blur is the single exception to "no blur" (design plan §10.3), made at the owner's request for hazy neighbours. |
+
+```text
+                                    supports
+ ┌ conclusion ─────────── ▌reviewed ┐ ◄── ▌ Token refresh completes      ░░▌░░░░
+ │ Cache invalidation must follow   │      before any cache read     ░░░░░░  (out of focus)
+ │ token refresh; clearing the …    │   depends on
+ │ type        invariant            │ ┄┄► ▌ TokenManager is the only     ░░▌░░░░
+ │ scope       repo:myapp > …       │      writer of the token cache
+ │ confidence  0.67 ▬▬▬▬▬▭▭         │   replaced
+ │ grounding   auth/token_manager.rs│ ──►  (struck) Random logouts come from …
+ │ Verify against current code …    │
+ └──────────────────────────────────┘
+```
 
 ---
 
-### F1 · "Across the session boundary"
+### P1 · "Every session starts from zero"
 
 | Field | Specification |
 |---|---|
-| **Name** | Fig. 1, Across the session boundary |
+| **Name** | P1, Every session starts from zero |
+| **Page** | Home, S2 (problem), columns 7–12 |
+| **Purpose** | Make the continuity problem felt in about two seconds. |
+| **Question it answers** | "What goes wrong without memory?" |
+| **Contains** | Three rows labelled in mono `Monday`, `Tuesday` and `Wednesday`. In each, five grey reasoning bars (the agent working) lead to the same dashed record, *why users get logged out*. A dashed vertical line labelled *session ends* closes every row. Caption: *"Each new session works it out again, from zero."* |
+| **Leaves out** | Axes, curves, numbers, time estimates, any claim about how much time is lost, and other approaches. |
+| **Composition** | Desktop: 588 × 196 SVG. Mobile: 350 × 236, with each day's label above its bars. |
+| **Why a diagram beats text** | The repetition is the message: three identical rows say "again and again" faster than the paragraph they replace. |
+| **Static or interactive** | Static. |
+| **Sources** | The problem framing: paper §1–2 (*"The bottleneck is not intelligence. It is continuity."*). The scenario: the throughline, from the paper's own example. Dashed means the conclusion exists only in the session (§2.1). |
+
+```text
+                                                              ┆ session ends
+ Monday     ▬▬▬ ▬▬ ▬▬▬▬ ▬▬ ▬▬▬   ┊ why users get logged out ┊ ┆
+ Tuesday    ▬▬▬ ▬▬ ▬▬▬▬ ▬▬ ▬▬▬   ┊ why users get logged out ┊ ┆
+ Wednesday  ▬▬▬ ▬▬ ▬▬▬▬ ▬▬ ▬▬▬   ┊ why users get logged out ┊ ┆
+```
+
+---
+
+### F1 · "From one session to the next"
+
+| Field | Specification |
+|---|---|
+| **Name** | Fig. 1, From one session to the next |
 | **Page** | Home, S3 (How it works) |
-| **Purpose** | Explain the whole mechanism in one view: what happens to a conclusion when a session ends, and how it comes back. It also makes the two governance ideas visible: **review sits at the boundary**, and **the agent asks after reading the code**. |
-| **Question it answers** | "When my session ends, what survives, who decides, and how does it reach the next session?" |
-| **Contains** | (1) A **repository band** across the top, labelled *your repository: the code persists*. (2) **Session 1** column: *agent works out why users are logged out* → `ec_observe` → *extract: keeps the conclusion; rejects facts and play-by-play* → **session memory** with two dashed (unreviewed) records, annotated *usable now*. (3) **Boundary**: vertical dashed line labelled *session ends*. (4) **Review** gate at the boundary with three outcomes: *accept* (arrow down into long-term memory), *reject* (×), *skip* (*→ next session*). (5) A **long-term memory band** across the bottom holding solid (reviewed) records, including the throughline conclusion. (6) **Session 2** column: *agent reads the auth code* → `ec_query` → an arrow **up** from the long-term memory band → *relevant conclusions, with confidence, scope and files* → *verifies against current code* → *continues*. |
-| **Leaves out** | Confidence numbers, relationship types, maintenance, scope levels, model or LLM details, the session brain's internals, any axis or curve implying "more understanding", any claim of improvement. |
-| **Composition** (desktop, about 1100 × 440) | See the sketch below. Three columns (Session 1 · boundary with gate · Session 2) between two full-width bands. Process arrows run downward inside sessions; the accept arrow drops into the bottom band; the retrieval arrow rises from the bottom band into Session 2. |
-| **Why a diagram beats text** | The insight is spatial: the boundary, where review sits on it, and what crosses it. Three numbered steps beside the figure carry the words; the figure carries the topology. |
-| **Static or interactive** | Static. **Enhancement:** hovering or focusing step 1, 2 or 3 in the copy applies an `--accent-wash` to the matching region (extract, review, retrieve). Without JavaScript it is fully static. |
-| **Mobile** | A vertical composition (sketch below): Session 1 → *session ends* → Review → Long-term memory → *later* → Session 2. The repository band becomes a thin left rail labelled *your repository*. The `ec_query` arrow points **up** from long-term memory into Session 2's block. Steps 1–3 are interleaved with the figure stages. |
-| **Sources** | `ec_observe`, `ec_query`: PRODUCT.md §3.2. Extraction keeps conclusions and rejects facts, code descriptions, process steps and summaries: PRODUCT.md §6. Session memory is usable in-session: PRODUCT.md §8 (session ECUs ranked ×0.8), §13 (both brains searched). Review at session end with accept, reject and skip; skipped items carried forward: PRODUCT.md §10, §8. Only accepted conclusions reach long-term memory: PRODUCT.md §9. Agent queries after reading code: PRODUCT.md §3.2 (tool description: never before grounding in the repo); INSTALLATION.md §7.6. Results carry confidence, scope and files, with the verify framing: PRODUCT.md §13. "The code persists" is a framing statement (the repository is unchanged by Reverie; grounding reads it: PRODUCT.md §14). |
-
-Desktop sketch:
+| **Purpose** | Explain the whole mechanism in one view, with the two governance ideas visible: **you review at the session boundary**, and **the agent asks after reading the code**. |
+| **Question it answers** | "When my session ends, what survives, who decides, and how does it come back?" |
+| **Contains** | Four drawn stations (each 240 × 150) from left to right. A dashed line labelled *session ends* separates stations 1 and 2, and one labelled *next session* separates 3 and 4. <br>**1 Your agent works.** A session panel with grey reasoning bars and two dashed records labelled *conclusion*. Line: *"Conclusions are extracted as it goes."* <br>**2 You review.** Two dashed records pass a gate (a 2 px vertical bar). One becomes solid with a ✓; the other fades, struck through, with ×. Line: *"Keep what's right. Drop the rest."* <br>**3 Memory builds up.** A sunken band of solid records with links between them; one is stronger (2 px border) and one has faded. Line: *"Grounded in your code."* <br>**4 Your agent asks.** A session panel with reasoning bars; a solid record, *relevant conclusion*, arrives from memory, noted *checked against the code*. Line: *"After reading the code, not before."* <br>Arrows join the stations. Caption: *"Fig. 1 Dashed: not yet reviewed. Solid, with a blue edge: reviewed by you."* |
+| **Leaves out** | Tool names; the repository band; *skip* (How it works shows it); confidence numbers; relationship types; maintenance; scope levels; model details; any curve implying improvement. |
+| **Composition** | **Desktop:** a 1200 × 270 SVG with stations at x = 30, 330, 630 and 930; each station's title and line sit under it. **Mobile:** the four station drawings stacked (each at most 330 px wide), with the two boundaries as dashed dividers between them. |
+| **Why a diagram beats text** | The insight is spatial: where the boundary falls, where review sits, and what crosses it. The drawings carry the meaning; the labels stay short. |
+| **Static or interactive** | Static. The revision-1 hover link is dropped because the steps now live inside the figure. |
+| **Sources** | Extraction during the session: PRODUCT.md §3.2, §6. Review at session end, accept and reject (skip is covered on How it works): PRODUCT.md §10, §8. Only accepted conclusions reach long-term memory: PRODUCT.md §9. Grounding: PRODUCT.md §5.1, §14.2. The agent asks after reading the code: PRODUCT.md §3.2; INSTALLATION.md §7.6. The verify framing: PRODUCT.md §13. |
 
 ```text
-╭─ your repository · the code persists ─────────────────────────────────────────────────────────────╮
-╰────────────────────────────────────────────────────────────────────────────────────────────────────╯
- SESSION 1                                  ┆              ┆  SESSION 2
- agent works out why users                  ┆              ┆  agent reads the auth code
- are logged out                             ┆  ┌────────┐  ┆        │
-        │ ec_observe                        ┆  │ Review │  ┆        │ ec_query
-        ▼                                   ┆  │        │  ┆        ▼
- extract: keeps the conclusion,             ┆  │ accept │  ┆  relevant conclusions, with
- rejects facts and play-by-play             ┆  │ reject ×  ┆  confidence, scope and files
-        ▼                                   ┆  │ skip → next┆        │
- ┌ session memory · usable now ┐ ───────────►  └───┬────┘  ┆        ▼
- │ ┊ cache invalidation… ┊ ┊ … ┊ │          ┆      │ accept ┆  verifies against current code,
- └──────────────────────────────┘          ┆      ▼       ┆  continues
-                                     session ends            ▲
-╭─ long-term memory · reviewed ──────────────────────────────────────────┼─────────────────────────╮
-│   ▌ … ▌ …   ▌ cache invalidation must follow token refresh ────────────┘                         │
-╰────────────────────────────────────────────────────────────────────────────────────────────────────╯
-```
-
-Mobile sketch:
-
-```text
-│ your repository          SESSION 1
-│                          agent works something out
-│                            ↓ ec_observe
-│                          extract: keeps the conclusion, rejects the rest
-│                            ↓
-│                          session memory  ┊○┊ ┊○┊   usable now
-│                          ─ ─ ─ session ends ─ ─ ─
-│                          REVIEW   accept · reject · skip (→ next session)
-│                            ↓ accept
-│                          LONG-TERM MEMORY  ▌● ▌● ▌●
-│                          ─ ─ ─ later ─ ─ ─
-│                          SESSION 2
-│                          agent reads the code
-│                            ↑ ec_query (from long-term memory)
-│                          relevant conclusions + confidence, scope, files
-│                            ↓
-│                          verifies against current code
+               ┆ session ends                              ┆ next session
+ ┌──────────┐  ┆   ┊ ┊ ──►┃ ▌▭▭ ✓      ░░░░░░░░░░░░░░░░    ┆   ┌───────────────┐
+ │ ▬▬▬▬▬▬   │──┼─► ┊ ┊ ──►┃ ─▭─ ×  ──► ░ ▌▭ ▌▭ ▌▭ (links) ░ ──┼─► │ ▌relevant …   │
+ │ ┊concl.┊ │  ┆          ┃            ░░░░░░░░░░░░░░░░    ┆   │ checked against│
+ └──────────┘  ┆                                           ┆   └───────────────┘
+ 1 Your agent works  2 You review   3 Memory builds up     ┆ 4 Your agent asks
 ```
 
 ---
 
-### F2 · "The life of a conclusion" (summary)
+### M1 · The memory map (Fig. 2, top panel)
 
 | Field | Specification |
 |---|---|
-| **Name** | Fig. 2, The life of a conclusion |
-| **Page** | Home, S4 (*Memory that can change its mind*). It leaves the homepage when V2 ships; see §1. |
-| **Purpose** | Show that a remembered conclusion is a governed belief: it gains confidence, can be challenged, becomes an open question when a conflict persists, and is replaced by your decision with history kept. |
-| **Question it answers** | "What happens to a remembered conclusion when new evidence arrives?" |
-| **Contains** | One horizontal track of **six states** for the throughline conclusion, each a record glyph plus a short event label, with a **confidence bar** (no numerals on the homepage) under each: <br>1. **Extracted**: dashed record, `session · unreviewed` (bar 0.56). <br>2. **Accepted**: solid record, `canonical · reviewed` (0.56). <br>3. **Supported and used**: *a later conclusion agrees; your agent retrieves it* (0.67). <br>4. **Contradicted**: amber bar, `challenged`; *after a migration, a new conclusion disagrees* (0.55). <br>5. **Open question**: dashed plus `?`; *the conflict persists* (bar frozen). <br>6. **Superseded**: struck-through text with a `replaces` edge from the newer conclusion; *you prefer the newer conclusion; the old one is kept and linked* (bar frozen at 0.55). <br>A footnote line under the track: *If the code it cites is deleted, a conclusion like this is retired automatically.* |
-| **Leaves out** | Numerals, log-odds, similarity values, priors, thresholds, the decay step, the names of edge types other than `replaces`, propagation to dependents. |
-| **Composition** (desktop, about 1100 × 220) | A single horizontal rail. Six evenly spaced state cells (each about 150 px wide) joined by thin arrows; event labels above the rail (serif, 15 px); state labels below (mono, 13 px); bars directly under the record glyphs. The newer conclusion C appears only at step 6, as a small solid record above the rail with a `replaces` arrow down into A. |
-| **Why a diagram beats text** | It is a state sequence where the *direction* of change matters (up, then down, then frozen, then replaced). Six labelled states with bars convey it in about three seconds; prose takes a paragraph and still doesn't show the frozen history. |
-| **Static or interactive** | Static. |
-| **Mobile** | A vertical timeline: states stacked top to bottom along a left rail; each row has the record glyph, state label, event text and bar on the right. All six states are kept. |
-| **Sources** | States and transitions: PRODUCT.md §9 (lifecycle diagram: active → challenged → open_question; open_question → superseded by user preference). Support and contradiction move confidence: PRODUCT.md §11 (log-odds updates), §7.2. Retrieval reinforcement: PRODUCT.md §11, §3.1. Open-question parking after a scope-dependent persistence limit: PRODUCT.md §14 (forgetting task). User resolution "(b) mark one preferred → loser superseded with a real supersedes edge": PRODUCT.md §10. Superseded confidence frozen and history kept: PRODUCT.md §9, §12. Retirement on code deletion: PRODUCT.md §14.2. All bar values: §6 worked scenario. |
+| **Name** | M1, the memory map |
+| **Page** | Home, S4 (*Memory that can change its mind*), above F2 in the same figure |
+| **Purpose** | Show memory as a living structure whose beliefs change. Conclusions are added after review, strengthen each other, get challenged and replaced with their history kept, and fade when unused. |
+| **Question it answers** | "Isn't this just a pile of notes?" |
+| **Contains** | Thirteen short conclusions drawn as solid records with blue edges, linked by `supports` (solid) and `depends on` (dashed) edges; the static layout is in the preview. A **16-second loop** plays five events, each with a serif-italic label: <br>1. **Added** (0.5–4.4 s). A new conclusion, *cache cleared too early*, slides in 28 px from the left as a dashed record (*new · awaiting review*). It turns solid at 2.2–2.9 s (*added after review*), and its `supports` edge draws into *cache reads wait for refresh* (3.2–4.4 s). <br>2. **Strengthened** (4.0–5.0 s). That conclusion's border thickens from 1 px to 2.4 px (*strengthened*). <br>3. **Challenged** (5.6–9.9 s). A newer conclusion, *tokens refresh before expiry*, drops in 18 px from above. An amber contradiction edge with a perpendicular tick reaches *tokens refresh at expiry*, whose left bar turns amber (*challenged*). <br>4. **Superseded** (9.3–14.4 s). The older conclusion is struck through and dimmed to 45%, with a `replaces` arrow from the newer one (*superseded · kept*). <br>5. **Fading** (9.6–14.7 s). An unused conclusion, *build cache per lockfile*, fades to 20% opacity together with its edge (*fading · unused*). <br>From 14.4 s to 16 s everything returns to the start state. <br>A legend sits under the map (*new, awaiting review · strengthened · challenged · superseded, kept · fading when unused*), with a *pause* button above its right edge. |
+| **Leaves out** | Numerals and confidence bars (F2 below carries them); the open-question step (F2 shows it; the map compresses challenge → supersession); tool names; scope levels; any deletion. |
+| **Composition** | **Desktop:** a 1200 × 280 SVG. Records are 28 px tall with 13 px serif labels; event labels are 14 px serif italic. **Mobile:** a separate 360 × 410 map with six conclusions and the same events. |
+| **Motion rules** | This is the single motion exception (design plan §16). <br>• **Mechanism:** CSS keyframes on SVG elements, sharing one 16 s cycle. <br>• **When it plays:** it starts when 30% of it is visible and pauses off screen (IntersectionObserver). <br>• **Control:** a visible pause/play button (a real `<button>` with `aria-pressed`). <br>• **Reduced motion:** under `prefers-reduced-motion: reduce`, a static map shows every event's end state with its label. <br>• **What may change:** only opacity, translations of at most 28 px, `stroke-dashoffset`, stroke width and colour. Nothing affects layout. <br>• **Arrowheads** appear only after their line has finished drawing. |
+| **Why a diagram beats text** | Belief change happens over time, and a moving map shows it in one loop. The four lines it replaces took a paragraph and couldn't show a structure changing. |
+| **Text equivalent** | An ordered list of the five events, in the visually hidden description. |
+| **Sources** | Added after review, with pending evidence applied at review: PRODUCT.md §7.2, §8, §10. Support raises confidence: PRODUCT.md §11. A contradiction marks the existing conclusion challenged: PRODUCT.md §7.2. Supersession keeps the old conclusion, frozen and linked: PRODUCT.md §9, §12. Fading is lazy decay by scope and is never written: PRODUCT.md §11. Nothing is hard-deleted: PRODUCT.md §14; paper §8. The node labels are illustrative conclusions, covered by the caption *"Example values…"*. |
 
 ```text
- a later conclusion        after a migration,       the conflict       you prefer the newer
- agrees; it's retrieved    one disagrees            persists           conclusion
-┊A┊ ──► ▌A ──────► ▌A ──────────► ▌A (amber) ──────► ┊A?┊ ─────────► A̶  ◄── replaces ── ▌C
-session  accepted   supported      challenged          open question      superseded
-▭▭▭▭▭▭   ▭▭▭▭▭▭     ▭▭▭▭▭▭▭▭       ▭▭▭▭▭▭              ▭▭▭▭▭▭ (frozen)    ▭▭▭▭▭▭ (frozen)
-           If the code it cites is deleted, a conclusion like this is retired automatically.
+ ┊cache cleared too early┊ ─(slides in, turns solid)─► ▌cache reads wait for refresh  (border thickens)
+ ▌tokens refresh before expiry ──┤ amber ──► ▌tokens refresh at expiry  → challenged
+                               └─ replaces ──► (struck) tokens refresh at expiry  → superseded · kept
+ ▌build cache per lockfile  ░░░ (fades)  → fading · unused
+```
+
+---
+
+### F2 · "One conclusion, up close" (Fig. 2, bottom panel)
+
+| Field | Specification |
+|---|---|
+| **Name** | F2, the life of one conclusion (summary) |
+| **Page** | Home, S4, under M1 and the mono panel label *One conclusion, up close*. It leaves the homepage when V2 ships, because F5 on How it works covers it (§1). |
+| **Purpose** | Show that a remembered conclusion is a governed belief. It gains confidence, can be challenged, becomes an open question when a conflict persists, and is replaced by your decision with its history kept. |
+| **Question it answers** | "What happens to a remembered conclusion when new evidence arrives?" |
+| **Contains** | One horizontal track of **six states** for the throughline conclusion. Each state has a record glyph, a mono status label and a **confidence bar** (no numerals on the homepage), with a serif event label underneath: <br>1. `unreviewed`: dashed record (bar 0.56). Event: *Extracted*. <br>2. `reviewed`: solid record (0.56). Event: *You accept it*. <br>3. `reviewed`: 2.2 px border (0.67). Event: *Supported and used*. <br>4. `challenged`: amber bar (0.55). Event: *A new one disagrees*. <br>5. `open question`: dashed record plus `?`, bar frozen. Event: *Conflict persists*. <br>6. `superseded`: struck-through text, with a `replaces` edge from a small *newer conclusion* record above it; bar frozen at 0.55. Event: *You prefer the newer*. <br>A footnote line under the track reads: *"If the code it cites is deleted, a conclusion like this is retired automatically."* |
+| **Leaves out** | Numerals, log-odds, similarity values, priors, thresholds, the decay step, the names of edge types other than `replaces`, propagation to dependents. Status labels stay in mono and use real statuses only; explanations go in the serif event labels. |
+| **Composition** (desktop, 1200 × 250) | A single horizontal rail of six state cells (164 px records) joined by thin arrows. Status labels in mono sit under the records, then the bars, then the event labels in serif. The newer conclusion appears only at step 6, as a small solid record above the rail with a `replaces` arrow down. |
+| **Why a diagram beats text** | It is a state sequence where the *direction* of change matters: up, then down, then frozen, then replaced. Six labelled states with bars convey it in about three seconds. |
+| **Static or interactive** | Static. |
+| **Mobile** | A vertical timeline: states stacked along a left rail, each row with its status label, event text and bar. All six states are kept. |
+| **Sources** | States and transitions: PRODUCT.md §9 (active → challenged → open_question; open_question → superseded by user preference). Support and contradiction move confidence: PRODUCT.md §11 (log-odds updates), §7.2. Retrieval reinforcement: PRODUCT.md §11, §3.1. Open-question parking after a scope-dependent persistence limit: PRODUCT.md §14 (the forgetting task). User resolution, "(b) mark one preferred → loser superseded with a real supersedes edge": PRODUCT.md §10. Superseded confidence frozen and history kept: PRODUCT.md §9, §12. Retirement on code deletion: PRODUCT.md §14.2. All bar values: the §6 worked scenario. |
+
+```text
+                                                                                    ▌newer conclusion
+                                                                                          │ replaces
+┊A┊ ──► ▌A ──► ▌A (2 px) ──► ▌A (amber) ──► ┊A ?┊ ──► A (struck)
+unreviewed  reviewed  reviewed   challenged    open question   superseded
+▬▬▬▬▭▭     ▬▬▬▬▭▭    ▬▬▬▬▬▭     ▬▬▬▬▭▭         ▬▬▬▬▭▭ (frozen) ▬▬▬▬▭▭ (frozen)
+Extracted  You accept it  Supported and used  A new one disagrees  Conflict persists  You prefer the newer
+          If the code it cites is deleted, a conclusion like this is retired automatically.
+```
+
+---
+
+### O1 · "Your memory, not your agent's" (Fig. 3)
+
+| Field | Specification |
+|---|---|
+| **Name** | O1, Fig. 3, the ownership hub |
+| **Page** | Home, S5 |
+| **Purpose** | Show that the memory belongs to the developer and that every agent they connect shares it, whatever model the agent runs. |
+| **Question it answers** | "Am I locked into one agent? Where does my memory live?" |
+| **Contains** | **The hub:** a central solid record with a 4 px blue edge: *Your memory* (serif 21 px), `~/.ec/ec.db` (mono), *on your machine · reviewed by you* (serif italic). <br>**The agents:** five records around it: Claude Code and Cursor on the left; OpenCode, Codex and *Any MCP agent* (dashed) on the right. <br>**Connectors:** thin lines to the hub, with no arrowheads, because agents both read and write. One `MCP` label per side. <br>**Caption:** *"Fig. 3 Solid: set up for you. Dashed: set up by hand."* |
+| **Leaves out** | Tool names; model logos or names; any cloud or sync icon; arrows suggesting data leaving the machine; agent counts. |
+| **Composition** | **Desktop:** a 1200 × 290 SVG. **Mobile:** the hub as a bordered block, then the agents in a two-column grid, with a short connector from the hub. |
+| **Why a diagram beats text** | "Shared by every agent" is a topology: one hub, many spokes. |
+| **Static or interactive** | Static. |
+| **Sources** | One SQLite file at `~/.ec/ec.db`, shared: PRODUCT.md §1, §15. The installer configures four agents: INSTALLATION.md §2. Other MCP clients can be set up by hand: INSTALLATION.md §10.5. Each agent's MCP entry starts the same local server: INSTALLATION.md §7–8. Reviewed by you: PRODUCT.md §9–10. |
+| **Before launch** | Design plan §20, question 20: verify one client the installer doesn't configure, or remove *Any MCP agent*. |
+
+```text
+ ┌ Claude Code ┐ ─MCP─╮   ┌──────────────────────────┐   ╭─── ┌ OpenCode ┐
+                       ├──►│▌ Your memory             │◄──┼──── ┌ Codex    ┐
+ ┌ Cursor      ┐ ─────╯   │  ~/.ec/ec.db              │   ╰┄┄┄ ┊ Any MCP agent ┊  (by hand)
+                           │  on your machine · reviewed by you │
+                           └──────────────────────────┘
 ```
 
 ---
@@ -333,7 +391,7 @@ session  accepted   supported      challenged          open question      supers
 | ResearchGraph | `components/svg/research-graph.tsx` | `/research` | A radial agenda map: a list in disguise, with decorative animated dots. | The typographic lineage on `/research` |
 | ConceptualEvolution | `components/svg/conceptual-evolution.tsx` | `/ethos` | Memory → Understanding → Beliefs → Cognition is a branding chain with no mechanism. It is the only framer-motion use, a scroll reveal now out of policy. | Copy ("conclusions, not conversations"); no figure needed |
 | ResearchNotebook | `components/svg/research-notebook.tsx` | `/notes` | A decorative illustration with looping animation and no information. | — |
-| EngineeringBrain (unused) | `components/svg/engineering-brain.tsx` | — | Invented nodes, glow filters, and evolution labels ("merge / evolve / fade / strengthen") that don't match the real mechanics. | The honest version of its idea is F2, F5 and F4 |
+| EngineeringBrain (unused) | `components/svg/engineering-brain.tsx` | — | Invented nodes, glow filters, and evolution labels ("merge / evolve / fade / strengthen") that don't match the real mechanics. | The honest version of its idea is M1, F2, F5 and F4: every event in M1 maps to a real rule |
 | ResearchDesk (unused) | `components/svg/research-desk.tsx` | — | Decorative, with embedded slogan text; it was built for a page that was never made. | — |
 
 The only things carried forward from the old visuals are the **warm-paper and ink palette** and **SVG with real text and `<title>`/`<desc>`**. The circle-node language, flow dots and SMIL animation are not.
@@ -395,13 +453,13 @@ The similarity values (0.78, 0.84) and the scenario itself are **examples** and 
 - **Build order:**
   1. shared primitives (record, band, arrow, edge, status mark, bar);
   2. `lib/confidence.ts` plus tests;
-  3. F1, F2 and V1;
+  3. the homepage set: V1, P1, F1, M1, F2 and O1;
   4. F3, F4 and F5;
   5. F6;
   6. V2 when the experiment ships.
-- **Visual QA per figure:** both themes; widths 360, 390, 768, 1024, 1280 and 1440 px; 200% zoom; forced colours (strokes must stay visible: use `currentColor` and `CanvasText`-safe styles); reduced motion (F5); keyboard (F5 and the F1 highlight); screen reader (the caption and structured description are read once).
+- **Visual QA per figure:** both themes; widths 360, 390, 768, 1024, 1280 and 1440 px; 200% zoom; forced colours (strokes must stay visible: use `currentColor` and `CanvasText`-safe styles); reduced motion (F5 and M1: the static map must show every event's end state); keyboard (F5 and the M1 pause button); screen reader (the caption and structured description are read once).
 - **Content QA per figure:** every label maps to a source row in this document; no element appears that isn't listed in that figure's "Contains" field.
-- **Performance:** server-rendered SVG with no runtime libraries; F5's client island under 5 KB gzipped.
+- **Performance:** server-rendered SVG with no runtime libraries; the F5 and M1 client islands are each under 5 KB gzipped. M1 animates only compositor-friendly properties and pauses off screen.
 
 ---
 
@@ -411,9 +469,12 @@ For each visual, please confirm or strike:
 
 | Visual | Approve purpose? | Approve content and exclusions? | Approve composition? | Approve interaction? | Notes |
 |---|---|---|---|---|---|
-| V1 Hero specimen | ☐ | ☐ | ☐ | n/a | Real capture or `Example` values? |
-| F1 Across the session boundary | ☐ | ☐ | ☐ | ☐ (hover/focus link) | |
-| F2 Life of a conclusion (summary) | ☐ | ☐ | ☐ | n/a | Leaves Home when V2 ships? |
+| V1 Hero graph | ☐ | ☐ | ☐ | n/a | Neighbour wording; the blur exception |
+| P1 Every session starts from zero | ☐ | ☐ | ☐ | n/a | |
+| F1 From one session to the next | ☐ | ☐ | ☐ | n/a | "Drop the rest" simplifies skip |
+| M1 Memory map | ☐ | ☐ | ☐ | ☐ (16 s loop, pause) | The one motion exception |
+| F2 One conclusion, up close | ☐ | ☐ | ☐ | n/a | Leaves Home when V2 ships? |
+| O1 Your memory, not your agent's | ☐ | ☐ | ☐ | n/a | "Any MCP agent" depends on design plan §20, question 20 |
 | F3 Anatomy of a conclusion | ☐ | ☐ | ☐ | ☐ (optional JSON disclosure) | |
 | F4 Two brains and a review gate | ☐ | ☐ | ☐ | n/a | Show the `ec_reconsolidate` exception as drawn? |
 | F5 Life of a conclusion, step by step | ☐ | ☐ | ☐ | ☐ (stepper) | Worked numbers in §6 |
