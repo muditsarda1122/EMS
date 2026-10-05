@@ -6,7 +6,7 @@ against the claim; `pending` means it has not been checked against the product y
 
 | # | Site claim (paraphrased) | Page | Source | Last verified |
 |---|---|---|---|---|
-| C1 | Memory for coding agents; works with Claude Code, Cursor, OpenCode, Codex | Home, How it works | INSTALLATION.md §2 (`install.py:698`); end-to-end check for all four is pending (plan §20, P11) | pending |
+| C1 | Memory for coding agents; works with OpenCode today; Claude Code, Cursor and Codex coming soon | Home, How it works | Owner, 5 Oct 2026 (only the OpenCode connection is complete); INSTALLATION.md §2 (`install.py:698`) | 2026-10-05 (owner) |
 | C2 | Keeps conclusions; rejects facts, code descriptions, play-by-play | Home, How it works | PRODUCT.md §6; paper §3 | pending |
 | C3 | Conclusions are usable in the same session before review | Home | PRODUCT.md §8, §13 (session trust weight 0.8) | pending |
 | C4 | You accept, reject or skip at session end, in the terminal; skipped items carry forward | Home, How it works | PRODUCT.md §10, §8 | pending |
@@ -32,7 +32,7 @@ against the claim; `pending` means it has not been checked against the product y
 | C24 | Research dates | Research | PDF title pages; the paper; article frontmatter | pending |
 | C25 | EC-Bench design (repository, prompts, sessions, judge, weights) | EC-Bench | PRODUCT.md §17 | pending |
 | C26 | The stored run produced no `contradicts` or `supersedes` edges | EC-Bench | PRODUCT.md §17, §22.1 | pending |
-| C27 | Works with any MCP agent; agents other than the four are set up by hand | Home (hero, Fig. 3), How it works | INSTALLATION.md §10.5; a check with one client the installer doesn't configure is pending (plan §20 q20, P13); `claims.anyMcpAgent` in `content/site.config.ts` | pending |
+| C27 | Other MCP agents, set up by hand: coming soon (`claims.anyMcpAgent: "soon"`) | Home (hero, Fig. 3), How it works | Owner, 5 Oct 2026 | 2026-10-05 (owner) |
 | C28 | Works on any model your agent runs; Reverie doesn't depend on the agent's model | Home | PRODUCT.md §3 | pending |
 | C29 | Every connected agent uses the same memory, so switching agents or models keeps it | Home (S5) | PRODUCT.md §1, §15; INSTALLATION.md §7–8 | pending |
 | C30 | A new conclusion affects long-term conclusions only after you review it | Home (Fig. 2 map) | PRODUCT.md §7.2, §8 | pending |
@@ -45,14 +45,14 @@ against the claim; `pending` means it has not been checked against the product y
 |---|---|---|---|---|
 | T1-1 | "Reverie is a research project by Mudit Sarda" (the "(Engineering Cognition)" and the full stop were dropped at the owner's request, 5 Oct 2026) | Footer | Plan §5.3; owner instruction | 2026-10-05 |
 | T1-2 | "Memory for coding agents." | Footer, metadata | Plan §5.3, §8.9 | 2026-10-05 |
-| T1-3 | Site description (works with Claude Code, Cursor, OpenCode and Codex) | Metadata | Plan §8.9; see C1 | pending (C1) |
+| T1-3 | Site description (works with OpenCode, with Claude Code, Cursor and Codex coming soon) | Metadata | Owner, 5 Oct 2026; see C1 | 2026-10-05 (owner) |
 | T1-4 | "If you followed an old link to EMS: Reverie is its current name." | 404 | Plan §8.8 | 2026-10-05 |
 
 ## Homepage copy added in T4a
 
 | # | Claim | Where | Source | Last verified |
 |---|---|---|---|---|
-| T4a-1 | Hero and agents line: memory for coding agents; works with the four agents, any MCP agent, any model | Home S1 | C1, C27, C28; `claims.anyMcpAgent` | pending |
+| T4a-1 | Hero and agents line: memory for coding agents; works with OpenCode (tick), on any model; Claude Code, Cursor, Codex and other MCP agents coming soon | Home S1 | C1, C27, C28 | pending (C28) |
 | T4a-2 | Hero graph: a reviewed conclusion links to what it supports, depends on and replaced (illustrative, tagged Example) | Home S1 | C32; `content/specimens/token-refresh.json` | pending |
 | T4a-3 | Fig. 1: conclusions are extracted as the agent works, you review and keep or drop, memory builds up grounded in code, the agent asks after reading the code | Home S3 | C2, C4, C5, C6 | pending |
 | T4a-4 | Fig. 2 map and lifecycle: evidence strengthens, contradictions challenge, disuse fades, superseded kept, retired when cited code is deleted; bars computed by `lib/confidence.ts` | Home S4 | C8, C9, C10, C11, C30, C31 | pending |
@@ -107,7 +107,7 @@ Every factual sentence on the page, grouped by section. Sources are plan section
 | H26 | Naming note: `ec` prefix stands for Engineering Cognition | §6 | plan §8.1, §11.5 | pending |
 | H27 | Limits: macOS only; terminal review; you start/end sessions; single-attempt LLM extraction; no edit/delete interface; no clear benchmark advantage | §7 | plan §8.1 (C18–C22) | pending |
 | H28 | "Last reviewed 5 October 2026" | §7 | plan date; owner to confirm | pending |
-| H29 | FAQ: instruction files vs Reverie; data flow; what you do; why not automatic; does it make agents better; which agents; open source ("It will be" until the repository opens; then the licence from `siteConfig.repository.licence`) | §8 | plan §8.1, §1.8; owner instruction 5 Oct 2026 (going open source) | pending; open source 2026-10-05 |
+| H29 | FAQ: instruction files vs Reverie; data flow; what you do; why not automatic; does it make agents better; which agents (OpenCode today, the rest coming soon); open source ("It will be" until the repository opens; then the licence from `siteConfig.repository.licence`) | §8 | plan §8.1, §1.8; owner instruction 5 Oct 2026 (going open source) | pending; open source 2026-10-05 |
 
 ## T7: EC-Bench (`/research/ec-bench`)
 

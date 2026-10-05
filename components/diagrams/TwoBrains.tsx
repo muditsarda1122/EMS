@@ -1,6 +1,6 @@
 // F4: two brains and a review gate (DIAGRAM-PLAN F4). One set of labels drives an SVG (wide containers)
 // and a vertical HTML composition (narrow). The ec_reconsolidate arrow bypasses the gate on purpose.
-import { siteConfig } from "@/content/site.config";
+import { readyAgents, comingSoon, listText } from "@/content/site.config";
 
 const SESSION_NOTES = ["per repo and branch", "unreviewed, usable now", "relates new conclusions:", "supports / contradicts", "no decay"];
 const CANON_NOTES = [
@@ -16,7 +16,8 @@ const MAINTENANCE = ["grounding checks · open-question parking ·", "supersessi
 const RECON = ["updates a conclusion it", "just retrieved, with verified", "evidence; recorded"];
 
 export default function TwoBrains() {
-  const agents = siteConfig.supportedAgents.join(" · ");
+  const soon = comingSoon();
+  const agents = [...readyAgents(), ...(soon.length ? [`${listText(soon)}: coming soon`] : [])].join(" · ");
   return (
     <div className="f4">
       <svg className="desk" viewBox="0 0 1000 480" role="img" aria-labelledby="f4cap">

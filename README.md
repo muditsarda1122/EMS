@@ -56,8 +56,9 @@ Set in `content/site.config.ts`. Pages read these and never hard-code a state.
 - `repository.url` and `repository.ref`: `null` is State A (repository not public; the header call to action is Contact). A URL is State B (the call to action is GitHub and repository links appear).
 - `experiment.status`: `hidden`, `design`, `running` or `published`. Anything but `hidden` shows the continuity experiment page and its homepage slot (`experiment.homepageSlot`).
 - `domain`: `null` keeps URLs relative. Set it to get absolute Open Graph, sitemap and canonical URLs.
-- `claims.anyMcpAgent`: whether the site says any MCP agent works. Set it to `false` if that check fails.
-- `supportedAgents`, `version`, `contactEmail`, `nav`.
+- `agents`: the agents Reverie connects to, in display order. `ready: true` shows a tick; `ready: false` shows "Coming soon". Flip it as each connection lands.
+- `claims.anyMcpAgent`: other MCP agents, set up by hand. `false` hides the claim, `"soon"` marks it coming soon, `"ready"` states it.
+- `version`, `contactEmail`, `nav`.
 
 ## Hosting
 

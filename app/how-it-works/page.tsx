@@ -4,10 +4,12 @@ import "./how.css";
 import ArrowLink from "@/components/ui/ArrowLink";
 import ButtonLink from "@/components/ui/ButtonLink";
 import Figure from "@/components/ui/Figure";
+import Tag from "@/components/ui/Tag";
+import Tick from "@/components/ui/Tick";
 import ConclusionAnatomy from "@/components/diagrams/ConclusionAnatomy";
 import TwoBrains from "@/components/diagrams/TwoBrains";
 import ConclusionLifecycle from "@/components/diagrams/ConclusionLifecycle";
-import { siteConfig, isRepoPublic } from "@/content/site.config";
+import { siteConfig, isRepoPublic, readyAgents, comingSoon, listText } from "@/content/site.config";
 
 export const metadata: Metadata = {
   title: "How it works",
@@ -97,8 +99,10 @@ export default function HowItWorksPage() {
   const stateB = isRepoPublic() && siteConfig.repository.url !== null;
   const repoUrl = siteConfig.repository.url;
   const licence = siteConfig.repository.licence;
-  const agents = siteConfig.supportedAgents;
+  const agents = siteConfig.agents;
   const any = siteConfig.claims.anyMcpAgent;
+  const ready = readyAgents();
+  const soon = comingSoon();
 
   const toc = (
     <ol>
@@ -379,25 +383,36 @@ export default function HowItWorksPage() {
               <thead>
                 <tr>
                   <th scope="col">Agent</th>
+                  <th scope="col">Status</th>
                   <th scope="col">Instructions file</th>
                 </tr>
               </thead>
               <tbody>
                 {agents.map((a) => (
-                  <tr key={a}>
-                    <th scope="row" data-label="Agent">{a}</th>
-                    <td data-label="Instructions file">{INSTRUCTION_FILES[a] ? <code>{INSTRUCTION_FILES[a]}</code> : "An instructions file"}</td>
+                  <tr key={a.name}>
+                    <th scope="row" data-label="Agent">{a.name}</th>
+                    <td data-label="Status">{a.ready ? <>Works today<Tick /></> : <Tag>Coming soon</Tag>}</td>
+                    <td data-label="Instructions file">
+                      {INSTRUCTION_FILES[a.name] ? <code>{INSTRUCTION_FILES[a.name]}</code> : "An instructions file"}
+                    </td>
                   </tr>
                 ))}
+                {any ? (
+                  <tr>
+                    <th scope="row" data-label="Agent">Other MCP agents</th>
+                    <td data-label="Status">{any === "ready" ? <>Works today<Tick /></> : <Tag>Coming soon</Tag>}</td>
+                    <td data-label="Instructions file">Set up by hand</td>
+                  </tr>
+                ) : null}
               </tbody>
             </table>
             <p className="tbl-note">For each agent, the installer adds an MCP entry and wires Reverie’s instructions into the file shown.</p>
 
             <div className="prose-col">
               <p>
-                <b>Across agents and models.</b> Every agent you connect shares the same file, so switching agents, or the model
-                an agent runs, keeps your memory.
-                {any ? " Other MCP agents can be set up by hand." : null}{" "}
+                <b>Across agents and models.</b> Memory lives in one file, not inside your agent, so changing the model your
+                agent runs keeps your memory. Agents added later share the same file.
+                {any === "ready" ? " Other MCP agents can be set up by hand." : null}{" "}
                 {stateB && repoUrl ? (
                   <>
                     Setup instructions are in <a className="text-link" href={repoUrl} target="_blank" rel="noopener noreferrer">the repository ↗</a>.
@@ -481,8 +496,9 @@ export default function HowItWorksPage() {
               <details>
                 <summary>Which agents are supported?</summary>
                 <p>
-                  {agents.slice(0, -1).join(", ")} and {agents[agents.length - 1]} have installers.
-                  {any ? " Other MCP agents can be set up by hand." : null}{" "}
+                  {listText(ready)} {ready.length > 1 ? "work" : "works"} today.
+                  {any === "ready" ? " Other MCP agents can be set up by hand." : null}
+                  {soon.length ? ` ${listText(soon)} ${soon.length > 1 ? "are" : "is"} coming soon.` : null}{" "}
                   <a className="text-link" href="#supported-agents">See the table</a>.
                 </p>
               </details>

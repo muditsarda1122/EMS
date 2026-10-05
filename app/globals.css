@@ -202,6 +202,11 @@ code, kbd, samp {
 }
 .tag-dashed { border-style: dashed; }
 
+/* Agent availability: a tick for agents that work today, muted names for those coming soon. */
+.tick { display: inline-block; vertical-align: -0.12em; margin-left: 0.3em; fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.agent-soon { color: var(--ink-3); }
+.fig .tick-path { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
 /* ---------- diagram grammar (DIAGRAM-PLAN §2; ported from design/homepage-preview/home.html) ---------- */
 .t-title { font-family: var(--font-serif), Georgia, serif; font-size: 19.5px; font-weight: 500; fill: var(--ink); }
 .t-line { font-family: var(--font-serif), Georgia, serif; font-size: 15.5px; fill: var(--ink-2); }
