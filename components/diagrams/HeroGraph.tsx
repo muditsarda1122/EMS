@@ -37,19 +37,19 @@ export default function HeroGraph({ data }: { data: ConclusionSpecimen }) {
           <text x="58" y="294" className="t-mono-sm">replaced</text>
         </g>
         <g opacity=".5">
-          <rect x="58" y="42" width="180" height="50" rx="2" className="rec-canon" />
+          <rect x="58" y="42" width="190" height="50" rx="2" className="rec-canon" />
           <rect x="58" y="42" width="3" height="50" className="bar-accent" />
           <text x="70" y="63" className="t-rec-sm">Token refresh completes</text>
           <text x="70" y="80" className="t-rec-sm">before any cache read</text>
-          <rect x="58" y="172" width="180" height="50" rx="2" className="rec-canon" />
+          <rect x="58" y="172" width="190" height="50" rx="2" className="rec-canon" />
           <rect x="58" y="172" width="3" height="50" className="bar-accent" />
           <text x="70" y="193" className="t-rec-sm">TokenManager is the only</text>
           <text x="70" y="210" className="t-rec-sm">writer of the token cache</text>
-          <rect x="58" y="302" width="180" height="50" rx="2" className="rec-canon" />
+          <rect x="58" y="302" width="190" height="50" rx="2" className="rec-canon" />
           <text x="70" y="323" className="t-rec-sm f-ink3">Random logouts come from</text>
           <text x="70" y="340" className="t-rec-sm f-ink3">session-store expiry</text>
-          <line x1="69" y1="319" x2="229" y2="319" className="s-ink3" />
-          <line x1="69" y1="336" x2="184" y2="336" className="s-ink3" />
+          <line x1="69" y1="319" x2="237" y2="319" className="s-ink3" />
+          <line x1="69" y1="336" x2="190" y2="336" className="s-ink3" />
         </g>
       </svg>
 
