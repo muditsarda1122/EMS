@@ -6,6 +6,7 @@ import HeroGraph from "@/components/diagrams/HeroGraph";
 import SessionsStrip from "@/components/diagrams/SessionsStrip";
 import SessionBoundary from "@/components/diagrams/SessionBoundary";
 import MemoryMap from "@/components/diagrams/MemoryMap";
+import MemoryMapControls from "@/components/diagrams/MemoryMapControls";
 import ConclusionLifecycle from "@/components/diagrams/ConclusionLifecycle";
 import OwnershipHub from "@/components/diagrams/OwnershipHub";
 import VideoSlot, { videoSlotMode } from "@/components/video/VideoSlot";
@@ -77,8 +78,7 @@ export default function HomePage() {
           </p>
         </div>
         <figure className="fig fig-mm">
-          {/* T4b: <MemoryMapControls /> goes into the `controls` slot */}
-          <MemoryMap />
+          <MemoryMap controls={<MemoryMapControls />} />
           {videoPublished ? null : <ConclusionLifecycle variant="summary" />}
           <figcaption className="caption" id="f2cap">
             <span className="fig-n">Fig. 2</span>Example values, computed with Reverie’s update rules.

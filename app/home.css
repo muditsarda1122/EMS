@@ -25,6 +25,7 @@
 /* ---------- hero ---------- */
 .home .hero { padding-top: 88px; align-items: start; }
 .home .hero-copy { grid-column: 1 / 7; }
+.home .hero-copy p { text-wrap: pretty; }
 .home .hero-copy .lead { margin-top: 28px; font-size: 20px; }
 .home .hero-copy .agents { margin-top: 20px; font-size: 16px; color: var(--ink-2); }
 .home .ctas { display: flex; gap: 12px; margin-top: 32px; }
@@ -44,20 +45,65 @@
 .home .s2-fig svg { display: block; width: 100%; height: auto; overflow: visible; }
 .home .s2-fig figcaption { margin-top: 14px; }
 
-/* ---------- memory map (M1): static end state; T4b layers the keyframes on the .anim classes ---------- */
+/* ---------- memory map (M1): animated; static under reduced motion (ported from design/homepage-preview/home.html) ---------- */
 .home figure.fig-mm { margin-top: 72px; }
 .mm-wrap { position: relative; }
+.mm-toggle { position: absolute; right: 0; top: -40px; font-family: var(--mono); font-size: 12px; color: var(--ink-2);
+  background: transparent; border: 1px solid var(--rule-strong); border-radius: 2px; padding: 4px 10px; cursor: pointer; }
 .mm { --cycle: 16s; }
-.mm .a1-dashed, .mm .lab-new, .mm .e-contra, .mm .n1-amber, .mm .lab-challenged { opacity: 0; }
-.mm .a1-solid, .mm .lab-added, .mm .lab-strong, .mm .c1, .mm .e-replaces, .mm .lab-superseded, .mm .lab-fading { opacity: 1; }
-.mm .e-a1n2, .mm .e-contra, .mm .n1-strike { stroke-dasharray: 100 200; }
-.mm .e-a1n2 { stroke-dashoffset: 0; opacity: 1; }
-.mm .e-a1n2-head { opacity: 1; }
-.mm .n2-rect { stroke: var(--ink); stroke-width: 2.4; }
-.mm .n1-strike { stroke-dashoffset: 0; }
-.mm .n1-body { opacity: .45; }
-.mm .n6 { opacity: .2; }
-.mm .lab-new { fill: var(--ink-3); }
+.mm .anim { animation-duration: var(--cycle); animation-iteration-count: infinite; animation-timing-function: ease-in-out; animation-fill-mode: both; }
+.mm.paused .anim { animation-play-state: paused; }
+.mm .a1-dashed { animation-name: a1-dashed; }
+.mm .a1-solid { animation-name: a1-solid; }
+.mm .lab-new { animation-name: lab-new; fill: var(--ink-3); }
+.mm .lab-added { animation-name: lab-added; }
+.mm .e-a1n2 { stroke-dasharray: 100 200; animation-name: e-a1n2; }
+.mm .e-a1n2-head { animation-name: e-a1n2-head; }
+.mm .n2-rect { animation-name: n2-strong; }
+.mm .lab-strong { animation-name: lab-strong; }
+.mm .c1 { animation-name: c1-in; }
+.mm .e-contra { stroke-dasharray: 100 200; animation-name: e-contra; }
+.mm .n1-amber { animation-name: n1-amber; }
+.mm .lab-challenged { animation-name: lab-challenged; }
+.mm .n1-strike { stroke-dasharray: 100 200; animation-name: n1-strike; }
+.mm .n1-body { animation-name: n1-dim; }
+.mm .e-replaces { animation-name: e-replaces; }
+.mm .lab-superseded { animation-name: lab-superseded; }
+.mm .n6 { animation-name: n6-fade; }
+.mm .lab-fading { animation-name: lab-fading; }
+
+@keyframes a1-dashed { 0%,3% {opacity:0; transform:translateX(-28px)} 9%,14% {opacity:1; transform:none} 18%,100% {opacity:0; transform:none} }
+@keyframes a1-solid { 0%,14% {opacity:0} 18%,90% {opacity:1} 96%,100% {opacity:0} }
+@keyframes lab-new { 0%,4% {opacity:0} 8%,13% {opacity:1} 16%,100% {opacity:0} }
+@keyframes lab-added { 0%,15% {opacity:0} 18%,32% {opacity:1} 36%,100% {opacity:0} }
+@keyframes e-a1n2 { 0%,20% {stroke-dashoffset:102; opacity:0} 21% {opacity:1} 27%,90% {stroke-dashoffset:0; opacity:1} 96%,100% {stroke-dashoffset:0; opacity:0} }
+@keyframes e-a1n2-head { 0%,26% {opacity:0} 27.5%,90% {opacity:1} 96%,100% {opacity:0} }
+@keyframes n2-strong { 0%,25% {stroke: var(--rule-strong); stroke-width:1} 31%,90% {stroke: var(--ink); stroke-width:2.4} 96%,100% {stroke: var(--rule-strong); stroke-width:1} }
+@keyframes lab-strong { 0%,25% {opacity:0} 29%,46% {opacity:1} 50%,100% {opacity:0} }
+@keyframes c1-in { 0%,35% {opacity:0; transform:translateY(-18px)} 40%,90% {opacity:1; transform:none} 96%,100% {opacity:0; transform:none} }
+@keyframes e-contra { 0%,40% {stroke-dashoffset:102; opacity:0} 41% {opacity:1} 45%,58% {stroke-dashoffset:0; opacity:1} 62%,100% {stroke-dashoffset:0; opacity:0} }
+@keyframes n1-amber { 0%,44% {opacity:0} 47%,58% {opacity:1} 62%,100% {opacity:0} }
+@keyframes lab-challenged { 0%,44% {opacity:0} 47%,57% {opacity:1} 60%,100% {opacity:0} }
+@keyframes n1-strike { 0%,58% {stroke-dashoffset:102} 63%,90% {stroke-dashoffset:0} 96%,100% {stroke-dashoffset:102} }
+@keyframes n1-dim { 0%,58% {opacity:1} 63%,90% {opacity:.45} 96%,100% {opacity:1} }
+@keyframes e-replaces { 0%,58% {opacity:0} 63%,90% {opacity:1} 96%,100% {opacity:0} }
+@keyframes lab-superseded { 0%,60% {opacity:0} 64%,84% {opacity:1} 88%,100% {opacity:0} }
+@keyframes n6-fade { 0%,60% {opacity:1} 86%,92% {opacity:.2} 98%,100% {opacity:1} }
+@keyframes lab-fading { 0%,70% {opacity:0} 74%,92% {opacity:1} 96%,100% {opacity:0} }
+
+/* Reduced motion: every event shown at once, annotated; no button. */
+@media (prefers-reduced-motion: reduce) {
+  .mm .anim { animation: none !important; }
+  .mm .a1-dashed, .mm .lab-new, .mm .e-contra, .mm .n1-amber, .mm .lab-challenged { opacity: 0; }
+  .mm .a1-solid, .mm .lab-added, .mm .lab-strong, .mm .c1, .mm .e-replaces, .mm .lab-superseded, .mm .lab-fading { opacity: 1; }
+  .mm .e-a1n2 { stroke-dashoffset: 0; opacity: 1; }
+  .mm .e-a1n2-head { opacity: 1; }
+  .mm .n2-rect { stroke: var(--ink); stroke-width: 2.4; }
+  .mm .n1-strike { stroke-dashoffset: 0; }
+  .mm .n1-body { opacity: .45; }
+  .mm .n6 { opacity: .2; }
+  .mm-toggle { display: none; }
+}
 .home .legend { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 16px; font-size: 15px; color: var(--ink-2); }
 .home .legend span { display: inline-flex; align-items: center; gap: 8px; }
 .home figure.fig .legend svg { width: 30px; height: 14px; display: inline-block; }
@@ -156,6 +202,7 @@
   .home .mob, .home .f1-mobile, .home .o1-mobile, .home .f2-mobile, .home figure.fig svg.mob, .home .s2-fig svg.mob { display: block; }
   .home figure.fig { margin-top: 28px; }
   .home figure.fig-mm { margin-top: 48px; }
+  .mm-toggle { top: -34px; }
   .home .panel-label { margin-top: 40px; }
   .home .facts3 li { margin-top: 18px; }
   .home .rlist { margin-top: 30px; }

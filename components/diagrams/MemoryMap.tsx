@@ -1,6 +1,4 @@
-// M1: the memory map, static end state (T4a). Every event is shown at once, as under reduced motion.
-// T4b adds the keyframes on the `.anim` classes, the pause control and the visually hidden event list's wiring.
-// Geometry and class names ported from design/homepage-preview/home.html.
+// M1: the memory map. Animation keyframes live in app/home.css; MemoryMapControls (client island) adds pause and off-screen stop.
 import type { ReactNode } from "react";
 
 /** A canonical record: box, accent bar and one line of text (13 px, baseline 18.5 below the top). */
@@ -50,9 +48,9 @@ export default function MemoryMap({ controls }: { controls?: ReactNode }) {
   return (
     <div className="mm-wrap">
       {controls}
-      <div id="mm" className="mm" aria-describedby="mm-events">
+      <div id="mm" className="mm">
         {/* desktop map */}
-        <svg className="desk" viewBox="0 0 1200 280" role="img" aria-labelledby="f2cap">
+        <svg className="desk" viewBox="0 0 1200 280" role="img" aria-labelledby="f2cap" aria-describedby="mm-events">
           <g>
             <path d="M234,224 C262,224 272,204 296,202" className="edge-dash" markerEnd="url(#ahg)" />
             <path d="M462,196 C496,190 510,146 536,138" className="edge-dash" markerEnd="url(#ahg)" />
@@ -112,7 +110,7 @@ export default function MemoryMap({ controls }: { controls?: ReactNode }) {
         </svg>
 
         {/* mobile map */}
-        <svg className="mob" viewBox="0 0 360 410" role="img" aria-labelledby="f2cap">
+        <svg className="mob" viewBox="0 0 360 410" role="img" aria-labelledby="f2cap" aria-describedby="mm-events">
           <path d="M90,328 C92,310 96,296 100,282" className="edge-dash" markerEnd="url(#ahg)" />
           <rect className="n2-rect anim rec-canon" x="150" y="30" width="186" height="28" rx="2" />
           <rect x="150" y="30" width="3" height="28" className="bar-accent" />
