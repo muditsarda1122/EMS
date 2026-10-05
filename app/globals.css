@@ -211,6 +211,64 @@ code, kbd, samp {
 }
 .tag-dashed { border-style: dashed; }
 
+/* ---------- diagram grammar (DIAGRAM-PLAN §2; ported from design/homepage-preview/home.html) ---------- */
+.t-title { font-family: var(--font-serif), Georgia, serif; font-size: 19.5px; font-weight: 500; fill: var(--ink); }
+.t-line { font-family: var(--font-serif), Georgia, serif; font-size: 15.5px; fill: var(--ink-2); }
+.t-note { font-family: var(--font-serif), Georgia, serif; font-style: italic; font-size: 13.5px; fill: var(--ink-3); }
+.t-rec { font-family: var(--font-serif), Georgia, serif; font-size: 13px; fill: var(--ink); }
+.t-rec-sm { font-family: var(--font-serif), Georgia, serif; font-size: 12.5px; fill: var(--ink); }
+.t-mono-sm { font-family: var(--font-mono), ui-monospace, Menlo, monospace; font-size: 11.5px; fill: var(--ink-2); }
+.t-ev { font-family: var(--font-serif), Georgia, serif; font-style: italic; font-size: 14px; fill: var(--ink); }
+.t-gate { font-family: var(--font-serif), Georgia, serif; font-size: 16px; font-weight: 500; fill: var(--ink); }
+.t-struck { fill: var(--ink-3); text-decoration: line-through; }
+.box { fill: var(--surface); stroke: var(--rule-strong); stroke-width: 1; }
+.band { fill: var(--paper-sunken); }
+.rec-session { fill: none; stroke: var(--ink); stroke-width: 1; stroke-dasharray: 3 3; }
+.rec-canon { fill: var(--surface); stroke: var(--rule-strong); stroke-width: 1; }
+.rec-strong { fill: var(--surface); stroke: var(--ink); stroke-width: 1; }
+.bar-accent { fill: var(--accent); }
+.bar-amber { fill: var(--challenged); }
+.flow { stroke: var(--ink); stroke-width: 1.4; fill: none; }
+.edge { stroke: var(--ink-3); stroke-width: 1; fill: none; }
+.edge-dash { stroke: var(--ink-3); stroke-width: 1; fill: none; stroke-dasharray: 3 3; }
+.edge-replace { stroke: var(--ink); stroke-width: 1.2; fill: none; }
+.edge-tick { stroke: var(--challenged); stroke-width: 1.5; fill: none; }
+.dash { stroke: var(--ink-3); stroke-width: 1; stroke-dasharray: 4 4; }
+.track { fill: none; stroke: var(--rule-strong); stroke-width: 1; }
+.track-fill { fill: var(--ink); }
+.track-fill-frozen { fill: var(--ink-3); }
+.track-ghost { fill: none; stroke: var(--ink); stroke-width: 1; stroke-dasharray: 2 2; }
+.reason { fill: var(--rule); }
+.blur-bar { fill: var(--rule-strong); }
+.mk-ink { fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.mk-grey { fill: none; stroke: var(--ink-3); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- specimen (DESIGN PLAN §10.9) ---------- */
+.specimen { background: var(--surface); border: 1px solid var(--rule); border-radius: 2px; }
+.sp-head { display: flex; flex-wrap: wrap; gap: 4px 14px; justify-content: space-between; align-items: center; padding: 11px 16px 10px;
+  border-bottom: 1px solid var(--rule); font-family: var(--font-mono), ui-monospace, Menlo, monospace; font-size: 11.5px; color: var(--ink-2); }
+.sp-head > span { white-space: nowrap; }
+.sp-status { display: inline-flex; align-items: center; gap: 7px; color: var(--ink); }
+.sp-status i { display: inline-block; width: 3px; height: 13px; background: var(--accent); }
+.sp-status i.hollow { background: none; width: 9px; border: 1px dashed var(--ink); }
+.sp-cognition { margin: 0; padding: 16px 16px 2px; font-size: 18.5px; line-height: 1.4; letter-spacing: -0.004em; }
+.sp-fields { margin: 12px 0 0; padding: 0 16px 14px; display: grid; grid-template-columns: 82px minmax(0, 1fr);
+  row-gap: 5px; font-family: var(--font-mono), ui-monospace, Menlo, monospace; font-size: 12px; line-height: 1.5; }
+.sp-fields dt { color: var(--ink-3); }
+.sp-fields dd { margin: 0; color: var(--ink); overflow-wrap: anywhere; }
+.sp-fields .dim { color: var(--ink-3); }
+.cbar { display: inline-block; vertical-align: middle; width: 96px; height: 4px; margin-left: 10px;
+  border: 1px solid var(--rule-strong); position: relative; top: -1px; }
+.cbar i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--ink); }
+.sp-foot { margin: 0; border-top: 1px solid var(--rule); padding: 10px 16px 11px; font-style: italic; font-size: 14px; line-height: 1.45; color: var(--ink-2); }
+.specimen-compact { width: 330px; max-width: 100%; }
+.specimen-full { width: 100%; max-width: 560px; }
+.specimen-full .sp-cognition { font-size: 20px; }
+.specimen-full .sp-fields { grid-template-columns: 96px minmax(0, 1fr); font-size: 12.5px; }
+.sp-related { margin: 0; padding: 12px 16px 12px; border-top: 1px solid var(--rule); list-style: none; }
+.sp-related li { padding: 4px 0; font-size: 14.5px; line-height: 1.4; }
+.sp-related .rel { display: block; font-family: var(--font-mono), ui-monospace, Menlo, monospace; font-size: 11px; color: var(--ink-3); letter-spacing: .04em; }
+
 /* ---------- figure ---------- */
 .fig { margin: 52px 0 0; }
 .fig figcaption { margin-top: 16px; max-width: 780px; }

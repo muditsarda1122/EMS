@@ -4,6 +4,7 @@ import { Newsreader, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import SiteNav from "@/components/site/SiteNav";
 import SiteFooter from "@/components/site/SiteFooter";
+import { DiagramDefs } from "@/components/diagrams/primitives";
 import { siteConfig, getCta } from "@/content/site.config";
 
 const serif = Newsreader({
@@ -82,6 +83,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+        <DiagramDefs />
         <SiteNav items={siteConfig.nav} cta={getCta()} />
         <main id="main-content" className="flex-1">
           {children}
