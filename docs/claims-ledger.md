@@ -47,3 +47,15 @@ against the claim; `pending` means it has not been checked against the product y
 | T1-2 | "Memory for coding agents." | Footer, metadata | Plan §5.3, §8.9 | 2026-10-05 |
 | T1-3 | Site description (works with Claude Code, Cursor, OpenCode and Codex) | Metadata | Plan §8.9; see C1 | pending (C1) |
 | T1-4 | "If you followed an old link to EMS: Reverie is its current name." | 404 | Plan §8.8 | 2026-10-05 |
+
+## Homepage copy added in T4a
+
+| # | Claim | Where | Source | Last verified |
+|---|---|---|---|---|
+| T4a-1 | Hero and agents line: memory for coding agents; works with the four agents, any MCP agent, any model | Home S1 | C1, C27, C28; `claims.anyMcpAgent` | pending |
+| T4a-2 | Hero graph: a reviewed conclusion links to what it supports, depends on and replaced (illustrative, tagged Example) | Home S1 | C32; `content/specimens/token-refresh.json` | pending |
+| T4a-3 | Fig. 1: conclusions are extracted as the agent works, you review and keep or drop, memory builds up grounded in code, the agent asks after reading the code | Home S3 | C2, C4, C5, C6 | pending |
+| T4a-4 | Fig. 2 map and lifecycle: evidence strengthens, contradictions challenge, disuse fades, superseded kept, retired when cited code is deleted; bars computed by `lib/confidence.ts` | Home S4 | C8, C9, C10, C11, C30, C31 | pending |
+| T4a-5 | Fig. 3 and facts: one SQLite file, no account, every extracted conclusion passes review, hosted or Ollama extraction | Home S5 | C12, C15, C29 | pending |
+| T4a-6 | Research: first version loaded memory before the agent started and made it worse on our benchmark | Home S6 | C17 (owner sign-off pending after reconciliation) | pending |
+| T4a-7 | Paper date "September 2026" | Home S6 | C24 | pending |
