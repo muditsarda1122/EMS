@@ -85,6 +85,7 @@ export default function EcBenchPage() {
           </ul>
           <Figure
             number={6}
+            captionId="f6cap"
             className="eb-fig"
             caption={
               <>

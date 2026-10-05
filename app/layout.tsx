@@ -87,7 +87,7 @@ export default function RootLayout({
         </a>
         <DiagramDefs />
         <SiteNav items={siteConfig.nav} cta={getCta()} />
-        <main id="main-content" className="flex-1">
+        <main id="main-content" tabIndex={-1} style={{ outline: "none" }} className="flex-1">
           {children}
         </main>
         <SiteFooter />

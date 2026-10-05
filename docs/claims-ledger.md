@@ -43,7 +43,7 @@ against the claim; `pending` means it has not been checked against the product y
 
 | # | Claim | Where | Source | Last verified |
 |---|---|---|---|---|
-| T1-1 | "Reverie is a research project by Mudit Sarda (Engineering Cognition)." | Footer | Plan §5.3 | 2026-10-05 |
+| T1-1 | "Reverie is a research project by Mudit Sarda" (the "(Engineering Cognition)" and the full stop were dropped at the owner's request, 5 Oct 2026) | Footer | Plan §5.3; owner instruction | 2026-10-05 |
 | T1-2 | "Memory for coding agents." | Footer, metadata | Plan §5.3, §8.9 | 2026-10-05 |
 | T1-3 | Site description (works with Claude Code, Cursor, OpenCode and Codex) | Metadata | Plan §8.9; see C1 | pending (C1) |
 | T1-4 | "If you followed an old link to EMS: Reverie is its current name." | 404 | Plan §8.8 | 2026-10-05 |
@@ -155,3 +155,9 @@ Every factual sentence on the page, grouped by section. Sources are plan section
 | A4 | Memory is stored locally; you review what is kept; grounded in your repository; superseded documents stay available, labelled | How we work | plan §8.7, §1.8 ("memory is stored locally"), C5, C7, §12.4 | pending |
 | A5 | Names: Reverie product; Engineering Cognition research program; `ec` code prefix; EMS first version | Names | plan §8.7, §11.5 | pending |
 | A6 | Contact email | Contact | `content/site.config.ts` | pending (owner) |
+
+## T11: QA additions
+
+| # | Site claim | Where | Source | Last verified |
+|---|---|---|---|---|
+| T11-1 | Mudit Sarda has a LinkedIn profile at the linked address (icon link after the name; URL in `content/site.config.ts`) | Footer | Owner instruction, 5 Oct 2026 | 2026-10-05 (owner supplied) |

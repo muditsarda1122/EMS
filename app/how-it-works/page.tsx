@@ -199,6 +199,7 @@ export default function HowItWorksPage() {
             </div>
             <Figure
               number={4}
+              captionId="f4cap"
               className="hiw-fig"
               caption={
                 <>

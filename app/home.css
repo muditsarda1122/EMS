@@ -35,8 +35,8 @@
 .home .hero-visual svg.hv-net { position: absolute; left: 330px; top: 0; width: min(258px, calc(100% - 330px)); height: 420px; overflow: visible; }
 .home .hero-visual figcaption { position: absolute; left: 0; top: 380px; width: min(588px, 100%); display: flex; gap: 10px; align-items: baseline; margin: 0; }
 .home .hv-mobile div { font-size: 14.5px; line-height: 1.4; padding: 8px 0 2px; }
-.home .hv-mobile .rel { font-family: var(--font-mono), ui-monospace, Menlo, monospace; font-size: 11px; color: var(--ink-3); display: block; letter-spacing: .04em; }
-.home .hv-mobile s { color: var(--ink-3); }
+.home .hv-mobile .rel { font-family: var(--font-mono), ui-monospace, Menlo, monospace; font-size: 11px; color: var(--ink-2); display: block; letter-spacing: .04em; }
+.home .hv-mobile s { color: var(--ink-2); }
 
 /* ---------- problem ---------- */
 .home .s2-left { grid-column: 1 / 7; }
@@ -192,7 +192,7 @@
   .home .hero-visual .hv-card .specimen { width: auto; }
   .home .hero-visual svg.hv-net { display: none; }
   .home .hero-visual figcaption { position: static; width: auto; margin-top: 12px; }
-  .home .hv-mobile { display: block; margin: 0 0 0 16px; padding: 4px 0 0 14px; border-left: 1px solid var(--rule-strong); opacity: .55; }
+  .home .hv-mobile { display: block; margin: 0 0 0 16px; padding: 4px 0 0 14px; border-left: 1px solid var(--rule-strong); opacity: .92; }
   .home .section { padding-top: 100px; }
   .home h2 { font-size: 29px; line-height: 1.16; }
   .home .s2-left .pull { font-size: 19px; margin-top: 22px; }

@@ -25,7 +25,6 @@ export default function MemoryMapControls() {
     <button
       type="button"
       className="mm-toggle"
-      aria-pressed={userPaused}
       aria-label={userPaused ? "Play animation" : "Pause animation"}
       onClick={() => setUserPaused((p) => !p)}
     >
