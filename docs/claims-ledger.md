@@ -52,7 +52,7 @@ against the claim; `pending` means it has not been checked against the product y
 
 | # | Claim | Where | Source | Last verified |
 |---|---|---|---|---|
-| T4a-1 | Hero and agents line: memory for coding agents; works with OpenCode (tick), on any model; Claude Code, Cursor, Codex and other MCP agents coming soon | Home S1 | C1, C27, C28 | pending (C28) |
+| T4a-1 | Hero: memory for coding agents. (The agents line under the lead was removed at the owner’s request, 6 Oct 2026; agent status stays in Fig. 3 and on How it works.) | Home S1 | C1, C27 | pending |
 | T4a-2 | Hero graph: a reviewed conclusion links to what it supports, depends on and replaced (illustrative, tagged Example) | Home S1 | C32; `content/specimens/token-refresh.json` | pending |
 | T4a-3 | Fig. 1: conclusions are extracted as the agent works, you review and keep or drop, memory builds up grounded in code, the agent asks after reading the code | Home S3 | C2, C4, C5, C6 | pending |
 | T4a-4 | Fig. 2 map and lifecycle: evidence strengthens, contradictions challenge, disuse fades, superseded kept, retired when cited code is deleted; bars computed by `lib/confidence.ts` | Home S4 | C8, C9, C10, C11, C30, C31 | pending |

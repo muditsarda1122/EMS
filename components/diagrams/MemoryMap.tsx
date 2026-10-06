@@ -1,40 +1,23 @@
 // M1: the memory map. Animation keyframes live in app/home.css; MemoryMapControls (client island) adds pause and off-screen stop.
 import type { ReactNode } from "react";
 
-/** A canonical record: box, accent bar and one line of text (13 px, baseline 18.5 below the top). */
-function Rec({ x, y, w, children }: { x: number; y: number; w: number; children: string }) {
+/**
+ * A canonical record: box, accent bar and one line of text (13 px, baseline 18.5 below the top).
+ * `blank` records are the background of the map: a faint line instead of words, so only the records that change are read.
+ */
+function Rec({ x, y, w, children, blank = false }: { x: number; y: number; w: number; children?: string; blank?: boolean }) {
   return (
     <>
       <rect x={x} y={y} width={w} height={28} rx={2} className="rec-canon" />
       <rect x={x} y={y} width={3} height={28} className="bar-accent" />
-      <text x={x + 12} y={y + 18.5} className="t-rec">{children}</text>
+      {blank ? (
+        <rect x={x + 12} y={y + 11} width={Math.round((w - 24) * 0.72)} height={6} rx={3} className="skel" />
+      ) : (
+        <text x={x + 12} y={y + 18.5} className="t-rec">{children}</text>
+      )}
     </>
   );
 }
-
-const LEGEND: { label: string; swatch: ReactNode }[] = [
-  { label: "new, awaiting review", swatch: <rect x="1" y="1" width="28" height="12" rx="1" fill="none" className="s-ink" strokeDasharray="3 2" /> },
-  { label: "strengthened", swatch: <rect x="1" y="1" width="28" height="12" rx="1" className="rec-strong sw-22" /> },
-  {
-    label: "challenged",
-    swatch: (
-      <>
-        <rect x="1" y="1" width="28" height="12" rx="1" className="rec-canon" />
-        <rect x="1" y="1" width="3" height="12" className="bar-amber" />
-      </>
-    ),
-  },
-  {
-    label: "superseded, kept",
-    swatch: (
-      <>
-        <rect x="1" y="1" width="28" height="12" rx="1" className="rec-canon" />
-        <line x1="5" y1="7" x2="25" y2="7" className="s-ink3" />
-      </>
-    ),
-  },
-  { label: "fading when unused", swatch: <rect x="1" y="1" width="28" height="12" rx="1" className="rec-canon" opacity=".3" /> },
-];
 
 export const MEMORY_MAP_EVENTS = [
   "A new conclusion arrives from a session and waits, dashed, for your review.",
@@ -60,20 +43,20 @@ export default function MemoryMap({ controls }: { controls?: ReactNode }) {
             <path d="M1012,78 C1030,66 1042,58 1056,52" className="edge" markerEnd="url(#ahg)" />
             <path d="M872,200 C872,214 870,226 868,240" className="edge" markerEnd="url(#ahg)" />
           </g>
-          <Rec x={40} y={24} w={132}>flags default to off</Rec>
-          <Rec x={40} y={210} w={200}>retry only idempotent writes</Rec>
+          <Rec x={40} y={24} w={132} blank />
+          <Rec x={40} y={210} w={200} blank />
           <rect className="n2-rect anim rec-canon" x="280" y="58" width="189" height="28" rx="2" />
           <rect x="280" y="58" width="3" height="28" className="bar-accent" />
           <text x="292" y="76.5" className="t-rec">cache reads wait for refresh</text>
-          <Rec x={300} y={188} w={167}>one db pool per worker</Rec>
+          <Rec x={300} y={188} w={167} blank />
           <g className="n1-body anim"><Rec x={540} y={118} w={168}>tokens refresh at expiry</Rec></g>
           <rect className="n1-amber anim bar-amber" x="540" y="118" width="3" height="28" />
           <line className="n1-strike anim s-ink3" pathLength="100" x1="551" y1="132" x2="697" y2="132" strokeWidth="1.2" />
-          <Rec x={548} y={220} w={189}>errors mapped in one place</Rec>
-          <Rec x={800} y={170} w={180}>config loads before logger</Rec>
-          <Rec x={890} y={80} w={145}>rate limit is per user</Rec>
-          <Rec x={1030} y={22} w={155}>API version in header</Rec>
-          <Rec x={812} y={244} w={142}>log level set per env</Rec>
+          <Rec x={548} y={220} w={189} blank />
+          <Rec x={800} y={170} w={180} blank />
+          <Rec x={890} y={80} w={145} blank />
+          <Rec x={1030} y={22} w={155} blank />
+          <Rec x={812} y={244} w={142} blank />
           <g className="n6 anim">
             <path d="M1060,188 C1052,150 1036,124 1016,112" className="edge-dash" markerEnd="url(#ahg)" />
             <Rec x={1010} y={190} w={160}>build cache per lockfile</Rec>
@@ -118,7 +101,7 @@ export default function MemoryMap({ controls }: { controls?: ReactNode }) {
           <g className="n1-body anim"><Rec x={40} y={250} w={164}>tokens refresh at expiry</Rec></g>
           <rect className="n1-amber anim bar-amber" x="40" y="250" width="3" height="28" />
           <line className="n1-strike anim s-ink3" pathLength="100" x1="51" y1="264" x2="192" y2="264" strokeWidth="1.2" />
-          <Rec x={10} y={330} w={160}>one db pool per worker</Rec>
+          <Rec x={10} y={330} w={160} blank />
           <g className="n6 anim"><Rec x={186} y={370} w={160}>build cache per lockfile</Rec></g>
           <g className="a1-dashed anim">
             <rect x="10" y="100" width="156" height="28" rx="2" className="rec-session" />
@@ -149,15 +132,6 @@ export default function MemoryMap({ controls }: { controls?: ReactNode }) {
           <text className="lab-superseded anim t-ev" x="214" y="269">superseded · kept</text>
           <text className="lab-fading anim t-ev" x="186" y="362">fading · unused</text>
         </svg>
-      </div>
-
-      <div className="legend" aria-hidden="true">
-        {LEGEND.map((l) => (
-          <span key={l.label}>
-            <svg viewBox="0 0 30 14">{l.swatch}</svg>
-            {l.label}
-          </span>
-        ))}
       </div>
 
       <ol id="mm-events" className="sr-only">
