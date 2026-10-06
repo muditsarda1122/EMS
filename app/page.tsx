@@ -1,10 +1,8 @@
-import { Fragment } from "react";
 import type { Metadata } from "next";
 import "./home.css";
 import ArrowLink from "@/components/ui/ArrowLink";
 import ButtonLink from "@/components/ui/ButtonLink";
 import Tag from "@/components/ui/Tag";
-import Tick from "@/components/ui/Tick";
 import HeroGraph from "@/components/diagrams/HeroGraph";
 import SessionsStrip from "@/components/diagrams/SessionsStrip";
 import SessionBoundary from "@/components/diagrams/SessionBoundary";
@@ -14,7 +12,7 @@ import ConclusionLifecycle from "@/components/diagrams/ConclusionLifecycle";
 import OwnershipHub from "@/components/diagrams/OwnershipHub";
 import JsonLd from "@/components/site/JsonLd";
 import VideoSlot, { videoSlotMode } from "@/components/video/VideoSlot";
-import { siteConfig, isRepoPublic, readyAgents, comingSoon, listText } from "@/content/site.config";
+import { siteConfig, isRepoPublic } from "@/content/site.config";
 import specimen from "@/content/specimens/token-refresh.json";
 import type { ConclusionSpecimen } from "@/components/specimen/ConclusionRecord";
 
@@ -56,9 +54,6 @@ export default function HomePage() {
   const stateB = isRepoPublic() && repoUrl !== null;
   const slotShown = videoSlotMode() !== "none";
   const videoPublished = siteConfig.experiment.status === "published";
-  const ready = readyAgents();
-  const soon = comingSoon();
-  const anyReady = siteConfig.claims.anyMcpAgent === "ready";
 
   return (
     <div className="home">
@@ -70,23 +65,6 @@ export default function HomePage() {
           <p className="lead">
             Reverie is memory for coding agents. It keeps the conclusions your agent reaches — reviewed by you, grounded in
             your code — so the next session builds on them.
-          </p>
-          <p className="agents">
-            Works with{" "}
-            {ready.map((name, i) => (
-              <Fragment key={name}>
-                {i > 0 ? (i === ready.length - 1 ? " and " : ", ") : null}
-                {name}
-                <Tick />
-              </Fragment>
-            ))}
-            {anyReady ? " and any MCP agent" : null}, on any model.
-            {soon.length > 0 ? (
-              <>
-                {" "}
-                <span className="agent-soon">{listText(soon)}</span> <Tag>Coming soon</Tag>
-              </>
-            ) : null}
           </p>
           <div className="ctas">
             <ButtonLink href="/how-it-works">How it works</ButtonLink>

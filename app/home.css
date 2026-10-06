@@ -27,7 +27,6 @@
 .home .hero-copy { grid-column: 1 / 7; }
 .home .hero-copy p { text-wrap: pretty; }
 .home .hero-copy .lead { margin-top: 28px; font-size: 20px; }
-.home .hero-copy .agents { margin-top: 20px; font-size: 16px; color: var(--ink-2); }
 .home .ctas { display: flex; gap: 12px; margin-top: 32px; }
 .home .hero-visual { grid-column: 7 / 13; position: relative; height: 420px; margin: 6px 0 0; }
 .home .hero-visual .hv-card { position: absolute; left: 0; top: 22px; width: 330px; }
@@ -217,4 +216,37 @@
   .home .rlist li a, .home .rlist li.next a, .home .rlist li.next > div { grid-template-columns: 1fr; row-gap: 4px; }
   .home .s7 { padding-top: 104px; }
   .home .s7 .right { margin-top: 16px; }
+}
+
+/* M1 background records: a faint line instead of words. */
+.home .skel { fill: var(--ink-4); opacity: .45; }
+
+/* F2: one conclusion, up close. One card at a time: six stages × 3 s (STEP in ConclusionLifecycle.tsx), all in
+   one grid cell so the height never jumps. Paused by the figure's pause button (.lc-paused). */
+.home .lc-cards { list-style: none; margin: 14px 0 0; padding: 0; display: grid; max-width: 560px; }
+.home .lc-card { grid-area: 1 / 1; opacity: 0; animation: lc-show 18s linear infinite both; }
+.home .lc-rec { position: relative; border: 1px solid var(--rule-strong); border-radius: 2px; background: var(--surface); padding: 14px 18px 14px 21px; font-size: 19px; line-height: 1.35; }
+.home .lc-rec::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; }
+.home .k-unreviewed .lc-rec, .home .k-open .lc-rec { border-style: dashed; border-color: var(--ink-3); background: none; }
+.home .k-reviewed .lc-rec::before, .home .k-used .lc-rec::before { background: var(--accent); }
+.home .k-used .lc-rec { border: 2px solid var(--ink); padding: 13px 17px 13px 20px; }
+.home .k-challenged .lc-rec::before { background: var(--challenged); }
+.home .k-superseded .lc-rec { color: var(--ink-3); text-decoration: line-through; }
+.home .lc-meta { display: flex; align-items: center; gap: 16px; margin-top: 12px; }
+.home .lc-status { font-family: var(--font-mono), ui-monospace, Menlo, monospace; font-size: 13px; min-width: 10em; }
+.home .k-challenged .lc-status { color: var(--challenged); }
+.home .k-superseded .lc-status { color: var(--ink-3); }
+.home .lc-bar { position: relative; flex: 0 0 140px; height: 5px; background: var(--rule); }
+.home .lc-bar i { position: absolute; left: 0; top: 0; bottom: 0; }
+.home .lc-event { margin: 10px 0 0; font-size: 17px; color: var(--ink-2); }
+.home .lc-dots { display: flex; gap: 6px; margin-top: 18px; }
+.home .lc-dots i { width: 22px; height: 3px; background: var(--rule-strong); animation: lc-dot 18s linear infinite both; }
+.home .lc-foot { margin-top: 14px; font-size: 15px; color: var(--ink-2); }
+.home .fig-mm.lc-paused .lc-card, .home .fig-mm.lc-paused .lc-dots i { animation-play-state: paused; }
+@keyframes lc-show { 0% { opacity: 0; transform: translateY(6px); } 2.5%, 14.2% { opacity: 1; transform: none; } 16.6%, 100% { opacity: 0; transform: none; } }
+@keyframes lc-dot { 0% { background: var(--rule-strong); } 0.2%, 16.6% { background: var(--ink); } 16.7%, 100% { background: var(--rule-strong); } }
+@media (prefers-reduced-motion: reduce) {
+  .home .lc-cards { max-width: none; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 22px 28px; }
+  .home .lc-card { grid-area: auto; opacity: 1; animation: none; }
+  .home .lc-dots { display: none; }
 }
