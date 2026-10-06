@@ -55,10 +55,17 @@ Set in `content/site.config.ts`. Pages read these and never hard-code a state.
 
 - `repository.url` and `repository.ref`: `null` is State A (repository not public; the header call to action is Contact). A URL is State B (the call to action is GitHub and repository links appear).
 - `experiment.status`: `hidden`, `design`, `running` or `published`. Anything but `hidden` shows the continuity experiment page and its homepage slot (`experiment.homepageSlot`).
+- `video`: the homepage comparison video (S3b): an embeddable player URL, a link to open it on its own, a title, the date it went up and its aspect ratio. `null` keeps the reserved frame. It is independent of `experiment.status`, which drives the research page.
 - `domain`: `null` keeps URLs relative. Set it to get absolute Open Graph, sitemap and canonical URLs.
 - `agents`: the agents Reverie connects to, in display order. `ready: true` shows a tick; `ready: false` shows "Coming soon". Flip it as each connection lands.
 - `claims.anyMcpAgent`: other MCP agents, set up by hand. `false` hides the claim, `"soon"` marks it coming soon, `"ready"` states it.
 - `version`, `contactEmail`, `nav`.
+
+## For AI agents and search
+
+- `/llms.txt` (from `app/llms.txt/route.ts`) is a plain-Markdown summary of the site, following llmstxt.org. Every line restates a page, so update it whenever the claims ledger changes.
+- The homepage carries `SoftwareApplication` and, when there is a video, `VideoObject` structured data. The layout carries `ResearchProject` data.
+- `robots.txt` allows every crawler. A sitemap and canonical URLs appear once `domain` is set.
 
 ## Hosting
 

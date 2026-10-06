@@ -1,5 +1,5 @@
-// S3b: the place for the side-by-side comparison video. Driven by site.config.ts (experiment.status, homepageSlot).
-// Before publication it is a reserved dashed frame: no player, play button, thumbnail or outcome language.
+// S3b: the comparison video. Driven by site.config.ts: `video` shows the player; otherwise experiment.status and
+// homepageSlot decide whether the reserved dashed frame shows (no player, play button, thumbnail or outcome language).
 import ArrowLink from "@/components/ui/ArrowLink";
 import Tag from "@/components/ui/Tag";
 import { siteConfig } from "@/content/site.config";
@@ -9,7 +9,7 @@ export type VideoSlotMode = "frame" | "video" | "none";
 
 export function videoSlotMode(): VideoSlotMode {
   const { status, homepageSlot } = siteConfig.experiment;
-  if (status === "published") return "video";
+  if (siteConfig.video || status === "published") return "video";
   return homepageSlot ? "frame" : "none";
 }
 
@@ -22,7 +22,9 @@ export default function VideoSlot() {
     <section className="section wrap">
       <div className="grid-12 s-head">
         <h2>The same agent, with and without Reverie.</h2>
-        <p className="aside">Same repository, same tasks, same sessions — side by side.</p>
+        <p className="aside">
+          {mode === "video" ? "One recording compares both runs." : "Same repository, same tasks, same sessions — side by side."}
+        </p>
       </div>
       {mode === "video" ? (
         <ComparisonVideo />

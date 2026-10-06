@@ -162,3 +162,12 @@ Every factual sentence on the page, grouped by section. Sources are plan section
 | # | Site claim | Where | Source | Last verified |
 |---|---|---|---|---|
 | T11-1 | Mudit Sarda has a LinkedIn profile at the linked address (icon link after the name; URL in `content/site.config.ts`) | Footer | Owner instruction, 5 Oct 2026 | 2026-10-05 (owner supplied) |
+
+## Comparison video and agent-facing files (6 Oct 2026)
+
+| # | Site claim | Where | Source | Last verified |
+|---|---|---|---|---|
+| V-1 | Heading "The same agent, with and without Reverie."; aside "One recording compares both runs."; caption "A recorded demonstration, not a benchmark result." | Home S3b | Owner, 6 Oct 2026 (video supplied); the heading is approved copy | pending (owner: confirm the same agent ran both sides) |
+| V-2 | `VideoObject`: title, a description matching V-1, the Google Drive embed URL, upload date 6 Oct 2026 | Home (JSON-LD) | Owner, 6 Oct 2026 | 2026-10-06 |
+| V-3 | `SoftwareApplication`: name, the site description (T1-3), developer application, macOS (Limits), author | Home (JSON-LD) | T1-3; How it works, Limits | 2026-10-06 |
+| L-1 | `/llms.txt` restates the site: description, agent status (C1, C27), open source (H29), what Reverie keeps and who decides (How it works rows), MCP tools (H22), storage and LLM endpoint (H25), EC-Bench status and the first version's result (A3), limits, the video (V-1), pages, names (A5) and contact (A6) | `/llms.txt` | The rows cited | 2026-10-06 |

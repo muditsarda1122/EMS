@@ -5,6 +5,20 @@ export type NavItem = { label: string; href: string };
 /** An agent Reverie connects to. `ready: false` shows it as "Coming soon"; `ready: true` gets a tick. */
 export type Agent = { name: string; ready: boolean };
 
+/** The homepage comparison video (S3b): one recording that compares both runs. */
+export type ComparisonVideo = {
+  /** An embeddable player URL (for Google Drive, the file's /preview link). */
+  embedUrl: string;
+  /** Where the video opens on its own, offered beside the player. */
+  shareUrl: string;
+  shareLabel: string;
+  title: string;
+  /** Date it went on the site (ISO), for structured data. */
+  published: string;
+  /** The recording's width / height, for the frame. */
+  aspect: string;
+};
+
 export type SiteConfig = {
   name: string;
   tagline: string;
@@ -13,6 +27,8 @@ export type SiteConfig = {
   contactEmail: string;
   repository: { url: string | null; ref: string | null; licence: string | null };
   experiment: { status: ExperimentStatus; homepageSlot: boolean };
+  /** null keeps the reserved frame in S3b. Independent of experiment.status (the research page, T12). */
+  video: ComparisonVideo | null;
   version: string | null; // TODO(fact): product version not stated in the plan
   agents: Agent[];
   /** Other MCP agents, set up by hand: false hides the claim, "soon" marks it coming soon, "ready" states it. */
@@ -31,6 +47,14 @@ export const siteConfig: SiteConfig = {
   contactEmail: "muditsarda23@gmail.com",
   repository: { url: null, ref: null, licence: null },
   experiment: { status: "hidden", homepageSlot: true },
+  video: {
+    embedUrl: "https://drive.google.com/file/d/1ZJ5oA2v02H795ltq3Yl07k2vlOfeVbp3/preview",
+    shareUrl: "https://drive.google.com/file/d/1ZJ5oA2v02H795ltq3Yl07k2vlOfeVbp3/view",
+    shareLabel: "Open in Google Drive",
+    title: "The same agent, with and without Reverie",
+    published: "2026-10-06",
+    aspect: "16 / 9",
+  },
   version: null,
   // Only OpenCode's connection is complete (owner, 5 Oct 2026). Flip `ready` as each one lands.
   agents: [
