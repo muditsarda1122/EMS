@@ -12,6 +12,7 @@ import MemoryMap from "@/components/diagrams/MemoryMap";
 import MemoryMapControls from "@/components/diagrams/MemoryMapControls";
 import ConclusionLifecycle from "@/components/diagrams/ConclusionLifecycle";
 import OwnershipHub from "@/components/diagrams/OwnershipHub";
+import JsonLd from "@/components/site/JsonLd";
 import VideoSlot, { videoSlotMode } from "@/components/video/VideoSlot";
 import { siteConfig, isRepoPublic, readyAgents, comingSoon, listText } from "@/content/site.config";
 import specimen from "@/content/specimens/token-refresh.json";
@@ -20,6 +21,34 @@ import type { ConclusionSpecimen } from "@/components/specimen/ConclusionRecord"
 export const metadata: Metadata = {
   title: { absolute: "Reverie — memory for coding agents" },
   description: siteConfig.description,
+};
+
+// Structured data (plan §8.9): what Reverie is, and the comparison video when there is one. No site URLs until a
+// domain is set; the video's embed URL is external.
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      name: siteConfig.name,
+      description: siteConfig.description,
+      applicationCategory: "DeveloperApplication",
+      operatingSystem: "macOS",
+      author: { "@type": "Person", name: siteConfig.author, sameAs: [siteConfig.links.linkedin] },
+    },
+    ...(siteConfig.video
+      ? [
+          {
+            "@type": "VideoObject",
+            name: siteConfig.video.title,
+            description:
+              "One recording comparing the same coding agent with and without Reverie. A demonstration, not a benchmark result.",
+            embedUrl: siteConfig.video.embedUrl,
+            uploadDate: siteConfig.video.published,
+          },
+        ]
+      : []),
+  ],
 };
 
 export default function HomePage() {
@@ -33,6 +62,7 @@ export default function HomePage() {
 
   return (
     <div className="home">
+      <JsonLd data={jsonLd} />
       {/* S1 Hero */}
       <section className="hero wrap grid-12">
         <div className="hero-copy">
