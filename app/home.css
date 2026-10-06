@@ -47,7 +47,7 @@
 /* ---------- memory map (M1): animated; static under reduced motion (ported from design/homepage-preview/home.html) ---------- */
 .home figure.fig-mm { margin-top: 72px; }
 .mm-wrap { position: relative; }
-.mm-toggle { position: absolute; right: 0; top: -40px; font-family: var(--mono); font-size: 12px; color: var(--ink-2);
+.mm-toggle { position: absolute; right: 0; top: -40px; font-family: var(--font-mono), ui-monospace, Menlo, monospace; font-size: 12px; color: var(--ink-2);
   background: transparent; border: 1px solid var(--rule-strong); border-radius: 2px; padding: 4px 10px; cursor: pointer; }
 .mm { --cycle: 16s; }
 .mm .anim { animation-duration: var(--cycle); animation-iteration-count: infinite; animation-timing-function: ease-in-out; animation-fill-mode: both; }
@@ -222,7 +222,7 @@
 .home .skel { fill: var(--ink-4); opacity: .45; }
 
 /* F2: one conclusion, up close. One card at a time: six stages × 3 s (STEP in ConclusionLifecycle.tsx), all in
-   one grid cell so the height never jumps. Paused by the figure's pause button (.lc-paused). */
+   one grid cell so the height never jumps. LifecycleReelControls adds .lc-hold (paused) or .lc-manual + .is-sel (a chosen stage). */
 .home .lc-cards { list-style: none; margin: 14px 0 0; padding: 0; display: grid; max-width: 560px; }
 .home .lc-card { grid-area: 1 / 1; opacity: 0; animation: lc-show 18s linear infinite both; }
 .home .lc-rec { position: relative; border: 1px solid var(--rule-strong); border-radius: 2px; background: var(--surface); padding: 14px 18px 14px 21px; font-size: 19px; line-height: 1.35; }
@@ -239,10 +239,17 @@
 .home .lc-bar { position: relative; flex: 0 0 140px; height: 5px; background: var(--rule); }
 .home .lc-bar i { position: absolute; left: 0; top: 0; bottom: 0; }
 .home .lc-event { margin: 10px 0 0; font-size: 17px; color: var(--ink-2); }
-.home .lc-dots { display: flex; gap: 6px; margin-top: 18px; }
-.home .lc-dots i { width: 22px; height: 3px; background: var(--rule-strong); animation: lc-dot 18s linear infinite both; }
+.home .lc-dots { display: flex; align-items: center; gap: 2px; margin-top: 10px; }
+.home .lc-seg { position: relative; width: 28px; height: 24px; padding: 0; border: 0; background: none; cursor: pointer; }
+.home .lc-seg::before { content: ""; position: absolute; left: 3px; right: 3px; top: 10px; height: 4px; background: var(--rule-strong); animation: lc-dot 18s linear infinite both; animation-delay: inherit; }
+.home .lc-seg:hover::before { box-shadow: 0 0 0 1px var(--ink-3); }
+.home .lc-toggle { margin-left: 12px; font-family: var(--font-mono), ui-monospace, Menlo, monospace; font-size: 12px; color: var(--ink-2); background: transparent; border: 1px solid var(--rule-strong); border-radius: 2px; padding: 4px 10px; cursor: pointer; }
+.home .lc-dots.lc-hold .lc-seg::before, .home .lc-cards.lc-hold .lc-card { animation-play-state: paused; }
+.home .lc-dots.lc-manual .lc-seg::before { animation: none; background: var(--rule-strong); }
+.home .lc-dots.lc-manual .lc-seg.is-sel::before { background: var(--ink); }
+.home .lc-cards.lc-manual .lc-card { animation: none; opacity: 0; }
+.home .lc-cards.lc-manual .lc-card.is-sel { opacity: 1; }
 .home .lc-foot { margin-top: 14px; font-size: 15px; color: var(--ink-2); }
-.home .fig-mm.lc-paused .lc-card, .home .fig-mm.lc-paused .lc-dots i { animation-play-state: paused; }
 @keyframes lc-show { 0% { opacity: 0; transform: translateY(6px); } 2.5%, 14.2% { opacity: 1; transform: none; } 16.6%, 100% { opacity: 0; transform: none; } }
 @keyframes lc-dot { 0% { background: var(--rule-strong); } 0.2%, 16.6% { background: var(--ink); } 16.7%, 100% { background: var(--rule-strong); } }
 @media (prefers-reduced-motion: reduce) {
