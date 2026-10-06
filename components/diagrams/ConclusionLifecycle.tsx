@@ -3,6 +3,7 @@
 import { lifecycleSteps, scenario } from "@/content/lifecycle-scenario";
 import { DECAY_LAMBDA, SCOPE_MULTIPLIER, SOURCE_BASE, effective, prior } from "@/lib/confidence";
 import LifecycleStepper from "./LifecycleStepper";
+import LifecycleReelControls from "./LifecycleReelControls";
 import { StepPanel, type StepView } from "./lifecycle-panel";
 
 type Stage = { status: string; event: string; mobileEvent: string; stepIndex: number; tone: "ink" | "amber" | "grey" };
@@ -129,11 +130,12 @@ export default function ConclusionLifecycle({ variant = "summary" }: { variant?:
   const stages = STAGES.map((s) => ({ ...s, value: steps[s.stepIndex].stored }));
 
   // One card at a time: each stage holds for STEP seconds, then fades into the next (keyframes in app/home.css,
-  // which assume six stages). Reduced motion shows all six at once.
+  // which assume six stages). The segments under it are buttons that jump to a stage (LifecycleReelControls).
+  // Reduced motion shows all six at once.
   return (
     <>
       <p className="mono-label panel-label">One conclusion, up close</p>
-      <ol className="lc-cards" aria-label="The life of one conclusion">
+      <ol className="lc-cards" id="lc-reel" aria-label="The life of one conclusion">
         {stages.map((s, i) => (
           <li key={i} className={`lc-card k-${KIND[i]}`} style={{ animationDelay: `${i * STEP}s` }}>
             <span className="sr-only">Step {i + 1} of {stages.length}. </span>
@@ -148,11 +150,7 @@ export default function ConclusionLifecycle({ variant = "summary" }: { variant?:
           </li>
         ))}
       </ol>
-      <div className="lc-dots" aria-hidden="true">
-        {stages.map((_, i) => (
-          <i key={i} style={{ animationDelay: `${i * STEP}s` }} />
-        ))}
-      </div>
+      <LifecycleReelControls labels={stages.map((s) => `${s.event} (${s.status})`)} step={STEP} />
       <p className="lc-foot">If the code it cites is deleted, a conclusion like this is retired automatically.</p>
     </>
   );
