@@ -216,7 +216,7 @@ export default function EcBenchPage() {
               <span className="sr-only"> (PDF)</span>
             </a>
             {isRepoPublic() && repoUrl ? (
-              <ButtonLink href={repoUrl} variant="secondary" external>
+              <ButtonLink href={`${repoUrl}/tree/${siteConfig.repository.ref ?? "main"}/bench`} variant="secondary" external>
                 View the harness ↗
               </ButtonLink>
             ) : null}

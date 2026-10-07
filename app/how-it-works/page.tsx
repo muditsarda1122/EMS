@@ -38,15 +38,15 @@ const TYPES = ["implication", "constraint", "principle", "decision", "observatio
 const SCOPES = ["engineering", "domain", "organization", "project", "repo", "module", "subsystem"];
 const STATUSES = ["active", "challenged", "superseded", "deprecated", "open_question", "archived"];
 
-// Source modules named in plan §8.1 as an example. Every other section needs the owner's module list.
-// TODO(fact): modules that implement each section (PRODUCT.md). Shown only in State B.
+// The modules that implement each section, in the public repository (checked against main, 7 Oct 2026).
+// Shown only in State B; a section mapped to null shows no note.
 const GROUNDING: Record<string, string[] | null> = {
-  remembered: null,
+  remembered: ["ec/extractor.py", "ec/prompts/extractor_prompt.md"],
   review: ["ec/review_gate.py", "ec/diffuser.py"],
-  change: null,
-  grounding: null,
-  retrieval: null,
-  install: null,
+  change: ["ec/confidence.py", "ec/maintainer.py", "ec/reconsolidation.py"],
+  grounding: ["ec/grounding.py"],
+  retrieval: ["ec/retrieval.py", "ec/mode_detection.py"],
+  install: ["ec/install.py", "ec/mcp_server.py"],
 };
 
 // Where the installer wires Reverie's instructions in for each agent (ec/install.py).
@@ -61,6 +61,7 @@ function ModuleNote({ id }: { id: string }) {
   if (!isRepoPublic()) return null;
   const { url, ref } = siteConfig.repository;
   const paths = GROUNDING[id];
+  if (!paths) return null;
   return (
     <p className="grounding">
       implemented in:{" "}
@@ -77,7 +78,7 @@ function ModuleNote({ id }: { id: string }) {
               )}
             </span>
           ))
-        : "TODO(fact)"}
+        : null}
     </p>
   );
 }

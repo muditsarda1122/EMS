@@ -107,7 +107,7 @@ Every factual sentence on the page, grouped by section. Sources are plan section
 | H26 | Naming note: `ec` prefix stands for Engineering Cognition | §6 | plan §8.1, §11.5 | pending |
 | H27 | Limits: macOS only; terminal review; you start/end sessions; single-attempt LLM extraction; no edit/delete interface; no clear benchmark advantage | §7 | plan §8.1 (C18–C22) | pending |
 | H28 | "Last reviewed 5 October 2026" | §7 | plan date; owner to confirm | pending |
-| H29 | FAQ: instruction files vs Reverie; data flow; what you do; why not automatic; does it make agents better; which agents (OpenCode today, the rest coming soon); open source ("It will be" until the repository opens; then the licence from `siteConfig.repository.licence`) | §8 | plan §8.1, §1.8; owner instruction 5 Oct 2026 (going open source) | pending; open source 2026-10-05 |
+| H29 | FAQ: instruction files vs Reverie; data flow; what you do; why not automatic; does it make agents better; which agents (OpenCode today, the rest coming soon); open source (yes: Apache-2.0, github.com/muditsarda1122/Reverie) | §8 | plan §8.1, §1.8; owner instruction 5 Oct 2026 (going open source) | pending; open source 2026-10-05 |
 
 ## T7: EC-Bench (`/research/ec-bench`)
 
@@ -171,3 +171,10 @@ Every factual sentence on the page, grouped by section. Sources are plan section
 | V-2 | `VideoObject`: title, a description matching V-1, the Google Drive embed URL, upload date 6 Oct 2026 | Home (JSON-LD) | Owner, 6 Oct 2026 | 2026-10-06 |
 | V-3 | `SoftwareApplication`: name, the site description (T1-3), developer application, macOS (Limits), author | Home (JSON-LD) | T1-3; How it works, Limits | 2026-10-06 |
 | L-1 | `/llms.txt` restates the site: description, agent status (C1, C27), open source (H29), what Reverie keeps and who decides (How it works rows), MCP tools (H22), storage and LLM endpoint (H25), EC-Bench status and the first version's result (A3), limits, the video (V-1), pages, names (A5) and contact (A6) | `/llms.txt` | The rows cited | 2026-10-06 |
+
+## Repository public (7 Oct 2026)
+
+| # | Site claim | Where | Source | Last verified |
+|---|---|---|---|---|
+| R-1 | The code is public at github.com/muditsarda1122/Reverie (branch `main`) under Apache-2.0; it contains the source, the extraction prompt (`ec/prompts/extractor_prompt.md`), the benchmark harness (`bench/`) and setup instructions (README) | Home (hero, closing), How it works (install, FAQ, closing), EC-Bench, footer, nav, `/llms.txt`, metadata | The repository: LICENSE, README, `ec/`, `bench/` | 2026-10-07 |
+| R-2 | "Implemented in" notes on How it works: extractor and prompt; review gate and diffuser; confidence, maintainer and reconsolidation; grounding; retrieval and mode detection; installer and MCP server | How it works, each section | File names in `ec/` on `main` | 2026-10-07 |
