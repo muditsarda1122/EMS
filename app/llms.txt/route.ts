@@ -18,7 +18,7 @@ export function GET() {
     "",
     `Works with ${listText(ready)} today.${soon.length ? ` ${listText(soon)} ${soon.length > 1 ? "are" : "is"} coming soon.` : ""}`,
     isRepoPublic() && repo
-      ? `The code is open source: ${repo}`
+      ? `The code is open source${siteConfig.repository.licence ? ` under ${siteConfig.repository.licence}` : ""}: ${repo}`
       : "Reverie will be open source; the repository opens soon.",
     "",
     "## What it does",

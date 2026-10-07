@@ -42,10 +42,10 @@ export const siteConfig: SiteConfig = {
   name: "Reverie",
   tagline: "Memory for coding agents.",
   description:
-    "Reverie keeps the engineering conclusions your coding agent reaches, reviewed by you, grounded in your repository, and revised as evidence changes. Works with OpenCode, with Claude Code, Cursor and Codex coming soon.",
+    "Reverie keeps the engineering conclusions your coding agent reaches, reviewed by you, grounded in your repository, and revised as evidence changes. Works with OpenCode, with Claude Code, Cursor and Codex coming soon. Open source under Apache-2.0.",
   domain: null,
   contactEmail: "muditsarda23@gmail.com",
-  repository: { url: null, ref: null, licence: null },
+  repository: { url: "https://github.com/muditsarda1122/Reverie", ref: "main", licence: "Apache-2.0" },
   experiment: { status: "hidden", homepageSlot: true },
   video: {
     embedUrl: "https://drive.google.com/file/d/1ZJ5oA2v02H795ltq3Yl07k2vlOfeVbp3/preview",
