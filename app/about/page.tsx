@@ -97,6 +97,17 @@ export default function AboutPage() {
                 LinkedIn ↗
               </a>
             </p>
+            <p>
+              <a
+                className="text-link"
+                href={siteConfig.links.personal}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="muditsarda.com, Mudit's personal website (opens in a new tab)"
+              >
+                muditsarda.com ↗
+              </a>
+            </p>
           </div>
         </section>
       </div>
