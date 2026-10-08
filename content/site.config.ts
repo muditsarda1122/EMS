@@ -35,7 +35,7 @@ export type SiteConfig = {
   claims: { anyMcpAgent: false | "soon" | "ready" };
   nav: NavItem[];
   author: string;
-  links: { linkedin: string };
+  links: { linkedin: string; personal: string };
 };
 
 export const siteConfig: SiteConfig = {
@@ -43,7 +43,7 @@ export const siteConfig: SiteConfig = {
   tagline: "Memory for coding agents.",
   description:
     "Reverie keeps the engineering conclusions your coding agent reaches, reviewed by you, grounded in your repository, and revised as evidence changes. Works with OpenCode, with Claude Code, Cursor and Codex coming soon. Open source under Apache-2.0.",
-  domain: null,
+  domain: "reverie.muditsarda.com",
   contactEmail: "muditsarda23@gmail.com",
   repository: { url: "https://github.com/muditsarda1122/Reverie", ref: "main", licence: "Apache-2.0" },
   experiment: { status: "hidden", homepageSlot: true },
@@ -70,7 +70,7 @@ export const siteConfig: SiteConfig = {
     { label: "About", href: "/about" },
   ],
   author: "Mudit Sarda",
-  links: { linkedin: "https://www.linkedin.com/in/mudit-sarda-ab84991bb/" },
+  links: { linkedin: "https://www.linkedin.com/in/mudit-sarda-ab84991bb/", personal: "https://muditsarda.com" },
 };
 
 /** State B: the repository is public. */
