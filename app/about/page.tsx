@@ -17,7 +17,8 @@ const jsonLd = {
     "@type": "Person",
     name: siteConfig.author,
     email: siteConfig.contactEmail,
-    sameAs: [siteConfig.links.linkedin],
+    url: siteConfig.links.personal,
+    sameAs: [siteConfig.links.linkedin, siteConfig.links.personal],
   },
 };
 

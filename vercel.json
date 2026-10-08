@@ -1,5 +1,11 @@
 {
   "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "ems-gold-seven.vercel.app" }],
+      "destination": "https://reverie.muditsarda.com/:path*",
+      "permanent": true
+    },
     { "source": "/ems", "destination": "/how-it-works", "permanent": true },
     { "source": "/ethos", "destination": "/about", "permanent": true },
     { "source": "/ec-bench", "destination": "/research/ec-bench", "permanent": true },

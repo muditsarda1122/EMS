@@ -49,7 +49,10 @@ export default function SiteFooter() {
 
         <div className="foot-baseline">
           <p className="foot-credit">
-            Reverie is a research project by {siteConfig.author}
+            Reverie is a research project by{" "}
+            <a href={siteConfig.links.personal} target="_blank" rel="noopener noreferrer">
+              {siteConfig.author}
+            </a>
             <a
               className="foot-social"
               href={siteConfig.links.linkedin}
