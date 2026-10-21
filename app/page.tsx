@@ -67,7 +67,8 @@ export default function HomePage() {
             your code — so the next session builds on them.
           </p>
           <div className="ctas">
-            <ButtonLink href="/how-it-works">How it works</ButtonLink>
+            <ButtonLink href="/waitlist">Join the waitlist</ButtonLink>
+            <ButtonLink href="/how-it-works" variant="secondary">How it works</ButtonLink>
             {stateB ? (
               <ButtonLink href={repoUrl} variant="secondary" external>View on GitHub ↗</ButtonLink>
             ) : (
@@ -202,7 +203,8 @@ export default function HomePage() {
               <div className="right">
                 <p>Want to know when it’s out, or talk about the research?</p>
                 <div className="ctas">
-                  <ButtonLink href={`mailto:${siteConfig.contactEmail}?subject=Reverie`}>Get in touch</ButtonLink>
+                  <ButtonLink href="/waitlist">Join the waitlist</ButtonLink>
+                  <ButtonLink href={`mailto:${siteConfig.contactEmail}?subject=Reverie`} variant="secondary">Get in touch</ButtonLink>
                   <ButtonLink href="/how-it-works" variant="secondary">How it works</ButtonLink>
                 </div>
               </div>

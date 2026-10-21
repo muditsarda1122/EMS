@@ -15,6 +15,7 @@ export default function SiteFooter() {
           <nav className="foot-col first" aria-label="Product">
             <h2>Product</h2>
             <ul>
+              <li><Link href="/waitlist">Join the waitlist</Link></li>
               <li><Link href="/how-it-works">How it works</Link></li>
               <li><Link href="/how-it-works#supported-agents">Supported agents</Link></li>
               <li><Link href="/how-it-works#faq">Questions</Link></li>
