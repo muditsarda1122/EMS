@@ -1,19 +1,14 @@
-"use client";
-
-import Script from "next/script";
 import { siteConfig } from "@/content/site.config";
 
-declare global {
-  interface Window {
-    Tally?: { loadEmbeds?: () => void };
-  }
-}
-
-/** Tally's embed: name and work email, configured in Tally. Until the form id is set, show the email instead. */
+/**
+ * Waitlist sign-up, posted to Buttondown's embed endpoint. The name input's `name` must match
+ * the key of a custom subscribe-form input in Buttondown (Settings → Subscribe form inputs).
+ * Until a username is set, the form is replaced by the email address.
+ */
 export default function WaitlistForm() {
-  const formId = siteConfig.waitlist.tallyFormId;
+  const username = siteConfig.waitlist.buttondownUsername;
 
-  if (!formId) {
+  if (!username) {
     return (
       <p>
         The waitlist opens soon. Until then, email{" "}
@@ -26,20 +21,23 @@ export default function WaitlistForm() {
   }
 
   return (
-    <>
-      <iframe
-        data-tally-src={`https://tally.so/embed/${formId}?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1`}
-        loading="lazy"
-        width="100%"
-        height="320"
-        style={{ border: 0 }}
-        title="Join the Reverie waitlist"
-      />
-      <Script
-        src="https://tally.so/widgets/embed.js"
-        strategy="afterInteractive"
-        onLoad={() => window.Tally?.loadEmbeds?.()}
-      />
-    </>
+    <form
+      className="wl-signup"
+      action={`https://buttondown.com/api/emails/embed-subscribe/${username}`}
+      method="post"
+    >
+      <div className="wl-field">
+        <label htmlFor="wl-name">Name</label>
+        <input id="wl-name" name="name" type="text" autoComplete="name" required />
+      </div>
+      <div className="wl-field">
+        <label htmlFor="wl-email">Work email</label>
+        <input id="wl-email" name="email" type="email" autoComplete="email" required />
+      </div>
+      <input type="hidden" name="embed" value="1" />
+      <button type="submit" className="btn btn-primary">
+        Join the waitlist
+      </button>
+    </form>
   );
 }

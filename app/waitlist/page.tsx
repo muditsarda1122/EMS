@@ -21,8 +21,7 @@ export default function WaitlistPage() {
           team version, where the conclusions an engineering team keeps can be shared across the team.
         </p>
         <p>
-          Leave your name and work email, and we&rsquo;ll write to you when it&rsquo;s ready. That&rsquo;s the only use
-          of the list.
+          Leave your name and work email. We&rsquo;ll write when the team version is ready, and for nothing else.
         </p>
 
         <div className="wl-form">
@@ -30,7 +29,7 @@ export default function WaitlistPage() {
         </div>
 
         <p className="wl-note">
-          To leave the list at any time, email{" "}
+          Your details are stored with Buttondown, the email service we use for this list. To leave at any time, email{" "}
           <a className="text-link" href={`mailto:${siteConfig.contactEmail}?subject=Reverie waitlist removal`}>
             {siteConfig.contactEmail}
           </a>

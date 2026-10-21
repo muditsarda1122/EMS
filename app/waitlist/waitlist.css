@@ -2,5 +2,22 @@
 .wl-body { max-width: 62ch; margin-top: 32px; }
 .wl-body > * + * { margin-top: 1.1rem; }
 .wl-body p { text-wrap: pretty; }
-.wl-form { margin-top: 40px; }
-.wl-note { margin-top: 40px; font-size: 0.9em; color: var(--ink-3); }
+.wl-form { margin-top: 40px; max-width: 480px; }
+.wl-note { margin-top: 40px; font-size: 0.9em; color: var(--ink-2); }
+
+.wl-signup { display: grid; gap: 22px; }
+.wl-field { display: grid; gap: 8px; }
+.wl-field label { color: var(--ink); font-size: 0.95em; }
+.wl-field input {
+  font: inherit;
+  font-size: 16px; /* 16px stops iPhones zooming in on focus */
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--ink-3);
+  border-radius: 0;
+  padding: 12px 14px;
+  width: 100%;
+}
+.wl-field input::placeholder { color: var(--ink-3); }
+.wl-field input:focus { outline: 2px solid var(--accent); outline-offset: 2px; border-color: var(--accent); }
+.wl-signup .btn { justify-self: start; }
