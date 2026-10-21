@@ -202,7 +202,8 @@ export default function HomePage() {
               <div className="right">
                 <p>Want to know when it’s out, or talk about the research?</p>
                 <div className="ctas">
-                  <ButtonLink href={`mailto:${siteConfig.contactEmail}?subject=Reverie`}>Get in touch</ButtonLink>
+                  <ButtonLink href="/waitlist">Join the waitlist</ButtonLink>
+                  <ButtonLink href={`mailto:${siteConfig.contactEmail}?subject=Reverie`} variant="secondary">Get in touch</ButtonLink>
                   <ButtonLink href="/how-it-works" variant="secondary">How it works</ButtonLink>
                 </div>
               </div>

@@ -25,6 +25,8 @@ export type SiteConfig = {
   description: string;
   domain: string | null;
   contactEmail: string;
+  /** Tally form for the waitlist: the id from tally.so/r/<id>. null shows the email fallback instead. */
+  waitlist: { tallyFormId: string | null };
   repository: { url: string | null; ref: string | null; licence: string | null };
   experiment: { status: ExperimentStatus; homepageSlot: boolean };
   /** null keeps the reserved frame in S3b. Independent of experiment.status (the research page, T12). */
@@ -44,7 +46,8 @@ export const siteConfig: SiteConfig = {
   description:
     "Reverie keeps the engineering conclusions your coding agent reaches, reviewed by you, grounded in your repository, and revised as evidence changes. Works with OpenCode, with Claude Code, Cursor and Codex coming soon. Open source under Apache-2.0.",
   domain: "reverie.muditsarda.com",
-  contactEmail: "muditsarda23@gmail.com",
+  contactEmail: "mudit@muditsarda.com",
+  waitlist: { tallyFormId: null },
   repository: { url: "https://github.com/muditsarda1122/Reverie", ref: "main", licence: "Apache-2.0" },
   experiment: { status: "hidden", homepageSlot: true },
   video: {

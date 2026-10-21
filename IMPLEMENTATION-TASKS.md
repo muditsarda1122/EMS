@@ -131,7 +131,7 @@ Sonnet is fine for every task. T4a, T4b and T5 are the most design-sensitive, so
   - a `.prose` long-form style (replacing `.article-content`, restyled to the new tokens).
   - Keep the old `btn-editorial`, `card-editorial`, `text-editorial` and `section-animate` styles inside a `/* LEGACY — delete in T10 */` block, because old pages still use them.
 - **`content/site.config.ts`.**
-  - Fields: name, tagline, description, `domain: null`, contactEmail (`muditsarda23@gmail.com`), `repository: { url: null, ref: null }`, `experiment: { status: "hidden", homepageSlot: true }`, version, supportedAgents (Claude Code, Cursor, OpenCode, Codex), `claims: { anyMcpAgent: true }` (P13), nav items.
+  - Fields: name, tagline, description, `domain: null`, contactEmail (`mudit@muditsarda.com`), `repository: { url: null, ref: null }`, `experiment: { status: "hidden", homepageSlot: true }`, version, supportedAgents (Claude Code, Cursor, OpenCode, Codex), `claims: { anyMcpAgent: true }` (P13), nav items.
   - Export typed helpers, for example `isRepoPublic()`.
 - **Components.**
   - `components/site/Wordmark.tsx`.
