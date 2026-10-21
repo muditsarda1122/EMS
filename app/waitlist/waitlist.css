@@ -21,3 +21,6 @@
 .wl-field input::placeholder { color: var(--ink-3); }
 .wl-field input:focus { outline: 2px solid var(--accent); outline-offset: 2px; border-color: var(--accent); }
 .wl-signup .btn { justify-self: start; }
+.wl-signup .btn:disabled { opacity: 0.6; cursor: progress; }
+.wl-thanks { font-size: 1.1em; color: var(--ink); }
+.wl-error { margin-top: 18px; color: var(--ink); }
