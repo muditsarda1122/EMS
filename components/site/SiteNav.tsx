@@ -93,14 +93,17 @@ export default function SiteNav({ items, cta }: Props) {
               {item.label}
             </Link>
           ))}
+          <ButtonLink href="/waitlist" size="sm">
+            Join the waitlist
+          </ButtonLink>
           <ButtonLink href={cta.href} variant="secondary" size="sm" external={cta.external}>
             {cta.label}
           </ButtonLink>
         </div>
 
         <div className="nav-end">
-          <ButtonLink href={cta.href} variant="secondary" size="sm" external={cta.external}>
-            {cta.label}
+          <ButtonLink href="/waitlist" size="sm">
+            Join the waitlist
           </ButtonLink>
           <button
             ref={menuBtnRef}
