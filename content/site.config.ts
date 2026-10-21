@@ -47,7 +47,7 @@ export const siteConfig: SiteConfig = {
     "Reverie keeps the engineering conclusions your coding agent reaches, reviewed by you, grounded in your repository, and revised as evidence changes. Works with OpenCode, with Claude Code, Cursor and Codex coming soon. Open source under Apache-2.0.",
   domain: "reverie.muditsarda.com",
   contactEmail: "mudit@muditsarda.com",
-  waitlist: { tallyFormId: null },
+  waitlist: { tallyFormId: "jeaPJQ" },
   repository: { url: "https://github.com/muditsarda1122/Reverie", ref: "main", licence: "Apache-2.0" },
   experiment: { status: "hidden", homepageSlot: true },
   video: {
