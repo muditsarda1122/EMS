@@ -130,7 +130,7 @@ export default function HomePage() {
         <ul className="facts3 grid-12">
           <li><b>Stored on your machine.</b><span>One SQLite file. No Reverie account.</span></li>
           <li><b>You approve what’s kept.</b><span>Every extracted conclusion passes your review.</span></li>
-          <li><b>Your choice of model.</b><span>Extraction runs hosted, or locally with Ollama.</span></li>
+          <li><b>Your choice of model.</b><span>Extraction runs on the language model you set up.</span></li>
         </ul>
         <p className="more">
           <ArrowLink href="/how-it-works#install">Data, setup and limits</ArrowLink>

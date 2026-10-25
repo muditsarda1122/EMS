@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import "./how.css";
 import ArrowLink from "@/components/ui/ArrowLink";
 import ButtonLink from "@/components/ui/ButtonLink";
@@ -50,11 +51,16 @@ const GROUNDING: Record<string, string[] | null> = {
 };
 
 // Where the installer wires Reverie's instructions in for each agent (ec/install.py).
-const INSTRUCTION_FILES: Record<string, string> = {
-  "Claude Code": "~/.claude/CLAUDE.md",
-  Cursor: "~/.cursor/rules/ec.md",
-  OpenCode: "~/.config/opencode/AGENTS.md",
-  Codex: "~/.codex/AGENTS.md",
+// Cursor has no instructions file: its instructions arrive through the MCP server.
+const INSTRUCTION_FILES: Record<string, ReactNode> = {
+  "Claude Code": (
+    <>
+      <code>~/.claude/CLAUDE.md</code>, which imports <code>~/.reverie/AGENTS.md</code>
+    </>
+  ),
+  Cursor: "None. Reverie’s instructions arrive through the MCP server.",
+  OpenCode: <code>~/.config/opencode/AGENTS.md</code>,
+  Codex: <code>~/.codex/AGENTS.md</code>,
 };
 
 function ModuleNote({ id }: { id: string }) {
@@ -150,14 +156,14 @@ export default function HowItWorksPage() {
                 invalidation must follow token refresh, because clearing the cache first serves stale tokens, is a conclusion.
               </p>
               <p>
-                Every candidate faces three questions. <em>So what?</em> Is it a conclusion, not a fact? <em>Future session.</em>{" "}
+                Every new conclusion faces three questions. <em>So what?</em> Is it a conclusion, not a fact? <em>Future session.</em>{" "}
                 Would knowing it change how an engineer approaches a future task? <em>Independence.</em> Is it understandable
                 without the original conversation? Each record holds one conclusion, and a self-review pass rejects anything an
                 engineer could get by reading the code. The extractor keeps conclusions and rejects facts, code descriptions,
                 process steps and summaries. Zero is a valid output.
               </p>
               <p>
-                A kept conclusion is an <b>Engineering Cognition Unit</b> (ECU). It has one of eight types:{" "}
+                A kept conclusion has one of eight types:{" "}
                 <InlineList items={TYPES} />. It has one of seven scope levels, from engineering to subsystem, plus a path:{" "}
                 <InlineList items={SCOPES} />. And it has one of six statuses: <InlineList items={STATUSES} />.
               </p>
@@ -393,9 +399,7 @@ export default function HowItWorksPage() {
                   <tr key={a.name}>
                     <th scope="row" data-label="Agent">{a.name}</th>
                     <td data-label="Status">{a.ready ? <>Works today<Tick /></> : <Tag>Coming soon</Tag>}</td>
-                    <td data-label="Instructions file">
-                      {INSTRUCTION_FILES[a.name] ? <code>{INSTRUCTION_FILES[a.name]}</code> : "An instructions file"}
-                    </td>
+                    <td data-label="Instructions file">{INSTRUCTION_FILES[a.name] ?? "An instructions file"}</td>
                   </tr>
                 ))}
                 {any ? (
@@ -407,7 +411,7 @@ export default function HowItWorksPage() {
                 ) : null}
               </tbody>
             </table>
-            <p className="tbl-note">For each agent, the installer adds an MCP entry and wires Reverie’s instructions into the file shown.</p>
+            <p className="tbl-note">For each agent, the installer adds an MCP entry and, where the agent has one, wires Reverie’s instructions into the file shown.</p>
 
             <div className="prose-col">
               <p>
@@ -423,9 +427,9 @@ export default function HowItWorksPage() {
                 )}
               </p>
               <p>
-                <b>Models and data.</b> Reverie stores memory locally. Extraction and classification use an LLM endpoint: hosted
-                by default, or a local model through Ollama. What it sends there is the prompt, the agent’s reasoning and
-                final output, and candidate pairs of conclusions for classification. The database, the embeddings and retrieval never leave your
+                <b>Models and data.</b> Reverie stores memory locally. Extraction and classification send text to a language
+                model that you set up when you install Reverie. What is sent is the prompt, the agent’s reasoning and final
+                output, and pairs of conclusions for classification. The database, the embeddings and retrieval never leave your
                 machine.
               </p>
               <p className="naming">
@@ -471,9 +475,9 @@ export default function HowItWorksPage() {
               <details>
                 <summary>Does my code leave my machine?</summary>
                 <p>
-                  Parts of your sessions can. Extraction sends the prompt, the agent’s reasoning and its final output to the
-                  configured LLM endpoint, and classification sends candidate pairs of conclusions. That endpoint is hosted by default, or a
-                  local model if you use Ollama. The database, the embeddings and retrieval never leave your machine.
+                  Parts of your sessions can. Extraction sends the prompt, the agent’s reasoning and its final output to a
+                  language model, and classification sends pairs of conclusions. The database, the embeddings and retrieval never
+                  leave your machine.
                 </p>
               </details>
               <details>

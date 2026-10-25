@@ -28,7 +28,7 @@ export function GET() {
     "- Two stores: a session brain per repository and branch, and a reviewed canonical brain shared across projects.",
     "- Conclusions behave like beliefs: evidence strengthens them, contradictions challenge them, and disuse lets them fade.",
     "- Your agent reaches memory through MCP tools (ec_observe, ec_query, ec_get_summary, ec_reconsolidate). It queries after reading the code, and results come framed as past understanding to verify against the current code.",
-    "- Local by design: one SQLite file at ~/.ec/ec.db, shared by your projects, and no Reverie account. Extraction and classification use an LLM endpoint, hosted by default or a local model through Ollama.",
+    "- Local by design: one SQLite file at ~/.ec/ec.db, shared by your projects, and no Reverie account. Extraction and classification use a language model that you set up.",
     "",
     "## Honest status",
     "",
