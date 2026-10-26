@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     "Install Reverie, enable it for a repo, review the conclusions it captures, and see how accepted conclusions carry across branches. The steps, in order.",
 };
 
-const INSTALL_COMMAND = `git clone https://github.com/muditsarda1122/Reverie.git
+const INSTALL_COMMAND = `git clone --branch v0.2.0 https://github.com/muditsarda1122/Reverie.git
 cd Reverie
 python3.12 -m venv .venv
 source .venv/bin/activate
@@ -94,6 +94,13 @@ export default function HowToUsePage() {
           <h2 id="install-h">Install</h2>
           <div className="htu-body">
             <Command>{INSTALL_COMMAND}</Command>
+            <p>
+              This installs the v0.2.0 release. Newer releases are listed on the{" "}
+              <a className="text-link" href="https://github.com/muditsarda1122/Reverie/releases" target="_blank" rel="noopener noreferrer">
+                Reverie releases page
+              </a>
+              .
+            </p>
             <p>
               The installer detects Claude Code, Cursor, Codex and OpenCode, and configures each one it finds. Restart each
               agent after it finishes.
