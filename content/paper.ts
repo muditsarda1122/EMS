@@ -14,7 +14,7 @@ export const errata: ErratumRow[] = [
     n: 2,
     topic: "The extraction model",
     says: "Extraction uses a specific named model.",
-    does: "Extraction uses whichever model is configured, hosted by default or Ollama for local use. This site names no model.",
+    does: "Extraction uses whichever language model you set up. This site names no model.",
   },
   {
     n: 3,

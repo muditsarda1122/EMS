@@ -7,6 +7,7 @@ export const dynamic = "force-static";
 const PATHS = [
   "/",
   "/how-it-works",
+  "/how-to-use",
   "/research",
   "/research/biological-memory-architecture",
   "/research/ec-bench",

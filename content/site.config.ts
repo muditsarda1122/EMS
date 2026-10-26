@@ -44,7 +44,7 @@ export const siteConfig: SiteConfig = {
   name: "Reverie",
   tagline: "Memory for coding agents.",
   description:
-    "Reverie keeps the engineering conclusions your coding agent reaches, reviewed by you, grounded in your repository, and revised as evidence changes. Works with OpenCode, with Claude Code, Cursor and Codex coming soon. Open source under Apache-2.0.",
+    "Reverie keeps the engineering conclusions your coding agent reaches, reviewed by you, grounded in your repository, and revised as evidence changes. Works with Claude Code, Cursor, Codex and OpenCode. Open source under Apache-2.0.",
   domain: "reverie.muditsarda.com",
   contactEmail: "mudit@muditsarda.com",
   waitlist: { buttondownUsername: "reverie" },
@@ -59,16 +59,17 @@ export const siteConfig: SiteConfig = {
     aspect: "16 / 9",
   },
   version: null,
-  // Only OpenCode's connection is complete (owner, 5 Oct 2026). Flip `ready` as each one lands.
+  // All four harnesses are connected: OpenCode, Claude Code, Cursor and Codex. Flip `ready` back if one is disconnected.
   agents: [
     { name: "OpenCode", ready: true },
-    { name: "Claude Code", ready: false },
-    { name: "Cursor", ready: false },
-    { name: "Codex", ready: false },
+    { name: "Claude Code", ready: true },
+    { name: "Cursor", ready: true },
+    { name: "Codex", ready: true },
   ],
-  claims: { anyMcpAgent: "soon" },
+  claims: { anyMcpAgent: false },
   nav: [
     { label: "How it works", href: "/how-it-works" },
+    { label: "How to use", href: "/how-to-use" },
     { label: "Research", href: "/research" },
     { label: "About", href: "/about" },
   ],
