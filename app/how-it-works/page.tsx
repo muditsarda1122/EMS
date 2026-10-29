@@ -7,6 +7,8 @@ import ButtonLink from "@/components/ui/ButtonLink";
 import Figure from "@/components/ui/Figure";
 import Tag from "@/components/ui/Tag";
 import Tick from "@/components/ui/Tick";
+import JsonLd from "@/components/site/JsonLd";
+import VideoSlot, { videoSlotMode } from "@/components/video/VideoSlot";
 import ConclusionAnatomy from "@/components/diagrams/ConclusionAnatomy";
 import TwoBrains from "@/components/diagrams/TwoBrains";
 import ConclusionLifecycle from "@/components/diagrams/ConclusionLifecycle";
@@ -32,7 +34,21 @@ const TOC = [
   ["install", "What you’re installing"],
   ["limits", "Limits, today"],
   ["faq", "Questions"],
+  ["demonstration", "The same agent, with and without Reverie."],
 ] as const;
+
+// The comparison video's structured data, moved here with the video from the homepage.
+const videoJsonLd = siteConfig.video
+  ? {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      name: siteConfig.video.title,
+      description:
+        "One recording comparing the same coding agent with and without Reverie. A demonstration, not a benchmark result.",
+      embedUrl: siteConfig.video.embedUrl,
+      uploadDate: siteConfig.video.published,
+    }
+  : null;
 
 const TYPES = ["implication", "constraint", "principle", "decision", "observation", "pattern", "invariant", "trade-off"];
 // Broadest to narrowest, as in the product's SCOPE_LEVELS (ec/config.py).
@@ -123,6 +139,7 @@ export default function HowItWorksPage() {
 
   return (
     <div className="hiw">
+      {videoJsonLd ? <JsonLd data={videoJsonLd} /> : null}
       <header className="wrap hiw-head">
         <h1 className="t-h1">How Reverie works</h1>
         <p className="lead">
@@ -533,6 +550,13 @@ export default function HowItWorksPage() {
               ) : null}
             </div>
           </section>
+
+          {/* 10: the comparison video, moved from the homepage. It keeps the homepage's heading, copy and player. */}
+          {videoSlotMode() !== "none" ? (
+            <div id="demonstration" className="hiw-demo">
+              <VideoSlot />
+            </div>
+          ) : null}
         </div>
       </div>
     </div>

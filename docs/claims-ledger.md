@@ -167,8 +167,8 @@ Every factual sentence on the page, grouped by section. Sources are plan section
 
 | # | Site claim | Where | Source | Last verified |
 |---|---|---|---|---|
-| V-1 | Heading "The same agent, with and without Reverie."; aside "One recording compares both runs."; caption "A recorded demonstration, not a benchmark result." | Home S3b | Owner, 6 Oct 2026 (video supplied); the heading is approved copy | pending (owner: confirm the same agent ran both sides) |
-| V-2 | `VideoObject`: title, a description matching V-1, the Google Drive embed URL, upload date 6 Oct 2026 | Home (JSON-LD) | Owner, 6 Oct 2026 | 2026-10-06 |
+| V-1 | Heading "The same agent, with and without Reverie."; aside "One recording compares both runs."; caption "A recorded demonstration, not a benchmark result." | How it works, end of page | Owner, 6 Oct 2026 (video supplied); the heading is approved copy | pending (owner: confirm the same agent ran both sides) |
+| V-2 | `VideoObject`: title, a description matching V-1, the Google Drive embed URL, upload date 6 Oct 2026 | How it works (JSON-LD) | Owner, 6 Oct 2026 | 2026-10-06 |
 | V-3 | `SoftwareApplication`: name, the site description (T1-3), developer application, macOS (Limits), author | Home (JSON-LD) | T1-3; How it works, Limits | 2026-10-06 |
 | L-1 | `/llms.txt` restates the site: description, agent status (C1, C27), open source (H29), what Reverie keeps and who decides (How it works rows), MCP tools (H22), storage and LLM endpoint (H25), EC-Bench status and the first version's result (A3), limits, the video (V-1), pages, names (A5) and contact (A6) | `/llms.txt` | The rows cited | 2026-10-06 |
 
@@ -178,3 +178,10 @@ Every factual sentence on the page, grouped by section. Sources are plan section
 |---|---|---|---|---|
 | R-1 | The code is public at github.com/muditsarda1122/Reverie (branch `main`) under Apache-2.0; it contains the source, the extraction prompt (`ec/prompts/extractor_prompt.md`), the benchmark harness (`bench/`) and setup instructions (README) | Home (hero, closing), How it works (install, FAQ, closing), EC-Bench, footer, nav, `/llms.txt`, metadata | The repository: LICENSE, README, `ec/`, `bench/` | 2026-10-07 |
 | R-2 | "Implemented in" notes on How it works: extractor and prompt; review gate and diffuser; confidence, maintainer and reconsolidation; grounding; retrieval and mode detection; installer and MCP server | How it works, each section | File names in `ec/` on `main` | 2026-10-07 |
+
+## Homepage hero video (feat/homepage-hero-video)
+
+| # | Site claim | Where | Source | Last verified |
+|---|---|---|---|---|
+| H-V1 | "Silent · 68 seconds" caption; the video has no audio track and runs 68 seconds; it loops and is muted | Home S1 (hero) | `public/homepage/brag.mp4` (ffprobe: 68.0 s, H.264, no audio stream; frames checked against the summary below) | pending (owner: confirm the final cut) |
+| H-V2 | Screen-reader summary of the video (visually hidden): the problem (instruction files do not record what worked; pasted notes are trusted over the code); a conclusion joins memory only after you accept it; a contradiction lets you choose between the old and new conclusion, and the replaced one stays on record as superseded; a past conclusion returns when relevant, grounded in the code; the video ends with the GitHub link and "Reverie is early" | Home S1 (hero), `aria-describedby` | The video's own frames, the same claims as C4, C5, C9 and C10 | pending (owner: confirm the summary matches the final cut) |

@@ -5,7 +5,7 @@ export type NavItem = { label: string; href: string };
 /** An agent Reverie connects to. `ready: false` shows it as "Coming soon"; `ready: true` gets a tick. */
 export type Agent = { name: string; ready: boolean };
 
-/** The homepage comparison video (S3b): one recording that compares both runs. */
+/** The comparison video (How it works, end of page): one recording that compares both runs. */
 export type ComparisonVideo = {
   /** An embeddable player URL (for Google Drive, the file's /preview link). */
   embedUrl: string;
@@ -29,7 +29,7 @@ export type SiteConfig = {
   waitlist: { buttondownUsername: string | null };
   repository: { url: string | null; ref: string | null; licence: string | null };
   experiment: { status: ExperimentStatus; homepageSlot: boolean };
-  /** null keeps the reserved frame in S3b. Independent of experiment.status (the research page, T12). */
+  /** null keeps the reserved frame at the end of How it works. Independent of experiment.status (the research page, T12). */
   video: ComparisonVideo | null;
   version: string | null; // TODO(fact): product version not stated in the plan
   agents: Agent[];

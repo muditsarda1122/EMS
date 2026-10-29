@@ -11,7 +11,8 @@ import MemoryMapControls from "@/components/diagrams/MemoryMapControls";
 import ConclusionLifecycle from "@/components/diagrams/ConclusionLifecycle";
 import OwnershipHub from "@/components/diagrams/OwnershipHub";
 import JsonLd from "@/components/site/JsonLd";
-import VideoSlot, { videoSlotMode } from "@/components/video/VideoSlot";
+import HeroVideo from "@/components/video/HeroVideo";
+import { videoSlotMode } from "@/components/video/VideoSlot";
 import { siteConfig, isRepoPublic } from "@/content/site.config";
 import specimen from "@/content/specimens/token-refresh.json";
 import type { ConclusionSpecimen } from "@/components/specimen/ConclusionRecord";
@@ -21,8 +22,8 @@ export const metadata: Metadata = {
   description: siteConfig.description,
 };
 
-// Structured data (plan §8.9): what Reverie is, and the comparison video when there is one. No site URLs until a
-// domain is set; the video's embed URL is external.
+// Structured data (plan §8.9): what Reverie is. No site URLs until a domain is set. The comparison video's data is on
+// the How it works page, where the video is.
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -34,18 +35,6 @@ const jsonLd = {
       operatingSystem: "macOS",
       author: { "@type": "Person", name: siteConfig.author, sameAs: [siteConfig.links.linkedin] },
     },
-    ...(siteConfig.video
-      ? [
-          {
-            "@type": "VideoObject",
-            name: siteConfig.video.title,
-            description:
-              "One recording comparing the same coding agent with and without Reverie. A demonstration, not a benchmark result.",
-            embedUrl: siteConfig.video.embedUrl,
-            uploadDate: siteConfig.video.published,
-          },
-        ]
-      : []),
   ],
 };
 
@@ -77,6 +66,7 @@ export default function HomePage() {
           </div>
         </div>
         <HeroGraph data={specimen as ConclusionSpecimen} />
+        <HeroVideo />
       </section>
 
       {/* S2 Problem */}
@@ -96,9 +86,6 @@ export default function HomePage() {
         </div>
         <SessionBoundary />
       </section>
-
-      {/* S3b Side by side (reserved video slot) */}
-      <VideoSlot />
 
       {/* S4 Memory that can change its mind (M1 + F2) */}
       <section className="section wrap">

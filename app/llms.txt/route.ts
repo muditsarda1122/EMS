@@ -35,7 +35,7 @@ export function GET() {
     "- Our benchmark, EC-Bench, has not shown a clear advantage yet. Our first version loaded memory before the agent began work, and on the benchmark the agent did worse. Results are published either way.",
     "- Developed and tested on macOS. Review happens in the terminal. You start and end sessions yourself.",
     ...(siteConfig.video
-      ? ["- The homepage has a recorded demonstration of the same agent with and without Reverie. It is a demonstration, not a benchmark result."]
+      ? ["- The How it works page has a recorded demonstration of the same agent with and without Reverie. It is a demonstration, not a benchmark result."]
       : []),
     "",
     "## Pages",

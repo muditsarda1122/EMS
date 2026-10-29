@@ -37,6 +37,15 @@
 .home .hv-mobile .rel { font-family: var(--font-mono), ui-monospace, Menlo, monospace; font-size: 11px; color: var(--ink-3); display: block; letter-spacing: .04em; }
 .home .hv-mobile s { color: var(--ink-3); }
 
+/* hero video (below the buttons): 16:9 from the first paint, so nothing shifts while it loads */
+.home .hero-video { position: relative; grid-column: 1 / 13; width: min(100%, 1100px, calc(70vh * 16 / 9)); margin: 56px auto 0; }
+/* The box is exactly 16:9, so cover fills it with no bars. The frame is a box-shadow, not a border, so the 16:9 content box isn't shrunk. */
+.home .hero-video-player { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; background: #f6fbf8; border-radius: 2px; box-shadow: 0 0 0 1px var(--rule-strong); }
+.home .hero-video-bar { margin-top: 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.home .hero-video-toggle { min-height: 40px; padding: 0 14px; font-family: var(--font-mono), ui-monospace, Menlo, monospace; font-size: 13px; color: var(--ink-2); background: transparent; border: 1px solid var(--rule-strong); border-radius: 2px; cursor: pointer; }
+.home .hero-video-toggle:hover { color: var(--ink); border-color: var(--ink); }
+.home .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
 /* ---------- problem ---------- */
 .home .s2-left { grid-column: 1 / 7; }
 .home .s2-left .pull { margin-top: 30px; max-width: 24em; font-size: 21px; line-height: 1.4; color: var(--ink-2); padding-left: 18px; border-left: 1px solid var(--ink); }
@@ -107,18 +116,6 @@
 .home .legend span { display: inline-flex; align-items: center; gap: 8px; }
 .home figure.fig .legend svg { width: 30px; height: 14px; display: inline-block; }
 .home .panel-label { margin: 56px 0 16px; padding-top: 18px; border-top: 1px solid var(--rule); }
-
-/* ---------- side by side (S3b) ---------- */
-.home .vs { margin: 52px 0 0; }
-.home .vs-frame { display: grid; grid-template-columns: 1fr 1fr; height: 260px; border: 1px dashed var(--ink-4); border-radius: 2px; }
-.home .vs-half { padding: 22px 24px; display: flex; flex-direction: column; justify-content: space-between; }
-.home .vs-half + .vs-half { border-left: 1px dashed var(--ink-4); }
-.home .vs-label { font-size: 19px; font-weight: 500; }
-.home .vs-cond { font-style: italic; font-size: 15.5px; color: var(--ink-3); }
-.home .vs-status { margin-top: 14px; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
-.home .vs-player { position: relative; width: 100%; border: 1px solid var(--rule-strong); border-radius: 2px; background: #000; overflow: hidden; }
-.home .vs-player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-.home .vs-status .vs-share { font-size: 15px; }
 
 /* ---------- ownership (O1) ---------- */
 .home .facts3 { margin: 44px 0 0; list-style: none; padding: 0; }
@@ -209,10 +206,6 @@
   .home .panel-label { margin-top: 40px; }
   .home .facts3 li { margin-top: 18px; }
   .home .rlist { margin-top: 30px; }
-  .home .vs { margin-top: 28px; }
-  .home .vs-frame { grid-template-columns: 1fr; height: auto; }
-  .home .vs-half { min-height: 116px; padding: 16px 18px; }
-  .home .vs-half + .vs-half { border-left: 0; border-top: 1px dashed var(--ink-4); }
   .home .rlist li a, .home .rlist li.next a, .home .rlist li.next > div { grid-template-columns: 1fr; row-gap: 4px; }
   .home .s7 { padding-top: 104px; }
   .home .s7 .right { margin-top: 16px; }
