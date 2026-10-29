@@ -76,9 +76,9 @@ export default function HomePage() {
               <ButtonLink href="/research" variant="secondary">Read the research</ButtonLink>
             )}
           </div>
-          <HeroVideo />
         </div>
         <HeroGraph data={specimen as ConclusionSpecimen} />
+        <HeroVideo />
       </section>
 
       {/* S2 Problem */}
