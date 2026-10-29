@@ -11,6 +11,7 @@ import MemoryMapControls from "@/components/diagrams/MemoryMapControls";
 import ConclusionLifecycle from "@/components/diagrams/ConclusionLifecycle";
 import OwnershipHub from "@/components/diagrams/OwnershipHub";
 import JsonLd from "@/components/site/JsonLd";
+import HeroVideo from "@/components/video/HeroVideo";
 import VideoSlot, { videoSlotMode } from "@/components/video/VideoSlot";
 import { siteConfig, isRepoPublic } from "@/content/site.config";
 import specimen from "@/content/specimens/token-refresh.json";
@@ -75,6 +76,7 @@ export default function HomePage() {
               <ButtonLink href="/research" variant="secondary">Read the research</ButtonLink>
             )}
           </div>
+          <HeroVideo />
         </div>
         <HeroGraph data={specimen as ConclusionSpecimen} />
       </section>

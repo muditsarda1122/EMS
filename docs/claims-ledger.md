@@ -178,3 +178,10 @@ Every factual sentence on the page, grouped by section. Sources are plan section
 |---|---|---|---|---|
 | R-1 | The code is public at github.com/muditsarda1122/Reverie (branch `main`) under Apache-2.0; it contains the source, the extraction prompt (`ec/prompts/extractor_prompt.md`), the benchmark harness (`bench/`) and setup instructions (README) | Home (hero, closing), How it works (install, FAQ, closing), EC-Bench, footer, nav, `/llms.txt`, metadata | The repository: LICENSE, README, `ec/`, `bench/` | 2026-10-07 |
 | R-2 | "Implemented in" notes on How it works: extractor and prompt; review gate and diffuser; confidence, maintainer and reconsolidation; grounding; retrieval and mode detection; installer and MCP server | How it works, each section | File names in `ec/` on `main` | 2026-10-07 |
+
+## Homepage hero video (feat/homepage-hero-video)
+
+| # | Site claim | Where | Source | Last verified |
+|---|---|---|---|---|
+| H-V1 | "Silent · 68 seconds" caption; the video has no audio track and runs 68 seconds; it loops and is muted | Home S1 (hero) | `public/homepage/brag.mp4` (ffprobe: 68.0 s, H.264, no audio stream; frames checked against the summary below) | pending (owner: confirm the final cut) |
+| H-V2 | Screen-reader summary of the video (visually hidden): the problem (instruction files do not record what worked; pasted notes are trusted over the code); a conclusion joins memory only after you accept it; a contradiction lets you choose between the old and new conclusion, and the replaced one stays on record as superseded; a past conclusion returns when relevant, grounded in the code; the video ends with the GitHub link and "Reverie is early" | Home S1 (hero), `aria-describedby` | The video's own frames, the same claims as C4, C5, C9 and C10 | pending (owner: confirm the summary matches the final cut) |
