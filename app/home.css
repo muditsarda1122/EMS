@@ -38,8 +38,9 @@
 .home .hv-mobile s { color: var(--ink-3); }
 
 /* hero video (below the buttons): 16:9 from the first paint, so nothing shifts while it loads */
-.home .hero-video { position: relative; grid-column: 1 / 13; width: 100%; max-width: 1100px; margin: 56px auto 0; }
-.home .hero-video-player { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; max-height: 70vh; object-fit: contain; background: #000; border: 1px solid var(--rule-strong); border-radius: 2px; }
+.home .hero-video { position: relative; grid-column: 1 / 13; width: min(100%, 1100px, calc(70vh * 16 / 9)); margin: 56px auto 0; }
+/* The box is exactly 16:9, so cover fills it with no bars. The frame is a box-shadow, not a border, so the 16:9 content box isn't shrunk. */
+.home .hero-video-player { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; background: #f6fbf8; border-radius: 2px; box-shadow: 0 0 0 1px var(--rule-strong); }
 .home .hero-video-bar { margin-top: 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .home .hero-video-toggle { min-height: 40px; padding: 0 14px; font-family: var(--font-mono), ui-monospace, Menlo, monospace; font-size: 13px; color: var(--ink-2); background: transparent; border: 1px solid var(--rule-strong); border-radius: 2px; cursor: pointer; }
 .home .hero-video-toggle:hover { color: var(--ink); border-color: var(--ink); }
