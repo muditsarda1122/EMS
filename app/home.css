@@ -117,18 +117,6 @@
 .home figure.fig .legend svg { width: 30px; height: 14px; display: inline-block; }
 .home .panel-label { margin: 56px 0 16px; padding-top: 18px; border-top: 1px solid var(--rule); }
 
-/* ---------- side by side (S3b) ---------- */
-.home .vs { margin: 52px 0 0; }
-.home .vs-frame { display: grid; grid-template-columns: 1fr 1fr; height: 260px; border: 1px dashed var(--ink-4); border-radius: 2px; }
-.home .vs-half { padding: 22px 24px; display: flex; flex-direction: column; justify-content: space-between; }
-.home .vs-half + .vs-half { border-left: 1px dashed var(--ink-4); }
-.home .vs-label { font-size: 19px; font-weight: 500; }
-.home .vs-cond { font-style: italic; font-size: 15.5px; color: var(--ink-3); }
-.home .vs-status { margin-top: 14px; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
-.home .vs-player { position: relative; width: 100%; border: 1px solid var(--rule-strong); border-radius: 2px; background: #000; overflow: hidden; }
-.home .vs-player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-.home .vs-status .vs-share { font-size: 15px; }
-
 /* ---------- ownership (O1) ---------- */
 .home .facts3 { margin: 44px 0 0; list-style: none; padding: 0; }
 .home .facts3 li { grid-column: span 4; border-top: 1px solid var(--ink); padding: 14px 24px 0 0; font-size: 17.5px; line-height: 1.5; }
@@ -218,10 +206,6 @@
   .home .panel-label { margin-top: 40px; }
   .home .facts3 li { margin-top: 18px; }
   .home .rlist { margin-top: 30px; }
-  .home .vs { margin-top: 28px; }
-  .home .vs-frame { grid-template-columns: 1fr; height: auto; }
-  .home .vs-half { min-height: 116px; padding: 16px 18px; }
-  .home .vs-half + .vs-half { border-left: 0; border-top: 1px dashed var(--ink-4); }
   .home .rlist li a, .home .rlist li.next a, .home .rlist li.next > div { grid-template-columns: 1fr; row-gap: 4px; }
   .home .s7 { padding-top: 104px; }
   .home .s7 .right { margin-top: 16px; }

@@ -1,4 +1,4 @@
-// S3b: the comparison video. Driven by site.config.ts: `video` shows the player; otherwise experiment.status and
+// The comparison video, at the end of How it works. Driven by site.config.ts: `video` shows the player; otherwise experiment.status and
 // homepageSlot decide whether the reserved dashed frame shows (no player, play button, thumbnail or outcome language).
 import ArrowLink from "@/components/ui/ArrowLink";
 import Tag from "@/components/ui/Tag";

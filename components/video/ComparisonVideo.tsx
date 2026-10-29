@@ -1,4 +1,4 @@
-// S3b, published: one recording that compares both runs, in an embedded player (site.config.ts → video).
+// Published: one recording that compares both runs, in an embedded player (site.config.ts → video).
 // Labelled as a demonstration: the benchmark, not this video, is where results live.
 import ArrowLink from "@/components/ui/ArrowLink";
 import Tag from "@/components/ui/Tag";
